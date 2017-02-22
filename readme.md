@@ -48,17 +48,12 @@ First, clone git rep0sitory
 
 With Git SSH
 ```
-git clone git@github.com:FlorientR/laravel-gentelella.git
-```
-
-Or with HTTPS
-```
-git clone https://github.com/FlorientR/laravel-gentelella.git
+git clone git@bitbucket.org:xorth/gamestation.mx.git
 ```
 
 Go to the project folder 
 ```
-cd laravel-gentelella
+cd gamestation.mx
 ```
 
 Update composer 
@@ -87,8 +82,6 @@ bower install
 gulp
 ```
 
-###UPDATE 2.0
-
 Add auth support !
 
 **WARNING** : For auth support, configure your ```.env``` file with ```database``` and ```smtp``` connection !
@@ -98,10 +91,3 @@ For install auth support, run this follow commands
 ```
 php artisan migrate
 ```
-
-###UPDATE 3.0
-
-####Laravel-Gentelella is now on Laravel 5.3 !!
-
-And you are ready for a new Laravel 5.3 application with Gentelella template !!
-
