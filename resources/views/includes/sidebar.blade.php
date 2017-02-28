@@ -34,7 +34,7 @@
                     </li>
                     <li><a><i class="fa fa-list"></i> Capturas <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="#">Provedores</a></li>
+                            <li><a href="{{ route('supplier.index') }}">Proveedores</a></li>
                             <li><a href="#">Clientes</a></li>
                             <li><a href="#">Productos</a></li>
                         </ul>
@@ -70,10 +70,10 @@
                     </li>
                 </ul>
             </div>
-        
+
         </div>
         <!-- /sidebar menu -->
-        
+
         <!-- /menu footer buttons -->
         <div class="sidebar-footer hidden-small">
             <a data-toggle="tooltip" data-placement="top" title="Settings">

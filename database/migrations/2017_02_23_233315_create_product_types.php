@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductsCatalog extends Migration
+class CreateProductTypes extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateProductsCatalog extends Migration
      */
     public function up()
     {
-        Schema::create('products_catalog', function (Blueprint $table) {
+        Schema::create('product_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('products_catalog');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateProductsCatalog extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products_catalog');
+        Schema::dropIfExists('product_types');
     }
 }

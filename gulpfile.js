@@ -14,7 +14,7 @@ var elixir = require('laravel-elixir');
 // Gentelella vendors path : vendor/bower_components/gentelella/vendors
 
 elixir(function(mix) {
-    
+
     /********************/
     /* Copy Stylesheets */
     /********************/
@@ -28,6 +28,9 @@ elixir(function(mix) {
     // Gentelella
     mix.copy('vendor/bower_components/gentelella/build/css/custom.min.css', 'public/css/gentelella.min.css');
 
+    // PNotify
+    mix.copy('vendor/bower_components/gentelella/vendors/pnotify/dist/pnotify.css', 'public/css/pnotify.css');
+
     /****************/
     /* Copy Scripts */
     /****************/
@@ -39,7 +42,10 @@ elixir(function(mix) {
     mix.copy('vendor/bower_components/gentelella/vendors/jquery/dist/jquery.min.js', 'public/js/jquery.min.js');
 
     // Gentelella
-    mix.copy('vendor/bower_components/gentelella/build/js/custom.min.js', 'public/js/gentelella.min.js');
+    mix.copy('vendor/bower_components/gentelella/build/js/custom.js', 'public/js/gentelella.js');
+
+    // PNotify
+    mix.copy('vendor/bower_components/gentelella/vendors/pnotify/dist/pnotify.js', 'public/js/pnotify.js');
 
     /**************/
     /* Copy Fonts */

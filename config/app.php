@@ -157,8 +157,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\BroadcastServiceProvider::class,
-	
-		Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class
+
+		Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
+        Laracasts\Flash\FlashServiceProvider::class,
     ],
 
     /*
@@ -206,7 +208,9 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 		'Notifiaction' => Illuminate\Support\Facades\Notification::class,
 
-		'Gravatar' => Thomaswelton\LaravelGravatar\Facades\Gravatar::class
+		'Gravatar' => Thomaswelton\LaravelGravatar\Facades\Gravatar::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
     ],
 
 ];

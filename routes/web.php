@@ -14,3 +14,7 @@
 Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/', 'HomeController@index');
+
+// Route::get('suppliers', 'SuppliersController@index');
+// Route::get('suppliers/{supplier}', 'SuppliersController@show');
+Route::resource('supplier', 'SuppliersController');
