@@ -11,7 +11,7 @@ class SuppliersController extends Controller
 {
     public function index()
     {
-        $suppliers = Supplier::with('type')->get();
+        $suppliers = Supplier::with('type')->latest('id')->paginate(20);
         return view('suppliers.index', compact('suppliers'));
     }
 

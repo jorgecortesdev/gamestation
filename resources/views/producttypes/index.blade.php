@@ -7,10 +7,10 @@
 
         <div class="page-title">
             <div class="title_left">
-                <h3>Proveedores</h3>
+                <h3>Tipos de productos</h3>
             </div>
             <div class="title_right">
-                <a href="{{ route('supplier.create') }}" class="btn btn-default pull-right">Agregar</a>
+                <a href="#" class="btn btn-default pull-right">Agregar</a>
             </div>
         </div>
 
@@ -23,26 +23,20 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Nombre</th>
-                                    <th>Teléfono</th>
-                                    <th>Correo</th>
-                                    <th>Tipo</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($suppliers as $supplier)
+                                @foreach ($product_types as $product_type)
                                     <tr>
-                                        <td>{{ $supplier->id }}</td>
-                                        <td><a href="{{ route('supplier.show', [$supplier->id]) }}">{{ $supplier->name }}</a></td>
-                                        <td>{{ $supplier->telephone }}</td>
-                                        <td>{{ $supplier->email }}</td>
-                                        <td>{{ $supplier->type->name }}</td>
+                                        <td>{{ $product_type->id }}</td>
+                                        <td>{{ $product_type->name }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('supplier.show', [$supplier->id]) }}"><i class="fa fa-eye"></i> Ver</a>
+                                            <a href="#"><i class="fa fa-eye"></i> Ver</a>
                                             &nbsp;|&nbsp;
-                                            <a href="{{ route('supplier.edit', [$supplier->id]) }}"><i class="fa fa-edit"></i> Editar</a>
+                                            <a href="#"><i class="fa fa-edit"></i> Editar</a>
                                             &nbsp;|&nbsp;
-                                            <a href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('supplier.destroy', [$supplier->id]) }}"> <i class="fa fa-trash"></i> Borrar</a>
+                                            <a href="#"> <i class="fa fa-trash"></i> Borrar</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -54,7 +48,7 @@
         </div>
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                {{ $suppliers->links() }}
+                {{ $product_types->links() }}
             </div>
         </div>
     </div>
@@ -68,8 +62,5 @@
         <div class="clearfix"></div>
     </footer>
     <!-- /footer content -->
-
-    <!-- Modal -->
-    @include('modals.delete', ['entityText' => 'proveedor'])
 
 @endsection
