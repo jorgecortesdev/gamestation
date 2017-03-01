@@ -7,7 +7,7 @@
         <div class="clearfix"></div>
 
         <!-- menu profile quick info -->
-        <div class="profile">
+        <div class="profile clearfix">
             <div class="profile_pic">
                 <img src="{{ Gravatar::src(Auth::user()->email) }}" alt="Avatar of {{ Auth::user()->name }}" class="img-circle profile_img">
             </div>
@@ -29,7 +29,7 @@
                         <a href="javascript:void(0)">
                             <i class="fa fa-home"></i>
                             Inicio
-                            <span class="label label-success pull-right">Nuevo</span>
+                            {{-- <span class="label label-success pull-right">Nuevo</span> --}}
                         </a>
                     </li>
                     <li><a><i class="fa fa-list"></i> Capturas <span class="fa fa-chevron-down"></span></a>
@@ -41,7 +41,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="menu_section">
+            {{-- <div class="menu_section">
                 <h3>Grupo 2</h3>
                 <ul class="nav side-menu">
                     <li>
@@ -69,13 +69,13 @@
                         </ul>
                     </li>
                 </ul>
-            </div>
+            </div> --}}
 
         </div>
         <!-- /sidebar menu -->
 
         <!-- /menu footer buttons -->
-        <div class="sidebar-footer hidden-small">
+{{--         <div class="sidebar-footer hidden-small">
             <a data-toggle="tooltip" data-placement="top" title="Settings">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
             </a>
@@ -88,7 +88,7 @@
             <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ url('/logout') }}">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
             </a>
-        </div>
+        </div> --}}
         <!-- /menu footer buttons -->
     </div>
 </div>
