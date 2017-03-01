@@ -42,7 +42,7 @@
                                         <td>{{ $supplier->address }}</td>
                                         <td>{{ $supplier->telephone }}</td>
                                         <td>{{ $supplier->email }}</td>
-                                        <td>{{ $supplier->type }}</td>
+                                        <td>{{ $supplier->type->name }}</td>
                                         <td>
                                             <a href="{{ route('supplier.show', [$supplier->id]) }}"><i class="fa fa-eye"></i> Ver</a>
                                             &nbsp;|&nbsp;

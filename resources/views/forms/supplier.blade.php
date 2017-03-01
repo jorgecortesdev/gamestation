@@ -38,12 +38,15 @@
     @endif
 </div>
 
-<div class="item form-group{{ $errors->has('type') ? ' bad' : '' }}">
-    {!! Form::label('type', 'Tipo *', ['class' => 'control-label col-md-3 col-sm-3 col-xs-12']) !!}
+<div class="item form-group{{ $errors->has('supplier_type_id') ? ' bad' : '' }}">
+    {!! Form::label('supplier_type_id', 'Tipo *', ['class' => 'control-label col-md-3 col-sm-3 col-xs-12']) !!}
     <div class="col-md-6 col-sm-6 col-xs-12">
-        {!! Form::radio('type', '1', true) !!} &nbsp; Producto &nbsp;
-        {!! Form::radio('type', '2') !!} &nbsp; Servicio &nbsp;
+        {!! Form::radio('supplier_type_id', '1', true) !!} &nbsp; Producto &nbsp;
+        {!! Form::radio('supplier_type_id', '2') !!} &nbsp; Servicio &nbsp;
     </div>
+    @if ($errors->has('supplier_type_id'))
+        <div class="alert">{{ $errors->first('supplier_type_id') }}</div>
+    @endif
 </div>
 
 <div class="ln_solid"></div>
