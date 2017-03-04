@@ -7,15 +7,14 @@
 
         <div class="page-title">
             <div class="title_left">
-                <h3>Catálogo de Proveedores</h3>
-            </div>
-            <div class="title_right">
-                <a href="#" class="btn btn-default pull-right">Agregar</a>
+                <h3>Catálogo de Proveedores <a href="{{ route('supplier_type.create') }}" class="btn btn-default"><i class="fa fa-plus"></i> Agregar</a></h3>
             </div>
         </div>
 
+        <div class="clearfix"></div>
+
         <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                     <div class="x_content">
                         <table class="table table-hover">
@@ -23,7 +22,7 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Nombre</th>
-                                    <th class="text-center">Acciones</th>
+                                    <th>&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -31,12 +30,10 @@
                                     <tr>
                                         <td>{{ $supplier_type->id }}</td>
                                         <td>{{ $supplier_type->name }}</td>
-                                        <td class="text-center">
-                                            <a href="#"><i class="fa fa-eye"></i> Ver</a>
+                                        <td class="text-right">
+                                            <a href="{{ route('supplier_type.edit', [$supplier_type->id]) }}"><i class="fa fa-edit"></i> Editar</a>
                                             &nbsp;|&nbsp;
-                                            <a href="#"><i class="fa fa-edit"></i> Editar</a>
-                                            &nbsp;|&nbsp;
-                                            <a href="#"> <i class="fa fa-trash"></i> Borrar</a>
+                                            <a href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('supplier_type.destroy', [$supplier_type->id]) }}> <i class="fa fa-trash"></i> Borrar</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -47,7 +44,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+            <div class="col-md-6 col-sm-6 col-xs-12 text-center">
                 {{ $supplier_types->links() }}
             </div>
         </div>
@@ -62,5 +59,8 @@
         <div class="clearfix"></div>
     </footer>
     <!-- /footer content -->
+
+    <!-- Modal -->
+    @include('modals.delete', ['entityText' => 'tipo de proveedor'])
 
 @endsection
