@@ -32,22 +32,23 @@
                             {{-- <span class="label label-success pull-right">Nuevo</span> --}}
                         </a>
                     </li>
+                    <li><a><i class="fa fa-truck"></i> Proveedores <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{ route('supplier.index') }}">Listado</a></li>
+                            <li><a href="{{ route('supplier_product.index') }}">Productos</a></li>
+                        </ul>
+                    </li>
                     <li><a><i class="fa fa-list"></i> Capturas <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{ route('user.index') }}">Usuarios</a></li>
                             <li><a href="#">Clientes</a></li>
-                            <li><a>Proveedores<span class="fa fa-chevron-down"></span></a>
-                              <ul class="nav child_menu">
-                                 <li class="sub_menu"><a href="{{ route('supplier.index') }}">Listado</a>
-                                 <li><a href="#">Productos</a></li>
-                              </ul>
-                            </li>
-                            <li><a href="#">Productos<span class="fa fa-chevron-down"></span></a>
-                              <ul class="nav child_menu">
-                                <li class="sub_menu"><a href="#">Listado</a></li>
-                                <li><a href="#">Insumos</a></li>
-                                <li><a href="#">Paquetes</a></li>
-                              </ul>
+                            <li>
+                                <a href="#">Productos<span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li class="sub_menu"><a href="#">Listado</a></li>
+                                    <li><a href="#">Insumos</a></li>
+                                    <li><a href="#">Paquetes</a></li>
+                                </ul>
                             </li>
                         </ul>
                     </li>

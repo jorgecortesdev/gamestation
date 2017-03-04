@@ -3,9 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laracodes\Presenter\Traits\Presentable;
 
 class SupplierProduct extends Model
 {
+    use Presentable;
+
+    protected $presenter = 'App\Presenters\SupplierProductPresenter';
+
     public function supplier()
     {
         return $this->belongsTo(Supplier::class);
