@@ -61,13 +61,17 @@ class SuppliersController extends Controller
 
         $supplier->update($request->all());
 
-        return back();
+        flash('Proveedor actualizado con éxito', 'success');
+
+        return redirect(route('supplier.index'));
     }
 
     public function destroy($id)
     {
         $supplier = Supplier::find($id);
         $supplier->delete();
+
+        flash('Proveedor borrado con éxito', 'success');
 
         return back();
     }

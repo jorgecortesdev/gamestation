@@ -1,5 +1,6 @@
 <?php
 
+use App\Unity;
 use Illuminate\Database\Seeder;
 
 class UnitiesTableSeeder extends Seeder
@@ -11,6 +12,22 @@ class UnitiesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Unity::class, 10)->create();
+        $unities = [
+            ['name' => 'Mililitros'],
+            ['name' => 'Litros'],
+            ['name' => 'Galones'],
+            ['name' => 'Kilogramo'],
+            ['name' => 'Gramo'],
+            ['name' => 'Pieza'],
+            ['name' => 'Rollo'],
+            ['name' => 'Rebanada'],
+            ['name' => 'Paquete'],
+            ['name' => 'Caja'],
+        ];
+
+        foreach ($unities as $unity) {
+            $unity = new Unity($unity);
+            $unity->save();
+        }
     }
 }
