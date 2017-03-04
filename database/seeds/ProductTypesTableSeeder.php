@@ -21,7 +21,7 @@ class ProductTypesTableSeeder extends Seeder
             ['name' => 'Vaso', 'created_at' => $date, 'updated_at' => $date],
             ['name' => 'Servilleta cuadro', 'created_at' => $date, 'updated_at' => $date],
             ['name' => 'Servilleta mano', 'created_at' => $date, 'updated_at' => $date],
-            ['name' => 'Grano palomero', 'created_at' => $date, 'updated_at' => $date],
+            ['name' => 'Maíz palomero', 'created_at' => $date, 'updated_at' => $date],
             ['name' => 'Aceite', 'created_at' => $date, 'updated_at' => $date],
             ['name' => 'Bolsa negra grande', 'created_at' => $date, 'updated_at' => $date],
             ['name' => 'Bolsa negra chica', 'created_at' => $date, 'updated_at' => $date],

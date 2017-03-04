@@ -24,7 +24,9 @@ class SuppliersTableSeeder extends Seeder
             'Costco',
             'Sams',
             'Megaeders',
-            'Tuttifruti'
+            'Tuttifruti',
+            'Pixel',
+            'Proexss'
         ];
 
         $suppliers = factory(App\Supplier::class, count($names))->make();
