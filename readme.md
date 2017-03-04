@@ -66,6 +66,10 @@ php artisan key:generate
 npm install --global bower gulp
 npm install
 bower install
+```
+
+If you want to update assets you can run: (if you know what you are doing)
+```
 gulp
 ```
 
