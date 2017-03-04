@@ -24,7 +24,7 @@ $factory->define(App\Supplier::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'address' => $faker->address,
-        'telephone' => $faker->phoneNumber,
+        'telephone' => $faker->numberBetween(6620000000, 6629999999),
         'email' => $faker->email,
         'supplier_type_id' => $faker->numberBetween(1, 2),
     ];

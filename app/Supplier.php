@@ -10,7 +10,7 @@ class Supplier extends Model
 
     public function products()
     {
-        return $this->hasMany(SupplierProduct::class);
+        return $this->hasMany(SupplierProduct::class)->with(['type', 'unity']);
     }
 
     public function type()

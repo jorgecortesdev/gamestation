@@ -10,4 +10,14 @@ class SupplierProduct extends Model
     {
         return $this->belongsTo(Supplier::class);
     }
+
+    public function type()
+    {
+        return $this->belongsTo(ProductType::class, 'product_type_id');
+    }
+
+    public function unity()
+    {
+        return $this->belongsTo(Unity::class);
+    }
 }

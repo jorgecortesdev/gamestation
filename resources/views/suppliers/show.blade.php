@@ -35,10 +35,10 @@
                                         <td>{{ $product->id }}</td>
                                         <td>{{ $product->name }}</td>
                                         <td>{{ $product->quantity }}</td>
-                                        <td>{{ $product->unity_id }}</td>
+                                        <td>{{ $product->unity->name }}</td>
                                         <td>{{ $product->price }}</td>
                                         <td>{{ $product->iva }}</td>
-                                        <td>{{ $product->product_type_id }}</td>
+                                        <td>{{ $product->type->name }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

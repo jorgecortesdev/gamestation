@@ -12,10 +12,10 @@ class SupplierProductsTableSeeder extends Seeder
     public function run()
     {
         factory(App\SupplierProduct::class, 50)->create()->each(function($product) {
-            $product->supplier_id = mt_rand(1, 20); // Match the max amount of Suppliers seeder
+            $product->supplier_id = mt_rand(1, 13); // Match the max amount of Suppliers seeder
             $product->quantity = mt_rand(1, 100);
             $product->unity_id = mt_rand(1, 10); // Match the max amount of Unities seeder
-            $product->product_type_id = mt_rand(1, 15); // Match the max amount of Product types seeder
+            $product->product_type_id = mt_rand(1, 11); // Match the max amount of Product types seeder
             $product->save();
         });
     }
