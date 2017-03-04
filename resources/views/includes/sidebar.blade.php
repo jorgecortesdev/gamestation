@@ -1,7 +1,7 @@
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="{{ url('/') }}" class="site_title"><i class="fa fa-birthday-cake"></i> <span>EventOS</span></a>
+            <a href="{{ url('/') }}" class="site_title"><i class="fa fa-birthday-cake"></i> <span>GameStation <small><sup>MX</sup></small></span></a>
         </div>
 
         <div class="clearfix"></div>
@@ -27,10 +27,20 @@
                 <ul class="nav side-menu">
                     <li>
                         <a href="/">
-                            <i class="fa fa-home"></i>
-                            Inicio
+                            <i class="fa fa-home"></i> Inicio
                             {{-- <span class="label label-success pull-right">Nuevo</span> --}}
                         </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-calendar"></i> Eventos
+                        </a>
+                    </li>
+                    <li><a><i class="fa fa-user"></i> Clientes <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="#">Padres</a></li>
+                            <li><a href="#">Hijos</a></li>
+                        </ul>
                     </li>
                     <li><a><i class="fa fa-truck"></i> Proveedores <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
@@ -38,18 +48,11 @@
                             <li><a href="{{ route('supplier_product.index') }}">Productos</a></li>
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-list"></i> Capturas <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-cube"></i> Productos <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{ route('user.index') }}">Usuarios</a></li>
-                            <li><a href="#">Clientes</a></li>
-                            <li>
-                                <a href="#">Productos<span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li class="sub_menu"><a href="#">Listado</a></li>
-                                    <li><a href="#">Insumos</a></li>
-                                    <li><a href="#">Paquetes</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="#">Listado<span class="fa fa-chevron-down"></span></a></li>
+                            <li><a href="#">Insumos</a></li>
+                            <li><a href="#">Paquetes</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-list-ul"></i> Catálogos <span class="fa fa-chevron-down"></span></a>
@@ -58,6 +61,11 @@
                             <li><a href="{{ route('product_type.index') }}">Productos</a></li>
                             <li><a href="{{ route('unity.index') }}">Unidades</a></li>
                         </ul>
+                    </li>
+                    <li>
+                        <a href="{{ route('user.index') }}">
+                            <i class="fa fa-users"></i> Usuarios
+                        </a>
                     </li>
                 </ul>
             </div>
