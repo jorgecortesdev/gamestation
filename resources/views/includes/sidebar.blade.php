@@ -26,7 +26,7 @@
                 <h3>General</h3>
                 <ul class="nav side-menu">
                     <li>
-                        <a href="javascript:void(0)">
+                        <a href="/">
                             <i class="fa fa-home"></i>
                             Inicio
                             {{-- <span class="label label-success pull-right">Nuevo</span> --}}
@@ -35,12 +35,20 @@
                     <li><a><i class="fa fa-list"></i> Capturas <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{ route('user.index') }}">Usuarios</a></li>
-                            <li><a href="{{ route('supplier.index') }}">Proveedores</a></li>
-                            <li><a href="#">Productos de proveedores</a></li>
-                            <li><a href="#">Insumos</a></li>
-                            <li><a href="#">Productos</a></li>
-                            <li><a href="#">Paquetes</a></li>
                             <li><a href="#">Clientes</a></li>
+                            <li><a>Proveedores<span class="fa fa-chevron-down"></span></a>
+                              <ul class="nav child_menu">
+                                 <li class="sub_menu"><a href="{{ route('supplier.index') }}">Listado</a>
+                                 <li><a href="#">Productos</a></li>
+                              </ul>
+                            </li>
+                            <li><a href="#">Productos<span class="fa fa-chevron-down"></span></a>
+                              <ul class="nav child_menu">
+                                <li class="sub_menu"><a href="#">Listado</a></li>
+                                <li><a href="#">Insumos</a></li>
+                                <li><a href="#">Paquetes</a></li>
+                              </ul>
+                            </li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-list-ul"></i> Catálogos <span class="fa fa-chevron-down"></span></a>
