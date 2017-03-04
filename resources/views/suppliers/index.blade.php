@@ -5,12 +5,18 @@
     <!-- page content -->
     <div class="right_col" role="main">
 
-        <div class="page-title">
-            <div class="title_left">
-                <h3>Proveedores</h3>
-            </div>
-            <div class="title_right">
-                <a href="{{ route('supplier.create') }}" class="btn btn-default pull-right">Agregar</a>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3>Proveedores</h3>
+                    </div>
+                    <div class="title_right">
+                        <a href="{{ route('supplier.create') }}" class="btn btn-default pull-right">
+                            <i class="fa fa-plus-square"></i> Agregar
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -26,7 +32,7 @@
                                     <th>Teléfono</th>
                                     <th>Correo</th>
                                     <th>Tipo</th>
-                                    <th class="text-center">Acciones</th>
+                                    <th>&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -34,10 +40,10 @@
                                     <tr>
                                         <td>{{ $supplier->id }}</td>
                                         <td><a href="{{ route('supplier.show', [$supplier->id]) }}">{{ $supplier->name }}</a></td>
-                                        <td>{{ $supplier->telephone }}</td>
-                                        <td>{{ $supplier->email }}</td>
+                                        <td>{{ $supplier->present()->telephone }}</td>
+                                        <td>{{ $supplier->present()->email }}</td>
                                         <td>{{ $supplier->type->name }}</td>
-                                        <td class="text-center">
+                                        <td class="text-right">
                                             <a href="{{ route('supplier.show', [$supplier->id]) }}"><i class="fa fa-eye"></i> Ver</a>
                                             &nbsp;|&nbsp;
                                             <a href="{{ route('supplier.edit', [$supplier->id]) }}"><i class="fa fa-edit"></i> Editar</a>
