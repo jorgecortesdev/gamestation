@@ -17,12 +17,5 @@
     </div>
     <!-- /page content -->
 
-    <!-- footer content -->
-    <footer>
-        <div class="pull-right">
-            EventOS - Gentellela Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-        </div>
-        <div class="clearfix"></div>
-    </footer>
-    <!-- /footer content -->
+    @include('includes.footer')
 @endsection
