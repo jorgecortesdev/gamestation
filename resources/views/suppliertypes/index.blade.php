@@ -7,7 +7,7 @@
 
         <div class="page-title">
             <div class="title_left">
-                <h3>Tipo de proveedores</h3>
+                <h3>Catálogo de Proveedores</h3>
             </div>
             <div class="title_right">
                 <a href="#" class="btn btn-default pull-right">Agregar</a>

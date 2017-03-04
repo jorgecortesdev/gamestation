@@ -7,7 +7,7 @@
 
         <div class="page-title">
             <div class="title_left">
-                <h3>Unidades <a href="{{ route('unity.create') }}" class="btn btn-default"><i class="fa fa-plus"></i> Agregar</a></h3>
+                <h3>Catálogo de Unidades <a href="{{ route('unity.create') }}" class="btn btn-default"><i class="fa fa-plus"></i> Agregar</a></h3>
             </div>
         </div>
 

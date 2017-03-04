@@ -36,14 +36,18 @@
                         <ul class="nav child_menu">
                             <li><a href="{{ route('user.index') }}">Usuarios</a></li>
                             <li><a href="{{ route('supplier.index') }}">Proveedores</a></li>
-                            <li><a href="{{ route('supplier_type.index') }}">Tipo de proveedores</a></li>
-                            <li><a href="{{ route('unity.index') }}">Unidades</a></li>
-                            <li><a href="{{ route('product_type.index') }}">Tipo de productos</a></li>
                             <li><a href="#">Productos de proveedores</a></li>
                             <li><a href="#">Insumos</a></li>
                             <li><a href="#">Productos</a></li>
                             <li><a href="#">Paquetes</a></li>
                             <li><a href="#">Clientes</a></li>
+                        </ul>
+                    </li>
+                    <li><a><i class="fa fa-list-ul"></i> Catálogos <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="{{ route('supplier_type.index') }}">Proveedores</a></li>
+                            <li><a href="{{ route('product_type.index') }}">Productos</a></li>
+                            <li><a href="{{ route('unity.index') }}">Unidades</a></li>
                         </ul>
                     </li>
                 </ul>
