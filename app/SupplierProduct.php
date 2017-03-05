@@ -9,6 +9,8 @@ class SupplierProduct extends Model
 {
     use Presentable;
 
+    protected $fillable = ['name', 'supplier_id', 'quantity', 'unity_id', 'price', 'iva', 'product_type_id'];
+
     protected $presenter = 'App\Presenters\SupplierProductPresenter';
 
     public function supplier()

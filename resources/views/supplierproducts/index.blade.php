@@ -35,6 +35,7 @@
                                     <th class="text-center">Unidad</th>
                                     <th class="text-center">Precio</th>
                                     <th class="text-center">IVA</th>
+                                    <th>&nbsp;</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -48,6 +49,11 @@
                                         <td class="text-center">{{ $product->unity->name }}</td>
                                         <td class="text-right">{{ $product->present()->price }}</td>
                                         <td class="text-right">{{ $product->present()->iva }}</td>
+                                        <td class="text-right">
+                                            <a href="{{ route('supplier_product.edit', [$product->id]) }}"><i class="fa fa-edit"></i> Editar</a>
+                                            &nbsp;|&nbsp;
+                                            <a href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('supplier_product.destroy', [$product->id]) }}"> <i class="fa fa-trash"></i> Borrar</a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -65,7 +71,7 @@
     <!-- /page content -->
 
     <!-- Modal -->
-    @include('modals.delete', ['entityText' => 'proveedor'])
+    @include('modals.delete', ['entityText' => 'producto'])
 
     <!-- footer content -->
     @include('includes.footer')
