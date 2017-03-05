@@ -29,6 +29,7 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Nombre</th>
+                                    <th>Dirección</th>
                                     <th>Teléfono</th>
                                     <th>Correo</th>
                                     <th>Tipo</th>
@@ -40,12 +41,13 @@
                                     <tr>
                                         <td>{{ $supplier->id }}</td>
                                         <td><a href="{{ route('supplier.show', [$supplier->id]) }}">{{ $supplier->name }}</a></td>
+                                        <td>{{ $supplier->address }}</td>
                                         <td>{{ $supplier->present()->telephone }}</td>
                                         <td>{{ $supplier->present()->email }}</td>
                                         <td>{{ $supplier->type->name }}</td>
                                         <td class="text-right">
-                                            <a href="{{ route('supplier.show', [$supplier->id]) }}"><i class="fa fa-eye"></i> Ver</a>
-                                            &nbsp;|&nbsp;
+{{--                                             <a href="{{ route('supplier.show', [$supplier->id]) }}"><i class="fa fa-eye"></i> Ver</a>
+                                            &nbsp;|&nbsp; --}}
                                             <a href="{{ route('supplier.edit', [$supplier->id]) }}"><i class="fa fa-edit"></i> Editar</a>
                                             &nbsp;|&nbsp;
                                             <a href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('supplier.destroy', [$supplier->id]) }}"> <i class="fa fa-trash"></i> Borrar</a>
