@@ -27,14 +27,16 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th class="text-center">Id</th>
-                                    <th class="text-center">Nombre</th>
-                                    <th class="text-center">Tipo</th>
-                                    <th class="text-center">Proveedor</th>
-                                    <th class="text-center">Cantidad</th>
-                                    <th class="text-center">Unidad</th>
-                                    <th class="text-center">Precio</th>
-                                    <th class="text-center">IVA</th>
+                                    <th>Id</th>
+                                    <th>Nombre</th>
+                                    <th>Tipo</th>
+                                    <th>Proveedor</th>
+                                    <th>Cantidad</th>
+                                    <th>Unidad</th>
+                                    <th>Costo</th>
+                                    <th>IVA</th>
+                                    <th>Costo Total</th>
+                                    <th>Costo Unitario</th>
                                     <th>&nbsp;</th>
                                 </tr>
                             </thead>
@@ -46,9 +48,11 @@
                                         <td>{{ $product->type->name }}</td>
                                         <td>{{ $product->supplier->name }}</td>
                                         <td class="text-right">{{ $product->quantity }}</td>
-                                        <td class="text-center">{{ $product->unity->name }}</td>
+                                        <td>{{ $product->unity->name }}</td>
                                         <td class="text-right">{{ $product->present()->price }}</td>
                                         <td class="text-right">{{ $product->present()->iva }}</td>
+                                        <td class="text-right">{{ $product->present()->total }}</td>
+                                        <td class="text-right">{{ $product->present()->unitCost }}</td>
                                         <td class="text-right">
                                             <a href="{{ route('supplier_product.edit', [$product->id]) }}"><i class="fa fa-edit"></i> Editar</a>
                                             &nbsp;|&nbsp;
