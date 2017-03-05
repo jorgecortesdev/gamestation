@@ -28,3 +28,5 @@ Route::resource('unity', 'UnitiesController');
 Route::resource('product_type', 'ProductTypesController');
 
 Route::resource('supplier_product', 'SupplierProductsController');
+
+Route::resource('product', 'ProductsController');
