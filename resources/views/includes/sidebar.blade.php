@@ -55,7 +55,7 @@
                     </li>
                     <li><a><i class="fa fa-cube"></i> Productos <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{ route('product.index') }}">Listado<span class="fa fa-chevron-down"></span></a></li>
+                            <li><a href="{{ route('product.index') }}">Listado</a></li>
                             <li><a href="#">Insumos</a></li>
                         </ul>
                     </li>
