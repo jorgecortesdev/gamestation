@@ -1,0 +1,10 @@
+.combo .combo-color {
+    display: inline-flex;
+    margin-left: 5px;
+}
+
+.bg-yellow {
+    background: #ffff00!important;
+    border: 1px solid #ffff00!important;
+    color: #fff;
+}

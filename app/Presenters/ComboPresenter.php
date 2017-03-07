@@ -3,13 +3,8 @@ namespace App\Presenters;
 
 use Laracodes\Presenter\Presenter;
 
-class SupplierProductPresenter extends Presenter
+class ComboPresenter extends Presenter
 {
-    public function iva()
-    {
-        return $this->currencyFormater($this->model->iva);
-    }
-
     public function price()
     {
         return $this->currencyFormater($this->model->price);
@@ -20,9 +15,14 @@ class SupplierProductPresenter extends Presenter
         return $this->currencyFormater($this->model->total);
     }
 
-    public function unitCost()
+    public function contributionMargin()
     {
-        return $this->currencyFormater($this->model->unit_cost);
+        return $this->currencyFormater($this->model->contribution_margin);
+    }
+
+    public function utility()
+    {
+        return number_format($this->model->utility * 100, 2) . '%';
     }
 
     protected function currencyFormater($amount)

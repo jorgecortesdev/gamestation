@@ -61,3 +61,10 @@ $factory->define(App\Product::class, function (Faker\Generator $faker) {
         'product_type_id' => 1,
     ];
 });
+
+$factory->define(App\Combo::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'price' => $faker->randomFloat(2, 10, 1000),
+    ];
+});

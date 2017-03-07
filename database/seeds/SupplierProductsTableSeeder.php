@@ -11,39 +11,41 @@ class SupplierProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        $names = [
-            'Agua',
-            'Hielo',
-            'Pizza Titán',
-            'Invitaciones',
-            'Ánfora Sinker Transparente',
-            'Pizzas Mega',
-            'Horchata',
-            'Jamaica',
-            'Limonada',
-            'Maíz Palomero',
-            'Servilletas',
-            'Bolsa café #1',
-            'Papel de baño',
-            'Servilletas de mano (Sanitas)',
-            'Bolsas para basura pequeñas',
-            'Guantes de polietileno',
-            'Aceite Nutrioli',
-            'Servilletas MAX',
-            'Sal para palomitas',
-            'Charola Mariel #66',
-            'Fabuloso naranja',
-            'MR Músculo Windex'
+        $data = [
+            ['name' => 'Agua Premier', 'price' => 25, 'iva' => 0, 'supplier_id' => 3, 'quantity' => 1, 'unity_id' => 1, 'product_type_id' => 2],
+            ['name' => 'Bahía Hielo 3.6KG', 'price' => 20, 'iva' => 0, 'supplier_id' => 3, 'quantity' => 1, 'unity_id' => 2, 'product_type_id' => 3],
+            ['name' => 'Pizza Titán Redonda', 'price' => 267, 'iva' => 42.72, 'supplier_id' => 6, 'quantity' => 1, 'unity_id' => 8, 'product_type_id' => 4],
+            ['name' => 'Invitacion Standard', 'price' => 208, 'iva' => 0, 'supplier_id' => 4, 'quantity' => 156, 'unity_id' => 8, 'product_type_id' => 2],
+            ['name' => 'Ánfora Sinker Transparente', 'price' => 14000, 'iva' => 2240, 'supplier_id' => 5, 'quantity' => 1000, 'unity_id' => 8, 'product_type_id' => 2],
+            ['name' => 'Pizza Mega', 'price' => 169, 'iva' => 0, 'supplier_id' => 7, 'quantity' => 1, 'unity_id' => 8, 'product_type_id' => 2],
+            ['name' => 'Horchata', 'price' => 150, 'iva' => 0, 'supplier_id' => 8, 'quantity' => 20, 'unity_id' => 4, 'product_type_id' => 2],
+            ['name' => 'Jamaica', 'price' => 100, 'iva' => 0, 'supplier_id' => 8, 'quantity' => 20, 'unity_id' => 4, 'product_type_id' => 2],
+            ['name' => 'Limonada', 'price' => 100, 'iva' => 0, 'supplier_id' => 8, 'quantity' => 20, 'unity_id' => 4, 'product_type_id' => 2],
+            ['name' => 'Piña', 'price' => 100, 'iva' => 0, 'supplier_id' => 8, 'quantity' => 20, 'unity_id' => 4, 'product_type_id' => 2],
+            ['name' => 'Maíz Palomero', 'price' => 17, 'iva' => 2.72, 'supplier_id' => 1, 'quantity' => 1, 'unity_id' => 6, 'product_type_id' => 2],
+            ['name' => 'Bolsa café #1', 'price' => 14.8, 'iva' => 2.37, 'supplier_id' => 1, 'quantity' => 100, 'unity_id' => 11, 'product_type_id' => 2],
+            ['name' => 'Papel de baño', 'price' => 25, 'iva' => 4, 'supplier_id' => 1, 'quantity' => 4, 'unity_id' => 9, 'product_type_id' => 2],
+            ['name' => 'Servilletas de mano (Sanitas)', 'price' => 21.8, 'iva' => 3.49, 'supplier_id' => 1, 'quantity' => 1, 'unity_id' => 11, 'product_type_id' => 2],
+            ['name' => 'Bolsas para basura pequeñas', 'price' => 32, 'iva' => 5.12, 'supplier_id' => 1, 'quantity' => 18, 'unity_id' => 11, 'product_type_id' => 2],
+            ['name' => 'Guantes de polietileno', 'price' => 25, 'iva' => 4, 'supplier_id' => 1, 'quantity' => 100, 'unity_id' => 11, 'product_type_id' => 2],
+            ['name' => 'Aceite Nutrioli', 'price' => 32, 'iva' => 5.12, 'supplier_id' => 1, 'quantity' => 1000, 'unity_id' => 3, 'product_type_id' => 2],
+            ['name' => 'Servilletas MAX', 'price' => 23, 'iva' => 3.68, 'supplier_id' => 1, 'quantity' => 500, 'unity_id' => 11, 'product_type_id' => 2],
+            ['name' => 'Sal para palomitas', 'price' => 30, 'iva' => 4.80, 'supplier_id' => 1, 'quantity' => 500, 'unity_id' => 7, 'product_type_id' => 2],
+            ['name' => 'Charola Mariel #66', 'price' => 15, 'iva' => 2.4, 'supplier_id' => 1, 'quantity' => 50, 'unity_id' => 11, 'product_type_id' => 2],
+            ['name' => 'Fabuloso naranja', 'price' => 20, 'iva' => 3.2, 'supplier_id' => 2, 'quantity' => 1000, 'unity_id' => 3, 'product_type_id' => 2],
+            ['name' => 'MR Músculo Windex', 'price' => 41, 'iva' => 6.56, 'supplier_id' => 9, 'quantity' => 1000, 'unity_id' => 3, 'product_type_id' => 2]
         ];
 
-        $products = factory(App\SupplierProduct::class, 50)->make();
+        $products = factory(App\SupplierProduct::class, count($data))->make();
 
-        foreach ($products as $product) {
-            $product->name = $names[mt_rand(1, count($names) - 1)];
-            $product->supplier_id = mt_rand(1, 12); // Match the max amount of Suppliers seeder
-            $product->quantity = mt_rand(1, 100);
-            $product->unity_id = mt_rand(1, 10); // Match the max amount of Unities seeder
-            $product->product_type_id = mt_rand(1, 11); // Match the max amount of Product types seeder
+        foreach ($products as $key => $product) {
+            $product->name            = $data[$key]['name'];
+            $product->price           = $data[$key]['price'];
+            $product->iva             = $data[$key]['iva'];
+            $product->supplier_id     = $data[$key]['supplier_id'];
+            $product->quantity        = $data[$key]['quantity'];
+            $product->unity_id        = $data[$key]['unity_id'];
+            $product->product_type_id = $data[$key]['product_type_id'];
             $product->save();
         }
     }

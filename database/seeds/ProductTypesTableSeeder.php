@@ -16,6 +16,8 @@ class ProductTypesTableSeeder extends Seeder
 
         $types = [
             ['name' => 'Agua Fresca', 'created_at' => $date, 'updated_at' => $date],
+            ['name' => 'Agua', 'created_at' => $date, 'updated_at' => $date],
+            ['name' => 'Hielo', 'created_at' => $date, 'updated_at' => $date],
             ['name' => 'Pizza', 'created_at' => $date, 'updated_at' => $date],
             ['name' => 'Plato', 'created_at' => $date, 'updated_at' => $date],
             ['name' => 'Vaso', 'created_at' => $date, 'updated_at' => $date],
@@ -26,6 +28,7 @@ class ProductTypesTableSeeder extends Seeder
             ['name' => 'Bolsa negra grande', 'created_at' => $date, 'updated_at' => $date],
             ['name' => 'Bolsa negra chica', 'created_at' => $date, 'updated_at' => $date],
             ['name' => 'Papel sanitario', 'created_at' => $date, 'updated_at' => $date],
+            ['name' => 'Termo', 'created_at' => $date, 'updated_at' => $date],
         ];
 
         DB::table('product_types')->insert($types);

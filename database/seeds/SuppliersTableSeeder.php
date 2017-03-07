@@ -12,21 +12,23 @@ class SuppliersTableSeeder extends Seeder
     public function run()
     {
         $names = [
-            'Zazueta',
+            'Zazueta', // 1
+            'Costco', // 2
+            '7 Eleven', // 3
+            'Pixel', // 4
+            'Proexss', // 5
+            'La Macedonia', // 6
+            'Rafaelos', // 7
+            'Tuttifruti', // 8
+            'Walmart', // 9
             'Liverpool',
-            'Walmart',
-            '7 Eleven',
             'Oxxo',
             'Santa fe',
             'Super del Norte',
             'Vimark',
             'Soriana',
-            'Costco',
             'Sams',
             'Megaeders',
-            'Tuttifruti',
-            'Pixel',
-            'Proexss'
         ];
 
         $suppliers = factory(App\Supplier::class, count($names))->make();

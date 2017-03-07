@@ -16,6 +16,7 @@ class CreateCombos extends Migration
         Schema::create('combos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('color');
             $table->float('price', 9 ,2);
             $table->timestamps();
         });

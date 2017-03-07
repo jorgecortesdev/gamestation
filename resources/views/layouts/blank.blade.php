@@ -19,6 +19,8 @@
         <link href="{{ asset("css/pnotify.css") }}" rel="stylesheet">
         <!-- Custom Theme Style -->
         <link href="{{ asset("css/gentelella.min.css") }}" rel="stylesheet">
+        <!-- Game Station Mx Style -->
+        <link href="{{ asset("css/style.css") }}" rel="stylesheet">
 
         @stack('stylesheets')
 

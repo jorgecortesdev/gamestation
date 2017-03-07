@@ -36,6 +36,11 @@
                             <i class="fa fa-calendar"></i> Eventos
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('combo.index') }}">
+                            <i class="fa fa-gift"></i> Paquetes
+                        </a>
+                    </li>
                     <li><a><i class="fa fa-user"></i> Clientes <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="#">Padres</a></li>
@@ -52,7 +57,6 @@
                         <ul class="nav child_menu">
                             <li><a href="{{ route('product.index') }}">Listado<span class="fa fa-chevron-down"></span></a></li>
                             <li><a href="#">Insumos</a></li>
-                            <li><a href="#">Paquetes</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-list-ul"></i> Catálogos <span class="fa fa-chevron-down"></span></a>

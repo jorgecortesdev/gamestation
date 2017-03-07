@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductsList extends Migration
+class CreateComboItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateProductsList extends Migration
      */
     public function up()
     {
-        Schema::create('products_list', function (Blueprint $table) {
+        Schema::create('combo_items', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('product_id')->default(0)->unsigned()->index();
             $table->integer('combo_id')->default(0)->unsigned()->index();
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->integer('supplier_product_id')->default(0)->unsigned()->index();
+            $table->integer('quantity')->default(1)->unsigned()->index();
             $table->foreign('combo_id')->references('id')->on('combos')->onDelete('cascade');
+            $table->foreign('supplier_product_id')->references('id')->on('supplier_products')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateProductsList extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products_list');
+        Schema::dropIfExists('combo_items');
     }
 }

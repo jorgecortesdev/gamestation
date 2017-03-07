@@ -30,3 +30,6 @@ Route::resource('product_type', 'ProductTypesController');
 Route::resource('supplier_product', 'SupplierProductsController');
 
 Route::resource('product', 'ProductsController');
+
+Route::resource('combo','CombosController');
+Route::delete('combo_item/{item}', 'CombosController@destroyItem')->name('combo.destroy_item');

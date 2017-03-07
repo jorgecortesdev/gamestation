@@ -13,6 +13,16 @@ class SupplierProduct extends Model
 
     protected $presenter = 'App\Presenters\SupplierProductPresenter';
 
+    public function getTotalAttribute()
+    {
+        return $this->price + $this->iva;
+    }
+
+    public function getUnitCostAttribute()
+    {
+        return $this->total / $this->quantity;
+    }
+
     public function supplier()
     {
         return $this->belongsTo(Supplier::class);
