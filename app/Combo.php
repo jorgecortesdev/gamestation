@@ -9,7 +9,7 @@ class Combo extends Model
 {
     use Presentable;
 
-    protected $fillable = ['name', 'price'];
+    protected $fillable = ['name', 'price', 'google_color_id'];
 
     protected $presenter = 'App\Presenters\ComboPresenter';
 

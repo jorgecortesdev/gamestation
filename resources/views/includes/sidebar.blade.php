@@ -32,8 +32,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <i class="fa fa-calendar"></i> Eventos
+                        <a href="{{ route('schedule.index') }}">
+                            <i class="fa fa-calendar"></i> Agenda
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('event.index') }}">
+                            <i class="fa fa-calendar-o"></i> Eventos
                         </a>
                     </li>
                     <li>

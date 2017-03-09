@@ -40,7 +40,7 @@
                                         <td>{{ $combo->id }}</td>
                                         <td>{{ $combo->name }}</td>
                                         <td>{{ $combo->present()->price }}</td>
-                                        <td class="prod_color combo"><div class="combo-color color bg-{{ $combo->color }}"></div></td>
+                                        <td><div class="combo-color combo-color-bg-{{ $combo->google_color_id }}"></div></td>
                                         <td class="text-right">
                                             <a href="{{ route('combo.show', [$combo->id]) }}"><i class="fa fa-eye"></i> Ver</a>
                                             &nbsp;|&nbsp;

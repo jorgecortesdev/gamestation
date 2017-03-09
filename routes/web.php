@@ -33,3 +33,10 @@ Route::resource('product', 'ProductsController');
 
 Route::resource('combo','CombosController');
 Route::delete('combo_item/{item}', 'CombosController@destroyItem')->name('combo.destroy_item');
+
+Route::get('/calendar', 'CalendarController@index');
+Route::post('/calendar', 'CalendarController@store')->name('calendar.store');
+
+Route::get('/schedule', 'ScheduleController@index')->name('schedule.index');
+
+Route::get('/event', 'EventsController@index')->name('event.index');

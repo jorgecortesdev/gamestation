@@ -35,7 +35,12 @@ class CombosController extends Controller
             );
         }
 
-        $combo = new Combo($request->all());
+        $combo = new Combo();
+        $combo->name = $request->name;
+        $combo->price = $request->price;
+        if (!empty($request->google_color_id)) {
+            $combo->google_color_id = $request->google_color_id;
+        }
 
         $combo->save();
 

@@ -32,3 +32,7 @@
     @include('includes.footer')
     <!-- /footer content -->
 @endsection
+
+@push('scripts')
+<script src="{{ asset("js/gscombo.js") }}"></script>
+@endpush

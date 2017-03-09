@@ -1,10 +1,80 @@
-.combo .combo-color {
-    display: inline-flex;
-    margin-left: 5px;
-}
-
 .bg-yellow {
     background: #ffff00!important;
     border: 1px solid #ffff00!important;
     color: #fff;
+}
+
+.gs-inline-block {
+    position: relative;
+    display: inline-block;
+}
+
+.vertical-hr {
+    background-color: #ababab;
+    height: 24px;
+    margin: 0 5px;
+    width: 1px;
+    vertical-align: top;
+}
+
+.combo-color {
+    border: 1px solid black;
+    width: 25px;
+    height: 25px;
+    margin: 0px 1px;
+    vertical-align: top;
+    color: #1d1d1d;
+}
+
+.combo-color.combo-color-form {
+    cursor: pointer;
+}
+
+.combo-color.combo-color-form i {
+    padding: 5px;
+    color: #000000;
+}
+
+.combo-color-bg-1 {
+    background-color: #a4bdfc;
+}
+
+.combo-color-bg-2 {
+    background-color: #7ae7bf;
+}
+
+.combo-color-bg-3 {
+    background-color: #dbadff;
+}
+
+.combo-color-bg-4 {
+    background-color: #ff887c;
+}
+
+.combo-color-bg-5 {
+    background-color: #fbd75b;
+}
+
+.combo-color-bg-6 {
+    background-color: #ffb878;
+}
+
+.combo-color-bg-7 {
+    background-color: #46d6db;
+}
+
+.combo-color-bg-8 {
+    background-color: #e1e1e1;
+}
+
+.combo-color-bg-9 {
+    background-color: #5484ed;
+}
+
+.combo-color-bg-10 {
+    background-color: #51b749;
+}
+
+.combo-color-bg-11 {
+    background-color: #dc2127;
 }

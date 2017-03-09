@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Hermosillo',
 
     /*
     |--------------------------------------------------------------------------
@@ -157,6 +157,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\BroadcastServiceProvider::class,
+        App\Providers\GCalendarServiceProvider::class,
+        App\Providers\ComposerServiceProvider::class,
 
 		Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
