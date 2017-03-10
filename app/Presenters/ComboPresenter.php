@@ -25,6 +25,11 @@ class ComboPresenter extends Presenter
         return number_format($this->model->utility * 100, 2) . '%';
     }
 
+    public function productTotal($product_id)
+    {
+        return $this->currencyFormater($this->model->productTotal($product_id));
+    }
+
     protected function currencyFormater($amount)
     {
         setlocale(LC_MONETARY, 'en_US.UTF-8');

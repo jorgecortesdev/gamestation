@@ -11,6 +11,8 @@ class SupplierProduct extends Model
 
     protected $fillable = ['name', 'supplier_id', 'quantity', 'unity_id', 'price', 'iva', 'product_type_id'];
 
+    protected $appends = ['unit_cost', 'total'];
+
     protected $presenter = 'App\Presenters\SupplierProductPresenter';
 
     public function getTotalAttribute()

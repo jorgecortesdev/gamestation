@@ -18,8 +18,8 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
-                    <div class="x_title prod_color combo">
-                        <h2>{{ $combo->name }} <div class="combo-color color bg-{{ $combo->color }}"></div></h2>
+                    <div class="x_title">
+                        <h2><div class="gs-inline-block combo-color combo-color-bg-{{ $combo->google_color_id }}"></div> Paquete {{ $combo->name }}</h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -40,34 +40,40 @@
                             </ul>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="profile_title">
+                            <div class="gs-title combo-color-bg-{{ $combo->google_color_id }} transparent">
                                 <div class="col-md-6">
                                     <h2>Lista de productos</h2>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="gs-title-controls">
+                                        <a href="{{ route('combo.edit', [$combo->id]) }}" class="pull-right gs-inline-block btn btn-default">Administrar productos</a>
+                                    </div>
+                                </div>
                             </div>
-                            <table class="table table-hover">
+                            <br>
+                            <table class="table table-hover table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Nombre</th>
-                                        <th>Cantidad</th>
-                                        <th>Costo</th>
-                                        <th>&nbsp;</th>
+                                        <th class="text-center">Nombre</th>
+                                        <th class="text-center">Cantidad</th>
+                                        <th class="text-center">Unidad</th>
+                                        <th class="text-center">Costo</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($combo->items as $item)
+                                    @foreach ($combo->products as $product)
                                         <tr>
-                                            <td>{{ $item->product->name }}</td>
-                                            <td>{{ $item->quantity }}</td>
-                                            <td>{{ $item->present()->price }}</td>
-                                            <td class="text-right"><a href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('combo.destroy_item', [$item->id]) }}"> <i class="fa fa-trash"></i> Remover</a></td>
+                                            <td>{{ $product->name }}</td>
+                                            <td class="text-center">{{ $product->pivot->quantity }}</td>
+                                            <td class="text-center">{{ $product->unity->name }}</td>
+                                            <td class="text-right">{{ $combo->present()->productTotal($product->id) }}</td>
                                         </tr>
                                     @endforeach
                                         <tr>
                                             <td>&nbsp;</td>
                                             <td>&nbsp;</td>
-                                            <td class="bg-warning"><strong>{{ $combo->present()->total }}</strong></td>
                                             <td>&nbsp;</td>
+                                            <td class="text-right bg-warning"><strong>{{ $combo->present()->total }}</strong></td>
                                         </tr>
                                 </tbody>
                             </table>
@@ -79,9 +85,6 @@
 
     </div>
     <!-- /page content -->
-
-    <!-- Modal -->
-    @include('modals.delete', ['entityText' => 'producto'])
 
     <!-- footer content -->
     @include('includes.footer')

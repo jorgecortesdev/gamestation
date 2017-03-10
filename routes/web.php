@@ -12,11 +12,10 @@
 */
 
 Auth::routes();
+
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/', 'HomeController@index');
 
-// Route::get('suppliers', 'SuppliersController@index');
-// Route::get('suppliers/{supplier}', 'SuppliersController@show');
 Route::resource('supplier', 'SuppliersController');
 
 Route::resource('user', 'UsersController');
@@ -26,6 +25,7 @@ Route::resource('supplier_type', 'SupplierTypesController');
 Route::resource('unity', 'UnitiesController');
 
 Route::resource('product_type', 'ProductTypesController');
+Route::get('product_type/{product_type}/list', 'ProductTypesController@listProducts');
 
 Route::resource('supplier_product', 'SupplierProductsController');
 
@@ -40,3 +40,5 @@ Route::post('/calendar', 'CalendarController@store')->name('calendar.store');
 Route::get('/schedule', 'ScheduleController@index')->name('schedule.index');
 
 Route::get('/event', 'EventsController@index')->name('event.index');
+
+Route::post('combo/{combo}/products', 'ComboSupplierProductController@update')->name('combopr');

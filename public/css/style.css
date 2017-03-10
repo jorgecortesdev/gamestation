@@ -1,14 +1,7 @@
-.bg-yellow {
-    background: #ffff00!important;
-    border: 1px solid #ffff00!important;
-    color: #fff;
-}
-
 .gs-inline-block {
     position: relative;
     display: inline-block;
 }
-
 .vertical-hr {
     background-color: #ababab;
     height: 24px;
@@ -16,65 +9,106 @@
     width: 1px;
     vertical-align: top;
 }
+.gs-title {
+    display: flex;
+    padding: 8px 2px;
+    color: #555555;
+}
+.gs-title-controls > a {
+    margin: 2px 0;
+}
+/** General alert styles */
+.alert.gs-alert {
+    max-width: none;
+}
+.alert.gs-alert::after {
+    left: -15px;
+    border-width: 12px 7px;
+}
 
+/** General combos styles */
 .combo-color {
     border: 1px solid black;
-    width: 25px;
-    height: 25px;
-    margin: 0px 1px;
+    width: 20px;
+    height: 20px;
     vertical-align: top;
     color: #1d1d1d;
 }
-
 .combo-color.combo-color-form {
     cursor: pointer;
+    width: 25px;
+    height: 25px;
 }
-
 .combo-color.combo-color-form i {
     padding: 5px;
     color: #000000;
 }
-
-.combo-color-bg-1 {
-    background-color: #a4bdfc;
+.combo-color-bg-1 { background-color: rgb(164, 189, 252); }
+.combo-color-bg-1.transparent { background-color: rgba(164, 189, 252, .2); }
+.combo-color-bg-2 { background-color: rgb(122, 231, 191); }
+.combo-color-bg-2.transparent { background-color: rgba(122, 231, 191, .2); }
+.combo-color-bg-3 { background-color: rgb(219, 173, 255); }
+.combo-color-bg-3.transparent { background-color: rgba(219, 173, 255, .2); }
+.combo-color-bg-4 { background-color: rgb(255, 136, 124); }
+.combo-color-bg-4.transparent { background-color: rgba(255, 136, 124, .2); }
+.combo-color-bg-5 { background-color: rgb(251, 215, 91); }
+.combo-color-bg-5.transparent { background-color: rgba(251, 215, 91, .2); }
+.combo-color-bg-6 { background-color: rgb(255, 184, 120); }
+.combo-color-bg-6.transparent { background-color: rgba(255, 184, 120, .2); }
+.combo-color-bg-7 { background-color: rgb(70, 214, 219); }
+.combo-color-bg-7.transparent { background-color: rgba(70, 214, 219, .2); }
+.combo-color-bg-8 { background-color: rgb(225, 225, 225); }
+.combo-color-bg-8.transparent { background-color: rgba(225, 225, 225, .5); }
+.combo-color-bg-9 { background-color: rgb(84, 132, 237); }
+.combo-color-bg-9.transparent { background-color: rgba(84, 132, 237, .2); }
+.combo-color-bg-10 { background-color: rgb(81, 183, 73); }
+.combo-color-bg-10.transparent { background-color: rgba(81, 183, 73, .2); }
+.combo-color-bg-11 { background-color: rgb(220, 33, 39); }
+.combo-color-bg-11.transparent { background-color: rgba(220, 33, 39, .2); }
+/** Dragula */
+.dragula-wrapper {
+    margin: 20px 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
-
-.combo-color-bg-2 {
-    background-color: #7ae7bf;
+.dragula-wrapper .dragula-container {
+    height: 300px;
+    width: 48%;
+    border: 1px solid #e1e1e1;
+    background-color: #fbfbfb;
+    overflow: scroll;
+    border-radius: 4px;
 }
-
-.combo-color-bg-3 {
-    background-color: #dbadff;
+.dragula-wrapper .dragula-container.dragula-container-left {
+    float: left;
 }
-
-.combo-color-bg-4 {
-    background-color: #ff887c;
+.dragula-wrapper .dragula-container.dragula-container-right {
+    float: right;
 }
+.dragula-wrapper .dragula-container > div,
+.gu-mirror {
+    margin: 10px;
+    padding: 10px 15px;
+    cursor: move;
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+    background-color: #eaeaea;
+    border: 1px solid #aaaaaa;
+    border-radius: 4px;
+    color: #000000;
 
-.combo-color-bg-5 {
-    background-color: #fbd75b;
 }
-
-.combo-color-bg-6 {
-    background-color: #ffb878;
+.dragula-wrapper .dragula-container > div input,
+.gu-mirror input {
+    height: 20px;
+    padding: 6px 12px;
+    font-size: 14px;
+    text-align: right;
 }
-
-.combo-color-bg-7 {
-    background-color: #46d6db;
-}
-
-.combo-color-bg-8 {
-    background-color: #e1e1e1;
-}
-
-.combo-color-bg-9 {
-    background-color: #5484ed;
-}
-
-.combo-color-bg-10 {
-    background-color: #51b749;
-}
-
-.combo-color-bg-11 {
-    background-color: #dc2127;
+.gu-mirror {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
 }

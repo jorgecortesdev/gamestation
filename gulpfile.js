@@ -37,6 +37,9 @@ elixir(function(mix) {
     // Date Range Picker
     mix.copy('vendor/bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css', 'public/css/daterangepicker.css');
 
+    // Dragula
+    mix.copy('vendor/bower_components/dragula.js/dist/dragula.css', 'public/css/dragula.css');
+
     /****************/
     /* Copy Scripts */
     /****************/
@@ -61,6 +64,12 @@ elixir(function(mix) {
 
     // Date Range Picker
     mix.copy('vendor/bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js', 'public/js/daterangepicker.js');
+
+    // Dragula
+    mix.copy('vendor/bower_components/dragula.js/dist/dragula.js', 'public/js/dragula.js');
+
+    // Handlebars
+    mix.copy('vendor/bower_components/handlebars/handlebars.min.js', 'public/js/handlebars.min.js');
 
     /**************/
     /* Copy Fonts */

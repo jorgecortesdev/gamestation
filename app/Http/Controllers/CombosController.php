@@ -51,12 +51,15 @@ class CombosController extends Controller
 
     public function edit(Combo $combo)
     {
-        return view('combos.edit', compact('combo'));
+        $product_types = \App\ProductType::pluck('name', 'id');
+        return view('combos.edit', compact(['combo', 'product_types']));
     }
 
    public function update(Request $request, Combo $combo)
     {
-        $validator = $this->validator($request->all());
+        $data = array_merge($request->all(), ['id' => $combo->id]);
+
+        $validator = $this->validator($data);
 
         if ($validator->fails()) {
             $this->throwValidationException(
@@ -94,8 +97,14 @@ class CombosController extends Controller
     protected function validator(array $data)
     {
         $rules = [
-            'name' => 'required',
+            'name' => 'required|unique:combos|min:3',
+            'price' => 'required|numeric',
+            'google_color_id' => 'required|digits_between:1,11'
         ];
+
+        if (isset($data['id'])) {
+            $rules['name'] = 'required|min:3|unique:combos,id,' . $data['id'];
+        }
 
         $messages = [
             'name.required' => 'El campo es requerido.',
