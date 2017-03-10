@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Validator;
 use App\Combo;
-use App\ComboItem;
 use Illuminate\Http\Request;
 
 class CombosController extends Controller
@@ -80,16 +79,6 @@ class CombosController extends Controller
         $combo->delete();
 
         flash('Paquete borrado con éxito', 'success');
-
-        return back();
-    }
-
-    public function destroyItem($id)
-    {
-        $item = ComboItem::find($id);
-        $item->delete();
-
-        flash('Producto removido con éxito', 'success');
 
         return back();
     }

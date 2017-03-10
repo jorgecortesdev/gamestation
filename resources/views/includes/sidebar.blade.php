@@ -46,6 +46,11 @@
                             <i class="fa fa-gift"></i> Paquetes
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('extra.index') }}">
+                            <i class="fa fa-cube"></i> Extras
+                        </a>
+                    </li>
                     <li><a><i class="fa fa-user"></i> Clientes <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="#">Padres</a></li>
@@ -56,12 +61,6 @@
                         <ul class="nav child_menu">
                             <li><a href="{{ route('supplier.index') }}">Listado</a></li>
                             <li><a href="{{ route('supplier_product.index') }}">Productos</a></li>
-                        </ul>
-                    </li>
-                    <li><a><i class="fa fa-cube"></i> Productos <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="{{ route('product.index') }}">Listado</a></li>
-                            <li><a href="#">Insumos</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-list-ul"></i> Catálogos <span class="fa fa-chevron-down"></span></a>

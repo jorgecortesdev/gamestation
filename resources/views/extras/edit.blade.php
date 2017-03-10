@@ -7,7 +7,7 @@
 
         <div class="page-title">
             <div class="title_left">
-                <h3>Editar producto</h3>
+                <h3>Editar extra</h3>
             </div>
         </div>
 
@@ -18,8 +18,8 @@
                 <div class="x_panel">
                     <div class="x_content">
                         <br>
-                        {!! Form::model($product, ['route' => ['product.update', $product->id], 'method' => 'PATCH', 'class' => 'form-horizontal form-label-left']) !!}
-                            @include('forms.product', ['sendButtonText' => 'Actualizar'])
+                        {!! Form::model($extra, ['route' => ['extra.update', $extra->id], 'method' => 'PATCH', 'class' => 'form-horizontal form-label-left']) !!}
+                            @include('forms.extra', ['sendButtonText' => 'Actualizar'])
                         {!! Form::close() !!}
                     </div>
                 </div>

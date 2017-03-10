@@ -8,21 +8,6 @@
     @endif
 </div>
 
-<div class="item form-group{{ $errors->has('product_type_id') ? ' bad' : '' }}">
-    {!! Form::label('product_type_id', 'Tipo', ['class' => 'control-label col-md-3 col-sm-3 col-xs-12']) !!}
-    <div class="col-md-4 col-sm-4 col-xs-12">
-        {!! Form::select(
-            'product_type_id',
-            $types,
-            null,
-            ['class' => 'form-control', 'placeholder' => '-- Seleccionar --'])
-        !!}
-    </div>
-    @if ($errors->has('product_type_id'))
-        <div class="alert">{{ $errors->first('product_type_id') }}</div>
-    @endif
-</div>
-
 <div class="item form-group{{ $errors->has('price') ? ' bad' : '' }}">
     {!! Form::label('price', 'Precio *', ['class' => 'control-label col-md-3 col-sm-3 col-xs-12']) !!}
     <div class="col-md-3 col-sm-3 col-xs-12">

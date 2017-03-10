@@ -7,7 +7,7 @@
 
         <div class="page-title">
             <div class="title_left">
-                <h3>Agregar producto</h3>
+                <h3>Agregar extra</h3>
             </div>
         </div>
 
@@ -18,8 +18,8 @@
                 <div class="x_panel">
                     <div class="x_content">
                         <br>
-                        {!! Form::open(['route' => 'product.store', 'class' => 'form-horizontal form-label-left']) !!}
-                            @include('forms.product')
+                        {!! Form::open(['route' => 'extra.store', 'class' => 'form-horizontal form-label-left']) !!}
+                            @include('forms.extra')
                         {!! Form::close() !!}
                     </div>
                 </div>

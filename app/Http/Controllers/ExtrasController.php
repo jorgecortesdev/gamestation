@@ -3,22 +3,20 @@
 namespace App\Http\Controllers;
 
 use Validator;
-use App\Product;
-use App\ProductType;
+use App\Extra;
 use Illuminate\Http\Request;
 
-class ProductsController extends Controller
+class ExtrasController extends Controller
 {
     public function index()
     {
-        $products = Product::latest('id')->paginate(20);
-        return view('products.index', compact('products'));
+        $extras = Extra::latest('id')->paginate(20);
+        return view('extras.index', compact('extras'));
     }
 
     public function create()
     {
-        $types = ProductType::pluck('name', 'id');
-        return view('products.create', compact('types'));
+        return view('extras.create');
     }
 
     public function store(Request $request)
@@ -31,22 +29,21 @@ class ProductsController extends Controller
             );
         }
 
-        $product = new Product($request->all());
+        $extra = new Extra($request->all());
 
-        $product->save();
+        $extra->save();
 
-        flash('Producto agregado con éxito', 'success');
+        flash('El extra fue agregado con éxito', 'success');
 
-        return redirect(route('product.index'));
+        return redirect(route('extra.index'));
     }
 
-    public function edit(Product $product)
+    public function edit(Extra $extra)
     {
-        $types = ProductType::pluck('name', 'id');
-        return view('products.edit', compact(['product', 'types']));
+        return view('extras.edit', compact('extra'));
     }
 
-   public function update(Request $request, Product $product)
+   public function update(Request $request, Extra $extra)
     {
         $validator = $this->validator($request->all());
 
@@ -56,19 +53,19 @@ class ProductsController extends Controller
             );
         }
 
-        $product->update($request->all());
+        $extra->update($request->all());
 
-        flash('Producto actualizado con éxito', 'success');
+        flash('El extra fue actualizado con éxito', 'success');
 
-        return redirect(route('product.index'));
+        return redirect(route('extra.index'));
     }
 
     public function destroy($id)
     {
-        $product = Product::find($id);
-        $product->delete();
+        $extra = Extra::find($id);
+        $extra->delete();
 
-        flash('Producto borrado con éxito', 'success');
+        flash('El extra fue borrado con éxito', 'success');
 
         return back();
     }

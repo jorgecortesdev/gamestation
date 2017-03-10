@@ -29,10 +29,9 @@ Route::get('product_type/{product_type}/list', 'ProductTypesController@listProdu
 
 Route::resource('supplier_product', 'SupplierProductsController');
 
-Route::resource('product', 'ProductsController');
+Route::resource('extra', 'ExtrasController');
 
 Route::resource('combo','CombosController');
-Route::delete('combo_item/{item}', 'CombosController@destroyItem')->name('combo.destroy_item');
 
 Route::get('/calendar', 'CalendarController@index');
 Route::post('/calendar', 'CalendarController@store')->name('calendar.store');
