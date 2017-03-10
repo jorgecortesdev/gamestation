@@ -1,7 +1,6 @@
 <?php
 
 use App\Combo;
-use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class ComboSupplierProductTableSeeder extends Seeder
@@ -13,8 +12,6 @@ class ComboSupplierProductTableSeeder extends Seeder
      */
     public function run()
     {
-        $date = Carbon::now()->format('Y-m-d H:i:s');
-
         $combos = Combo::all();
 
         foreach($combos as $combo) {

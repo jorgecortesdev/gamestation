@@ -35,6 +35,8 @@
                                     <th class="text-center">Id</th>
                                     <th class="text-center">Nombre</th>
                                     <th class="text-center">Costo</th>
+                                    <th class="text-center">Costo Unitario</th>
+                                    <th class="text-center">Márgen de contribución</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
@@ -43,7 +45,9 @@
                                     <tr>
                                         <td>{{ $extra->id }}</td>
                                         <td>{{ $extra->name }}</td>
+                                        <td class="text-right">{{ $extra->present()->total }}</td>
                                         <td class="text-right">{{ $extra->present()->price }}</td>
+                                        <td class="text-right">{{ $extra->present()->contribution_margin }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('extra.edit', [$extra->id]) }}"><i class="fa fa-edit"></i> Editar</a>
                                             &nbsp;|&nbsp;

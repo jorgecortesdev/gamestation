@@ -10,6 +10,16 @@ class ExtraPresenter extends Presenter
         return $this->currencyFormater($this->model->price);
     }
 
+    public function total()
+    {
+        return $this->currencyFormater($this->model->total);
+    }
+
+    public function contributionMargin()
+    {
+        return $this->currencyFormater($this->model->contribution_margin);
+    }
+
     protected function currencyFormater($amount)
     {
         setlocale(LC_MONETARY, 'en_US.UTF-8');
