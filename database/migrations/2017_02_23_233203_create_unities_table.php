@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSupplies extends Migration
+class CreateUnitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateSupplies extends Migration
      */
     public function up()
     {
-        Schema::create('supplies', function (Blueprint $table) {
+        Schema::create('unities', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('quantity')->unsigned();
-            $table->integer('unity_id')->default(0)->unsigned()->index();
-            $table->foreign('unity_id')->references('id')->on('unities');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateSupplies extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('supplies');
+        Schema::dropIfExists('unities');
     }
 }

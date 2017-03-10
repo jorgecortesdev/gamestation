@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateComboCharacteristics extends Migration
+class CreateProductTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateComboCharacteristics extends Migration
      */
     public function up()
     {
-        Schema::create('combo_characteristics', function (Blueprint $table) {
+        Schema::create('product_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('label');
-            $table->tinyInteger('type')->default(0)->unsigned();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateComboCharacteristics extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('combo_characteristics');
+        Schema::dropIfExists('product_types');
     }
 }

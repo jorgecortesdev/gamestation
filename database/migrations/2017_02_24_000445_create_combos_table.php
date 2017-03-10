@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProducts extends Migration
+class CreateCombosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateProducts extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('combos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->float('price', 9, 2)->default(0.00);
-            $table->integer('product_type_id')->default(0)->unsigned()->index();
+            $table->tinyInteger('google_color_id')->default(8)->unsigned();
+            $table->float('price', 9 ,2);
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateProducts extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('combos');
     }
 }
