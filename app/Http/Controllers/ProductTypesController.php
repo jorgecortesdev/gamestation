@@ -79,10 +79,4 @@ class ProductTypesController extends Controller
 
       return Validator::make($data, $rules, $messages);
     }
-
-    public function listProducts(Request $request)
-    {
-        $type = ProductType::with('supplierProducts.supplier')->find($request->product_type);
-        return $type->supplierProducts;
-    }
 }

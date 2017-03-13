@@ -50,8 +50,7 @@ class CombosController extends Controller
 
     public function edit(Combo $combo)
     {
-        $product_types = \App\ProductType::pluck('name', 'id');
-        return view('combos.edit', compact(['combo', 'product_types']));
+        return view('combos.edit', compact('combo'));
     }
 
    public function update(Request $request, Combo $combo)

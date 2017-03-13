@@ -25,7 +25,6 @@ Route::resource('supplier_type', 'SupplierTypesController');
 Route::resource('unity', 'UnitiesController');
 
 Route::resource('product_type', 'ProductTypesController');
-Route::get('product_type/{product_type}/list', 'ProductTypesController@listProducts');
 
 Route::resource('supplier_product', 'SupplierProductsController');
 
@@ -40,4 +39,6 @@ Route::get('/schedule', 'ScheduleController@index')->name('schedule.index');
 
 Route::get('/event', 'EventsController@index')->name('event.index');
 
-Route::post('combo/{combo}/products', 'ComboSupplierProductController@update')->name('combopr');
+Route::get('productmanager/type/{type_id}', 'ProductManagerController@productsByType');
+Route::get('productmanager/{entity_name}/{entity_id}', 'ProductManagerController@productsByEntity');
+Route::post('productmanager/{entity_name}/{entity_id}/products', 'ProductManagerController@update')->name('productmanager.update');

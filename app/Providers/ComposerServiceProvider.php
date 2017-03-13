@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use App\Http\ViewComposers\ComboComposer;
 use App\Http\ViewComposers\EventsComposer;
+use App\Http\ViewComposers\ProductManagerComposer;
 
 class ComposerServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,11 @@ class ComposerServiceProvider extends ServiceProvider
         View::composer(
             'events.index',
             EventsComposer::class
+        );
+
+        View::composer(
+            'includes.productmanager',
+            ProductManagerComposer::class
         );
     }
 
