@@ -112,3 +112,10 @@
     cursor: -moz-grabbing;
     cursor: -webkit-grabbing;
 }
+/** Event wizard */
+#smartwizard > div {
+    margin: 25px 0;
+}
+#smartwizard > .navbar {
+    display: none;
+}

@@ -101,7 +101,7 @@ var setContentHeight = function () {
 
 // toggle small or large menu
 $MENU_TOGGLE.on('click', function() {
-		console.log('clicked - menu toggle');
+		// console.log('clicked - menu toggle');
 
 		if ($BODY.hasClass('nav-md')) {
 			$SIDEBAR_MENU.find('li.active ul').hide();
@@ -5043,22 +5043,22 @@ if (typeof NProgress != 'undefined') {
 		// init_daterangepicker_right();
 		// init_daterangepicker_single_call();
 		// init_daterangepicker_reservation();
-		init_SmartWizard();
+		// init_SmartWizard();
 		init_EasyPieChart();
-		init_charts();
+		// init_charts();
 		init_echarts();
 		init_morris_charts();
 		init_skycons();
 		init_select2();
 		init_validator();
-		init_DataTables();
+		// init_DataTables();
 		init_chart_doughnut();
 		init_gauge();
 		// init_PNotify();
 		init_starrr();
 		// init_calendar();
-		init_compose();
-		init_CustomNotification();
+		// init_compose();
+		// init_CustomNotification();
 		init_autosize();
 		init_autocomplete();
 

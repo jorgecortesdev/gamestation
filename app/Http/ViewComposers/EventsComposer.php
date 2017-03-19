@@ -3,6 +3,7 @@
 namespace App\Http\ViewComposers;
 
 use App\Combo;
+use App\Extra;
 use Illuminate\View\View;
 
 class EventsComposer
@@ -16,6 +17,10 @@ class EventsComposer
     public function compose(View $view)
     {
         $combos = Combo::pluck('name', 'id');
-        $view->with('combos', $combos);
+        $extras = Extra::pluck('name', 'id');
+        $view->with([
+            'combos' => $combos,
+            'extras' => $extras
+        ]);
     }
 }

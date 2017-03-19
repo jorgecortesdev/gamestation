@@ -37,8 +37,13 @@ Route::post('/calendar', 'CalendarController@store')->name('calendar.store');
 
 Route::get('/schedule', 'ScheduleController@index')->name('schedule.index');
 
-Route::get('/event', 'EventsController@index')->name('event.index');
-
 Route::get('productmanager/type/{type_id}', 'ProductManagerController@productsByType');
 Route::get('productmanager/{entity_name}/{entity_id}', 'ProductManagerController@productsByEntity');
 Route::post('productmanager/{entity_name}/{entity_id}/products', 'ProductManagerController@update')->name('productmanager.update');
+
+Route::resource('client', 'ClientsController');
+
+Route::get('/event', 'EventsController@index')->name('event.index');
+Route::post('/event/step1', 'EventsController@step1')->name('event.step1');
+Route::post('/event/step2', 'EventsController@step2')->name('event.step2');
+Route::post('/event/step3', 'EventsController@step3')->name('event.step3');
