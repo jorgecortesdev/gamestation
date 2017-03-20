@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 
 class CombosController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $combos = Combo::latest('id')->paginate(20);

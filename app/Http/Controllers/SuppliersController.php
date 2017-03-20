@@ -9,6 +9,16 @@ use Illuminate\Http\Request;
 
 class SuppliersController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $suppliers = Supplier::with('type')->latest('id')->paginate(20);

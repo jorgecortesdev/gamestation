@@ -9,6 +9,16 @@ use App\Library\Google\Calendar;
 
 class CalendarController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(Request $request, Calendar $gcalendar)
     {
         $start = Carbon::createFromFormat('Y-m-d', $request->start)->toRfc3339String();

@@ -9,7 +9,7 @@
       <div class="col-md-6 col-sm-6 col-xs-12">
         <div class="page-title">
           <div class="title_left">
-            <h3>Unidades</h3>
+            <h3><i class="fa fa-list-ul"></i> Unidades</h3>
           </div>
           <div class="title_right">
             <a href="{{ route('unity.create') }}" class="btn btn-default pull-right">

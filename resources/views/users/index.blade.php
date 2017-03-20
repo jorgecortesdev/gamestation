@@ -5,25 +5,36 @@
     <!-- page content -->
     <div class="right_col" role="main">
 
-        <div class="page-title">
-            <div class="title_left">
-                <h3>Usuarios</h3>
-            </div>
-            <div class="title_right">
-                <a href="#" class="btn btn-default pull-right">Agregar</a>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3><i class="fa fa-users"></i> Usuarios</h3>
+                    </div>
+                    <div class="title_right">
+                        <a href="#" class="btn btn-default pull-right">
+                            <i class="fa fa-plus-square"></i> Agregar
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Listado de usuarios</h2>
+                        <div class="clearfix"></div>
+                    </div>
                     <div class="x_content">
-                        <table class="table table-hover">
+                        <p>Lista de usuarios autorizados en el sistema.</p>
+                        <table class="table table-hover table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
-                                    <th>Nombre</th>
-                                    <th>Correo</th>
+                                    <th class="text-center">Id</th>
+                                    <th class="text-center">Nombre</th>
+                                    <th class="text-center">Correo</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>

@@ -9,7 +9,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>Extras</h3>
+                        <h3><i class="fa fa-cube"></i> Extras</h3>
                     </div>
                     <div class="title_right">
                         <a href="{{ route('extra.create') }}" class="btn btn-default pull-right">

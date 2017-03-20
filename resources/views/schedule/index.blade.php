@@ -13,7 +13,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>Agenda</h3>
+                        <h3><i class="fa fa-calendar"></i> Agenda</h3>
                     </div>
                 </div>
             </div>
@@ -23,7 +23,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Agenda Game Station <sup>MX</sup></h2>
+                        <h2>Agenda GameStation <sup>MX</sup></h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">

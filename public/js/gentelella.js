@@ -85,8 +85,8 @@ var setContentHeight = function () {
                 $SIDEBAR_MENU.find('li ul').slideUp();
             }else
             {
-				if ( $BODY.is( ".nav-sm" ) )
-				{
+                if ( $BODY.is( ".nav-sm" ) )
+                {
 					$SIDEBAR_MENU.find( "li" ).removeClass( "active active-sm" );
 					$SIDEBAR_MENU.find( "li ul" ).slideUp();
 				}
@@ -118,12 +118,14 @@ $MENU_TOGGLE.on('click', function() {
 
 	// check active menu
 	$SIDEBAR_MENU.find('a[href="' + CURRENT_URL + '"]').parent('li').addClass('current-page');
+    $SIDEBAR_MENU.find('a[href="' + CURRENT_URL + '"]').parentsUntil('ul.side-menu').addClass('current-page');
 
-	$SIDEBAR_MENU.find('a').filter(function () {
-		return this.href == CURRENT_URL;
-	}).parent('li').addClass('current-page').parents('ul').slideDown(function() {
-		setContentHeight();
-	}).parent().addClass('active');
+    // Se quito para evitar que el submenu se quede abierto
+	// $SIDEBAR_MENU.find('a').filter(function () {
+	// 	return this.href == CURRENT_URL;
+	// }).parent('li').addClass('current-page').parents('ul').slideDown(function() {
+	// 	setContentHeight();
+	// }).parent().addClass('active');
 
 	// recompute content when resizing
 	$(window).smartresize(function(){

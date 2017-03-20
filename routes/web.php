@@ -13,8 +13,10 @@
 
 Auth::routes();
 
+Route::get('/', 'IndexController@index');
+
 Route::get('/logout', 'Auth\LoginController@logout');
-Route::get('/', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('supplier', 'SuppliersController');
 

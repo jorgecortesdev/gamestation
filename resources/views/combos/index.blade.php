@@ -9,7 +9,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>Paquetes</h3>
+                        <h3><i class="fa fa-gift"></i> Paquetes</h3>
                     </div>
                     <div class="title_right">
                         <a href="{{ route('combo.create') }}" class="btn btn-default pull-right">

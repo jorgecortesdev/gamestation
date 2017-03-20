@@ -9,7 +9,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>Productos</h3>
+                        <h3><i class="fa fa-truck"></i> Productos</h3>
                     </div>
                     <div class="title_right">
                         <a href="{{ route('supplier_product.create') }}" class="btn btn-default pull-right">
