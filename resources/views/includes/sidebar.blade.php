@@ -50,11 +50,15 @@
                             <i class="fa fa-cube"></i> Extras
                         </a>
                     </li>
-                    <li><a><i class="fa fa-user"></i> Clientes <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="#">Padres</a></li>
-                            <li><a href="#">Hijos</a></li>
-                        </ul>
+                    <li>
+                        <a href="{{ route('client.index') }}">
+                            <i class="fa fa-user"></i> Clientes
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-child" aria-hidden="true"></i> Niños
+                        </a>
                     </li>
                     <li><a><i class="fa fa-truck"></i> Proveedores <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">

@@ -67,3 +67,12 @@ $factory->define(App\Combo::class, function (Faker\Generator $faker) {
         'price' => $faker->randomFloat(2, 10, 1000),
     ];
 });
+
+$factory->define(App\Client::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'address' => $faker->address,
+        'telephone' => $faker->numberBetween(6620000000, 6629999999),
+        'email' => $faker->email
+    ];
+});
