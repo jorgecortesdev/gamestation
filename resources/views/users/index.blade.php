@@ -43,10 +43,8 @@
                                     <tr>
                                         <td>{{ $user->id }}</td>
                                         <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
+                                        <td class="text-center">{{ $user->email }}</td>
                                         <td class="text-center">
-                                            <a href="#"><i class="fa fa-eye"></i> Ver</a>
-                                            &nbsp;|&nbsp;
                                             <a href="#"><i class="fa fa-edit"></i> Editar</a>
                                             &nbsp;|&nbsp;
                                             <a href="#"> <i class="fa fa-trash"></i> Borrar</a>

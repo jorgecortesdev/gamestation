@@ -23,17 +23,22 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Listado de proveedores</h2>
+                        <div class="clearfix"></div>
+                    </div>
                     <div class="x_content">
-                        <table class="table table-hover">
+                        <p>Proveedores registrados en el sistema.</p>
+                        <table class="table table-hover table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
-                                    <th>Nombre</th>
-                                    <th>Dirección</th>
-                                    <th>Teléfono</th>
-                                    <th>Correo</th>
-                                    <th>Tipo</th>
-                                    <th>&nbsp;</th>
+                                    <th class="text-center">Id</th>
+                                    <th class="text-center">Nombre</th>
+                                    <th class="text-center">Dirección</th>
+                                    <th class="text-center">Teléfono</th>
+                                    <th class="text-center">Correo</th>
+                                    <th class="text-center">Tipo</th>
+                                    <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,12 +47,10 @@
                                         <td>{{ $supplier->id }}</td>
                                         <td><a href="{{ route('supplier.show', [$supplier->id]) }}">{{ $supplier->name }}</a></td>
                                         <td>{{ $supplier->address }}</td>
-                                        <td>{{ $supplier->present()->telephone }}</td>
-                                        <td>{{ $supplier->present()->email }}</td>
-                                        <td>{{ $supplier->type->name }}</td>
-                                        <td class="text-right">
-{{--                                             <a href="{{ route('supplier.show', [$supplier->id]) }}"><i class="fa fa-eye"></i> Ver</a>
-                                            &nbsp;|&nbsp; --}}
+                                        <td class="text-center">{{ $supplier->present()->telephone }}</td>
+                                        <td class="text-center">{{ $supplier->present()->email }}</td>
+                                        <td class="text-center">{{ $supplier->type->name }}</td>
+                                        <td class="text-center">
                                             <a href="{{ route('supplier.edit', [$supplier->id]) }}"><i class="fa fa-edit"></i> Editar</a>
                                             &nbsp;|&nbsp;
                                             <a href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('supplier.destroy', [$supplier->id]) }}"> <i class="fa fa-trash"></i> Borrar</a>

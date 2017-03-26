@@ -38,5 +38,9 @@ class AppServiceProvider extends ServiceProvider
         // con: $ sudo locale-gen es
         // Se debe reiniciar la maquina :(
         setlocale(LC_TIME, config('app.locale'));
+
+        // Lo utiliza la función money_format() de PHP
+        // para regresar el formato de moneda correcto
+        setlocale(LC_MONETARY, config('app.locale'));
     }
 }

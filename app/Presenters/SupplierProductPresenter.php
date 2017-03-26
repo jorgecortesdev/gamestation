@@ -5,6 +5,11 @@ use Laracodes\Presenter\Presenter;
 
 class SupplierProductPresenter extends Presenter
 {
+    public function quantity()
+    {
+        return number_format($this->model->quantity);
+    }
+
     public function iva()
     {
         return $this->currencyFormater($this->model->iva);
@@ -27,7 +32,6 @@ class SupplierProductPresenter extends Presenter
 
     protected function currencyFormater($amount)
     {
-        setlocale(LC_MONETARY, 'en_US.UTF-8');
         return money_format('%.2n', $amount);
     }
 }

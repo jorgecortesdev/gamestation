@@ -23,21 +23,26 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Listado de productos</h2>
+                        <div class="clearfix"></div>
+                    </div>
                     <div class="x_content">
-                        <table class="table table-hover">
+                        <p>Listado de productos registrados en el sistema.</p>
+                        <table class="table table-hover table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
-                                    <th>Nombre</th>
-                                    <th>Tipo</th>
-                                    <th>Proveedor</th>
-                                    <th>Cantidad</th>
-                                    <th>Unidad</th>
-                                    <th>Costo</th>
-                                    <th>IVA</th>
-                                    <th>Costo Total</th>
-                                    <th>Costo Unitario</th>
-                                    <th>&nbsp;</th>
+                                    <th class="text-center">Id</th>
+                                    <th class="text-center">Nombre</th>
+                                    <th class="text-center">Tipo</th>
+                                    <th class="text-center">Proveedor</th>
+                                    <th class="text-center">Cantidad</th>
+                                    <th class="text-center">Unidad</th>
+                                    <th class="text-center">Costo</th>
+                                    <th class="text-center">IVA</th>
+                                    <th class="text-center">Costo Total</th>
+                                    <th class="text-center">Costo Unitario</th>
+                                    <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,15 +50,15 @@
                                     <tr>
                                         <td>{{ $product->id }}</td>
                                         <td>{{ $product->name }}</td>
-                                        <td>{{ $product->type->name }}</td>
-                                        <td>{{ $product->supplier->name }}</td>
-                                        <td class="text-right">{{ $product->quantity }}</td>
-                                        <td>{{ $product->unity->name }}</td>
+                                        <td class="text-center">{{ $product->type->name }}</td>
+                                        <td class="text-center">{{ $product->supplier->name }}</td>
+                                        <td class="text-right">{{ $product->present()->quantity }}</td>
+                                        <td class="text-center">{{ $product->unity->name }}</td>
                                         <td class="text-right">{{ $product->present()->price }}</td>
                                         <td class="text-right">{{ $product->present()->iva }}</td>
                                         <td class="text-right">{{ $product->present()->total }}</td>
                                         <td class="text-right">{{ $product->present()->unitCost }}</td>
-                                        <td class="text-right">
+                                        <td class="text-center">
                                             <a href="{{ route('supplier_product.edit', [$product->id]) }}"><i class="fa fa-edit"></i> Editar</a>
                                             &nbsp;|&nbsp;
                                             <a href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('supplier_product.destroy', [$product->id]) }}"> <i class="fa fa-trash"></i> Borrar</a>
