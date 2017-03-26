@@ -13,8 +13,8 @@ class Client extends Model
 
     protected $presenter = 'App\Presenters\ClientPresenter';
 
-    public function childrens()
+    public function kids()
     {
-        return $this->belongsToMany(Client::class);
+        return $this->belongsToMany(Kid::class);
     }
 }

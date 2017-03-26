@@ -44,6 +44,7 @@ Route::get('productmanager/{entity_name}/{entity_id}', 'ProductManagerController
 Route::post('productmanager/{entity_name}/{entity_id}/products', 'ProductManagerController@update')->name('productmanager.update');
 
 Route::resource('client', 'ClientsController');
+Route::resource('kid', 'KidsController');
 
 Route::get('/event', 'EventsController@index')->name('event.index');
 Route::post('/event/step1', 'EventsController@step1')->name('event.step1');

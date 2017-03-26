@@ -56,7 +56,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="{{ route('kid.index') }}">
                             <i class="fa fa-child" aria-hidden="true"></i> Niños
                         </a>
                     </li>

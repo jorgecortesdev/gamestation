@@ -76,3 +76,11 @@ $factory->define(App\Client::class, function (Faker\Generator $faker) {
         'email' => $faker->email
     ];
 });
+
+$factory->define(App\Kid::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'sex' => $faker->numberBetween(1, 2),
+        'birthday_at' => $faker->date()
+    ];
+});

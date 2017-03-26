@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateChildrenClientTable extends Migration
+class CreateClientKidTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateChildrenClientTable extends Migration
      */
     public function up()
     {
-        Schema::create('children_client', function (Blueprint $table) {
+        Schema::create('client_kid', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('children_id')->default(0)->unsigned()->index();
-            $table->foreign('children_id')->references('id')->on('childrens')->onDelete('cascade');
+            $table->integer('kid_id')->default(0)->unsigned()->index();
+            $table->foreign('kid_id')->references('id')->on('kids')->onDelete('cascade');
 
             $table->integer('client_id')->default(0)->unsigned()->index();
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
@@ -31,6 +31,6 @@ class CreateChildrenClientTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('children_client');
+        Schema::dropIfExists('client_kid');
     }
 }
