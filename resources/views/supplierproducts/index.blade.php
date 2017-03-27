@@ -48,7 +48,7 @@
                             <tbody>
                                 @foreach ($products as $product)
                                     <tr>
-                                        <td>{{ $product->id }}</td>
+                                        <td class="text-right">{{ $product->id }}</td>
                                         <td>{{ $product->name }}</td>
                                         <td class="text-center">{{ $product->type->name }}</td>
                                         <td class="text-center">{{ $product->supplier->name }}</td>

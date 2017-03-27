@@ -90,7 +90,7 @@ class SuppliersController extends Controller
     {
         $rules = [
             'name' => 'required',
-            'telephone' => 'required',
+            'telephone' => 'numeric|min:10',
             'email' => 'email',
         ];
 

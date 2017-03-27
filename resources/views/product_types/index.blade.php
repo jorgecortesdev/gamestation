@@ -42,7 +42,7 @@
                             <tbody>
                                 @foreach ($product_types as $product_type)
                                     <tr>
-                                        <td>{{ $product_type->id }}</td>
+                                        <td class="text-right">{{ $product_type->id }}</td>
                                         <td>{{ $product_type->name }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('product_type.edit', [$product_type->id]) }}">

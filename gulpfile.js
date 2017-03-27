@@ -78,6 +78,9 @@ elixir(function(mix) {
     // Smart Wizard
     mix.copy('vendor/bower_components/smartwizard/js/jquery.smartWizard.js', 'public/js/jquery.smartWizard.js');
 
+    // jquery.inputmask
+    mix.copy('vendor/bower_components/gentelella/vendors/jquery.inputmask/dist/jquery.inputmask.bundle.js', 'public/js/jquery.inputmask.bundle.js');
+
     /**************/
     /* Copy Fonts */
     /**************/

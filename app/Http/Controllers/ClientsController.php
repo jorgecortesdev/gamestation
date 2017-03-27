@@ -85,7 +85,7 @@ class ClientsController extends Controller
         $rules = [
             'name' => 'required',
             'address' => 'required',
-            'telephone' => 'required',
+            'telephone' => 'required|numeric|min:10',
             'email' => 'email',
         ];
 

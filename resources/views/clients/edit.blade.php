@@ -24,7 +24,7 @@
                     </div>
                     <div class="x_content">
                         <br>
-                         {!! Form::model($client, ['route' => ['client.update', $client->id], 'method' => 'PATCH', 'class' => 'form-horizontal form-label-left']) !!}
+                         {!! Form::model($client, ['route' => ['client.update', $client->id], 'id' => 'frm', 'method' => 'PATCH', 'class' => 'form-horizontal form-label-left']) !!}
                             @include('forms.client', ['sendButtonText' => 'Actualizar'])
                         {!! Form::close() !!}
                     </div>

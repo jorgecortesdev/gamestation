@@ -24,7 +24,7 @@
                     </div>
                     <div class="x_content">
                         <br>
-                        {!! Form::open(['route' => 'client.store', 'class' => 'form-horizontal form-label-left']) !!}
+                        {!! Form::open(['route' => 'client.store', 'id' => 'frm', 'class' => 'form-horizontal form-label-left']) !!}
                             @include('forms.client')
                         {!! Form::close() !!}
                     </div>

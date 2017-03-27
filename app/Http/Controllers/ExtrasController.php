@@ -84,10 +84,12 @@ class ExtrasController extends Controller
     {
         $rules = [
             'name' => 'required',
+            'price' => 'required'
         ];
 
         $messages = [
             'name.required' => 'El campo es requerido.',
+            'price.required' => 'El campo es requerido.'
         ];
 
         return Validator::make($data, $rules, $messages);

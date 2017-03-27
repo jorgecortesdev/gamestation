@@ -42,7 +42,7 @@
                             <tbody>
                                 @foreach ($unities as $unity)
                                     <tr>
-                                        <td>{{ $unity->id }}</td>
+                                        <td class="text-right">{{ $unity->id }}</td>
                                         <td>{{ $unity->name }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('unity.edit', [$unity->id]) }}"><i class="fa fa-edit"></i> Editar</a>

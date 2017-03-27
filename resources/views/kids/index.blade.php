@@ -43,7 +43,7 @@
                             <tbody>
                                 @foreach ($kids as $kid)
                                     <tr>
-                                        <td>{{ $kid->id }}</td>
+                                        <td class="text-right">{{ $kid->id }}</td>
                                         <td><a href="#">{{ $kid->name }}</a></td>
                                         <td class="text-center">{{ $kid->present()->parents }}</td>
                                         <td class="text-center">{{ $kid->present()->birthday_at }}</td>

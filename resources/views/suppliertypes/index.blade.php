@@ -42,7 +42,7 @@
                             <tbody>
                                 @foreach ($supplier_types as $supplier_type)
                                     <tr>
-                                        <td>{{ $supplier_type->id }}</td>
+                                        <td class="text-right">{{ $supplier_type->id }}</td>
                                         <td>{{ $supplier_type->name }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('supplier_type.edit', [$supplier_type->id]) }}"><i class="fa fa-edit"></i> Editar</a>

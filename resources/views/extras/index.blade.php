@@ -43,7 +43,7 @@
                             <tbody>
                                 @foreach ($extras as $extra)
                                     <tr>
-                                        <td>{{ $extra->id }}</td>
+                                        <td class="text-right">{{ $extra->id }}</td>
                                         <td>{{ $extra->name }}</td>
                                         <td class="text-right">{{ $extra->present()->total }}</td>
                                         <td class="text-right">{{ $extra->present()->price }}</td>

@@ -92,10 +92,21 @@ class SupplierProductsController extends Controller
     {
         $rules = [
             'name' => 'required',
+            'supplier_id' => 'required|numeric',
+            'quantity' => 'required|numeric',
+            'unity_id' => 'required|numeric',
+            'price' => 'required|numeric',
+            'iva' => 'numeric',
+            'product_type_id' => 'required|numeric'
         ];
 
         $messages = [
             'name.required' => 'El campo es requerido.',
+            'supplier_id.required' => 'El campo es requerido.',
+            'quantity.required' => 'El campo es requerido.',
+            'unity_id.required' => 'El campo es requerido.',
+            'price.required' => 'El campo es requerido.',
+            'product_type_id.required' => 'El campo es requerido.'
         ];
 
         return Validator::make($data, $rules, $messages);

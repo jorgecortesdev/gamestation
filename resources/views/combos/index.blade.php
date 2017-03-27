@@ -44,7 +44,7 @@
                             <tbody>
                                 @foreach ($combos as $combo)
                                     <tr>
-                                        <td>{{ $combo->id }}</td>
+                                        <td class="text-right">{{ $combo->id }}</td>
                                         <td><a href="{{ route('combo.show', [$combo->id]) }}">{{ $combo->name }}</a></td>
                                         <td>
                                             <div class="combo-color combo-color-bg-{{ $combo->google_color_id }} center-block"></div>

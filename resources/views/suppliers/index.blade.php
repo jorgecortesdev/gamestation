@@ -44,7 +44,7 @@
                             <tbody>
                                 @foreach ($suppliers as $supplier)
                                     <tr>
-                                        <td>{{ $supplier->id }}</td>
+                                        <td class="text-right">{{ $supplier->id }}</td>
                                         <td><a href="{{ route('supplier.show', [$supplier->id]) }}">{{ $supplier->name }}</a></td>
                                         <td>{{ $supplier->address }}</td>
                                         <td class="text-center">{{ $supplier->present()->telephone }}</td>
