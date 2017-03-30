@@ -17,4 +17,9 @@ class Client extends Model
     {
         return $this->belongsToMany(Kid::class);
     }
+
+    public function scopeLike($query, $field, $value)
+    {
+        return $query->where($field, 'LIKE', "%$value%");
+    }
 }

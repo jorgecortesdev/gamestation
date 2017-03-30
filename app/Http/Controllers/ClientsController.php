@@ -80,6 +80,35 @@ class ClientsController extends Controller
         return back();
     }
 
+    public function search(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            ['q' => 'required']
+        );
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
+        $query = str_replace(' ', '%', $request->q);
+        $clients = Client::like('name', $query)->get();
+
+        $clients = $clients->map(function ($client) {
+            return [
+                'id' => $client->id,
+                'text' => $client->name
+            ];
+        });
+
+        $data['items'] = $clients->all();
+        $data['total_count'] = $clients->count();
+
+        return $data;
+    }
+
     protected function validator(array $data)
     {
         $rules = [

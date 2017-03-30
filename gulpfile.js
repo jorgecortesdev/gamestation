@@ -44,6 +44,9 @@ elixir(function(mix) {
     mix.copy('vendor/bower_components/smartwizard/css/smart_wizard.css', 'public/css/smartwizard/smart_wizard.css');
     mix.copy('vendor/bower_components/smartwizard/css/smart_wizard_theme_arrows.css', 'public/css/smartwizard/smart_wizard_theme_arrows.css');
 
+    // Select2
+    mix.copy('vendor/bower_components/gentelella/vendors/select2/dist/css/select2.css', 'public/css/select2.css');
+
     /****************/
     /* Copy Scripts */
     /****************/
@@ -80,6 +83,9 @@ elixir(function(mix) {
 
     // jquery.inputmask
     mix.copy('vendor/bower_components/gentelella/vendors/jquery.inputmask/dist/jquery.inputmask.bundle.js', 'public/js/jquery.inputmask.bundle.js');
+
+    // Select2
+    mix.copy('vendor/bower_components/gentelella/vendors/select2/dist/js/select2.min.js', 'public/js/select2.min.js');
 
     /**************/
     /* Copy Fonts */

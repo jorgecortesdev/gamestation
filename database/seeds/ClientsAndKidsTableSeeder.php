@@ -15,13 +15,5 @@ class ClientsAndKidsTableSeeder extends Seeder
         factory(App\Client::class, 25)->create()->each(function ($client) {
             $client->kids()->save(factory(App\Kid::class)->make());
         });
-
-        // A los niños ya existentes creamos otro cliente
-        // y se lo atachamos :)
-        $kids = \App\Kid::all();
-        foreach ($kids as $kid) {
-            $client = factory(App\Client::class)->create();
-            $client->kids()->attach($kid);
-        }
     }
 }

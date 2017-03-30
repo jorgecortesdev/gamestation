@@ -56,8 +56,8 @@
               <div class="separator">
                 <div class="clearfix"></div>
                 <div>
-                  <h1><i class="fa fa-birthday-cake"></i> Gamestation EventOS!</h1>
-                  <p>©2017 Todos los derechos reservados.</p>
+                  <h2><i class="fa fa-birthday-cake"></i> GameStation <small><sup>MX</sup></small> - EventOS {{ config('app.version') }}</h2>
+                  <p>&copy;{{ date('Y') }} Todos los derechos reservados.</p>
                 </div>
               </div>
             </form>
