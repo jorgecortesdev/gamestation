@@ -35,6 +35,9 @@
                                     <th class="text-center">Id</th>
                                     <th class="text-center">Nombre</th>
                                     <th class="text-center">Color</th>
+                                    <th class="text-center">Horas</th>
+                                    <th class="text-center">Niños</th>
+                                    <th class="text-center">Adultos</th>
                                     <th class="text-center">Costo</th>
                                     <th class="text-center">Costo Unitario</th>
                                     <th class="text-center">Márgen de contribución</th>
@@ -49,6 +52,9 @@
                                         <td>
                                             <div class="combo-color combo-color-bg-{{ $combo->google_color_id }} center-block"></div>
                                         </td>
+                                        <td class="text-center">{{ $combo->hours }}</td>
+                                        <td class="text-center">{{ $combo->kids }}</td>
+                                        <td class="text-center">{{ $combo->adults }}</td>
                                         <td class="text-right">{{ $combo->present()->total }}</td>
                                         <td class="text-right">{{ $combo->present()->price }}</td>
                                         <td class="text-right">{{ $combo->present()->contribution_margin }}</td>

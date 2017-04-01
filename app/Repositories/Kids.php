@@ -6,6 +6,11 @@ use App\Kid;
 
 class Kids
 {
+    public function latest($paginate = 20)
+    {
+        return Kid::latest('id')->paginate($paginate);
+    }
+
     public function save(array $data, Kid $kid = null)
     {
         $birthday_at = \DateTime::createFromFormat('F j, Y',$data['birthday_at']);
@@ -23,5 +28,11 @@ class Kids
         $kid->save();
 
         $kid->clients()->sync([$client->id]);
+    }
+
+    public function delete($id)
+    {
+        $kid = Kid::findOrFail($id);
+        $kid->delete();
     }
 }

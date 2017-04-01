@@ -29,6 +29,11 @@ class ComposerServiceProvider extends ServiceProvider
         );
 
         View::composer(
+            'events.index',
+            KidsComposer::class
+        );
+
+        View::composer(
             'includes.productmanager',
             ProductManagerComposer::class
         );

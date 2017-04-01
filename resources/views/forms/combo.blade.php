@@ -8,6 +8,36 @@
     @endif
 </div>
 
+<div class="item form-group{{ $errors->has('hours') ? ' bad' : '' }}">
+    {!! Form::label('hours', 'Horas', ['class' => 'control-label col-md-2 col-sm-2 col-xs-12']) !!}
+    <div class="col-md-1 col-sm-1 col-xs-12">
+        {!! Form::text('hours', null, ['class' => 'form-control']) !!}
+    </div>
+    @if ($errors->has('hours'))
+        <div class="alert gs-alert">{{ $errors->first('hours') }}</div>
+    @endif
+</div>
+
+<div class="item form-group{{ $errors->has('kids') ? ' bad' : '' }}">
+    {!! Form::label('kids', 'Niños', ['class' => 'control-label col-md-2 col-sm-2 col-xs-12']) !!}
+    <div class="col-md-1 col-sm-1 col-xs-12">
+        {!! Form::text('kids', null, ['class' => 'form-control']) !!}
+    </div>
+    @if ($errors->has('kids'))
+        <div class="alert gs-alert">{{ $errors->first('kids') }}</div>
+    @endif
+</div>
+
+<div class="item form-group{{ $errors->has('adults') ? ' bad' : '' }}">
+    {!! Form::label('adults', 'Adultos', ['class' => 'control-label col-md-2 col-sm-2 col-xs-12']) !!}
+    <div class="col-md-1 col-sm-1 col-xs-12">
+        {!! Form::text('adults', null, ['class' => 'form-control']) !!}
+    </div>
+    @if ($errors->has('adults'))
+        <div class="alert gs-alert">{{ $errors->first('adults') }}</div>
+    @endif
+</div>
+
 <div class="item form-group{{ $errors->has('price') ? ' bad' : '' }}">
     {!! Form::label('price', 'Precio', ['class' => 'control-label col-md-2 col-sm-2 col-xs-12']) !!}
     <div class="col-md-1 col-sm-1 col-xs-12">

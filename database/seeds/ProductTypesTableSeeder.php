@@ -16,6 +16,7 @@ class ProductTypesTableSeeder extends Seeder
 
         $types = [
             ['name' => 'Agua Fresca', 'created_at' => $date, 'updated_at' => $date],
+            ['name' => 'Invitación', 'created_at' => $date, 'updated_at' => $date],
             ['name' => 'Agua', 'created_at' => $date, 'updated_at' => $date],
             ['name' => 'Hielo', 'created_at' => $date, 'updated_at' => $date],
             ['name' => 'Pizza', 'created_at' => $date, 'updated_at' => $date],

@@ -46,6 +46,9 @@ class CombosController extends Controller
 
         $combo = new Combo();
         $combo->name = $request->name;
+        $combo->hours = $request->hours;
+        $combo->kids = $request->kids;
+        $combo->adults = $request->adults;
         $combo->price = $request->price;
         if (!empty($request->google_color_id)) {
             $combo->google_color_id = $request->google_color_id;
@@ -96,6 +99,9 @@ class CombosController extends Controller
     {
         $rules = [
             'name' => 'required|unique:combos|min:3',
+            'hours' => 'required|numeric',
+            'kids' => 'required|numeric',
+            'adults' => 'required|numeric',
             'price' => 'required|numeric',
             'google_color_id' => 'required|digits_between:1,11'
         ];

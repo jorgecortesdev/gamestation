@@ -16,6 +16,9 @@ class CreateCombosTable extends Migration
         Schema::create('combos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->tinyInteger('hours')->default(3)->unsigned();
+            $table->tinyInteger('kids')->default(0)->unsigned();
+            $table->tinyInteger('adults')->default(0)->unsigned();
             $table->tinyInteger('google_color_id')->default(8)->unsigned();
             $table->float('price', 9 ,2);
             $table->timestamps();

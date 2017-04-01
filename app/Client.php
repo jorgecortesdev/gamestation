@@ -9,8 +9,6 @@ class Client extends Model
 {
     use Presentable;
 
-    protected $fillable = ['name', 'address', 'telephone', 'email'];
-
     protected $presenter = 'App\Presenters\ClientPresenter';
 
     public function kids()

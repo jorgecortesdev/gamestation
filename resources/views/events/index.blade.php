@@ -34,37 +34,39 @@
                         <div id="smartwizard">
                             <ul>
                                 <li>
-                                    <a href="#step-1">Paso 1<br /><small>Generales</small></a>
+                                    <a href="#step-1">Paso 1<br /><small>Datos del Padre</small></a>
                                 </li>
-                                <li><a href="#step-2">Paso 2<br /><small>Agenda</small></a></li>
-                                <li><a href="#step-3">Paso 3<br /><small>Específicos</small></a></li>
+                                <li><a href="#step-2">Paso 2<br /><small>Datos del Niño</small></a></li>
+                                <li><a href="#step-3">Paso 3<br /><small>Agenda</small></a></li>
                                 <li><a href="#step-4">Paso 4<br /><small>Vista previa</small></a></li>
                             </ul>
 
                             <div>
                                 <div id="step-1" class="">
                                     <div class="row">
-                                        {!! Form::open(['route' => 'event.step1', 'id' => 'frmSteps', 'class' => 'form-horizontal form-label-left']) !!}
+                                        {!! Form::open(['route' => 'event.step1', 'id' => 'frm', 'class' => 'form-horizontal form-label-left']) !!}
                                             @include('forms.events.step1')
                                         {!! Form::close() !!}
                                     </div>
                                 </div>
                                 <div id="step-2" class="">
                                     <div class="row">
-                                        {!! Form::open(['route' => 'event.step2', 'id' => 'frmSteps', 'class' => 'form-horizontal form-label-left']) !!}
+                                        {!! Form::open(['route' => 'event.step2', 'id' => 'frm', 'class' => 'form-horizontal form-label-left']) !!}
                                             @include('forms.events.step2')
                                         {!! Form::close() !!}
                                     </div>
                                 </div>
                                 <div id="step-3" class="">
                                     <div class="row">
-                                        {!! Form::open(['route' => 'event.step3', 'id' => 'frmSteps', 'class' => 'form-horizontal form-label-left']) !!}
+                                        {!! Form::open(['route' => 'event.step3', 'id' => 'frm', 'class' => 'form-horizontal form-label-left']) !!}
                                             @include('forms.events.step3')
                                         {!! Form::close() !!}
                                     </div>
                                 </div>
                                 <div id="step-4" class="">
-                                    Step Content
+                                    <div class="row">
+                                        @include('forms.events.step4')
+                                    </div>
                                 </div>
                             </div>
                         </div>

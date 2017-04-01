@@ -213,6 +213,7 @@ return [
 		'Gravatar' => Thomaswelton\LaravelGravatar\Facades\Gravatar::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Helper' => App\Library\Helper::class,
     ],
 
     /*

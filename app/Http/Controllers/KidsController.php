@@ -2,25 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use Validator;
 use App\Kid;
-use Illuminate\Http\Request;
+use App\Repositories\Kids;
+use App\Http\Requests\SaveKid;
 
 class KidsController extends Controller
 {
+    /** @var Kids Kid repository */
+    protected $kids;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Kids $kids)
     {
         $this->middleware('auth');
+
+        $this->kids = $kids;
     }
 
     public function index()
     {
-        $kids = Kid::latest('id')->paginate(20);
+        $kids = $this->kids->latest();
         return view('kids.index', compact('kids'));
     }
 
@@ -29,18 +34,9 @@ class KidsController extends Controller
         return view('kids.create');
     }
 
-    public function store(Request $request)
+    public function store(SaveKid $request)
     {
-        $validator = $this->validator($request->all());
-
-        if ($validator->fails()) {
-            $this->throwValidationException(
-                $request, $validator
-            );
-        }
-
-        $repo = new \App\Repositories\Kids();
-        $repo->save($request->all());
+        $this->kids->save($request->all());
 
         flash('Niño agregado con éxito', 'success');
 
@@ -52,18 +48,9 @@ class KidsController extends Controller
         return view('kids.edit', compact('kid'));
     }
 
-    public function update(Request $request, Kid $kid)
+    public function update(SaveKid $request, Kid $kid)
     {
-        $validator = $this->validator($request->all());
-
-        if ($validator->fails()) {
-            $this->throwValidationException(
-                $request, $validator
-            );
-        }
-
-        $repo = new \App\Repositories\Kids();
-        $repo->save($request->all(), $kid);
+        $this->kids->save($request->all(), $kid);
 
         flash('Niño actualizado con éxito', 'success');
 
@@ -72,31 +59,10 @@ class KidsController extends Controller
 
     public function destroy($id)
     {
-        $kid = Kid::find($id);
-        $kid->delete();
+        $this->kids->delete($id);
 
         flash('Niño borrado con éxito', 'success');
 
         return back();
-    }
-
-    protected function validator(array $data)
-    {
-        $rules = [
-            'client_id' => 'required',
-            'name' => 'required',
-            'sex' => 'required|digits_between:1,2',
-            'birthday_at' => 'required|date|before:1 year ago',
-        ];
-
-        $messages = [
-            'client_id.required' => 'El campo es requerido',
-            'name.required' => 'El campo es requerido.',
-            'sex.required' => 'El campo es requerido.',
-            'birthday_at.required' => 'El campo es requerido.',
-            'birthday_at.before' => 'Debe ser mayor a 1 año.'
-        ];
-
-        return Validator::make($data, $rules, $messages);
     }
 }

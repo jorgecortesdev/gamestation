@@ -2,25 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use Validator;
 use App\Client;
-use Illuminate\Http\Request;
+use App\Repositories\Clients;
+use App\Http\Requests\SaveClient;
+use App\Http\Requests\SearchClient;
 
 class ClientsController extends Controller
 {
+    /** @var Clients Client repository */
+    protected $clients;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Clients $clients)
     {
         $this->middleware('auth');
+
+        $this->clients = $clients;
     }
 
     public function index()
     {
-        $clients = Client::latest('id')->paginate(20);
+        $clients = $this->clients->latest();
         return view('clients.index', compact('clients'));
     }
 
@@ -29,19 +35,9 @@ class ClientsController extends Controller
         return view('clients.create');
     }
 
-    public function store(Request $request)
+    public function store(SaveClient $request)
     {
-        $validator = $this->validator($request->all());
-
-        if ($validator->fails()) {
-            $this->throwValidationException(
-                $request, $validator
-            );
-        }
-
-        $client = new Client($request->all());
-
-        $client->save();
+        $this->clients->save($request->all());
 
         flash('Cliente agregado con éxito', 'success');
 
@@ -53,17 +49,9 @@ class ClientsController extends Controller
         return view('clients.edit', compact('client'));
     }
 
-    public function update(Request $request, Client $client)
+    public function update(SaveClient $request, Client $client)
     {
-        $validator = $this->validator($request->all());
-
-        if ($validator->fails()) {
-            $this->throwValidationException(
-                $request, $validator
-            );
-        }
-
-        $client->update($request->all());
+        $this->clients->save($request->all());
 
         flash('Cliente actualizado con éxito', 'success');
 
@@ -72,59 +60,16 @@ class ClientsController extends Controller
 
     public function destroy($id)
     {
-        $client = Client::find($id);
-        $client->delete();
+        $this->clients->delete($id);
 
         flash('Cliente borrado con éxito', 'success');
 
         return back();
     }
 
-    public function search(Request $request)
+    public function search(SearchClient $request)
     {
-        $validator = Validator::make(
-            $request->all(),
-            ['q' => 'required']
-        );
-
-        if ($validator->fails()) {
-            $this->throwValidationException(
-                $request, $validator
-            );
-        }
-
-        $query = str_replace(' ', '%', $request->q);
-        $clients = Client::like('name', $query)->get();
-
-        $clients = $clients->map(function ($client) {
-            return [
-                'id' => $client->id,
-                'text' => $client->name
-            ];
-        });
-
-        $data['items'] = $clients->all();
-        $data['total_count'] = $clients->count();
-
-        return $data;
-    }
-
-    protected function validator(array $data)
-    {
-        $rules = [
-            'name' => 'required',
-            'address' => 'required',
-            'telephone' => 'required|numeric|min:10',
-            'email' => 'email',
-        ];
-
-        $messages = [
-            'name.required' => 'El campo es requerido.',
-            'address.required' => 'El campo es requerido',
-            'telephone.required' => 'El campo es requerido.',
-            'email.email' => 'No es un correo válido.',
-        ];
-
-        return Validator::make($data, $rules, $messages);
+        $clients = new \App\Repositories\Clients();
+        return $clients->searchForSelect($request->q);
     }
 }
