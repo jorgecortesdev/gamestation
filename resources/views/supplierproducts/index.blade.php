@@ -34,6 +34,7 @@
                                 <tr>
                                     <th class="text-center">Id</th>
                                     <th class="text-center">Nombre</th>
+                                    <th class="text-center">Imágen</th>
                                     <th class="text-center">Tipo</th>
                                     <th class="text-center">Proveedor</th>
                                     <th class="text-center">Cantidad</th>
@@ -54,8 +55,13 @@
                                             <br>
                                             <small>Creado {{ $product->present()->createdAt }}</small>
                                         </td>
+                                        <td class="text-center">
+                                            <img class="img-responsive center-block gs-image gs-image-thumbnail" src="{{ $product->imagePath() }}">
+                                        </td>
                                         <td class="text-center">{{ $product->productType->name }}</td>
-                                        <td class="text-center">{{ $product->supplier->name }}</td>
+                                        <td class="text-center">
+                                            <a href="{{ route('supplier.show', [$product->supplier->id]) }}">{{ $product->supplier->name }}</a>
+                                        </td>
                                         <td class="text-right">{{ $product->present()->quantity }}</td>
                                         <td class="text-center">{{ $product->unity->name }}</td>
                                         <td class="text-right">{{ $product->present()->price }}</td>

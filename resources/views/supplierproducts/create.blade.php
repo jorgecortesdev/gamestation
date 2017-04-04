@@ -24,7 +24,7 @@
                     </div>
                     <div class="x_content">
                         <br>
-                        {!! Form::open(['route' => 'supplier_product.store', 'class' => 'form-horizontal form-label-left']) !!}
+                        {!! Form::open(['route' => 'supplier_product.store', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal form-label-left']) !!}
                             @include('forms.supplier_product')
                         {!! Form::close() !!}
                     </div>

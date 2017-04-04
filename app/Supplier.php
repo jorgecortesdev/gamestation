@@ -13,6 +13,36 @@ class Supplier extends Model
 
     protected $presenter = 'App\Presenters\SupplierPresenter';
 
+    /******************
+     * Custom methods *
+     ******************/
+
+    public function imagePath()
+    {
+        $image = $this->id . '.png';
+
+        if (\Storage::disk('public')->exists('supplier/' . $image)) {
+            return $image = asset('storage/supplier/' . $image);
+        }
+
+        return asset('img/default_supplier.png');
+    }
+
+    public function saveImage($image)
+    {
+        if ($image) {
+            $imageName = $this->id . '.png';
+
+            $originalImage = \Image::make($image->getRealPath());
+            $originalImage->encode('png');
+            $originalImage->resize(200, 200, function ($constraint) {
+                $constraint->aspectRatio();
+            })->stream();
+
+            \Storage::disk('public')->put('supplier/' . $imageName, $originalImage);
+        }
+    }
+
     /*****************
      * Relationships *
      *****************/

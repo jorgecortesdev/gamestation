@@ -45,8 +45,8 @@ class SupplierProductsController extends Controller
         }
 
         $product = new SupplierProduct($request->all());
-
         $product->save();
+        $product->saveImage($request->image);
 
         flash('Producto agregado con éxito', 'success');
 
@@ -72,6 +72,7 @@ class SupplierProductsController extends Controller
         }
 
         $supplier_product->update($request->all());
+        $supplier_product->saveImage($request->image);
 
         flash('Producto actualizado con éxito', 'success');
 
@@ -101,7 +102,8 @@ class SupplierProductsController extends Controller
             'unity_id' => 'required|numeric',
             'price' => 'required|numeric',
             'iva' => 'numeric',
-            'product_type_id' => 'required|numeric'
+            'product_type_id' => 'required|numeric',
+            'image' => 'image|mimes:jpeg,png,jpg,gif'
         ];
 
         $messages = [

@@ -83,6 +83,16 @@
     @endif
 </div>
 
+<div class="item form-group{{ $errors->has('image') ? ' bad' : '' }}">
+    {!! Form::label('image', 'Imágen', ['class' => 'control-label col-md-2 col-sm-2 col-xs-12']) !!}
+    <div class="col-md-3 col-sm-3 col-xs-12">
+        {!! Form::file('image', ['class' => 'form-control']) !!}
+    </div>
+    @if ($errors->has('image'))
+        <div class="alert gs-alert">{{ $errors->first('image') }}</div>
+    @endif
+</div>
+
 <div class="ln_solid"></div>
 
 <div class="item form-group">

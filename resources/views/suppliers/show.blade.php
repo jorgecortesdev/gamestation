@@ -22,7 +22,7 @@
                         <div class="row">
                             <div class="col-md-2 col-sm-2 col-xs-12 profile_left">
                                 <div class="gs-profile-img">
-                                    <img class="img-responsive" src="{{ asset('img/default.png') }}">
+                                    <img class="img-responsive center-block gs-image" src="{{ $supplier->imagePath() }}">
                                 </div>
                             </div>
                             <div class="col-md-8 col-sm-8 col-xs-12">
@@ -53,6 +53,7 @@
                                         <tr>
                                             <th class="text-center">Id</th>
                                             <th class="text-center">Nombre</th>
+                                            <th class="text-center">Imágen</th>
                                             <th class="text-center">Tipo</th>
                                             <th class="text-center">Activo</th>
                                             <th class="text-center">Cantidad</th>
@@ -65,13 +66,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($supplier->products as $product)
+                                        @forelse ($supplier->products()->orderBy('id', 'desc')->get() as $product)
                                             <tr>
                                                 <td class="text-right">{{ $product->id }}</td>
                                                 <td>
                                                     {{ $product->name }}
                                                     <br>
                                                     <small>Creado {{ $product->present()->createdAt }}</small>
+                                                </td>
+                                                <td class="text-center">
+                                                    <img class="img-responsive center-block gs-image gs-image-thumbnail" src="{{ $product->imagePath() }}">
                                                 </td>
                                                 <td class="text-center">{{ $product->productType->name }}</td>
                                                 <td class="text-center">{!! $product->present()->isActive() !!}</td>
@@ -86,7 +90,14 @@
                                                     <a class="btn btn-danger btn-xs" href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('supplier_product.destroy', [$product->id]) }}"> <i class="fa fa-trash"></i> Borrar</a>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @empty
+                                            <tr>
+                                                <td colspan="12" class="text-center">
+                                                    <br>
+                                                    <div class="alert alert-default">Sin productos</div>
+                                                </td>
+                                            </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

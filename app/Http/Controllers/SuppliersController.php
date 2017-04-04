@@ -48,8 +48,8 @@ class SuppliersController extends Controller
         }
 
         $supplier = new Supplier($request->all());
-
         $supplier->save();
+        $supplier->saveImage($request->image);
 
         flash('Proveedor agregado con éxito', 'success');
 
@@ -72,6 +72,7 @@ class SuppliersController extends Controller
         }
 
         $supplier->update($request->all());
+        $supplier->saveImage($request->image);
 
         flash('Proveedor actualizado con éxito', 'success');
 
@@ -94,6 +95,7 @@ class SuppliersController extends Controller
             'name' => 'required',
             'telephone' => 'numeric|min:10',
             'email' => 'email',
+            'image' => 'image|mimes:jpeg,png,jpg,gif'
         ];
 
         $messages = [

@@ -34,6 +34,8 @@
                                 <tr>
                                     <th class="text-center">Id</th>
                                     <th class="text-center">Nombre</th>
+                                    <th class="text-center">Imágen</th>
+                                    <td class="text-center">Productos</td>
                                     <th class="text-center">Dirección</th>
                                     <th class="text-center">Teléfono</th>
                                     <th class="text-center">Correo</th>
@@ -50,6 +52,10 @@
                                             <br>
                                             <small>Creado {{ $supplier->present()->createdAt }}</small>
                                         </td>
+                                        <td class="text-center">
+                                            <img class="img-responsive center-block gs-image gs-image-thumbnail" src="{{ $supplier->imagePath() }}">
+                                        </td>
+                                        <td class="text-center">{{ $supplier->products->count() }}</td>
                                         <td>{{ $supplier->address }}</td>
                                         <td class="text-center">{{ $supplier->present()->telephone }}</td>
                                         <td class="text-center">{{ $supplier->present()->email }}</td>

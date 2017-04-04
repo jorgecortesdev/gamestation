@@ -24,7 +24,7 @@
                     </div>
                     <div class="x_content">
                         <br>
-                        {!! Form::model($supplier_product, ['route' => ['supplier_product.update', $supplier_product->id], 'method' => 'PATCH', 'class' => 'form-horizontal form-label-left']) !!}
+                        {!! Form::model($supplier_product, ['route' => ['supplier_product.update', $supplier_product->id], 'method' => 'PATCH', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal form-label-left']) !!}
                             @include('forms.supplier_product', ['sendButtonText' => 'Actualizar'])
                         {!! Form::close() !!}
                     </div>

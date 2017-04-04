@@ -26,6 +26,16 @@
 .gs-btn-no-margin {
     margin: 0px;
 }
+/** Images */
+.gs-image {
+    background: #f7f7f7;
+    border: 1px solid #e6e6e6;
+}
+.gs-image.gs-image-thumbnail {
+    height: 64px;
+    width: 64px;
+    padding: 2px;
+}
 /** General alert styles */
 .alert.gs-alert {
     max-width: none;

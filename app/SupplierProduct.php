@@ -15,6 +15,36 @@ class SupplierProduct extends Model
 
     protected $appends = ['is_active', 'unit_cost', 'total'];
 
+    /******************
+     * Custom methods *
+     ******************/
+
+    public function imagePath()
+    {
+        $image = $this->id . '.png';
+
+        if (\Storage::disk('public')->exists('products/' . $image)) {
+            return $image = asset('storage/products/' . $image);
+        }
+
+        return asset('img/default_product.png');
+    }
+
+    public function saveImage($image)
+    {
+        if ($image) {
+            $imageName = $this->id . '.png';
+
+            $originalImage = \Image::make($image->getRealPath());
+            $originalImage->encode('png');
+            $originalImage->resize(200, 200, function ($constraint) {
+                $constraint->aspectRatio();
+            })->stream();
+
+            \Storage::disk('public')->put('products/' . $imageName, $originalImage);
+        }
+    }
+
     /***********************
      * Appended attributes *
      ***********************/
