@@ -29,7 +29,7 @@
                     </div>
                     <div class="x_content">
                         <p>Proveedores registrados en el sistema.</p>
-                        <table class="table table-hover table-bordered">
+                        <table class="table table-hover table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th class="text-center">Id</th>
@@ -45,15 +45,19 @@
                                 @foreach ($suppliers as $supplier)
                                     <tr>
                                         <td class="text-right">{{ $supplier->id }}</td>
-                                        <td><a href="{{ route('supplier.show', [$supplier->id]) }}">{{ $supplier->name }}</a></td>
+                                        <td>
+                                            <a href="{{ route('supplier.show', [$supplier->id]) }}">{{ $supplier->name }}</a>
+                                            <br>
+                                            <small>Creado {{ $supplier->present()->createdAt }}</small>
+                                        </td>
                                         <td>{{ $supplier->address }}</td>
                                         <td class="text-center">{{ $supplier->present()->telephone }}</td>
                                         <td class="text-center">{{ $supplier->present()->email }}</td>
                                         <td class="text-center">{{ $supplier->type->name }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('supplier.edit', [$supplier->id]) }}"><i class="fa fa-edit"></i> Editar</a>
-                                            &nbsp;|&nbsp;
-                                            <a href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('supplier.destroy', [$supplier->id]) }}"> <i class="fa fa-trash"></i> Borrar</a>
+                                            <a class="btn btn-primary btn-xs" href="{{ route('supplier.show', [$supplier->id]) }}"><i class="fa fa-folder"></i> Ver</a>
+                                            <a class="btn btn-info btn-xs" href="{{ route('supplier.edit', [$supplier->id]) }}"><i class="fa fa-edit"></i> Editar</a>
+                                            <a class="btn btn-danger btn-xs" href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('supplier.destroy', [$supplier->id]) }}"> <i class="fa fa-trash"></i> Borrar</a>
                                         </td>
                                     </tr>
                                 @endforeach

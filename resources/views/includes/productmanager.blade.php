@@ -10,18 +10,7 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <p>Debes seleccionar el tipo de producto y posteriormente arrastrar el producto de la lista de la izquierda
-                a la lista de la derecha, cuando hayas terminado oprime el botón de guardar ubicado en la parte inferior
-                de los contenedores.</p>
-                <br>
-                {{ Form::open() }}
-                    {!! Form::select(
-                        'product_type',
-                        $product_types,
-                        null,
-                        ['class' => 'form-control', 'placeholder' => '-- Selecciona el tipo de producto --', 'id' => 'productType'])
-                    !!}
-                {{ Form::close() }}
+                <p>Arrastrar el producto de la lista de la izquierda a la derecha, cuando hayas terminado oprime el botón de guardar ubicado en la parte inferior de los contenedores.</p>
 
                 <script type="text/javascript">window['pm_entity'] = '{{ $entity_name }}';</script>
                 <script type="text/javascript">window['pm_entity_id'] = {{ $entity->id }};</script>

@@ -25,7 +25,7 @@
                     <div class="x_content">
                         <br>
                         {!! Form::open(['route' => 'product_type.store', 'class' => 'form-horizontal form-label-left']) !!}
-                        @include('forms.catalog')
+                        @include('forms.product_type')
                         {!! Form::close() !!}
                     </div>
                 </div>

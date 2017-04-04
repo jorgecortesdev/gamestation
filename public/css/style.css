@@ -17,6 +17,15 @@
 .gs-title-controls > a {
     margin: 2px 0;
 }
+.gs-profile-img {
+    background: #eeeeee;
+}
+.gs-list-product-types > li {
+    margin-right: -10px;
+}
+.gs-btn-no-margin {
+    margin: 0px;
+}
 /** General alert styles */
 .alert.gs-alert {
     max-width: none;

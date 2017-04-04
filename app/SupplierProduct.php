@@ -11,9 +11,13 @@ class SupplierProduct extends Model
 
     protected $fillable = ['name', 'supplier_id', 'quantity', 'unity_id', 'price', 'iva', 'product_type_id'];
 
-    protected $appends = ['unit_cost', 'total'];
-
     protected $presenter = 'App\Presenters\SupplierProductPresenter';
+
+    protected $appends = ['is_active', 'unit_cost', 'total'];
+
+    /***********************
+     * Appended attributes *
+     ***********************/
 
     public function getTotalAttribute()
     {
@@ -25,14 +29,23 @@ class SupplierProduct extends Model
         return $this->total / $this->quantity;
     }
 
+    public function getIsActiveAttribute()
+    {
+        return $this->belongsTo(ProductType::class, 'id', 'supplier_product_id')->count() > 0;
+    }
+
+    /*****************
+     * Relationships *
+     *****************/
+
     public function supplier()
     {
         return $this->belongsTo(Supplier::class);
     }
 
-    public function type()
+    public function productType()
     {
-        return $this->belongsTo(ProductType::class, 'product_type_id');
+        return $this->belongsTo(ProductType::class);
     }
 
     public function unity()

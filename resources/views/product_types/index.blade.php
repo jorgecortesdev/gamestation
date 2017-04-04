@@ -26,16 +26,18 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Listado de paquetes</h2>
+                        <h2>Listado de tipos de productos</h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <p>Catálogo de tipos de productos registrados en el sistema.</p>
-                        <table class="table table-hover table-bordered">
+                        <p>El siguiente catálogo es utilizado como máscara de los productos ante los paquetes y los extras, el producto activo es el que es utilizado para los cálculos de los precios.</p>
+                        <table class="table table-hover table-bordered table-striped">
                             <thead>
                             <tr>
                                 <th class="text-center">Id</th>
                                 <th class="text-center">Nombre</th>
+                                <th class="text-center">Producto activo</th>
+                                <th class="text-center">Proveedor activo</th>
                                 <th class="text-center">Acciones</th>
                             </tr>
                             </thead>
@@ -43,13 +45,18 @@
                                 @foreach ($product_types as $product_type)
                                     <tr>
                                         <td class="text-right">{{ $product_type->id }}</td>
-                                        <td>{{ $product_type->name }}</td>
+                                        <td>
+                                            {{ $product_type->name }}
+                                            <br>
+                                            <small>Creado {{ $product_type->present()->created_at }}</small>
+                                        </td>
+                                        <td class="text-center">{!! $product_type->present()->active_product !!}</td>
+                                        <td class="text-center">{!! $product_type->present()->active_supplier !!}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('product_type.edit', [$product_type->id]) }}">
+                                            <a class="btn btn-info btn-xs" href="{{ route('product_type.edit', [$product_type->id]) }}">
                                                 <i class="fa fa-edit"></i> Editar
                                             </a>
-                                            &nbsp;|&nbsp;
-                                            <a href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('product_type.destroy', [$product_type->id]) }}">
+                                            <a class="btn btn-danger btn-xs" href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('product_type.destroy', [$product_type->id]) }}">
                                                 <i class="fa fa-trash"></i> Borrar
                                             </a>
                                         </td>

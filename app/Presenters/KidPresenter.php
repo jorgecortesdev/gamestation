@@ -25,4 +25,9 @@ class KidPresenter extends Presenter
 
         return trim($parents, ' --- ');
     }
+
+    public function createdAt()
+    {
+        return $this->model->created_at->format('d.m.Y');
+    }
 }

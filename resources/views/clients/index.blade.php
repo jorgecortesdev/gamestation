@@ -29,7 +29,7 @@
                     </div>
                     <div class="x_content">
                         <p>Clientes registrados en el sistema.</p>
-                        <table class="table table-hover table-bordered">
+                        <table class="table table-hover table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th class="text-center">Id</th>
@@ -44,14 +44,17 @@
                                 @foreach ($clients as $client)
                                     <tr>
                                         <td class="text-right">{{ $client->id }}</td>
-                                        <td><a href="#">{{ $client->name }}</a></td>
+                                        <td>
+                                            <a href="#">{{ $client->name }}</a>
+                                            <br>
+                                            <small>Creado {{ $client->present()->createdAt }}</small>
+                                        </td>
                                         <td>{{ $client->address }}</td>
                                         <td class="text-center">{{ $client->present()->telephone }}</td>
                                         <td>{{ $client->present()->email }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('client.edit', [$client->id]) }}"><i class="fa fa-edit"></i> Editar</a>
-                                            &nbsp;|&nbsp;
-                                            <a href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('client.destroy', [$client->id]) }}"> <i class="fa fa-trash"></i> Borrar</a>
+                                            <a class="btn btn-info btn-xs" href="{{ route('client.edit', [$client->id]) }}"><i class="fa fa-edit"></i> Editar</a>
+                                            <a class="btn btn-danger btn-xs" href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('client.destroy', [$client->id]) }}"> <i class="fa fa-trash"></i> Borrar</a>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -2,10 +2,10 @@
 
 namespace App\Http\ViewComposers;
 
-use App\ProductType;
+use App\Supplier;
 use Illuminate\View\View;
 
-class ProductManagerComposer
+class ProductTypeComposer
 {
     /**
      * Bind data to the view.
@@ -15,7 +15,8 @@ class ProductManagerComposer
      */
     public function compose(View $view)
     {
-        $product_types = ProductType::pluck('name', 'id');
-        $view->with('product_types', $product_types);
+        $suppliers = Supplier::pluck('name', 'id');
+
+        $view->with('suppliers', $suppliers);
     }
 }

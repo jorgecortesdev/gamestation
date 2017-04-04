@@ -29,7 +29,7 @@
                     </div>
                     <div class="x_content">
                         <p>Para agregar productos de proveedores el paquete deberá existir previamente.</p>
-                        <table class="table table-hover table-bordered">
+                        <table class="table table-hover table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th class="text-center">Id</th>
@@ -48,7 +48,11 @@
                                 @foreach ($combos as $combo)
                                     <tr>
                                         <td class="text-right">{{ $combo->id }}</td>
-                                        <td><a href="{{ route('combo.show', [$combo->id]) }}">{{ $combo->name }}</a></td>
+                                        <td>
+                                            <a href="{{ route('combo.show', [$combo->id]) }}">{{ $combo->name }}</a>
+                                            <br>
+                                            <small>Creado {{ $combo->present()->createdAt }}</small>
+                                        </td>
                                         <td>
                                             <div class="combo-color combo-color-bg-{{ $combo->google_color_id }} center-block"></div>
                                         </td>
@@ -59,11 +63,9 @@
                                         <td class="text-right">{{ $combo->present()->price }}</td>
                                         <td class="text-right">{{ $combo->present()->contribution_margin }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('combo.show', [$combo->id]) }}"><i class="fa fa-eye"></i> Ver</a>
-                                            &nbsp;|&nbsp;
-                                            <a href="{{ route('combo.edit', [$combo->id]) }}"><i class="fa fa-edit"></i> Editar</a>
-                                            &nbsp;|&nbsp;
-                                            <a href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('combo.destroy', [$combo->id]) }}"> <i class="fa fa-trash"></i> Borrar</a>
+                                            <a class="btn btn-primary btn-xs" href="{{ route('combo.show', [$combo->id]) }}"><i class="fa fa-folder"></i> Ver</a>
+                                            <a class="btn btn-info btn-xs" href="{{ route('combo.edit', [$combo->id]) }}"><i class="fa fa-edit"></i> Editar</a>
+                                            <a class="btn btn-danger btn-xs" href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('combo.destroy', [$combo->id]) }}"> <i class="fa fa-trash"></i> Borrar</a>
                                         </td>
                                     </tr>
                                 @endforeach

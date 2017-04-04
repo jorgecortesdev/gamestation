@@ -29,7 +29,7 @@
                     </div>
                     <div class="x_content">
                         <p>Niños registrados en el sistema.</p>
-                        <table class="table table-hover table-bordered">
+                        <table class="table table-hover table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th class="text-center">Id</th>
@@ -44,16 +44,19 @@
                                 @foreach ($kids as $kid)
                                     <tr>
                                         <td class="text-right">{{ $kid->id }}</td>
-                                        <td><a href="#">{{ $kid->name }}</a></td>
+                                        <td>
+                                            <a href="#">{{ $kid->name }}</a>
+                                            <br>
+                                            <small>Creado {{ $kid->present()->createdAt }}</small>
+                                        </td>
                                         <td class="text-center">{{ $kid->present()->parents }}</td>
                                         <td class="text-center">{{ $kid->present()->birthday_at }}</td>
                                         <td class="text-center">
                                             {{ $kid->present()->sex }}
                                         </td>
                                         <td class="text-center">
-                                            <a href="{{ route('kid.edit', [$kid->id]) }}"><i class="fa fa-edit"></i> Editar</a>
-                                            &nbsp;|&nbsp;
-                                            <a href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('kid.destroy', [$kid->id]) }}"> <i class="fa fa-trash"></i> Borrar</a>
+                                            <a class="btn btn-info btn-xs" href="{{ route('kid.edit', [$kid->id]) }}"><i class="fa fa-edit"></i> Editar</a>
+                                            <a class="btn btn-danger btn-xs" href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('kid.destroy', [$kid->id]) }}"> <i class="fa fa-trash"></i> Borrar</a>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -1,6 +1,7 @@
 <?php
 namespace App\Presenters;
 
+use App\Repositories\Combos;
 use Laracodes\Presenter\Presenter;
 
 class ComboPresenter extends Presenter
@@ -25,14 +26,21 @@ class ComboPresenter extends Presenter
         return number_format($this->model->utility * 100, 2) . '%';
     }
 
-    public function productTotal($product_id)
+    public function productTotal($productTypeId)
     {
-        return $this->currencyFormater($this->model->productTotal($product_id));
+        $combos = new Combos();
+        $cost = $combos->calculateProductCost($this->model->id, $productTypeId);
+        return $this->currencyFormater($cost);
     }
 
     protected function currencyFormater($amount)
     {
         setlocale(LC_MONETARY, 'en_US.UTF-8');
         return money_format('%.2n', $amount);
+    }
+
+    public function createdAt()
+    {
+        return $this->model->created_at->format('d.m.Y');
     }
 }

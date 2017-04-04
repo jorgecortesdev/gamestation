@@ -43,4 +43,9 @@ class ClientPresenter extends Presenter
 
         return $countryCode ? $countryCode . " " . $formatedString : $formatedString;
     }
+
+    public function createdAt()
+    {
+        return $this->model->created_at->format('d.m.Y');
+    }
 }

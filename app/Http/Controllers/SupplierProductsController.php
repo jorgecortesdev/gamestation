@@ -22,7 +22,7 @@ class SupplierProductsController extends Controller
 
     public function index()
     {
-        $products = SupplierProduct::with(['supplier', 'unity', 'type'])->latest('id')->paginate(20);
+        $products = SupplierProduct::with(['supplier', 'unity', 'productType'])->latest('id')->paginate(20);
         return view('supplierproducts.index', compact('products'));
     }
 
@@ -75,7 +75,11 @@ class SupplierProductsController extends Controller
 
         flash('Producto actualizado con éxito', 'success');
 
-        return redirect(route('supplier_product.index'));
+        if ($request->session()->has('redirect_url')) {
+            return redirect($request->session()->pull('redirect_url'));
+        }
+
+        return back();
     }
 
     public function destroy($id)

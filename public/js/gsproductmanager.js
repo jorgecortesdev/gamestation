@@ -1,23 +1,12 @@
-function init_ProductTypeSelect() {
-    HandlebarsIntl.registerWith(Handlebars);
+function init_Dragula() {
 
-    var source = $('#entry-template').html();
-    var template = Handlebars.compile(source);
+    if (typeof (dragula) === 'undefined') { return; }
 
-    $('#productType').on('change', function() {
-        var id = this.value;
-        $.ajax({
-            url: '/productmanager/type/' + id,
-            type: 'GET',
-            success: function(data) {
-                var container = $('#left-container');
-                container.empty();
-                $.each(data, function(index, item) {
-                    container.append(template(item));
-                });
-            }
-        });
-    });
+    var drake = dragula(
+        [document.getElementById('left-container'), document.getElementById('right-container')]
+    );
+    fillCurrentProducts();
+    init_SaveProductsForm();
 }
 
 function fillCurrentProducts() {
@@ -34,21 +23,28 @@ function fillCurrentProducts() {
             container.empty();
             $.each(data, function(index, item) {
                 container.append(template(item));
-                console.log(item);
             });
         }
     });
 }
 
-function init_Dragula() {
+function init_AvailableProducts() {
+    HandlebarsIntl.registerWith(Handlebars);
 
-    if (typeof (dragula) === 'undefined') { return; }
+    var source = $('#entry-template').html();
+    var template = Handlebars.compile(source);
 
-    var drake = dragula(
-        [document.getElementById('left-container'), document.getElementById('right-container')]
-    );
-    fillCurrentProducts();
-    init_SaveProductsForm();
+    $.ajax({
+        url: '/productmanager/' + pm_entity + '/' + pm_entity_id + '/product_types',
+        type: 'GET',
+        success: function(data) {
+            var container = $('#left-container');
+            container.empty();
+            $.each(data, function(index, item) {
+                container.append(template(item));
+            });
+        }
+    });
 }
 
 function init_SaveProductsForm() {
@@ -66,5 +62,5 @@ function init_SaveProductsForm() {
 
 $(document).ready(function() {
     init_Dragula();
-    init_ProductTypeSelect();
+    init_AvailableProducts();
 });

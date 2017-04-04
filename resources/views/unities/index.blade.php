@@ -31,7 +31,7 @@
                     </div>
                     <div class="x_content">
                         <p>Catálogo de unidades registrados en el sistema.</p>
-                        <table class="table table-hover table-bordered">
+                        <table class="table table-hover table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th class="text-center">Id</th>
@@ -43,11 +43,14 @@
                                 @foreach ($unities as $unity)
                                     <tr>
                                         <td class="text-right">{{ $unity->id }}</td>
-                                        <td>{{ $unity->name }}</td>
+                                        <td>
+                                            {{ $unity->name }}
+                                            <br>
+                                            <small>Creado {{ $unity->created_at->format('d.m.Y') }}</small>
+                                        </td>
                                         <td class="text-center">
-                                            <a href="{{ route('unity.edit', [$unity->id]) }}"><i class="fa fa-edit"></i> Editar</a>
-                                            &nbsp;|&nbsp;
-                                            <a href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('unity.destroy', [$unity->id]) }}">
+                                            <a class="btn btn-info btn-xs" href="{{ route('unity.edit', [$unity->id]) }}"><i class="fa fa-edit"></i> Editar</a>
+                                            <a class="btn btn-danger btn-xs" href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('unity.destroy', [$unity->id]) }}">
                                                 <i class="fa fa-trash"></i> Borrar
                                             </a>
                                         </td>

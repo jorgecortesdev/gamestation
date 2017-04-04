@@ -31,7 +31,7 @@
                     </div>
                     <div class="x_content">
                         <p>Catálogo de tipos de proveedores registrados en el sistema.</p>
-                        <table class="table table-hover table-bordered">
+                        <table class="table table-hover table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th class="text-center">Id</th>
@@ -43,11 +43,14 @@
                                 @foreach ($supplier_types as $supplier_type)
                                     <tr>
                                         <td class="text-right">{{ $supplier_type->id }}</td>
-                                        <td>{{ $supplier_type->name }}</td>
+                                        <td>
+                                            {{ $supplier_type->name }}
+                                            <br>
+                                            <small>Creado {{ $supplier_type->created_at->format('d.m.Y') }}</small>
+                                        </td>
                                         <td class="text-center">
-                                            <a href="{{ route('supplier_type.edit', [$supplier_type->id]) }}"><i class="fa fa-edit"></i> Editar</a>
-                                            &nbsp;|&nbsp;
-                                            <a href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('supplier_type.destroy', [$supplier_type->id]) }}">
+                                            <a class="btn btn-info btn-xs" href="{{ route('supplier_type.edit', [$supplier_type->id]) }}"><i class="fa fa-edit"></i> Editar</a>
+                                            <a class="btn btn-danger btn-xs" href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('supplier_type.destroy', [$supplier_type->id]) }}">
                                                 <i class="fa fa-trash"></i> Borrar
                                             </a>
                                         </td>

@@ -25,8 +25,10 @@ class SuppliersController extends Controller
         return view('suppliers.index', compact('suppliers'));
     }
 
-    public function show(Supplier $supplier)
+    public function show(Request $request, Supplier $supplier)
     {
+        $request->session()->put('redirect_url', $request->fullUrl());
+
         return view('suppliers.show', compact('supplier'));
     }
 

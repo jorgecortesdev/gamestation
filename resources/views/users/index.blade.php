@@ -29,7 +29,7 @@
                     </div>
                     <div class="x_content">
                         <p>Lista de usuarios autorizados en el sistema.</p>
-                        <table class="table table-hover table-bordered">
+                        <table class="table table-hover table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th class="text-center">Id</th>
@@ -42,12 +42,16 @@
                                 @foreach ($users as $user)
                                     <tr>
                                         <td class="text-right">{{ $user->id }}</td>
-                                        <td>{{ $user->name }}</td>
+                                        <td>
+                                            {{ $user->name }}
+                                            <br>
+                                            <small>Creado {{ $user->created_at->format('d.m.Y') }}</small>
+                                        </td>
                                         <td class="text-center">{{ $user->email }}</td>
                                         <td class="text-center">
-                                            <a href="#"><i class="fa fa-edit"></i> Editar</a>
+                                            <a class="btn btn-info btn-xs" href="#"><i class="fa fa-edit"></i> Editar</a>
                                             &nbsp;|&nbsp;
-                                            <a href="#"> <i class="fa fa-trash"></i> Borrar</a>
+                                            <a class="btn btn-danger btn-xs" href="#"> <i class="fa fa-trash"></i> Borrar</a>
                                         </td>
                                     </tr>
                                 @endforeach

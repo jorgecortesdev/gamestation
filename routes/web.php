@@ -27,6 +27,7 @@ Route::resource('supplier_type', 'SupplierTypesController');
 Route::resource('unity', 'UnitiesController');
 
 Route::resource('product_type', 'ProductTypesController');
+Route::get('product_type/supplier/{supplier_id}/products', 'ProductTypesController@productsBySupplierIdAndTypeId');
 
 Route::resource('supplier_product', 'SupplierProductsController');
 
@@ -39,7 +40,7 @@ Route::post('/calendar', 'CalendarController@store')->name('calendar.store');
 
 Route::get('/schedule', 'ScheduleController@index')->name('schedule.index');
 
-Route::get('productmanager/type/{type_id}', 'ProductManagerController@productsByType');
+Route::get('productmanager/{entity_name}/{entity_id}/product_types', 'ProductManagerController@productTypes');
 Route::get('productmanager/{entity_name}/{entity_id}', 'ProductManagerController@productsByEntity');
 Route::post('productmanager/{entity_name}/{entity_id}/products', 'ProductManagerController@update')->name('productmanager.update');
 

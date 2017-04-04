@@ -13,15 +13,18 @@ class Combo extends Model
 
     protected $presenter = 'App\Presenters\ComboPresenter';
 
-    public function products()
-    {
-        return $this->belongsToMany(SupplierProduct::class)->withPivot('quantity')->with('unity');
-    }
+    protected $appends = ['total', 'contribution_margin', 'utility'];
+
+    /***********************
+     * Appended attributes *
+     ***********************/
 
     public function getTotalAttribute()
     {
-        return $this->products->sum(function ($product) {
-            return $product->unit_cost * $product->pivot->quantity;
+        return $this->productTypes->sum(function ($productType) {
+            $unitCost = $productType->supplierProduct->unit_cost;
+            $quantity = $productType->pivot->quantity;
+            return  $unitCost * $quantity;
         });
     }
 
@@ -35,9 +38,14 @@ class Combo extends Model
         return $this->price / $this->contribution_margin;
     }
 
-    public function productTotal($product_id)
+    /*****************
+     * Relationships *
+     *****************/
+
+    public function productTypes()
     {
-        $product = $this->products()->where('supplier_products.id', $product_id)->first();
-        return $product->unit_cost * $product->pivot->quantity;
+        return $this->belongsToMany(ProductType::class)
+            ->withPivot('quantity')
+            ->with('supplierProduct.unity');
     }
 }

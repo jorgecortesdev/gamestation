@@ -29,7 +29,7 @@
                     </div>
                     <div class="x_content">
                         <p>Para agregar productos de proveedores al extra en caso de que tuviera, este deberá existir previamente.</p>
-                        <table class="table table-hover table-bordered">
+                        <table class="table table-hover table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th class="text-center">Id</th>
@@ -44,14 +44,17 @@
                                 @foreach ($extras as $extra)
                                     <tr>
                                         <td class="text-right">{{ $extra->id }}</td>
-                                        <td>{{ $extra->name }}</td>
+                                        <td>
+                                            <a href="#">{{ $extra->name }}</a>
+                                            <br>
+                                            <small>Creado {{ $extra->present()->createdAt }}</small>
+                                        </td>
                                         <td class="text-right">{{ $extra->present()->total }}</td>
                                         <td class="text-right">{{ $extra->present()->price }}</td>
                                         <td class="text-right">{{ $extra->present()->contribution_margin }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('extra.edit', [$extra->id]) }}"><i class="fa fa-edit"></i> Editar</a>
-                                            &nbsp;|&nbsp;
-                                            <a href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('extra.destroy', [$extra->id]) }}"> <i class="fa fa-trash"></i> Borrar</a>
+                                            <a class="btn btn-info btn-xs" href="{{ route('extra.edit', [$extra->id]) }}"><i class="fa fa-edit"></i> Editar</a>
+                                            <a class="btn btn-danger btn-xs" href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('extra.destroy', [$extra->id]) }}"> <i class="fa fa-trash"></i> Borrar</a>
                                         </td>
                                     </tr>
                                 @endforeach

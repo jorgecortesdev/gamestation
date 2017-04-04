@@ -13,9 +13,18 @@ class Supplier extends Model
 
     protected $presenter = 'App\Presenters\SupplierPresenter';
 
+    /*****************
+     * Relationships *
+     *****************/
+
     public function products()
     {
-        return $this->hasMany(SupplierProduct::class)->with(['type', 'unity']);
+        return $this->hasMany(SupplierProduct::class)->with(['productType', 'unity']);
+    }
+
+    public function productTypes()
+    {
+        return $this->hasMany(ProductType::class);
     }
 
     public function type()

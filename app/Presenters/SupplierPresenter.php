@@ -15,6 +15,11 @@ class SupplierPresenter extends Presenter
         return $this->model->telephone ? $this->phoneFormater($this->model->telephone) : '-';
     }
 
+    public function createdAt()
+    {
+        return $this->model->created_at->format('d.m.Y');
+    }
+
     protected function phoneFormater($number)
     {
         if (strlen($number) < 10 || strlen($number) > 10) {

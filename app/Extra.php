@@ -13,15 +13,18 @@ class Extra extends Model
 
     protected $presenter = 'App\Presenters\ExtraPresenter';
 
-    public function products()
-    {
-        return $this->belongsToMany(SupplierProduct::class)->withPivot('quantity')->with('unity');
-    }
+    protected $appends = ['total', 'contribution_margin', 'utility'];
+
+    /***********************
+     * Appended attributes *
+     ***********************/
 
     public function getTotalAttribute()
     {
-        return $this->products->sum(function ($product) {
-            return $product->unit_cost * $product->pivot->quantity;
+        return $this->productTypes->sum(function ($productType) {
+            $unitCost = $productType->supplierProduct->unit_cost;
+            $quantity = $productType->pivot->quantity;
+            return  $unitCost * $quantity;
         });
     }
 
@@ -29,4 +32,21 @@ class Extra extends Model
     {
         return $this->price - $this->total;
     }
+
+    public function getUtilityAttribute()
+    {
+        return $this->price / $this->contribution_margin;
+    }
+
+    /*****************
+     * Relationships *
+     *****************/
+
+    public function productTypes()
+    {
+        return $this->belongsToMany(ProductType::class)
+            ->withPivot('quantity')
+            ->with('supplierProduct.unity');
+    }
+
 }

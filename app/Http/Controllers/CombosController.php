@@ -2,25 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use Validator;
 use App\Combo;
+use Validator;
+use App\Repositories\Combos;
 use Illuminate\Http\Request;
 
 class CombosController extends Controller
 {
+    /** @var Combos Combo repository */
+    protected $combos;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Combos $combos)
     {
         $this->middleware('auth');
+
+        $this->combos = $combos;
     }
 
     public function index()
     {
-        $combos = Combo::latest('id')->paginate(20);
+        $combos = $this->combos->latest();
         return view('combos.index', compact('combos'));
     }
 
@@ -87,8 +93,7 @@ class CombosController extends Controller
 
     public function destroy($id)
     {
-        $combo = Combo::find($id);
-        $combo->delete();
+        $this->combos->delete($id);
 
         flash('Paquete borrado con éxito', 'success');
 

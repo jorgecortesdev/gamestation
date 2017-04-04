@@ -17,17 +17,24 @@ class ProductManagerController extends Controller
         $this->middleware('auth');
     }
 
+    public function productTypes($entity_name, $entity_id)
+    {
+        $entity = 'App\\' . ucfirst($entity_name);
+        $ids = $entity::with('productTypes')->find($entity_id);
+        $ids = $ids->productTypes->pluck('pivot.product_type_id');
+        $types = ProductType::with(['supplier', 'supplierProduct'])
+            ->whereNotNull('supplier_id')
+            ->whereNotNull('supplier_product_id')
+            ->whereNotIn('id', $ids)
+            ->get();
+        return $types;
+    }
+
     public function productsByEntity($entity_name, $entity_id)
     {
         $entity = 'App\\' . ucfirst($entity_name);
-        $entity = $entity::with('products.supplier')->find($entity_id);
-        return $entity->products;
-    }
-
-    public function productsByType($type_id)
-    {
-        $type = ProductType::with('supplierProducts.supplier')->find($type_id);
-        return $type->supplierProducts;
+        $entity = $entity::with(['productTypes.supplier', 'productTypes.supplierProduct'])->find($entity_id);
+        return $entity->productTypes;
     }
 
     public function update(Request $request, $entity_name, $entity_id)
@@ -43,9 +50,8 @@ class ProductManagerController extends Controller
 
         $entity = 'App\\' . ucfirst($entity_name);
         $entity = $entity::find($entity_id);
-        $entity->products()->sync($data);
+        $entity->productTypes()->sync($data);
 
-        // return redirect(route($entity_name . '.show', [$entity_name => $entity->id]));
         return back();
     }
 }

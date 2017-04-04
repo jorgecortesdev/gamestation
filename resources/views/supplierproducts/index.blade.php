@@ -29,7 +29,7 @@
                     </div>
                     <div class="x_content">
                         <p>Listado de productos registrados en el sistema.</p>
-                        <table class="table table-hover table-bordered">
+                        <table class="table table-hover table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th class="text-center">Id</th>
@@ -49,8 +49,12 @@
                                 @foreach ($products as $product)
                                     <tr>
                                         <td class="text-right">{{ $product->id }}</td>
-                                        <td>{{ $product->name }}</td>
-                                        <td class="text-center">{{ $product->type->name }}</td>
+                                        <td>
+                                            {{ $product->name }}
+                                            <br>
+                                            <small>Creado {{ $product->present()->createdAt }}</small>
+                                        </td>
+                                        <td class="text-center">{{ $product->productType->name }}</td>
                                         <td class="text-center">{{ $product->supplier->name }}</td>
                                         <td class="text-right">{{ $product->present()->quantity }}</td>
                                         <td class="text-center">{{ $product->unity->name }}</td>
@@ -59,9 +63,8 @@
                                         <td class="text-right">{{ $product->present()->total }}</td>
                                         <td class="text-right">{{ $product->present()->unitCost }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('supplier_product.edit', [$product->id]) }}"><i class="fa fa-edit"></i> Editar</a>
-                                            &nbsp;|&nbsp;
-                                            <a href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('supplier_product.destroy', [$product->id]) }}"> <i class="fa fa-trash"></i> Borrar</a>
+                                            <a class="btn btn-info btn-xs" href="{{ route('supplier_product.edit', [$product->id]) }}"><i class="fa fa-edit"></i> Editar</a>
+                                            <a class="btn btn-danger btn-xs" href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('supplier_product.destroy', [$product->id]) }}"> <i class="fa fa-trash"></i> Borrar</a>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -64,7 +64,9 @@ class ProductTypesController extends Controller
       }
 
       $product_type->update($request->all());
+
       flash('Tipo de producto actualizado con éxito', 'success');
+
       return redirect(route('product_type.index'));
     }
 
@@ -75,6 +77,19 @@ class ProductTypesController extends Controller
 
       flash('Tipo de producto borrado con éxito', 'success');
       return back();
+    }
+
+    public function productsBySupplierIdAndTypeId($supplier_id)
+    {
+        $supplier = \App\Supplier::find($supplier_id);
+        $products = $supplier->products->map(function ($product) {
+            return [
+                'id'   => $product->id,
+                'name' => $product->name
+            ];
+        });
+
+        return $products;
     }
 
     protected function validator(array $data)

@@ -25,4 +25,9 @@ class ExtraPresenter extends Presenter
         setlocale(LC_MONETARY, 'en_US.UTF-8');
         return money_format('%.2n', $amount);
     }
+
+    public function createdAt()
+    {
+        return $this->model->created_at->format('d.m.Y');
+    }
 }
