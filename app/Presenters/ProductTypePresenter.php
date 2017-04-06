@@ -10,14 +10,14 @@ class ProductTypePresenter extends Presenter
     {
         return $this->model->supplier_product_id
             ? $this->model->supplierProduct->name
-            : $this->renderUndefined();
+            : $this->renderBan();
     }
 
-    public function activeSupplier()
+    public function configurable()
     {
-        return $this->model->supplier_id
-            ? $this->model->supplier->name
-            : $this->renderUndefined();
+        return $this->model->configurable
+            ? $this->renderOk()
+            : $this->renderBan();
     }
 
     public function createdAt()
@@ -25,9 +25,13 @@ class ProductTypePresenter extends Presenter
         return $this->model->created_at->format('d.m.Y');
     }
 
-    protected function renderUndefined()
+    protected function renderBan()
     {
         return '<i class="fa fa-ban text-danger"></i>';
     }
 
+    protected function renderOK()
+    {
+        return '<i class="fa fa-check text-success"></i>';
+    }
 }

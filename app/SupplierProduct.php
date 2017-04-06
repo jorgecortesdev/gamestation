@@ -37,7 +37,7 @@ class SupplierProduct extends Model
 
             $originalImage = \Image::make($image->getRealPath());
             $originalImage->encode('png');
-            $originalImage->resize(200, 200, function ($constraint) {
+            $originalImage->orientate()->resize(200, 200, function ($constraint) {
                 $constraint->aspectRatio();
             })->stream();
 

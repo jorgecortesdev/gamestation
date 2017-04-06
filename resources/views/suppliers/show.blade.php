@@ -33,7 +33,7 @@
                                     <li><i class="fa fa-envelope fa-fw"></i> {{ $supplier->present()->email }}</li>
                                 </ul>
                                 <ul class="list-inline gs-list-product-types">
-                                    @foreach ($supplier->productTypes as $type)
+                                    @foreach ($productTypes as $type)
                                         <li><button class="btn btn-info btn-sm">{{ $type->name }}</button></li>
                                     @endforeach
                                 </ul>
@@ -66,7 +66,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($supplier->products()->orderBy('id', 'desc')->get() as $product)
+                                        @forelse ($products as $product)
                                             <tr>
                                                 <td class="text-right">{{ $product->id }}</td>
                                                 <td>

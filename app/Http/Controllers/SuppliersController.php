@@ -21,7 +21,10 @@ class SuppliersController extends Controller
 
     public function index()
     {
-        $suppliers = Supplier::with('type')->latest('id')->paginate(20);
+        $suppliers = Supplier::with('type')
+            ->withCount('products')
+            ->orderBy('products_count', 'desc')
+            ->paginate(20);
         return view('suppliers.index', compact('suppliers'));
     }
 
@@ -29,7 +32,15 @@ class SuppliersController extends Controller
     {
         $request->session()->put('redirect_url', $request->fullUrl());
 
-        return view('suppliers.show', compact('supplier'));
+        $products = $supplier->products->sortByDesc(function ($product) {
+            return $product->is_active;
+        });
+
+        $productTypes = \App\ProductType::whereHas('supplierProduct', function($query) use ($supplier) {
+            $query->where('supplier_id', $supplier->id);
+        })->get();
+
+        return view('suppliers.show', compact(['supplier', 'products', 'productTypes']));
     }
 
     public function create()

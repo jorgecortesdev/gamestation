@@ -9,7 +9,7 @@ class ProductType extends Model
 {
     use Presentable;
 
-    protected $fillable = ['name', 'supplier_product_id', 'supplier_id'];
+    protected $fillable = ['name', 'supplier_product_id', 'configurable'];
 
     protected $presenter = 'App\Presenters\ProductTypePresenter';
 
@@ -25,10 +25,5 @@ class ProductType extends Model
     public function supplierProduct()
     {
         return $this->belongsTo(SupplierProduct::class);
-    }
-
-    public function supplier()
-    {
-        return $this->belongsTo(Supplier::class);
     }
 }

@@ -37,7 +37,7 @@
                                 <th class="text-center">Id</th>
                                 <th class="text-center">Nombre</th>
                                 <th class="text-center">Producto activo</th>
-                                <th class="text-center">Proveedor activo</th>
+                                <th class="text-center">Configurable</th>
                                 <th class="text-center">Acciones</th>
                             </tr>
                             </thead>
@@ -51,7 +51,7 @@
                                             <small>Creado {{ $product_type->present()->created_at }}</small>
                                         </td>
                                         <td class="text-center">{!! $product_type->present()->active_product !!}</td>
-                                        <td class="text-center">{!! $product_type->present()->active_supplier !!}</td>
+                                        <td class="text-center">{!! $product_type->present()->configurable !!}</td>
                                         <td class="text-center">
                                             <a class="btn btn-info btn-xs" href="{{ route('product_type.edit', [$product_type->id]) }}">
                                                 <i class="fa fa-edit"></i> Editar

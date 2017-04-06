@@ -27,7 +27,6 @@ Route::resource('supplier_type', 'SupplierTypesController');
 Route::resource('unity', 'UnitiesController');
 
 Route::resource('product_type', 'ProductTypesController');
-Route::get('product_type/supplier/{supplier_id}/products', 'ProductTypesController@productsBySupplierIdAndTypeId');
 
 Route::resource('supplier_product', 'SupplierProductsController');
 
@@ -53,3 +52,5 @@ Route::get('/event', 'EventsController@index')->name('event.index');
 Route::post('/event/step1', 'EventsController@step1')->name('event.step1');
 Route::post('/event/step2', 'EventsController@step2')->name('event.step2');
 Route::post('/event/step3', 'EventsController@step3')->name('event.step3');
+
+Route::resource('properties', 'PropertiesController');

@@ -8,33 +8,28 @@
     @endif
 </div>
 
-<div class="item form-group{{ $errors->has('supplier_id') ? ' bad' : '' }}">
-    {!! Form::label('supplier_id', 'Proveedor activo', ['class' => 'control-label col-md-2 col-sm-2 col-xs-12']) !!}
-    <div class="col-md-3 col-sm-3 col-xs-12">
-        {!! Form::select(
-            'supplier_id',
-            $suppliers,
-            null,
-            ['class' => 'form-control', 'placeholder' => '-- Seleccionar --', 'id' => 'suppliers'])
-        !!}
-    </div>
-    @if ($errors->has('supplier_id'))
-        <div class="alert gs-alert">{{ $errors->first('supplier_id') }}</div>
-    @endif
-</div>
-
 <div class="item form-group{{ $errors->has('supplier_product_id') ? ' bad' : '' }}">
     {!! Form::label('supplier_product_id', 'Producto activo', ['class' => 'control-label col-md-2 col-sm-2 col-xs-12']) !!}
     <div class="col-md-3 col-sm-3 col-xs-12">
         {!! Form::select(
             'supplier_product_id',
-            [],
+            $products,
             null,
-            ['class' => 'form-control', 'placeholder' => '-- Seleccionar --', 'disabled' => true, 'id' => 'products'])
+            ['class' => 'form-control', 'placeholder' => '-- Seleccionar --', 'id' => 'products'])
         !!}
     </div>
     @if ($errors->has('supplier_product_id'))
         <div class="alert gs-alert">{{ $errors->first('supplier_product_id') }}</div>
+    @endif
+</div>
+
+<div class="item form-group{{ $errors->has('configurable') ? ' bad' : '' }}">
+    {!! Form::label('configurable', 'Configurable', ['class' => 'control-label col-md-2 col-sm-2 col-xs-12']) !!}
+    <div class="col-md-3 col-sm-3 col-xs-12">
+        {!! Form::checkbox('configurable') !!}
+    </div>
+    @if ($errors->has('configurable'))
+        <div class="alert gs-alert">{{ $errors->first('configurable') }}</div>
     @endif
 </div>
 
@@ -46,13 +41,3 @@
         {!! Form::button(isset($sendButtonText) ? $sendButtonText : 'Guardar', ['class' => 'btn btn-success', 'type' => 'submit']) !!}
     </div>
 </div>
-
-<!-- handlebars template -->
-@include('handlebars.select')
-<!-- /handlebars template -->
-
-@push('scripts')
-<script src="{{ asset("js/handlebars.min.js") }}"></script>
-<script src="{{ asset("js/handlebars-intl.min.js") }}"></script>
-<script src="{{ asset("js/gsproducttype.js") }}"></script>
-@endpush

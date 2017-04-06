@@ -22,8 +22,7 @@ class ProductManagerController extends Controller
         $entity = 'App\\' . ucfirst($entity_name);
         $ids = $entity::with('productTypes')->find($entity_id);
         $ids = $ids->productTypes->pluck('pivot.product_type_id');
-        $types = ProductType::with(['supplier', 'supplierProduct'])
-            ->whereNotNull('supplier_id')
+        $types = ProductType::with('supplierProduct.supplier')
             ->whereNotNull('supplier_product_id')
             ->whereNotIn('id', $ids)
             ->get();
@@ -33,7 +32,7 @@ class ProductManagerController extends Controller
     public function productsByEntity($entity_name, $entity_id)
     {
         $entity = 'App\\' . ucfirst($entity_name);
-        $entity = $entity::with(['productTypes.supplier', 'productTypes.supplierProduct'])->find($entity_id);
+        $entity = $entity::with('productTypes.supplierProduct.supplier')->find($entity_id);
         return $entity->productTypes;
     }
 
@@ -44,8 +43,10 @@ class ProductManagerController extends Controller
 
         $data = [];
 
-        foreach ($product_ids as $key => $product_id) {
-            $data[$product_id] = ['quantity' => $request->quantities[$key]];
+        if ($product_ids !== null) {
+            foreach ($product_ids as $key => $product_id) {
+                $data[$product_id] = ['quantity' => $request->quantities[$key]];
+            }
         }
 
         $entity = 'App\\' . ucfirst($entity_name);

@@ -15,8 +15,20 @@ class ProductTypeComposer
      */
     public function compose(View $view)
     {
-        $suppliers = Supplier::pluck('name', 'id');
+        $products = Supplier::with('products')
+            ->whereHas('products', function ($query) {
+                    $query->where('product_type_id', 2);
+                })
+            ->get()
+            ->map(function ($supplier) {
+                $products = $supplier->products->pluck('name', 'id')->toArray();
+                return ['supplier' => $supplier->name, 'products' => $products];
+                })
+            ->keyBy('supplier')
+            ->map(function ($product) {
+                return $product['products'];
+        });
 
-        $view->with('suppliers', $suppliers);
+        $view->with('products', $products);
     }
 }
