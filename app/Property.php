@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\PropertyType;
 use Illuminate\Database\Eloquent\Model;
 use Laracodes\Presenter\Traits\Presentable;
 
@@ -9,13 +10,18 @@ class Property extends Model
 {
     use Presentable;
 
-    protected $fillable = ['label', 'type', 'options'];
+    protected $fillable = ['label', 'property_type_id', 'options'];
 
     protected $casts = [
         'options' => 'array',
     ];
 
     protected $presenter = 'App\Presenters\PropertiesPresenter';
+
+    public function propertyType()
+    {
+        return $this->belongsTo(PropertyType::class);
+    }
 
     public function getFormValue($name)
     {

@@ -94,10 +94,12 @@ class PropertiesController extends Controller
     {
         $rules = [
             'label' => 'required',
+            'property_type_id' => 'required',
         ];
 
         $messages = [
             'label.required' => 'El campo es requerido.',
+            'property_type_id.required' => 'El campo es requerido',
         ];
 
         return Validator::make($data, $rules, $messages);
