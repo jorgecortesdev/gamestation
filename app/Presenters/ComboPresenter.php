@@ -18,7 +18,9 @@ class ComboPresenter extends Presenter
 
     public function contributionMargin()
     {
-        return $this->currencyFormater($this->model->contribution_margin);
+        return $this->currencyFormater(
+            $this->model->contribution_margin
+        ) . '&nbsp;&nbsp;' . $this->renderArrow();
     }
 
     public function utility()
@@ -42,5 +44,24 @@ class ComboPresenter extends Presenter
     public function createdAt()
     {
         return $this->model->created_at->format('d.m.Y');
+    }
+
+    protected function renderArrow()
+    {
+        $arrow = '';
+
+        switch (true) {
+            case $this->total() < $this->model->contribution_margin:
+                $arrow = '<i class="fa fa-arrow-up text-success" aria-hidden="true"></i>';
+                break;
+            case $this->total() >= $this->model->contribution_margin:
+                $arrow = '<i class="fa fa-arrow-down text-danger" aria-hidden="true"></i>';
+                break;
+            default:
+                $arrow = '';
+                break;
+        }
+
+        return $arrow;
     }
 }

@@ -51,7 +51,7 @@
                                         </td>
                                         <td class="text-right">{{ $extra->present()->total }}</td>
                                         <td class="text-right">{{ $extra->present()->price }}</td>
-                                        <td class="text-right">{{ $extra->present()->contribution_margin }}</td>
+                                        <td class="text-right">{!! $extra->present()->contribution_margin !!}</td>
                                         <td class="text-center">
                                             <a class="btn btn-info btn-xs" href="{{ route('extra.edit', [$extra->id]) }}"><i class="fa fa-edit"></i> Editar</a>
                                             <a class="btn btn-danger btn-xs" href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('extra.destroy', [$extra->id]) }}"> <i class="fa fa-trash"></i> Borrar</a>

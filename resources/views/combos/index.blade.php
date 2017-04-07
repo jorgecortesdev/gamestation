@@ -61,7 +61,7 @@
                                         <td class="text-center">{{ $combo->adults }}</td>
                                         <td class="text-right">{{ $combo->present()->total }}</td>
                                         <td class="text-right">{{ $combo->present()->price }}</td>
-                                        <td class="text-right">{{ $combo->present()->contribution_margin }}</td>
+                                        <td class="text-right">{!! $combo->present()->contribution_margin !!}</td>
                                         <td class="text-center">
                                             <a class="btn btn-primary btn-xs" href="{{ route('combo.show', [$combo->id]) }}"><i class="fa fa-folder"></i> Ver</a>
                                             <a class="btn btn-info btn-xs" href="{{ route('combo.edit', [$combo->id]) }}"><i class="fa fa-edit"></i> Editar</a>
