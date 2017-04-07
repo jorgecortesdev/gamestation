@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ClientsAndKidsTableSeeder::class);
         $this->call(PropertyTypesTableSeeder::class);
         $this->call(PropertiesTableSeeder::class);
+        $this->call(ComboPropertyTableSeeder::class);
     }
 }

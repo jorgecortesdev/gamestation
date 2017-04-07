@@ -18,10 +18,23 @@ class Property extends Model
 
     protected $presenter = 'App\Presenters\PropertiesPresenter';
 
+    /*****************
+     * Relationships *
+     *****************/
+
     public function propertyType()
     {
         return $this->belongsTo(PropertyType::class);
     }
+
+    public function combos()
+    {
+        return $this->belongsToMany(Combo::class);
+    }
+
+    /***************
+     * Form Values *
+     ***************/
 
     public function getFormValue($name)
     {
