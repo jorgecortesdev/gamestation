@@ -26,6 +26,11 @@
 .gs-btn-no-margin {
     margin: 0px;
 }
+.gs-p-title {
+    font-weight: 400;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
 /** Images */
 .gs-image {
     background: #f7f7f7;
@@ -63,27 +68,27 @@
     color: #000000;
 }
 .combo-color-bg-1 { background-color: rgb(164, 189, 252); }
-.combo-color-bg-1.transparent { background-color: rgba(164, 189, 252, .2); }
+.combo-color-bg-1.transparent { background-color: rgba(164, 189, 252, .1); }
 .combo-color-bg-2 { background-color: rgb(122, 231, 191); }
-.combo-color-bg-2.transparent { background-color: rgba(122, 231, 191, .2); }
+.combo-color-bg-2.transparent { background-color: rgba(122, 231, 191, .1); }
 .combo-color-bg-3 { background-color: rgb(219, 173, 255); }
-.combo-color-bg-3.transparent { background-color: rgba(219, 173, 255, .2); }
+.combo-color-bg-3.transparent { background-color: rgba(219, 173, 255, .1); }
 .combo-color-bg-4 { background-color: rgb(255, 136, 124); }
-.combo-color-bg-4.transparent { background-color: rgba(255, 136, 124, .2); }
+.combo-color-bg-4.transparent { background-color: rgba(255, 136, 124, .1); }
 .combo-color-bg-5 { background-color: rgb(251, 215, 91); }
-.combo-color-bg-5.transparent { background-color: rgba(251, 215, 91, .2); }
+.combo-color-bg-5.transparent { background-color: rgba(251, 215, 91, .1); }
 .combo-color-bg-6 { background-color: rgb(255, 184, 120); }
-.combo-color-bg-6.transparent { background-color: rgba(255, 184, 120, .2); }
+.combo-color-bg-6.transparent { background-color: rgba(255, 184, 120, .1); }
 .combo-color-bg-7 { background-color: rgb(70, 214, 219); }
-.combo-color-bg-7.transparent { background-color: rgba(70, 214, 219, .2); }
+.combo-color-bg-7.transparent { background-color: rgba(70, 214, 219, .1); }
 .combo-color-bg-8 { background-color: rgb(225, 225, 225); }
 .combo-color-bg-8.transparent { background-color: rgba(225, 225, 225, .5); }
 .combo-color-bg-9 { background-color: rgb(84, 132, 237); }
-.combo-color-bg-9.transparent { background-color: rgba(84, 132, 237, .2); }
+.combo-color-bg-9.transparent { background-color: rgba(84, 132, 237, .1); }
 .combo-color-bg-10 { background-color: rgb(81, 183, 73); }
-.combo-color-bg-10.transparent { background-color: rgba(81, 183, 73, .2); }
+.combo-color-bg-10.transparent { background-color: rgba(81, 183, 73, .1); }
 .combo-color-bg-11 { background-color: rgb(220, 33, 39); }
-.combo-color-bg-11.transparent { background-color: rgba(220, 33, 39, .2); }
+.combo-color-bg-11.transparent { background-color: rgba(220, 33, 39, .1); }
 /** Dragula */
 .dragula-wrapper {
     margin: 20px 0;

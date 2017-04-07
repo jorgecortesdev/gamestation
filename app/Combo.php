@@ -53,4 +53,23 @@ class Combo extends Model
     {
         return $this->belongsToMany(Property::class);
     }
+
+    /***************
+     * Form Values *
+     ***************/
+
+    public function getFormValue($name)
+    {
+        if (empty($name)) {
+            return null;
+        }
+
+        switch ($name) {
+            case 'properties':
+                return $this->properties->pluck('id')->toArray();
+                break;
+        }
+
+        return $this->getAttribute($name);
+    }
 }

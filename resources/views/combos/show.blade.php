@@ -41,6 +41,19 @@
                                 </ul>
                             </div>
                         </div>
+                        @if ($combo->properties->count() > 0)
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <p class="gs-p-title">Propiedades asignadas</p>
+                                <ul class="list-inline gs-list-product-types">
+                                    @foreach ($combo->properties as $property)
+                                    <li><button class="btn btn-default btn-sm">{{ $property->label }}</button></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                        <br>
+                        @endif
                         <div class="row">
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="gs-title combo-color-bg-{{ $combo->google_color_id }} transparent">

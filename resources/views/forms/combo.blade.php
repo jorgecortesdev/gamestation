@@ -63,6 +63,21 @@
     @endif
 </div>
 
+<div class="item form-group{{ $errors->has('properties') ? ' bad' : '' }}">
+    {!! Form::label('properties', 'Propiedades', ['class' => 'control-label col-md-2 col-sm-2 col-xs-12']) !!}
+    <div class="col-md-3 col-sm-3 col-xs-12">
+        {!! Form::select(
+            'properties[]',
+            $properties,
+            null,
+            ['class' => 'form-control', 'multiple' => 'multiple'])
+        !!}
+    </div>
+    @if ($errors->has('properties'))
+        <div class="alert gs-alert">{{ $errors->first('properties') }}</div>
+    @endif
+</div>
+
 <div class="ln_solid"></div>
 
 <div class="item form-group">

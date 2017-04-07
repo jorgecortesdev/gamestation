@@ -62,6 +62,12 @@ class CombosController extends Controller
 
         $combo->save();
 
+        if (empty($request->properties)) {
+            $combo->properties()->detach();
+        } else {
+            $combo->properties()->sync($request->properties);
+        }
+
         flash('Paquete agregado con éxito', 'success');
 
         return redirect(route('combo.index'));
@@ -85,6 +91,12 @@ class CombosController extends Controller
         }
 
         $combo->update($request->all());
+
+        if (empty($request->properties)) {
+            $combo->properties()->detach();
+        } else {
+            $combo->properties()->sync($request->properties);
+        }
 
         flash('Paquete actualizado con éxito', 'success');
 
