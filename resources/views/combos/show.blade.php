@@ -32,7 +32,7 @@
                                     </li>
                                     <li>
                                         <span class="name">Márgen de contribución</span>
-                                        <span class="value text-success">{{ $combo->present()->contribution_margin }}</span>
+                                        <span class="value text-success">{!! $combo->present()->contribution_margin !!}</span>
                                     </li>
                                     <li>
                                         <span class="name">Utilidad</span>
