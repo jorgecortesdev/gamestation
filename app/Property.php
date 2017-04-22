@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\PropertyType;
+use App\RenderType;
 use Illuminate\Database\Eloquent\Model;
 use Laracodes\Presenter\Traits\Presentable;
 
@@ -10,7 +10,7 @@ class Property extends Model
 {
     use Presentable;
 
-    protected $fillable = ['label', 'property_type_id', 'options'];
+    protected $fillable = ['label', 'render_type_id', 'options'];
 
     protected $casts = [
         'options' => 'array',
@@ -22,9 +22,9 @@ class Property extends Model
      * Relationships *
      *****************/
 
-    public function propertyType()
+    public function renderType()
     {
-        return $this->belongsTo(PropertyType::class);
+        return $this->belongsTo(RenderType::class);
     }
 
     public function combos()

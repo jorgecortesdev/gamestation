@@ -1,11 +1,5 @@
 @extends('layouts.blank')
 
-@push('stylesheets')
-<link rel="stylesheet" href="{{ asset("css/smartwizard/smart_wizard.css") }}">
-<link rel="stylesheet" href="{{ asset("css/smartwizard/smart_wizard_theme_arrows.css") }}">
-<link rel="stylesheet" href="{{ asset("css/daterangepicker.css") }}">
-@endpush
-
 @section('main_container')
 
     <!-- page content -->
@@ -17,6 +11,11 @@
                     <div class="title_left">
                         <h3><i class="fa fa-calendar-o"></i> Eventos</h3>
                     </div>
+                    <div class="title_right">
+                        <a href="{{ route('events.create') }}" class="btn btn-default pull-right">
+                            <i class="fa fa-plus-square"></i> Agregar
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -25,67 +24,62 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Crear un evento GameStation <sup>MX</sup></h2>
+                        <h2>Listado de eventos</h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <p>Sigue los pasos para crear un evento.</p>
-                        <!-- SmartWizard content -->
-                        <div id="smartwizard">
-                            <ul>
-                                <li>
-                                    <a href="#step-1">Paso 1<br /><small>Datos del Padre</small></a>
-                                </li>
-                                <li><a href="#step-2">Paso 2<br /><small>Datos del Niño</small></a></li>
-                                <li><a href="#step-3">Paso 3<br /><small>Agenda</small></a></li>
-                                <li><a href="#step-4">Paso 4<br /><small>Vista previa</small></a></li>
-                            </ul>
-
-                            <div>
-                                <div id="step-1" class="">
-                                    <div class="row">
-                                        {!! Form::open(['route' => 'event.step1', 'id' => 'frm', 'class' => 'form-horizontal form-label-left']) !!}
-                                            @include('forms.events.step1')
-                                        {!! Form::close() !!}
-                                    </div>
-                                </div>
-                                <div id="step-2" class="">
-                                    <div class="row">
-                                        {!! Form::open(['route' => 'event.step2', 'id' => 'frm', 'class' => 'form-horizontal form-label-left']) !!}
-                                            @include('forms.events.step2')
-                                        {!! Form::close() !!}
-                                    </div>
-                                </div>
-                                <div id="step-3" class="">
-                                    <div class="row">
-                                        {!! Form::open(['route' => 'event.step3', 'id' => 'frm', 'class' => 'form-horizontal form-label-left']) !!}
-                                            @include('forms.events.step3')
-                                        {!! Form::close() !!}
-                                    </div>
-                                </div>
-                                <div id="step-4" class="">
-                                    <div class="row">
-                                        @include('forms.events.step4')
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /SmartWizard content -->
+                        <p>Listado de eventos registrados en el sistema.</p>
+                        <table class="table table-hover table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Id</th>
+                                    <th class="text-center">Paquete</th>
+                                    <th class="text-center">Color</th>
+                                    <th class="text-center">Fecha</th>
+                                    <th class="text-center">Cliente</th>
+                                    <th class="text-center">Niño</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($events as $event)
+                                    <tr>
+                                        <td class="text-right">{{ $event->id }}</td>
+                                        <td>
+                                            {{ $event->combo->name }}
+                                            <br>
+                                            <small>Creado {{ $event->present()->createdAt }}</small>
+                                        </td>
+                                        <td>
+                                            <div class="combo-color combo-color-bg-{{ $event->combo->google_color_id }} center-block"></div>
+                                        </td>
+                                        <td class="text-center">{{ $event->present()->occurs_on }}</td>
+                                        <td class="text-center">{{ $event->client->name }}</td>
+                                        <td class="text-center">{{ $event->kid->name }}</td>
+                                        <td class="text-center">
+                                            <a class="btn btn-info btn-xs" href="{{ route('events.edit', [$event->id]) }}"><i class="fa fa-edit"></i> Editar</a>
+                                            <a class="btn btn-danger btn-xs" href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('events.destroy', [$event->id]) }}"> <i class="fa fa-trash"></i> Borrar</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                {{ $events->links() }}
             </div>
         </div>
     </div>
     <!-- /page content -->
 
+    <!-- Modal -->
+    @include('modals.delete', ['entityText' => 'evento'])
+
     <!-- footer content -->
     @include('includes.footer')
     <!-- /footer content -->
 @endsection
-
-@push('scripts')
-<script src="{{ asset("js/moment.js") }}"></script>
-<script src="{{ asset("js/daterangepicker.js") }}"></script>
-<script src="{{ asset("js/jquery.smartWizard.js") }}"></script>
-<script src="{{ asset("js/gsevents.js") }}"></script>
-@endpush

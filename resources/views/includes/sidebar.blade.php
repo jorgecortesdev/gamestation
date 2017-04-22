@@ -36,7 +36,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('event.index') }}">
+                        <a href="{{ route('events.index') }}">
                             <i class="fa fa-calendar-o"></i> Eventos
                         </a>
                     </li>

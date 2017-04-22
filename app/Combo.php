@@ -44,9 +44,7 @@ class Combo extends Model
 
     public function productTypes()
     {
-        return $this->belongsToMany(ProductType::class)
-            ->withPivot('quantity')
-            ->with('supplierProduct.unity');
+        return $this->belongsToMany(ProductType::class)->withPivot('quantity');
     }
 
     public function properties()

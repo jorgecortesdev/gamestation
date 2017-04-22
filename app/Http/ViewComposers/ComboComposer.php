@@ -24,12 +24,12 @@ class ComboComposer
      */
     public function compose(View $view)
     {
-        $properties = Property::with('propertyType')
+        $properties = Property::with('renderType')
             ->get()
             ->map(function ($property) {
                 return [
                     'id' => $property->id,
-                    'name' => $property->label . ' (' . $property->propertyType->name . ')'
+                    'name' => $property->label . ' (' . $property->renderType->name . ')'
                 ];
             })->pluck('name', 'id');
 

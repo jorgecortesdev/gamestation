@@ -16,11 +16,17 @@ class EventsComposer
      */
     public function compose(View $view)
     {
-        $combos = Combo::pluck('name', 'id');
+        $combos = Combo::all();
         $extras = Extra::pluck('name', 'id');
-        $view->with([
-            'combos' => $combos,
-            'extras' => $extras
-        ]);
+
+        $client_id = old('client_id');
+
+        $clientsSelect = [];
+
+        if ($client_id) {
+            $clientsSelect = \App\Client::where('id', $client_id)->pluck('name', 'id');
+        }
+
+        $view->with(compact('combos', 'extras', 'clientsSelect'));
     }
 }

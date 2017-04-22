@@ -39,6 +39,14 @@ class ProductTypesController extends Controller
         );
       }
 
+      if (empty($request->get('supplier_product_id'))) {
+        $request->merge(['supplier_product_id' => null]);
+      }
+
+      if (empty($request->get('render_type_id'))) {
+        $request->merge(['render_type_id' => null]);
+      }
+
       $product_type = new ProductType($request->all());
 
       $product_type->save();
@@ -65,6 +73,18 @@ class ProductTypesController extends Controller
 
       if ($request->get('configurable') === null) {
         $request->merge(['configurable' => false]);
+      }
+
+      if ($request->get('customizable') === null) {
+        $request->merge(['customizable' => false]);
+      }
+
+      if (empty($request->get('supplier_product_id'))) {
+        $request->merge(['supplier_product_id' => null]);
+      }
+
+      if (empty($request->get('render_type_id'))) {
+        $request->merge(['render_type_id' => null]);
       }
 
       $product_type->update($request->all());

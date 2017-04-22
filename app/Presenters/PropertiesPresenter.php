@@ -11,7 +11,7 @@ class PropertiesPresenter extends Presenter
         $options = '-';
 
         if (!empty($this->model->options) > 0) {
-            $options = implode(',', $this->model->options);
+            $options = implode(', ', $this->model->options);
         }
 
         return $options;

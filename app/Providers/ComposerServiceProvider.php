@@ -26,12 +26,12 @@ class ComposerServiceProvider extends ServiceProvider
        );
 
         View::composer(
-            'events.index',
+            ['events.create', 'events.edit'],
             EventsComposer::class
         );
 
         View::composer(
-            'events.index',
+            ['events.create', 'events.edit'],
             KidsComposer::class
         );
 

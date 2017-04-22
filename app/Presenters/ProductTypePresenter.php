@@ -13,10 +13,31 @@ class ProductTypePresenter extends Presenter
             : $this->renderBan();
     }
 
+    public function activeProductSupplier()
+    {
+        return $this->model->supplier_product_id
+            ? $this->model->supplierProduct->supplier->name
+            : $this->renderBan();
+    }
+
     public function configurable()
     {
         return $this->model->configurable
             ? $this->renderOk()
+            : $this->renderBan();
+    }
+
+    public function customizable()
+    {
+        return $this->model->customizable
+            ? $this->renderOk()
+            : $this->renderBan();
+    }
+
+    public function renderType()
+    {
+        return $this->model->render_type_id
+            ? $this->model->renderType->name
             : $this->renderBan();
     }
 

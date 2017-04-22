@@ -15,15 +15,28 @@ class CreateSupplierProductsTable extends Migration
     {
         Schema::create('supplier_products', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('supplier_id')->default(0)->unsigned()->index();
             $table->string('name');
-            $table->integer('quantity')->unsigned();
-            $table->integer('unity_id')->default(0)->unsigned()->index();
+            $table->integer('quantity')->default(0)->unsigned();
             $table->float('price', 9, 2)->default(0.00);
             $table->float('iva', 9, 2)->default(0.00);
-            $table->integer('product_type_id')->default(0)->unsigned()->index();
-            $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
+            $table->integer('supplier_id')->unsigned()->index();
+            $table->integer('product_type_id')->unsigned()->index();
+            $table->integer('unity_id')->unsigned()->index();
             $table->timestamps();
+
+            $table->foreign('supplier_id')
+                  ->references('id')
+                  ->on('suppliers')
+                  ->onDelete('cascade');
+
+            $table->foreign('product_type_id')
+                  ->references('id')
+                  ->on('product_types');
+
+            $table->foreign('unity_id')
+                  ->references('id')
+                  ->on('unities');
+
         });
     }
 

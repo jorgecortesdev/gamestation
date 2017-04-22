@@ -1,9 +1,9 @@
 <?php
 
-use App\PropertyType;
+use App\RenderType;
 use Illuminate\Database\Seeder;
 
-class PropertyTypesTableSeeder extends Seeder
+class RenderTypesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,15 +12,15 @@ class PropertyTypesTableSeeder extends Seeder
      */
     public function run()
     {
-        $property_types = [
+        $render_types = [
             ['name' => 'Texto'],
             ['name' => 'Checkbox'],
             ['name' => 'Radio'],
         ];
 
-        foreach ($property_types as $property_type) {
-            $property_type = new PropertyType($property_type);
-            $property_type->save();
+        foreach ($render_types as $render_type) {
+            $render_type = new RenderType($render_type);
+            $render_type->save();
         }
     }
 }

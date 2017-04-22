@@ -16,9 +16,13 @@ class CreatePropertiesTable extends Migration
         Schema::create('properties', function (Blueprint $table) {
             $table->increments('id');
             $table->string('label');
-            $table->integer('property_type_id')->default(1)->unsigned();
+            $table->integer('render_type_id')->default(1)->unsigned()->index();
             $table->string('options')->nullable();
             $table->timestamps();
+
+            $table->foreign('render_type_id')
+                  ->references('id')
+                  ->on('render_types');
         });
     }
 

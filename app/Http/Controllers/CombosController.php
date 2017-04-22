@@ -133,4 +133,61 @@ class CombosController extends Controller
 
         return Validator::make($data, $rules, $messages);
     }
+
+    public function getConfigurableProducts(Request $request)
+    {
+        $combo = Combo::with(['productTypes' => function($query) {
+                $query->where('configurable', true);
+                $query->whereNotNull('supplier_product_id');
+            }])
+            ->find($request->combo_id);
+
+        $products = $combo->productTypes->map(function ($productType) {
+            $activeProductId = $productType->supplier_product_id;
+            $availableProducts = $productType->supplierProduct->supplier->products->filter(function ($product) use ($activeProductId) {
+                return $product->id != $activeProductId;
+            })->pluck('name', 'id')->toArray();
+            return collect([
+                'label'        => $productType->name,
+                'products'     => $availableProducts,
+                'customizable' => $productType->customizable,
+                'render'       => strtolower($productType->renderType->name),
+                'quantity'     => $productType->pivot->quantity,
+            ]);
+        });
+
+        $collectionToReturn = collect();
+
+        $products->each(function ($product) use ($collectionToReturn) {
+            if ($product['render'] == 'radio' && $product['quantity'] > 1) {
+                for ($i = 1; $i <= $product['quantity']; $i++) {
+                    $productToAdd = clone $product;
+                    $productToAdd['label'] = trim($product['label'], 's') . ' ' . $i;
+                    $productToAdd['quantity'] = 1;
+                    $collectionToReturn->push($productToAdd);
+                }
+
+                return;
+            }
+
+            $collectionToReturn->push($product);
+        });
+
+        return ['configurables' => $collectionToReturn->toArray()];
+    }
+
+    public function getProperties(Request $request)
+    {
+        $combo = Combo::with('properties')->find($request->combo_id);
+
+        $properties = $combo->properties->map(function ($property) {
+            return [
+                'label' => $property->label,
+                'render' => strtolower($property->renderType->name),
+                'options' => $property->options
+            ];
+        });
+
+        return ['properties' => $properties];
+    }
 }

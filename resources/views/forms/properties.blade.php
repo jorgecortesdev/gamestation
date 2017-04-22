@@ -8,18 +8,18 @@
     @endif
 </div>
 
-<div class="item form-group{{ $errors->has('property_type_id') ? ' bad' : '' }}">
+<div class="item form-group{{ $errors->has('render_type_id') ? ' bad' : '' }}">
     {!! Form::label('type', 'Tipo', ['class' => 'control-label col-md-2 col-sm-2 col-xs-12']) !!}
     <div class="col-md-3 col-sm-3 col-xs-12">
         {!! Form::select(
-            'property_type_id',
-            $property_types,
+            'render_type_id',
+            $render_types,
             null,
             ['class' => 'form-control', 'placeholder' => '-- Seleccionar --'])
         !!}
     </div>
-    @if ($errors->has('property_type_id'))
-        <div class="alert gs-alert">{{ $errors->first('property_type_id') }}</div>
+    @if ($errors->has('render_type_id'))
+        <div class="alert gs-alert">{{ $errors->first('render_type_id') }}</div>
     @endif
 </div>
 

@@ -1,5 +1,9 @@
 @extends('layouts.blank')
 
+@push('stylesheets')
+<link rel="stylesheet" href="{{ asset("css/icheck/skins/flat/green.css") }}">
+@endpush
+
 @section('main_container')
 
     <!-- page content -->
@@ -36,3 +40,7 @@
 
     @include('includes.footer')
 @endsection
+
+@push('scripts')
+<script src="{{ asset("js/icheck.min.js") }}"></script>
+@endpush

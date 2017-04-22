@@ -33,24 +33,27 @@ Route::resource('supplier_product', 'SupplierProductsController');
 Route::resource('extra', 'ExtrasController');
 
 Route::resource('combo','CombosController');
+Route::get('/combo/configurable/{combo_id}', 'CombosController@getConfigurableProducts');
+Route::get('/combo/properties/{combo_id}', 'CombosController@getProperties');
 
 Route::get('/calendar', 'CalendarController@index');
 Route::post('/calendar', 'CalendarController@store')->name('calendar.store');
+Route::get('/calendar/freebusy', 'CalendarController@freebusy');
 
 Route::get('/schedule', 'ScheduleController@index')->name('schedule.index');
 
+Route::get('productmanager/extras/list', 'ProductManagerController@extrasList');
 Route::get('productmanager/{entity_name}/{entity_id}/product_types', 'ProductManagerController@productTypes');
 Route::get('productmanager/{entity_name}/{entity_id}', 'ProductManagerController@productsByEntity');
 Route::post('productmanager/{entity_name}/{entity_id}/products', 'ProductManagerController@update')->name('productmanager.update');
 
-Route::get('client/search', 'ClientsController@search');
+Route::get('client/search/select', 'ClientsController@searchForSelect');
+Route::get('client/search/autocomplete', 'ClientsController@searchForAutocomplete');
 Route::resource('client', 'ClientsController');
 
 Route::resource('kid', 'KidsController');
+Route::get('kid/find/{kid_id}', 'KidsController@find');
 
-Route::get('/event', 'EventsController@index')->name('event.index');
-Route::post('/event/step1', 'EventsController@step1')->name('event.step1');
-Route::post('/event/step2', 'EventsController@step2')->name('event.step2');
-Route::post('/event/step3', 'EventsController@step3')->name('event.step3');
+Route::resource('events', 'EventsController');
 
 Route::resource('properties', 'PropertiesController');

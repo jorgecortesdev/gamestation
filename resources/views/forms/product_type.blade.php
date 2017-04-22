@@ -26,10 +26,39 @@
 <div class="item form-group{{ $errors->has('configurable') ? ' bad' : '' }}">
     {!! Form::label('configurable', 'Configurable', ['class' => 'control-label col-md-2 col-sm-2 col-xs-12']) !!}
     <div class="col-md-3 col-sm-3 col-xs-12">
-        {!! Form::checkbox('configurable') !!}
+        <div class="checkbox">
+            {!! Form::checkbox('configurable', true, null, ['class' => 'flat']) !!}
+        </div>
     </div>
     @if ($errors->has('configurable'))
         <div class="alert gs-alert">{{ $errors->first('configurable') }}</div>
+    @endif
+</div>
+
+<div class="item form-group{{ $errors->has('customizable') ? ' bad' : '' }}">
+    {!! Form::label('customizable', 'Personalizable', ['class' => 'control-label col-md-2 col-sm-2 col-xs-12']) !!}
+    <div class="col-md-3 col-sm-3 col-xs-12">
+        <div class="checkbox">
+            {!! Form::checkbox('customizable', true, null, ['class' => 'flat']) !!}
+        </div>
+    </div>
+    @if ($errors->has('customizable'))
+        <div class="alert gs-alert">{{ $errors->first('customizable') }}</div>
+    @endif
+</div>
+
+<div class="item form-group{{ $errors->has('render_type_id') ? ' bad' : '' }}">
+    {!! Form::label('type', 'Tipo', ['class' => 'control-label col-md-2 col-sm-2 col-xs-12']) !!}
+    <div class="col-md-3 col-sm-3 col-xs-12">
+        {!! Form::select(
+            'render_type_id',
+            $render_types,
+            null,
+            ['class' => 'form-control', 'placeholder' => '-- Seleccionar --'])
+        !!}
+    </div>
+    @if ($errors->has('render_type_id'))
+        <div class="alert gs-alert">{{ $errors->first('render_type_id') }}</div>
     @endif
 </div>
 

@@ -19,8 +19,12 @@ class CreateSuppliersTable extends Migration
             $table->string('address');
             $table->string('telephone');
             $table->string('email');
-            $table->tinyInteger('supplier_type_id')->default(0)->unsigned()->index();
+            $table->integer('supplier_type_id')->unsigned()->index();
             $table->timestamps();
+
+            $table->foreign('supplier_type_id')
+                  ->references('id')
+                  ->on('supplier_types');
         });
     }
 

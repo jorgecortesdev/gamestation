@@ -2,7 +2,7 @@
 
 namespace App\Http\ViewComposers;
 
-use App\PropertyType;
+use App\RenderType;
 use Illuminate\View\View;
 
 class PropertiesComposer
@@ -15,8 +15,8 @@ class PropertiesComposer
      */
     public function compose(View $view)
     {
-        $property_types = PropertyType::pluck('name', 'id');
+        $render_types = RenderType::pluck('name', 'id');
 
-        $view->with('property_types', $property_types);
+        $view->with('render_types', $render_types);
     }
 }

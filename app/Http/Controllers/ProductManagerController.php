@@ -36,6 +36,13 @@ class ProductManagerController extends Controller
         return $entity->productTypes;
     }
 
+    public function extrasList()
+    {
+        $extras = \App\Extra::all();
+
+        return $extras;
+    }
+
     public function update(Request $request, $entity_name, $entity_id)
     {
         $product_ids = $request->product_ids;

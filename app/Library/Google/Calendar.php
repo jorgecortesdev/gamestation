@@ -115,4 +115,45 @@ class Calendar
 
         return $this->colors;
     }
+
+    /**
+     * Verifica disponibilidad, el formato de fecha es el siguiente:
+     *
+     * $start = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', '2017-04-21 18:00:00', 'America/Hermosillo')->toIso8601String();
+     *
+     * @return boolean
+     */
+    public function freebusy($start, $end)
+    {
+        $item = new \Google_Service_Calendar_FreeBusyRequestItem();
+        $item->setId($this->calendar_id);
+
+        $request = new \Google_Service_Calendar_FreeBusyRequest();
+        $request->setTimeMin($start);
+        $request->setTimeMax($end);
+        $request->setTimeZone('America/Hermosillo');
+        $request->setItems([
+           $item
+        ]);
+
+        $response = $this->service->freebusy->query($request);
+
+        $calendars = $response->getCalendars();
+
+        $busy = false;
+
+        if (isset($calendars[$this->calendar_id])) {
+            $timePeriods = $calendars[$this->calendar_id]->getBusy();
+            foreach ($timePeriods as $timePeriod) {
+                $busyStart = \Carbon\Carbon::parse($timePeriod->getStart());
+                $busyEnd = \Carbon\Carbon::parse($timePeriod->getEnd());
+
+                if ($busyStart->gte(\Carbon\Carbon::parse($start)) && $busyEnd->lte(\Carbon\Carbon::parse($end))) {
+                    $busy = true;
+                }
+            }
+        }
+
+        return $busy;
+    }
 }

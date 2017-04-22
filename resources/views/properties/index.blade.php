@@ -36,7 +36,7 @@
                                 <tr>
                                     <th class="text-center">Id</th>
                                     <th class="text-center">Etiqueta</th>
-                                    <th class="text-center">Tipo</th>
+                                    <th class="text-center">Tipo de Render</th>
                                     <th class="text-center">Opciones</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
@@ -50,7 +50,7 @@
                                             <br>
                                             <small>Creado {{ $property->created_at->format('d.m.Y') }}</small>
                                         </td>
-                                        <td class="text-center">{{ $property->propertyType->name }}</td>
+                                        <td class="text-center">{{ $property->renderType->name }}</td>
                                         <td class="text-center">{{ $property->present()->options }}</td>
                                         <td class="text-center">
                                             <a class="btn btn-info btn-xs" href="{{ route('properties.edit', [$property->id]) }}"><i class="fa fa-edit"></i> Editar</a>

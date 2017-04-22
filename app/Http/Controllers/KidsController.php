@@ -65,4 +65,17 @@ class KidsController extends Controller
 
         return back();
     }
+
+    public function find($kid_id)
+    {
+        $data['kid'] = false;
+
+        $kid = Kid::find($kid_id);
+
+        if ($kid) {
+            $data['kid'] = $kid;
+        }
+
+        return $data;
+    }
 }
