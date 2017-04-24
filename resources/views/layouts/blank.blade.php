@@ -20,7 +20,7 @@
         <!-- Custom Theme Style -->
         <link href="{{ asset("css/gentelella.min.css") }}" rel="stylesheet">
         <!-- Game Station Mx Style -->
-        <link href="{{ asset("css/style.css") }}" rel="stylesheet">
+        <link href="{{ asset("css/app.css") }}" rel="stylesheet">
 
         @stack('stylesheets')
 
@@ -35,9 +35,9 @@
                 @include('includes/topbar')
 
                 @yield('main_container')
-
             </div>
         </div>
+
 
         <!-- jQuery -->
         <script src="{{ asset("js/jquery.min.js") }}"></script>
@@ -46,6 +46,8 @@
         <!-- PNotify -->
         <script src="{{ asset("js/pnotify.js") }}"></script>
         <!-- Custom Theme Scripts -->
+        <script src="{{ asset('js/app.js') }}"></script>
+
         <script src="{{ asset("js/gentelella.js") }}"></script>
 
         @stack('scripts')

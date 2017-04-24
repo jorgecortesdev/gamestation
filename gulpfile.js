@@ -1,98 +1,70 @@
 var elixir = require('laravel-elixir');
 
-/*
- |--------------------------------------------------------------------------
- | Elixir Asset Management
- |--------------------------------------------------------------------------
- |
- | Elixir provides a clean, fluent API for defining some basic Gulp tasks
- | for your Laravel application. By default, we are compiling the Sass
- | file for our application, as well as publishing vendor resources.
- |
- */
+require('laravel-elixir-vue-2');
 
-// Gentelella vendors path : vendor/bower_components/gentelella/vendors
+var paths = {
+    'gentelella' : 'vendor/bower_components/gentelella/vendors',
+    'bower'      : 'vendor/bower_components'
+}
 
 elixir(function(mix) {
 
-    /********************/
-    /* Copy Stylesheets */
-    /********************/
+    /***************/
+    /* Stylesheets */
+    /***************/
+    var cssFiles = {
+        [paths.gentelella + '/bootstrap/dist/css/bootstrap.min.css'] : 'public/css/bootstrap.min.css',
+        [paths.gentelella + '/font-awesome/css/font-awesome.min.css'] : 'public/css/font-awesome.min.css',
+        [paths.gentelella + '/pnotify/dist/pnotify.css'] : 'public/css/pnotify.css',
+        [paths.gentelella + '/fullcalendar/dist/fullcalendar.min.css'] : 'public/css/fullcalendar.min.css',
+        [paths.gentelella + '/bootstrap-daterangepicker/daterangepicker.css'] : 'public/css/daterangepicker.css',
+        [paths.gentelella + '/select2/dist/css/select2.css'] : 'public/css/select2.css',
+        [paths.gentelella + '/iCheck/skins/flat'] : 'public/css/icheck/skins/flat',
+        [paths.bower + '/gentelella/build/css/custom.min.css'] : 'public/css/gentelella.min.css',
+        [paths.bower + '/dragula.js/dist/dragula.css'] : 'public/css/dragula.css',
+    }
 
-    // Bootstrap
-    mix.copy('vendor/bower_components/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css', 'public/css/bootstrap.min.css');
+    for (file in cssFiles) {
+        mix.copy(file, cssFiles[file]);
+    }
 
-    // Font awesome
-    mix.copy('vendor/bower_components/gentelella/vendors/font-awesome/css/font-awesome.min.css', 'public/css/font-awesome.min.css');
+    mix.sass('app.scss');
 
-    // Gentelella
-    mix.copy('vendor/bower_components/gentelella/build/css/custom.min.css', 'public/css/gentelella.min.css');
+    /***********/
+    /* Scripts */
+    /***********/
+    var jsFiles = {
+        [paths.gentelella + '/bootstrap/dist/js/bootstrap.min.js'] : 'public/js/bootstrap.min.js',
+        [paths.gentelella + '/jquery/dist/jquery.min.js'] : 'public/js/jquery.min.js',
+        [paths.gentelella + '/pnotify/dist/pnotify.js'] : 'public/js/pnotify.js',
+        [paths.gentelella + '/moment/moment.js'] : 'public/js/moment.js',
+        [paths.gentelella + '/fullcalendar/dist/fullcalendar.min.js'] : 'public/js/fullcalendar.min.js',
+        [paths.gentelella + '/bootstrap-daterangepicker/daterangepicker.js'] : 'public/js/daterangepicker.js',
+        [paths.gentelella + '/jquery.inputmask/dist/jquery.inputmask.bundle.js'] : 'public/js/jquery.inputmask.bundle.js',
+        [paths.gentelella + '/select2/dist/js/select2.full.min.js'] : 'public/js/select2.full.min.js',
+        [paths.gentelella + '/iCheck/icheck.min.js'] : 'public/js/icheck.min.js',
+        [paths.bower + '/dragula.js/dist/dragula.js'] : 'public/js/dragula.js',
+        [paths.bower + '/handlebars/handlebars.min.js'] : 'public/js/handlebars.min.js'
+    }
 
-    // PNotify
-    mix.copy('vendor/bower_components/gentelella/vendors/pnotify/dist/pnotify.css', 'public/css/pnotify.css');
+    for (file in jsFiles) {
+        mix.copy(file, jsFiles[file]);
+    }
 
-    // FullCalendar
-    mix.copy('vendor/bower_components/gentelella/vendors/fullcalendar/dist/fullcalendar.min.css', 'public/css/fullcalendar.min.css');
-
-    // Date Range Picker
-    mix.copy('vendor/bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css', 'public/css/daterangepicker.css');
-
-    // Dragula
-    mix.copy('vendor/bower_components/dragula.js/dist/dragula.css', 'public/css/dragula.css');
-
-    // Select2
-    mix.copy('vendor/bower_components/gentelella/vendors/select2/dist/css/select2.css', 'public/css/select2.css');
-
-    // iCheck
-    mix.copy('vendor/bower_components/gentelella/vendors/iCheck/skins/flat', 'public/css/icheck/skins/flat');
-
-    /****************/
-    /* Copy Scripts */
-    /****************/
-
-    // Bootstrap
-    mix.copy('vendor/bower_components/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js', 'public/js/bootstrap.min.js');
-
-    // jQuery
-    mix.copy('vendor/bower_components/gentelella/vendors/jquery/dist/jquery.min.js', 'public/js/jquery.min.js');
-
-    // Gentelella
-    // mix.copy('vendor/bower_components/gentelella/build/js/custom.js', 'public/js/gentelella.js');
-
-    // PNotify
-    mix.copy('vendor/bower_components/gentelella/vendors/pnotify/dist/pnotify.js', 'public/js/pnotify.js');
-
-    // Moment
-    mix.copy('vendor/bower_components/gentelella/vendors/moment/moment.js', 'public/js/moment.js');
-
-    // FullCalendar
-    mix.copy('vendor/bower_components/gentelella/vendors/fullcalendar/dist/fullcalendar.min.js', 'public/js/fullcalendar.min.js');
-
-    // Date Range Picker
-    mix.copy('vendor/bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js', 'public/js/daterangepicker.js');
-
-    // Dragula
-    mix.copy('vendor/bower_components/dragula.js/dist/dragula.js', 'public/js/dragula.js');
-
-    // Handlebars
-    mix.copy('vendor/bower_components/handlebars/handlebars.min.js', 'public/js/handlebars.min.js');
-
-    // jquery.inputmask
-    mix.copy('vendor/bower_components/gentelella/vendors/jquery.inputmask/dist/jquery.inputmask.bundle.js', 'public/js/jquery.inputmask.bundle.js');
-
-    // Select2
-    mix.copy('vendor/bower_components/gentelella/vendors/select2/dist/js/select2.full.min.js', 'public/js/select2.full.min.js');
-
-    // iCheck
-    mix.copy('vendor/bower_components/gentelella/vendors/iCheck/icheck.min.js', 'public/js/icheck.min.js');
+    /***********************/
+    /* Application Scripts */
+    /***********************/
+    mix.webpack('app.js');
 
     /**************/
     /* Copy Fonts */
     /**************/
+    var fontFiles = {
+        [paths.gentelella + '/bootstrap/fonts'] : 'public/fonts',
+        [paths.gentelella + '/font-awesome/fonts'] : 'public/fonts'
+    }
 
-    // Bootstrap
-    mix.copy('vendor/bower_components/gentelella/vendors/bootstrap/fonts/', 'public/fonts');
-
-    // Font awesome
-    mix.copy('vendor/bower_components/gentelella/vendors/font-awesome/fonts/', 'public/fonts');
+    for (file in fontFiles) {
+        mix.copy(file, fontFiles[file]);
+    }
 });
