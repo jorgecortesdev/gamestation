@@ -50,7 +50,6 @@
                                         <td class="text-center">{{ $user->email }}</td>
                                         <td class="text-center">
                                             <a class="btn btn-info btn-xs" href="#"><i class="fa fa-edit"></i> Editar</a>
-                                            &nbsp;|&nbsp;
                                             <a class="btn btn-danger btn-xs" href="#"> <i class="fa fa-trash"></i> Borrar</a>
                                         </td>
                                     </tr>
