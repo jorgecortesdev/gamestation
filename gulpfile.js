@@ -40,10 +40,6 @@ elixir(function(mix) {
     // Dragula
     mix.copy('vendor/bower_components/dragula.js/dist/dragula.css', 'public/css/dragula.css');
 
-    // Smart Wizard
-    mix.copy('vendor/bower_components/smartwizard/css/smart_wizard.css', 'public/css/smartwizard/smart_wizard.css');
-    mix.copy('vendor/bower_components/smartwizard/css/smart_wizard_theme_arrows.css', 'public/css/smartwizard/smart_wizard_theme_arrows.css');
-
     // Select2
     mix.copy('vendor/bower_components/gentelella/vendors/select2/dist/css/select2.css', 'public/css/select2.css');
 
@@ -80,9 +76,6 @@ elixir(function(mix) {
 
     // Handlebars
     mix.copy('vendor/bower_components/handlebars/handlebars.min.js', 'public/js/handlebars.min.js');
-
-    // Smart Wizard
-    mix.copy('vendor/bower_components/smartwizard/js/jquery.smartWizard.js', 'public/js/jquery.smartWizard.js');
 
     // jquery.inputmask
     mix.copy('vendor/bower_components/gentelella/vendors/jquery.inputmask/dist/jquery.inputmask.bundle.js', 'public/js/jquery.inputmask.bundle.js');
