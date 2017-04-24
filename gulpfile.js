@@ -67,4 +67,9 @@ elixir(function(mix) {
     for (file in fontFiles) {
         mix.copy(file, fontFiles[file]);
     }
+
+    /**************/
+    /* Versioning */
+    /**************/
+    mix.version(['css/app.css', 'js/app.js']);
 });
