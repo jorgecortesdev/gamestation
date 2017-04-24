@@ -44,7 +44,3 @@
     <!-- /footer content -->
 
 @endsection
-
-@push('scripts')
-<script src="{{ asset("js/gscombo.js") }}"></script>
-@endpush

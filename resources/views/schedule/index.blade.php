@@ -43,5 +43,4 @@
 @push('scripts')
 <script src="{{ asset("js/moment.js") }}"></script>
 <script src="{{ asset("js/fullcalendar.min.js") }}"></script>
-<script src="{{ asset("js/gscalendar.js") }}"></script>
 @endpush

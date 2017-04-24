@@ -1,0 +1,58 @@
+.gs-inline-block {
+    position: relative;
+    display: inline-block;
+}
+.vertical-hr {
+    background-color: #ababab;
+    height: 24px;
+    margin: 0 5px;
+    width: 1px;
+    vertical-align: top;
+}
+.gs-title {
+    display: flex;
+    padding: 8px 2px;
+    color: #555555;
+}
+.gs-title-controls > a {
+    margin: 2px 0;
+}
+.gs-profile-img {
+    background: #eeeeee;
+}
+.gs-list-product-types > li {
+    margin-right: -10px;
+}
+.gs-btn-no-margin {
+    margin: 0px;
+}
+.gs-p-title {
+    font-weight: 400;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+.input-group.gs-input-group {
+    margin-bottom: 0;
+}
+/** Images */
+.gs-image {
+    background: #f7f7f7;
+    border: 1px solid #e6e6e6;
+}
+.gs-image.gs-image-thumbnail {
+    height: 64px;
+    width: 64px;
+    padding: 2px;
+}
+.no-gutter > [class*='col-'] {
+    padding-right:0;
+    padding-left:0;
+}
+/** General alert styles */
+.alert.gs-alert {
+    max-width: none;
+}
+.alert.gs-alert::after {
+    left: -15px;
+    border-width: 12px 7px;
+}

@@ -252,6 +252,33 @@
   color: #FFFFFF;
 }
 
+/** Event wizard */
+#smartwizard > div {
+  margin: 25px 0;
+}
+
+#smartwizard > .navbar {
+  display: none;
+}
+
+.event-configurable,
+.event-property {
+  margin-bottom: 20px;
+}
+
+.event-configurable .checkbox-inline,
+.event-configurable .radio-inline,
+.event-property .checkbox-inline,
+.event-property .radio-inline {
+  padding-left: 0px;
+}
+
+/** Select2 */
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  top: 6px !important;
+  right: 5px !important;
+}
+
 /** Dragula */
 .dragula-wrapper {
   margin: 20px 0;
@@ -301,33 +328,6 @@
 .gu-mirror {
   cursor: grabbing;
   cursor: -webkit-grabbing;
-}
-
-/** Event wizard */
-#smartwizard > div {
-  margin: 25px 0;
-}
-
-#smartwizard > .navbar {
-  display: none;
-}
-
-.event-configurable,
-.event-property {
-  margin-bottom: 20px;
-}
-
-.event-configurable .checkbox-inline,
-.event-configurable .radio-inline,
-.event-property .checkbox-inline,
-.event-property .radio-inline {
-  padding-left: 0px;
-}
-
-/** Select2 */
-.select2-container--default .select2-selection--single .select2-selection__arrow {
-  top: 6px !important;
-  right: 5px !important;
 }
 
 /*# sourceMappingURL=app.css.map */
