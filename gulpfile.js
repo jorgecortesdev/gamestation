@@ -28,7 +28,8 @@ elixir(function(mix) {
         mix.copy(file, cssFiles[file]);
     }
 
-    mix.sass('app.scss');
+    mix.sass('app.scss')
+       .sass('public.scss');
 
     /***********/
     /* Scripts */

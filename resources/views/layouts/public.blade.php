@@ -8,7 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Game Station Mx</title>
+        <title>GameStation Mx</title>
 
         <link href="{{ asset("css/public.css") }}" rel="stylesheet">
 
