@@ -11,6 +11,11 @@ class Client extends Model
 
     protected $presenter = 'App\Presenters\ClientPresenter';
 
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
+
     public function kids()
     {
         return $this->belongsToMany(Kid::class);

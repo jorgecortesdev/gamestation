@@ -36,6 +36,7 @@
                                     <th class="text-center">Paquete</th>
                                     <th class="text-center">Color</th>
                                     <th class="text-center">Fecha</th>
+                                    <th class="text-center">Hora</th>
                                     <th class="text-center">Cliente</th>
                                     <th class="text-center">Niño</th>
                                     <th class="text-center">Acciones</th>
@@ -53,7 +54,8 @@
                                         <td>
                                             <div class="combo-color combo-color-bg-{{ $event->combo->google_color_id }} center-block"></div>
                                         </td>
-                                        <td class="text-center">{{ $event->present()->occurs_on }}</td>
+                                        <td class="text-center">{{ $event->present()->dateWhenOccurs }}</td>
+                                        <td class="text-center">{{ $event->present()->timeWhenOccurs }}</td>
                                         <td class="text-center">{{ $event->client->name }}</td>
                                         <td class="text-center">{{ $event->kid->name }}</td>
                                         <td class="text-center">

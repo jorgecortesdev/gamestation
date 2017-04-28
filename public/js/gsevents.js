@@ -62,40 +62,18 @@ function init_BirthdayDatePicker() {
     });
 }
 
-function init_Dragula() {
-    if (typeof (dragula) === 'undefined') { return; }
-
-    var drake = dragula(
-        [document.getElementById('left-container'), document.getElementById('right-container')]
-    );
-
-    init_AvailableExtras();
-}
-
-function init_AvailableExtras() {
-    HandlebarsIntl.registerWith(Handlebars);
-
-    var source = $('#entry-template').html();
-    var template = Handlebars.compile(source);
-
-    $.ajax({
-        url: '/productmanager/extras/list',
-        type: 'GET',
-        success: function(data) {
-            var container = $('#left-container');
-            container.empty();
-            $.each(data, function(index, item) {
-                container.append(template(item));
-            });
-        }
-    });
-}
-
 function init_Select2() {
     if (!jQuery.fn.select2) { return; }
 
-    $('#clientSelect').select2({
+    $('#clientIdOrName').select2({
         tags: true,
+        language: {
+            inputTooShort: function (args) {
+                var remainingChars = args.minimum - args.input.length;
+                var message = 'Introduce ' + remainingChars + ' o más letras';
+                return message;
+            }
+        },
         ajax: {
             url: "/client/search/select",
             dataType: 'json',
@@ -128,7 +106,7 @@ function init_Select2() {
         }
     });
 
-    $('#clientSelect').on('select2:select', function (event) {
+    $('#clientIdOrName').on('select2:select', function (event) {
         HandlebarsIntl.registerWith(Handlebars);
 
         var source = $('#kid-template').html();
@@ -141,17 +119,17 @@ function init_Select2() {
             type: 'GET',
             data: {'q': value},
             success: function(data) {
-                $('#clientAddress').val('');
-                $('#clientPhone').val('');
-                $('#clientEmail').val('');
+                $('#clientAddress').prop('readonly', false).val('');
+                $('#clientPhone').prop('readonly', false).val('');
+                $('#clientEmail').prop('readonly', false).val('');
 
                 var container = $('#clientKids');
                 container.hide();
 
                 if (data.client) {
-                    $('#clientAddress').val(data.client.address);
-                    $('#clientPhone').val(data.client.telephone);
-                    $('#clientEmail').val(data.client.email);
+                    $('#clientAddress').prop('readonly', true).val(data.client.address);
+                    $('#clientPhone').prop('readonly', true).val(data.client.telephone);
+                    $('#clientEmail').prop('readonly', true).val(data.client.email);
 
                     if (data.client.kids) {
                         var div = container.find('div');
@@ -162,6 +140,7 @@ function init_Select2() {
                         });
                         div.find('button').on('click', function (event) {
                             var id = $(this).data('kid-id');
+                            $('input[name=kidId]').val(id);
                             $.ajax({
                                 url: '/kid/find/' + id,
                                 type: 'GET',
@@ -197,70 +176,100 @@ function init_Select2() {
     });
 }
 
-function init_CombosOnChange() {
-    $('#combos input[type=radio]').on('change', function () {
-        getConfigurableProducts(this.value);
-        getProperties(this.value);
-    });
-}
+// function init_Dragula() {
+//     if (typeof (dragula) === 'undefined') { return; }
 
-function getConfigurableProducts(combo_id) {
-    HandlebarsIntl.registerWith(Handlebars);
+//     var drake = dragula(
+//         [document.getElementById('left-container'), document.getElementById('right-container')]
+//     );
 
-    var source   = $('#configurable-template').html();
-    var template = Handlebars.compile(source);
+//     init_AvailableExtras();
+// }
 
-    var container    = $('#container-configurable > .configurable-products');
-    var emptyMessage = $('#container-configurable > .configurable-message');
+// function init_AvailableExtras() {
+//     HandlebarsIntl.registerWith(Handlebars);
 
-    container.empty();
+//     var source = $('#entry-template').html();
+//     var template = Handlebars.compile(source);
 
-    $.ajax({
-        url: '/combo/configurable/' + combo_id,
-        type: 'GET',
-        success: function(data) {
-            if (data.configurables[0] != null) {
-                container.append(template(data));
-                emptyMessage.hide();
-                $('input.flat').iCheck({
-                    checkboxClass: 'icheckbox_flat-green',
-                    radioClass: 'iradio_flat-green'
-                });
-            } else {
-                emptyMessage.show();
-            }
-        }
-    });
-}
+//     $.ajax({
+//         url: '/productmanager/extras/list',
+//         type: 'GET',
+//         success: function(data) {
+//             var container = $('#left-container');
+//             container.empty();
+//             $.each(data, function(index, item) {
+//                 container.append(template(item));
+//             });
+//         }
+//     });
+// }
 
-function getProperties(combo_id) {
-    HandlebarsIntl.registerWith(Handlebars);
 
-    var source   = $('#property-template').html();
-    var template = Handlebars.compile(source);
+// function init_CombosOnChange() {
+//     $('#combos input[type=radio]').on('change', function () {
+//         getConfigurableProducts(this.value);
+//         getProperties(this.value);
+//     });
+// }
 
-    var container    = $('#container-properties > .properties-items');
-    var emptyMessage = $('#container-properties > .properties-message');
+// function getConfigurableProducts(combo_id) {
+//     HandlebarsIntl.registerWith(Handlebars);
 
-    container.empty();
+//     var source   = $('#configurable-template').html();
+//     var template = Handlebars.compile(source);
 
-    $.ajax({
-        url: '/combo/properties/' + combo_id,
-        type: 'GET',
-        success: function(data) {
-            if (data.properties[0] != null) {
-                container.append(template(data));
-                emptyMessage.hide();
-                $('input.flat').iCheck({
-                    checkboxClass: 'icheckbox_flat-green',
-                    radioClass: 'iradio_flat-green'
-                });
-            } else {
-                emptyMessage.show();
-            }
-        }
-    });
-}
+//     var container    = $('#container-configurable > .configurable-products');
+//     var emptyMessage = $('#container-configurable > .configurable-message');
+
+//     container.empty();
+
+//     $.ajax({
+//         url: '/combo/configurable/' + combo_id,
+//         type: 'GET',
+//         success: function(data) {
+//             if (data.configurables[0] != null) {
+//                 container.append(template(data));
+//                 emptyMessage.hide();
+//                 $('input.flat').iCheck({
+//                     checkboxClass: 'icheckbox_flat-green',
+//                     radioClass: 'iradio_flat-green'
+//                 });
+//             } else {
+//                 emptyMessage.show();
+//             }
+//         }
+//     });
+// }
+
+// function getProperties(combo_id) {
+//     HandlebarsIntl.registerWith(Handlebars);
+
+//     var source   = $('#property-template').html();
+//     var template = Handlebars.compile(source);
+
+//     var container    = $('#container-properties > .properties-items');
+//     var emptyMessage = $('#container-properties > .properties-message');
+
+//     container.empty();
+
+//     $.ajax({
+//         url: '/combo/properties/' + combo_id,
+//         type: 'GET',
+//         success: function(data) {
+//             if (data.properties[0] != null) {
+//                 container.append(template(data));
+//                 emptyMessage.hide();
+//                 $('input.flat').iCheck({
+//                     checkboxClass: 'icheckbox_flat-green',
+//                     radioClass: 'iradio_flat-green'
+//                 });
+//             } else {
+//                 emptyMessage.show();
+//             }
+//         }
+//     });
+// }
 
 $(document).ready(function() {
     Handlebars.registerHelper({
@@ -274,7 +283,7 @@ $(document).ready(function() {
 
     init_EventDatePicker();
     init_BirthdayDatePicker();
-    init_Dragula();
     init_Select2();
-    init_CombosOnChange();
+    // init_Dragula();
+    // init_CombosOnChange();
 });

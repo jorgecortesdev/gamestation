@@ -4,6 +4,7 @@ namespace App\Http\ViewComposers;
 
 use App\Combo;
 use App\Extra;
+use App\Client;
 use Illuminate\View\View;
 
 class EventsComposer
@@ -17,16 +18,25 @@ class EventsComposer
     public function compose(View $view)
     {
         $combos = Combo::all();
-        $extras = Extra::pluck('name', 'id');
 
-        $client_id = old('client_id');
+        $event = $view->event;
 
-        $clientsSelect = [];
-
-        if ($client_id) {
-            $clientsSelect = \App\Client::where('id', $client_id)->pluck('name', 'id');
+        if ($event) {
+            $clientIdOrName = $event->client->id;
+        } else {
+            $clientIdOrName = old('clientIdOrName');
         }
 
-        $view->with(compact('combos', 'extras', 'clientsSelect'));
+        $clientsSelect  = [];
+
+        if ($clientIdOrName) {
+            if (is_numeric($clientIdOrName)) {
+                $clientsSelect = Client::where('id', $clientIdOrName)->pluck('name', 'id')->toArray();
+            } else {
+                $clientsSelect = [$clientIdOrName => $clientIdOrName];
+            }
+        }
+
+        $view->with(compact('combos', 'clientsSelect'));
     }
 }

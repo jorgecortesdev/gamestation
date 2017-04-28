@@ -1,6 +1,7 @@
 .gs-inline-block {
   position: relative;
   display: inline-block;
+  vertical-align: middle;
 }
 
 .vertical-hr {
@@ -44,6 +45,22 @@
   margin-bottom: 0;
 }
 
+.input-group-addon.gs-input-group-addon {
+  width: auto;
+}
+
+.form-horizontal .control-label {
+  margin-bottom: 5px;
+}
+
+.form-group .gs-inline-block {
+  width: inherit;
+}
+
+#verifyEventDateMessage {
+  padding-left: 10px;
+}
+
 /** Images */
 .gs-image {
   background: #f7f7f7;
@@ -62,8 +79,12 @@
 }
 
 /** General alert styles */
+.item.bad .alert {
+  left: auto;
+}
+
 .alert.gs-alert {
-  max-width: none;
+  float: none;
 }
 
 .alert.gs-alert::after {

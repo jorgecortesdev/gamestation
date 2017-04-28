@@ -26,12 +26,12 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Crear un evento GameStation <sup>MX</sup></h2>
+                        <h2>Editar un evento GameStation <sup>MX</sup></h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
                         <br>
-                        {!! Form::open(['route' => 'events.store', 'id' => 'frm', 'class' => 'form-horizontal form-label-left']) !!}
+                        {!! Form::model($event, ['route' => ['events.update', $event->id], 'id' => 'frm', 'method' => 'PATCH', 'class' => 'form-horizontal form-label-left']) !!}
 
                             @include('forms.events.event')
 

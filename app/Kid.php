@@ -24,6 +24,11 @@ class Kid extends Model
         return $this->belongsToMany(Client::class);
     }
 
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
+
     public function getFormValue($name)
     {
         if (empty($name)) {

@@ -52,6 +52,11 @@ class Combo extends Model
         return $this->belongsToMany(Property::class);
     }
 
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
+
     /***************
      * Form Values *
      ***************/
