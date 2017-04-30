@@ -18,6 +18,7 @@ Route::get('/', 'IndexController@index');
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('supplier/search', 'SuppliersController@search')->name('suppliers.search');
 Route::resource('supplier', 'SuppliersController');
 
 Route::resource('user', 'UsersController');

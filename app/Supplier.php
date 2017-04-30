@@ -2,12 +2,13 @@
 
 namespace App;
 
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Laracodes\Presenter\Traits\Presentable;
 
 class Supplier extends Model
 {
-    use Presentable;
+    use Presentable, Searchable;
 
     protected $fillable = ['name', 'address', 'telephone', 'email', 'supplier_type_id'];
 
@@ -41,6 +42,29 @@ class Supplier extends Model
 
             \Storage::disk('public')->put('supplier/' . $imageName, $originalImage);
         }
+    }
+
+    public function activeProductTypes()
+    {
+        $id = $this->id;
+        $types = \App\ProductType::whereHas('supplierProduct', function($query) use ($id) {
+            $query->where('supplier_id', $id);
+        })->get();
+
+        return $types;
+    }
+
+    public function productsSortByActive($order = null)
+    {
+        $method = 'sortBy';
+
+        if ( ! is_null($order) ) {
+            $method = 'sortByDesc';
+        }
+
+        return $this->products->{$method}(function ($product) {
+            return $product->is_active;
+        });
     }
 
     /*****************

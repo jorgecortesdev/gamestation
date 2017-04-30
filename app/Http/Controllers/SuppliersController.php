@@ -21,26 +21,20 @@ class SuppliersController extends Controller
 
     public function index()
     {
-        $suppliers = Supplier::with('type')
-            ->withCount('products')
-            ->orderBy('products_count', 'desc')
-            ->paginate(20);
+        go()->after();
+        $suppliers = Supplier::paginate(20);
         return view('suppliers.index', compact('suppliers'));
     }
 
     public function show(Request $request, Supplier $supplier)
     {
-        $request->session()->put('redirect_url', $request->fullUrl());
+        go()->after();
 
-        $products = $supplier->products->sortByDesc(function ($product) {
-            return $product->is_active;
-        });
+        $products = $supplier->productsSortByActive('desc');
 
-        $productTypes = \App\ProductType::whereHas('supplierProduct', function($query) use ($supplier) {
-            $query->where('supplier_id', $supplier->id);
-        })->get();
+        $activeProductTypes = $supplier->activeProductTypes();
 
-        return view('suppliers.show', compact(['supplier', 'products', 'productTypes']));
+        return view('suppliers.show', compact(['supplier', 'products', 'activeProductTypes']));
     }
 
     public function create()
@@ -87,7 +81,7 @@ class SuppliersController extends Controller
 
         flash('Proveedor actualizado con éxito', 'success');
 
-        return redirect(route('supplier.index'));
+        return go()->now();
     }
 
     public function destroy($id)
@@ -100,11 +94,22 @@ class SuppliersController extends Controller
         return back();
     }
 
+    public function search(Request $request)
+    {
+        $this->validate($request, ['query' => 'required']);
+
+        $suppliers = Supplier::search(
+            $request->get('query')
+        )->paginate(20);
+
+        return view('suppliers.index', compact('suppliers'));
+    }
+
     protected function validator(array $data)
     {
         $rules = [
             'name' => 'required',
-            'telephone' => 'numeric|min:10',
+            'telephone' => 'required|numeric|min:10',
             'email' => 'email',
             'image' => 'image|mimes:jpeg,png,jpg,gif'
         ];
