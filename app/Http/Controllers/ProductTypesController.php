@@ -39,8 +39,8 @@ class ProductTypesController extends Controller
         );
       }
 
-      if (empty($request->get('supplier_product_id'))) {
-        $request->merge(['supplier_product_id' => null]);
+      if (empty($request->get('product_id'))) {
+        $request->merge(['product_id' => null]);
       }
 
       if (empty($request->get('render_type_id'))) {
@@ -79,8 +79,8 @@ class ProductTypesController extends Controller
         $request->merge(['customizable' => false]);
       }
 
-      if (empty($request->get('supplier_product_id'))) {
-        $request->merge(['supplier_product_id' => null]);
+      if (empty($request->get('product_id'))) {
+        $request->merge(['product_id' => null]);
       }
 
       if (empty($request->get('render_type_id'))) {

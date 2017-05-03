@@ -5,13 +5,13 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Laracodes\Presenter\Traits\Presentable;
 
-class SupplierProduct extends Model
+class Product extends Model
 {
     use Presentable;
 
     protected $fillable = ['name', 'supplier_id', 'quantity', 'unity_id', 'price', 'iva', 'product_type_id'];
 
-    protected $presenter = 'App\Presenters\SupplierProductPresenter';
+    protected $presenter = 'App\Presenters\ProductPresenter';
 
     protected $appends = ['is_active', 'unit_cost', 'total'];
 
@@ -61,7 +61,7 @@ class SupplierProduct extends Model
 
     public function getIsActiveAttribute()
     {
-        return $this->belongsTo(ProductType::class, 'id', 'supplier_product_id')->count() > 0;
+        return $this->belongsTo(ProductType::class, 'id', 'product_id')->count() > 0;
     }
 
     /*****************

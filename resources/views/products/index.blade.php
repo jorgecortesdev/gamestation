@@ -12,7 +12,7 @@
                         <h3><i class="fa fa-truck"></i> Productos</h3>
                     </div>
                     <div class="title_right">
-                        <a href="{{ route('supplier_product.create') }}" class="btn btn-default pull-right">
+                        <a href="{{ route('products.create') }}" class="btn btn-default pull-right">
                             <i class="fa fa-plus-square"></i> Agregar
                         </a>
                     </div>
@@ -69,8 +69,8 @@
                                         <td class="text-right">{{ $product->present()->total }}</td>
                                         <td class="text-right">{{ $product->present()->unitCost }}</td>
                                         <td class="text-center">
-                                            <a class="btn btn-info btn-xs" href="{{ route('supplier_product.edit', [$product->id]) }}"><i class="fa fa-edit"></i> Editar</a>
-                                            <a class="btn btn-danger btn-xs" href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('supplier_product.destroy', [$product->id]) }}"> <i class="fa fa-trash"></i> Borrar</a>
+                                            <a class="btn btn-info btn-xs" href="{{ route('products.edit', [$product->id]) }}"><i class="fa fa-edit"></i> Editar</a>
+                                            <a class="btn btn-danger btn-xs" href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('products.destroy', [$product->id]) }}"> <i class="fa fa-trash"></i> Borrar</a>
                                         </td>
                                     </tr>
                                 @endforeach

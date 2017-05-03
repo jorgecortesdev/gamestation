@@ -5,28 +5,24 @@
     <!-- page content -->
     <div class="right_col" role="main">
 
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="page-title">
-                    <div class="title_left">
-                        <h3><i class="fa fa-calendar-o"></i> Eventos</h3>
-                    </div>
-                    <div class="title_right">
-                        <a href="{{ route('events.create') }}" class="btn btn-default pull-right">
-                            <i class="fa fa-plus-square"></i> Agregar
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('includes/page-header', [
+             'title_decoration' => '<i class="fa fa-calendar-o"></i> ',
+             'title'            => 'Eventos',
+             'search_route'     => 'events.index'
+        ])
 
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
-                    <div class="x_title">
-                        <h2>Listado de eventos</h2>
-                        <div class="clearfix"></div>
-                    </div>
+
+                    @include('includes.panel-header', [
+                        'title' => 'Listado de eventos',
+                        'buttons' => [
+                            'add'  => 'events.create',
+                            'back' => Request::input('query') ? 'events.index' : false,
+                        ]
+                    ])
+
                     <div class="x_content">
                         <p>Listado de eventos registrados en el sistema.</p>
                         <table class="table table-hover table-bordered table-striped">
@@ -47,9 +43,11 @@
                                     <tr>
                                         <td class="text-right">{{ $event->id }}</td>
                                         <td>
-                                            {{ $event->combo->name }}
-                                            <br>
-                                            <small>Creado {{ $event->present()->createdAt }}</small>
+                                            <a href="{{ route('events.show', [$event->id]) }}">
+                                                {{ $event->combo->name }}
+                                                <br>
+                                                <small>Creado {{ $event->present()->createdAt }}</small>
+                                            </a>
                                         </td>
                                         <td>
                                             <div class="combo-color combo-color-bg-{{ $event->combo->google_color_id }} center-block"></div>
@@ -59,8 +57,12 @@
                                         <td class="text-center">{{ $event->client->name }}</td>
                                         <td class="text-center">{{ $event->kid->name }}</td>
                                         <td class="text-center">
-                                            <a class="btn btn-info btn-xs" href="{{ route('events.edit', [$event->id]) }}"><i class="fa fa-edit"></i> Editar</a>
-                                            <a class="btn btn-danger btn-xs" href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('events.destroy', [$event->id]) }}"> <i class="fa fa-trash"></i> Borrar</a>
+                                            @include('includes.table-actions', [
+                                                'entity'        => $event,
+                                                'route_show'    => 'events.show',
+                                                'route_edit'    => 'events.edit',
+                                                'route_destroy' => 'events.destroy',
+                                            ])
                                         </td>
                                     </tr>
                                 @endforeach
@@ -70,11 +72,9 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                {{ $events->links() }}
-            </div>
-        </div>
+
+        @include('includes.pagination', ['collection' => $events])
+
     </div>
     <!-- /page content -->
 

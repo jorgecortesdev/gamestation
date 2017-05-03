@@ -15,6 +15,11 @@ class Combo extends Model
 
     protected $appends = ['total', 'contribution_margin', 'utility'];
 
+    public function configurableProductTypes()
+    {
+        return $this->productTypes()->where('configurable', true);
+    }
+
     /***********************
      * Appended attributes *
      ***********************/
@@ -22,7 +27,7 @@ class Combo extends Model
     public function getTotalAttribute()
     {
         return $this->productTypes->sum(function ($productType) {
-            $unitCost = $productType->supplierProduct->unit_cost;
+            $unitCost = $productType->product->unit_cost;
             $quantity = $productType->pivot->quantity;
             return  $unitCost * $quantity;
         });

@@ -1,3 +1,12 @@
+.bg-default{
+    background-color: #f7f7f7;
+}
+.blink {
+  animation: blinker 1s linear infinite;
+}
+@keyframes blinker {
+  50% { opacity: 0; }
+}
 .gs-inline-block {
     position: relative;
     display: inline-block;
@@ -9,6 +18,11 @@
     margin: 0 5px;
     width: 1px;
     vertical-align: top;
+}
+.vertical-hr-inline {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
 }
 .gs-title {
     display: flex;

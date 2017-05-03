@@ -52,7 +52,7 @@
     {!! Form::label('google_color_id', 'Color', ['class' => 'control-label col-md-2 col-sm-2 col-xs-12']) !!}
     <div class="col-md-5 col-sm-5 col-xs-12" id="combo-form-checkboxes">
         <div class="gs-inline-block combo-color combo-color-form combo-color-bg-8"><i class="fa fa-check" aria-hidden="true"></i></div>
-        <div class="vertical-hr gs-inline-block"></div>
+        <div class="vertical-hr vertical-hr-inline"></div>
         @foreach ($colors as $id => $color)
         <div class="gs-inline-block combo-color combo-color-form combo-color-bg-{{$id}}"><i class="fa fa-check" aria-hidden="true"></i></div>
         @endforeach

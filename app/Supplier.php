@@ -47,7 +47,7 @@ class Supplier extends Model
     public function activeProductTypes()
     {
         $id = $this->id;
-        $types = \App\ProductType::whereHas('supplierProduct', function($query) use ($id) {
+        $types = \App\ProductType::whereHas('product', function($query) use ($id) {
             $query->where('supplier_id', $id);
         })->get();
 
@@ -73,7 +73,7 @@ class Supplier extends Model
 
     public function products()
     {
-        return $this->hasMany(SupplierProduct::class)->with(['productType', 'unity']);
+        return $this->hasMany(Product::class)->with(['productType', 'unity']);
     }
 
     public function productTypes()

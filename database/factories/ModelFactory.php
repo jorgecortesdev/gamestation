@@ -42,7 +42,7 @@ $factory->define(App\ProductType::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\SupplierProduct::class, function (Faker\Generator $faker) {
+$factory->define(App\Product::class, function (Faker\Generator $faker) {
     return [
         'supplier_id' => 1,
         'name' => $faker->name,

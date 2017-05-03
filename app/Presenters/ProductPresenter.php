@@ -3,7 +3,7 @@ namespace App\Presenters;
 
 use Laracodes\Presenter\Presenter;
 
-class SupplierProductPresenter extends Presenter
+class ProductPresenter extends Presenter
 {
     public function quantity()
     {

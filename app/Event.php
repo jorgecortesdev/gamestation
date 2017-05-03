@@ -2,16 +2,17 @@
 
 namespace App;
 
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Laracodes\Presenter\Traits\Presentable;
 
 class Event extends Model
 {
-    use Presentable;
+    use Presentable, Searchable;
 
     protected $presenter = 'App\Presenters\EventPresenter';
 
-    protected $fillable = ['ocurrs_on', 'combo_id', 'client_id', 'kid_id'];
+    protected $fillable = ['occurs_on', 'combo_id', 'client_id', 'kid_id'];
 
     protected $dates = ['created_at', 'updated_at', 'occurs_on'];
 
@@ -28,6 +29,22 @@ class Event extends Model
     public function combo()
     {
         return $this->belongsTo(Combo::class);
+    }
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        return [
+            'id'          => $this->id,
+            'occurs_on'   => $this->occurs_on,
+            'client_name' => $this->client->name,
+            'kid_name'    => $this->kid->name,
+            'combo_name'  => $this->combo->name,
+        ];
     }
 
     public function getFormValue($name)

@@ -78,19 +78,19 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($combo->productTypes as $product)
-                                            <tr>
-                                                <td>{{ $product->name }}</td>
-                                                <td class="text-center">{{ $product->pivot->quantity }}</td>
-                                                <td class="text-center">{{ $product->supplierProduct->unity->name }}</td>
-                                                <td class="text-right">{{ $combo->present()->productTotal($product->id) }}</td>
-                                            </tr>
+                                        <tr>
+                                            <td>{{ $product->name }}</td>
+                                            <td class="text-center">{{ $product->pivot->quantity }}</td>
+                                            <td class="text-center">{{ $product->product->unity->name }}</td>
+                                            <td class="text-right">{{ $combo->present()->productTotal($product->id) }}</td>
+                                        </tr>
                                         @endforeach
-                                            <tr>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td>&nbsp;</td>
-                                                <td class="text-right bg-warning"><strong>{{ $combo->present()->total }}</strong></td>
-                                            </tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                            <td class="text-right bg-warning"><strong>{{ $combo->present()->total }}</strong></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

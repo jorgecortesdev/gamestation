@@ -2,19 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Kid;
-use App\Combo;
 use App\Event;
-use Validator;
-use App\Client;
-use App\ProductType;
 use App\Repositories\Events;
 use Illuminate\Http\Request;
-use App\Http\Requests\SaveKid;
-use App\Library\Google\Calendar;
-use App\Http\Requests\SaveClient;
-use App\Http\Requests\EventWizardStep1;
-use App\Http\Requests\EventWizardStep2;
+use App\Http\Requests\SaveEvent;
 
 class EventsController extends Controller
 {
@@ -33,15 +24,87 @@ class EventsController extends Controller
         $this->events = $events;
     }
 
-    public function index(Request $request, Calendar $gcalendar)
+    public function index(Request $request)
     {
-        // $start = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', '2017-04-21 18:00:00', 'America/Hermosillo')->toIso8601String();
-        // $end = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', '2017-04-21 21:00:00', 'America/Hermosillo')->toIso8601String();
-        // dd($gcalendar->freebusy($start, $end));
+        go()->after();
 
-        $events = $this->events->latest();
+        if ($request->input('query')) {
+            $events = $this->events->search($request->input('query'));
+        } else {
+            $events = $this->events->latest();
+        }
 
         return view('events.index', compact('events'));
+    }
+
+    public function show(Event $event)
+    {
+        go()->after();
+
+        // obtener productos configurables del paquete
+        // |
+        // +- sacar el paquete del evento X
+        // +- sacar los tipos de productos configurables del paquete X
+        $comboProductTypes = $event->combo->configurableProductTypes()->get();
+
+        // +- sacar todos los productos de ese tipo que pertenecen al proveedor activo
+        // +- remover el producto activo
+        $products = $comboProductTypes->map(function ($productType) {
+            $productType->load('product');
+            $activeProductId = $productType->product->id;
+            $productType->product->load('supplier.products');
+            return $productType->product->supplier->products->filter(function ($product) use ($activeProductId) {
+                return $product->id != $activeProductId;
+            });
+        });
+        // dd($products);
+
+        // obtener los productos extras del evento
+        // configurar los productos extras del evento
+
+        $statements = [
+            ['concept' => 'Paquete Plus', 'price' => '$4,500', 'quantity' => 1],
+            ['concept' => 'Cargo por liberar horario', 'price' => '$200', 'quantity' => 1],
+            ['concept' => 'Cargo por fin de semana', 'price' => '$300', 'quantity' => 1],
+            ['concept' => 'Aguas Frescas (10 lts.)', 'price' => '$230', 'quantity' => 1],
+            ['concept' => 'Servicio de palomitas', 'price' => '$200', 'quantity' => 1],
+            ['concept' => 'Adulto Extra', 'price' => '$50', 'quantity' => 5],
+            ['concept' => 'Niño Extra', 'price' => '$80', 'quantity' => 10]
+
+        ];
+
+        $products = [
+            [
+                'label' => 'Aguas Frescas',
+                'products' => [
+                    ['name' => 'Horchata', 'checked' => true],
+                    ['name' => 'Piña', 'checked' => false],
+                    ['name' => 'Limonada', 'checked' => false],
+                    ['name' => 'Jamaica', 'checked' => true],
+                ]
+            ],
+            [
+                'label' => 'Pizza 1',
+                'products' => [
+                    ['name' => 'Jamón', 'checked' => true],
+                    ['name' => 'Peperoni', 'checked' => false],
+                ]
+            ],
+            [
+                'label' => 'Pizza 2',
+                'products' => [
+                    ['name' => 'Jamón', 'checked' => false],
+                    ['name' => 'Peperoni', 'checked' => true],
+                ]
+            ],
+        ];
+
+        $properties = [
+            ['label' => 'Hora de la Pizza', 'value' => '2:30 pm'],
+            ['label' => 'Personaje', 'value' => 'Mario Bros']
+        ];
+
+        return view('events.show', compact('event', 'products', 'statements', 'properties'));
     }
 
     public function create()
@@ -49,21 +112,15 @@ class EventsController extends Controller
         return view('events.create');
     }
 
-    public function store(Request $request)
+    public function store(SaveEvent $request)
     {
-        $validator = $this->validator($request->all());
-
-        if ($validator->fails()) {
-            $this->throwValidationException(
-                $request, $validator
-            );
-        }
-
-        $this->events->save($request->all());
+        $this->events->save($request);
 
         flash('Evento agregado con éxito', 'success');
 
-        return redirect(route('events.index'));
+        $event = $this->events->latest(1)->first();
+
+        return redirect(route('events.show', [$event->id]));
     }
 
     public function edit(Event $event)
@@ -71,21 +128,13 @@ class EventsController extends Controller
         return view('events.edit', compact('event'));
     }
 
-    public function update(Request $request, Event $event)
+    public function update(SaveEvent $request, Event $event)
     {
-        $validator = $this->validator($request->all());
-
-        if ($validator->fails()) {
-            $this->throwValidationException(
-                $request, $validator
-            );
-        }
-
-        $this->events->save($request->all(), $event);
+        $this->events->save($request, $event);
 
         flash('Evento actualizado con éxito', 'success');
 
-        return redirect(route('events.index'));
+        return go()->now();
     }
 
     public function destroy($id)
@@ -95,34 +144,5 @@ class EventsController extends Controller
         flash('Evento borrado con éxito', 'success');
 
         return back();
-    }
-
-    protected function validator(array $data)
-    {
-        $rules = [
-            'eventDate' => 'required|date',
-            'combo_id' => 'required|numeric|min:1',
-            'clientIdOrName' => 'required',
-            'clientAddress' => 'required',
-            'clientTelephone' => 'required|numeric|min:10',
-            'clientEmail' => 'email',
-            'kidName' => 'required',
-            'kidBirthday' => 'required|date',
-            'kidGender' => 'required|numeric',
-        ];
-
-        $messages = [
-            'eventDate.required' => 'El campo es requerido.',
-            'combo_id.required' => 'El campo es requerido.',
-            'clientIdOrName.required' => 'El campo es requerido.',
-            'clientAddress.required' => 'El campo es requerido.',
-            'clientTelephone.required' => 'El campo es requerido.',
-            'clientEmail.email' => 'Debe ser un correo válido.',
-            'kidName.required' => 'El campo es requerido.',
-            'kidBirthday.required' => 'El campo es requerido.',
-            'kidGender.required' => 'El campo es requerido.',
-        ];
-
-        return Validator::make($data, $rules, $messages);
     }
 }

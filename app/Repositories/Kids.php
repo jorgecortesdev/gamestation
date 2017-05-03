@@ -4,12 +4,9 @@ namespace App\Repositories;
 
 use App\Kid;
 
-class Kids
+class Kids extends Repository
 {
-    public function latest($paginate = 20)
-    {
-        return Kid::latest('id')->paginate($paginate);
-    }
+    protected $model = Kid::class;
 
     public function save(array $data, Kid $kid = null)
     {
@@ -28,11 +25,5 @@ class Kids
         $kid->save();
 
         $kid->clients()->sync([$client->id]);
-    }
-
-    public function delete($id)
-    {
-        $kid = Kid::findOrFail($id);
-        $kid->delete();
     }
 }

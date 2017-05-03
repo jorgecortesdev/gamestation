@@ -39,9 +39,10 @@
 
                             @include('forms.events.kid')
 
+                            @include('forms.events.configurables')
+
 {{--                             @include('forms.events.extras')
 
-                            @include('forms.events.configurables')
 
                             @include('forms.events.properties')
  --}}

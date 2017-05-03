@@ -4,27 +4,18 @@ namespace App\Repositories;
 
 use App\Combo;
 
-class Combos
+class Combos extends Repository
 {
-    public function latest($paginate = 20)
-    {
-        return Combo::latest('id')->paginate($paginate);
-    }
+    protected $model = Combo::class;
 
     public function calculateProductCost($comboId, $productTypeId)
     {
         $combo = Combo::find($comboId);
         $product = $combo->productTypes()
-            ->with('supplierProduct')
+            ->with('product')
             ->where('product_types.id', $productTypeId)
             ->first();
 
-        return $product->supplierProduct->unit_cost * $product->pivot->quantity;
-    }
-
-    public function delete($id)
-    {
-        $combo = Combo::findOrFail($id);
-        $combo->delete();
+        return $product->product->unit_cost * $product->pivot->quantity;
     }
 }

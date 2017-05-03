@@ -15,45 +15,111 @@
     padding: 5px;
     color: #000000;
 }
-.combo-color-bg-1 { background-color: rgb(164, 189, 252); }
-.combo-color-bg-1.transparent { background-color: rgba(164, 189, 252, .1); }
-.combo-color-bg-2 { background-color: rgb(122, 231, 191); }
-.combo-color-bg-2.transparent { background-color: rgba(122, 231, 191, .1); }
-.combo-color-bg-3 { background-color: rgb(219, 173, 255); }
-.combo-color-bg-3.transparent { background-color: rgba(219, 173, 255, .1); }
-.combo-color-bg-4 { background-color: rgb(255, 136, 124); }
-.combo-color-bg-4.transparent { background-color: rgba(255, 136, 124, .1); }
-.combo-color-bg-5 { background-color: rgb(251, 215, 91); }
-.combo-color-bg-5.transparent { background-color: rgba(251, 215, 91, .1); }
-.combo-color-bg-6 { background-color: rgb(255, 184, 120); }
-.combo-color-bg-6.transparent { background-color: rgba(255, 184, 120, .1); }
-.combo-color-bg-7 { background-color: rgb(70, 214, 219); }
-.combo-color-bg-7.transparent { background-color: rgba(70, 214, 219, .1); }
-.combo-color-bg-8 { background-color: rgb(225, 225, 225); }
-.combo-color-bg-8.transparent { background-color: rgba(225, 225, 225, .5); }
-.combo-color-bg-9 { background-color: rgb(84, 132, 237); }
-.combo-color-bg-9.transparent { background-color: rgba(84, 132, 237, .1); }
-.combo-color-bg-10 { background-color: rgb(81, 183, 73); }
-.combo-color-bg-10.transparent { background-color: rgba(81, 183, 73, .1); }
-.combo-color-bg-11 { background-color: rgb(220, 33, 39); }
-.combo-color-bg-11.transparent { background-color: rgba(220, 33, 39, .1); }
 
-.btn-color-1 { color: #D5E1FE; border-color: #7C9FF7; background-color: #A4BDFC; }
-.btn-color-2 { color: #E0FDF2; border-color: #53D5A4; background-color: #7AE7BE; }
-.btn-color-3 { color: #F5E7FF; border-color: #C880FF; background-color: #DBADFF; }
-.btn-color-4 { color: #DD5C4F; border-color: #FFABA2; background-color: #FF887C; }
-.btn-color-5 { color: #BB9617; border-color: #E3BC35; background-color: #FBD75B; }
-.btn-color-6 { color: #FFE1C6; border-color: #DE914C; background-color: #FFB878; }
-.btn-color-7 { color: #A2EFF3; border-color: #24C5CC; background-color: #46D6DB; }
-.btn-color-8 { color: #FFFFFF; border-color: #B4B4B4; background-color: #E1E1E1; }
-.btn-color-9 { color: #A8C2F8; border-color: #316AE4; background-color: #5484ED; }
-.btn-color-10 { color: #A6E5A3; border-color: #31A02B; background-color: #4EB749; }
-.btn-color-11 { color: #FD797C; border-color: #AF0F13; background-color: #DC2126; }
+.combo-color-bg-1 {
+    @include combo-color(
+        $color-combo-1,
+        $color-combo-1-lighter,
+        $color-combo-1-text,
+        $color-combo-1-border
+    );
+}
 
-.btn-color.active {
-    background-image: none;
-    outline: 0;
-    -webkit-box-shadow: inset 0 5px 10px rgba(0,0,0,.350);
-    box-shadow: inset 0 5px 10px rgba(0,0,0,.350);
-    color: #FFFFFF;
+.combo-color-bg-2 {
+    @include combo-color(
+        $color-combo-2,
+        $color-combo-2-lighter,
+        $color-combo-2-text,
+        $color-combo-2-border
+    );
+}
+
+.combo-color-bg-3 {
+    @include combo-color(
+        $color-combo-3,
+        $color-combo-3-lighter,
+        $color-combo-3-text,
+        $color-combo-3-border
+    );
+}
+
+.combo-color-bg-4 {
+    @include combo-color(
+        $color-combo-4,
+        $color-combo-4-lighter,
+        $color-combo-4-text,
+        $color-combo-4-border
+    );
+}
+
+.combo-color-bg-5 {
+    @include combo-color(
+        $color-combo-5,
+        $color-combo-5-lighter,
+        $color-combo-5-text,
+        $color-combo-5-border
+    );
+}
+
+.combo-color-bg-6 {
+    @include combo-color(
+        $color-combo-6,
+        $color-combo-6-lighter,
+        $color-combo-6-text,
+        $color-combo-6-border
+    );
+}
+
+.combo-color-bg-7 {
+    @include combo-color(
+        $color-combo-7,
+        $color-combo-7-lighter,
+        $color-combo-7-text,
+        $color-combo-7-border
+    );
+}
+
+.combo-color-bg-8 {
+    @include combo-color(
+        $color-combo-8,
+        $color-combo-8-lighter,
+        $color-combo-8-text,
+        $color-combo-8-border
+    );
+}
+
+.combo-color-bg-8 {
+    @include combo-color(
+        $color-combo-8,
+        $color-combo-8-lighter,
+        $color-combo-8-text,
+        $color-combo-8-border
+    );
+}
+
+.combo-color-bg-9 {
+    @include combo-color(
+        $color-combo-9,
+        $color-combo-9-lighter,
+        $color-combo-9-text,
+        $color-combo-9-border
+    );
+}
+
+.combo-color-bg-10 {
+    @include combo-color(
+        $color-combo-10,
+        $color-combo-10-lighter,
+        $color-combo-10-text,
+        $color-combo-10-border
+    );
+}
+
+.combo-color-bg-11 {
+    @include combo-color(
+        $color-combo-11,
+        $color-combo-11-lighter,
+        $color-combo-11-text,
+        $color-combo-11-border
+    );
 }

@@ -8,18 +8,18 @@
     @endif
 </div>
 
-<div class="item form-group{{ $errors->has('supplier_product_id') ? ' bad' : '' }}">
-    {!! Form::label('supplier_product_id', 'Producto activo', ['class' => 'control-label col-md-2 col-sm-2 col-xs-12']) !!}
+<div class="item form-group{{ $errors->has('product_id') ? ' bad' : '' }}">
+    {!! Form::label('product_id', 'Producto activo', ['class' => 'control-label col-md-2 col-sm-2 col-xs-12']) !!}
     <div class="col-md-3 col-sm-3 col-xs-12">
         {!! Form::select(
-            'supplier_product_id',
+            'product_id',
             $products,
             null,
             ['class' => 'form-control', 'placeholder' => '-- Seleccionar --', 'id' => 'products'])
         !!}
     </div>
-    @if ($errors->has('supplier_product_id'))
-        <div class="alert gs-alert">{{ $errors->first('supplier_product_id') }}</div>
+    @if ($errors->has('product_id'))
+        <div class="alert gs-alert">{{ $errors->first('product_id') }}</div>
     @endif
 </div>
 

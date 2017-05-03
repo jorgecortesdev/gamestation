@@ -1,14 +1,14 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Unity;
-use Validator;
-use App\Supplier;
+use App\Product;
 use App\ProductType;
-use App\SupplierProduct;
+use App\Supplier;
+use App\Unity;
 use Illuminate\Http\Request;
+use Validator;
 
-class SupplierProductsController extends Controller
+class ProductsController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -22,16 +22,16 @@ class SupplierProductsController extends Controller
 
     public function index()
     {
-        $products = SupplierProduct::with(['supplier', 'unity', 'productType'])->latest('id')->paginate(20);
-        return view('supplierproducts.index', compact('products'));
+        $products = Product::with(['supplier', 'unity', 'productType'])->latest('id')->paginate(20);
+        return view('products.index', compact('products'));
     }
 
     public function create()
     {
         $suppliers = Supplier::pluck('name', 'id');
         $unities   = Unity::pluck('name', 'id');
-        $types = ProductType::pluck('name', 'id');
-        return view('supplierproducts.create', compact(['suppliers', 'unities', 'types']));
+        $types     = ProductType::pluck('name', 'id');
+        return view('products.create', compact(['suppliers', 'unities', 'types']));
     }
 
     public function store(Request $request)
@@ -44,24 +44,24 @@ class SupplierProductsController extends Controller
             );
         }
 
-        $product = new SupplierProduct($request->all());
+        $product = new Product($request->all());
         $product->save();
         $product->saveImage($request->image);
 
         flash('Producto agregado con éxito', 'success');
 
-        return redirect(route('supplier_product.index'));
+        return redirect(route('products.index'));
     }
 
-    public function edit(SupplierProduct $supplier_product)
+    public function edit(Product $product)
     {
         $suppliers = Supplier::pluck('name', 'id');
         $unities   = Unity::pluck('name', 'id');
-        $types = ProductType::pluck('name', 'id');
-        return view('supplierproducts.edit', compact(['supplier_product', 'suppliers', 'unities', 'types']));
+        $types     = ProductType::pluck('name', 'id');
+        return view('products.edit', compact(['product', 'suppliers', 'unities', 'types']));
     }
 
-    public function update(Request $request, SupplierProduct $supplier_product)
+    public function update(Request $request, Product $product)
     {
         $validator = $this->validator($request->all());
 
@@ -71,8 +71,8 @@ class SupplierProductsController extends Controller
             );
         }
 
-        $supplier_product->update($request->all());
-        $supplier_product->saveImage($request->image);
+        $product->update($request->all());
+        $product->saveImage($request->image);
 
         flash('Producto actualizado con éxito', 'success');
 
@@ -85,7 +85,7 @@ class SupplierProductsController extends Controller
 
     public function destroy($id)
     {
-        $product = SupplierProduct::find($id);
+        $product = Product::find($id);
         $product->delete();
 
         flash('Producto borrado con éxito', 'success');

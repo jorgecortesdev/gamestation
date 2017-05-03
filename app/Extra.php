@@ -22,7 +22,7 @@ class Extra extends Model
     public function getTotalAttribute()
     {
         return $this->productTypes->sum(function ($productType) {
-            $unitCost = $productType->supplierProduct->unit_cost;
+            $unitCost = $productType->product->unit_cost;
             $quantity = $productType->pivot->quantity;
             return  $unitCost * $quantity;
         });
@@ -46,7 +46,7 @@ class Extra extends Model
     {
         return $this->belongsToMany(ProductType::class)
             ->withPivot('quantity')
-            ->with('supplierProduct.unity');
+            ->with('product.unity');
     }
 
 }

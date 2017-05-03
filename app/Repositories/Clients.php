@@ -4,12 +4,9 @@ namespace App\Repositories;
 
 use App\Client;
 
-class Clients
+class Clients extends Repository
 {
-    public function latest($paginate = 20)
-    {
-        return Client::latest('id')->paginate($paginate);
-    }
+    protected $model = Client::class;
 
     public function save(array $data, Client $client = null)
     {
@@ -61,11 +58,5 @@ class Clients
         }
 
         return $data;
-    }
-
-    public function delete($id)
-    {
-        $client = Client::findOrFail($id);
-        $client->delete();
     }
 }

@@ -138,13 +138,13 @@ class CombosController extends Controller
     {
         $combo = Combo::with(['productTypes' => function($query) {
                 $query->where('configurable', true);
-                $query->whereNotNull('supplier_product_id');
+                $query->whereNotNull('product_id');
             }])
             ->find($request->combo_id);
 
         $products = $combo->productTypes->map(function ($productType) {
-            $activeProductId = $productType->supplier_product_id;
-            $availableProducts = $productType->supplierProduct->supplier->products->filter(function ($product) use ($activeProductId) {
+            $activeProductId = $productType->product_id;
+            $availableProducts = $productType->product->supplier->products->filter(function ($product) use ($activeProductId) {
                 return $product->id != $activeProductId;
             })->pluck('name', 'id')->toArray();
             return collect([

@@ -8,15 +8,15 @@ class ProductTypePresenter extends Presenter
 
     public function activeProduct()
     {
-        return $this->model->supplier_product_id
-            ? $this->model->supplierProduct->name
+        return $this->model->product_id
+            ? $this->model->product->name
             : $this->renderBan();
     }
 
     public function activeProductSupplier()
     {
-        return $this->model->supplier_product_id
-            ? $this->model->supplierProduct->supplier->name
+        return $this->model->product_id
+            ? $this->model->product->supplier->name
             : $this->renderBan();
     }
 

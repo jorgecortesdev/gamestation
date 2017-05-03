@@ -51,7 +51,7 @@
 <div class="item form-group{{ $errors->has('price') ? ' bad' : '' }}">
     {!! Form::label('price', 'Precio', ['class' => 'control-label col-md-2 col-sm-2 col-xs-12']) !!}
     <div class="col-md-1 col-sm-1 col-xs-12">
-        {!! Form::text('price', isset($supplier_product) ? null : '0.00', ['class' => 'form-control']) !!}
+        {!! Form::text('price', isset($product) ? null : '0.00', ['class' => 'form-control']) !!}
     </div>
     @if ($errors->has('price'))
         <div class="alert gs-alert">{{ $errors->first('price') }}</div>
@@ -61,7 +61,7 @@
 <div class="item form-group{{ $errors->has('iva') ? ' bad' : '' }}">
     {!! Form::label('iva', 'IVA', ['class' => 'control-label col-md-2 col-sm-2 col-xs-12']) !!}
     <div class="col-md-1 col-sm-1 col-xs-12">
-        {!! Form::text('iva', isset($supplier_product) ? null : '0.00', ['class' => 'form-control']) !!}
+        {!! Form::text('iva', isset($product) ? null : '0.00', ['class' => 'form-control']) !!}
     </div>
     @if ($errors->has('iva'))
         <div class="alert gs-alert">{{ $errors->first('iva') }}</div>

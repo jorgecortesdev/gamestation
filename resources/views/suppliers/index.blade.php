@@ -8,7 +8,7 @@
         @include('includes/page-header', [
              'title_decoration' => '<i class="fa fa-truck"></i> ',
              'title'            => 'Proveedores',
-             'search_route'     => 'suppliers.search'
+             'search_route'     => 'supplier.index'
         ])
 
         <div class="row">

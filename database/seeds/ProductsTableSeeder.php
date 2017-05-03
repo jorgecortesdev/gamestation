@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class SupplierProductsTableSeeder extends Seeder
+class ProductsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -39,7 +39,7 @@ class SupplierProductsTableSeeder extends Seeder
             ['name' => 'Pepperoni', 'price' => 230.17, 'iva' => 36.82, 'supplier_id' => 6, 'quantity' => 1, 'unity_id' => 8, 'product_type_id' => 7],
         ];
 
-        $products = factory(App\SupplierProduct::class, count($data))->make();
+        $products = factory(App\Product::class, count($data))->make();
 
         foreach ($products as $key => $product) {
             $product->name            = $data[$key]['name'];

@@ -27,7 +27,7 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="btn-group" data-toggle="buttons">
                 @foreach ($combos as $combo)
-                <label class="btn btn-color btn-color-{{ $combo->google_color_id }}{{ old('combo_id') == $combo->id || isset($event) && $event->combo_id == $combo->id ? ' active' : '' }}">
+                <label class="btn combo-color-bg-{{ $combo->google_color_id }} text-color btn-color{{ old('combo_id') == $combo->id || isset($event) && $event->combo_id == $combo->id ? ' active' : '' }}">
                     {!! Form::radio('combo_id', $combo->id, null) !!} &nbsp; {{ $combo->name }} &nbsp;
                 </label>
                 @endforeach

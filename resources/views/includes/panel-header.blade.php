@@ -1,6 +1,6 @@
 <div class="x_title">
 
-    <h2>{{ isset($title) ? $title : 'NO TITLE' }}</h2>
+    <h2>{!! isset($title_decoration) ? $title_decoration : '' !!}{{ isset($title) ? $title : 'NO TITLE' }}</h2>
 
     <div class="nav navbar-right btn-group">
         @if (! empty($buttons['back']))

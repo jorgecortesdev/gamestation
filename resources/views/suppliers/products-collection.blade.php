@@ -42,8 +42,8 @@
                     <td class="text-center">
                         @include('includes.table-actions', [
                             'entity'        => $product,
-                            'route_edit'    => 'supplier_product.edit',
-                            'route_destroy' => 'supplier_product.destroy',
+                            'route_edit'    => 'products.edit',
+                            'route_destroy' => 'products.destroy',
                         ])
                     </td>
                 </tr>

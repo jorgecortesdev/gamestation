@@ -9,7 +9,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>Agregar producto</h3>
+                        <h3>Editar producto</h3>
                     </div>
                 </div>
             </div>
@@ -24,8 +24,8 @@
                     </div>
                     <div class="x_content">
                         <br>
-                        {!! Form::open(['route' => 'supplier_product.store', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal form-label-left']) !!}
-                            @include('forms.supplier_product')
+                        {!! Form::model($product, ['route' => ['products.update', $product->id], 'method' => 'PATCH', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal form-label-left']) !!}
+                            @include('forms.product', ['sendButtonText' => 'Actualizar'])
                         {!! Form::close() !!}
                     </div>
                 </div>

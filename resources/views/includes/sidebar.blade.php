@@ -63,7 +63,7 @@
                     <li><a><i class="fa fa-truck"></i> Proveedores <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{ route('supplier.index') }}">Listado</a></li>
-                            <li><a href="{{ route('supplier_product.index') }}">Productos</a></li>
+                            <li><a href="{{ route('products.index') }}">Productos</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-list-ul"></i> Catálogos <span class="fa fa-chevron-down"></span></a>

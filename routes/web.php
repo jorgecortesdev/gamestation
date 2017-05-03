@@ -18,7 +18,6 @@ Route::get('/', 'IndexController@index');
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('supplier/search', 'SuppliersController@search')->name('suppliers.search');
 Route::resource('supplier', 'SuppliersController');
 
 Route::resource('user', 'UsersController');
@@ -29,7 +28,7 @@ Route::resource('unity', 'UnitiesController');
 
 Route::resource('product_type', 'ProductTypesController');
 
-Route::resource('supplier_product', 'SupplierProductsController');
+Route::resource('products', 'ProductsController');
 
 Route::resource('extra', 'ExtrasController');
 

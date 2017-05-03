@@ -19,10 +19,16 @@ class SuppliersController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
         go()->after();
-        $suppliers = Supplier::paginate(20);
+
+        if ($request->input('query')) {
+            $suppliers = Supplier::search($request->input('query'))->paginate(20);
+        } else {
+            $suppliers = Supplier::paginate(20);
+        }
+
         return view('suppliers.index', compact('suppliers'));
     }
 
