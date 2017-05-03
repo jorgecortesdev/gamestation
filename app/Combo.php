@@ -49,7 +49,8 @@ class Combo extends Model
 
     public function productTypes()
     {
-        return $this->belongsToMany(ProductType::class)->withPivot('quantity');
+        return $this->morphToMany(ProductType::class, 'product_typeable')
+            ->withPivot('quantity');
     }
 
     public function properties()

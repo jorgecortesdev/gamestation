@@ -44,7 +44,7 @@ class Extra extends Model
 
     public function productTypes()
     {
-        return $this->belongsToMany(ProductType::class)
+        return $this->morphToMany(ProductType::class, 'product_typeable')
             ->withPivot('quantity')
             ->with('product.unity');
     }

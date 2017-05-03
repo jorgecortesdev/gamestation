@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateComboProductTypeTable extends Migration
+class CreateProductTypeablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateComboProductTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('combo_product_type', function (Blueprint $table) {
-            $table->increments('id');
-
-            $table->integer('combo_id')->default(0)->unsigned()->index();
-            $table->foreign('combo_id')->references('id')->on('combos')->onDelete('cascade');
-
-            $table->integer('product_type_id')->default(0)->unsigned()->index();
+        Schema::create('product_typeables', function (Blueprint $table) {
+            $table->integer('product_type_id')->unsigned()->index();
             $table->foreign('product_type_id')->references('id')->on('product_types')->onDelete('cascade');
+
+            $table->integer('product_typeable_id')->unsigned()->index();
+            $table->string('product_typeable_type');
 
             $table->integer('quantity')->default(1)->unsigned()->index();
         });
@@ -33,6 +31,6 @@ class CreateComboProductTypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('combo_product_type');
+        Schema::drop('product_typeables');
     }
 }

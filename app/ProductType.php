@@ -31,4 +31,14 @@ class ProductType extends Model
     {
         return $this->belongsTo(RenderType::class);
     }
+
+    public function combos()
+    {
+        return $this->morphedByMany(Combo::class, 'product_typeable');
+    }
+
+    public function extras()
+    {
+        return $this->morphedByMany(Extra::class, 'product_typeable');
+    }
 }
