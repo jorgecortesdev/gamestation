@@ -22,6 +22,12 @@ class ActivateProductsSeeder extends Seeder
             ['id' => 10, 'product_id' => 18, 'render_type_id' => null],
             ['id' => 11, 'product_id' => 14, 'render_type_id' => null],
             ['id' => 12, 'product_id' => 11, 'render_type_id' => null],
+            ['id' => 13, 'product_id' => 12, 'render_type_id' => null],
+            ['id' => 14, 'product_id' => 19, 'render_type_id' => null],
+            ['id' => 15, 'product_id' => 16, 'render_type_id' => null],
+            ['id' => 16, 'product_id' => 17, 'render_type_id' => null],
+            ['id' => 18, 'product_id' => 15, 'render_type_id' => null],
+            ['id' => 19, 'product_id' => 13, 'render_type_id' => null],
         ];
 
         foreach($types as $type) {

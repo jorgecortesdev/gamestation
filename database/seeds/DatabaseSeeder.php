@@ -25,5 +25,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ComboPropertyTableSeeder::class);
         $this->call(ActivateProductsSeeder::class);
         $this->call(EventsTableSeeder::class);
+        $this->call(ComboProductTableSeeder::class);
     }
 }
