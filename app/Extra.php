@@ -23,7 +23,7 @@ class Extra extends Model
     {
         return $this->productTypes->sum(function ($productType) {
             $unitCost = $productType->product->unit_cost;
-            $quantity = $productType->pivot->quantity;
+            $quantity = $productType->quantity * $productType->pivot->quantity;
             return  $unitCost * $quantity;
         });
     }
@@ -49,4 +49,13 @@ class Extra extends Model
             ->with('product.unity');
     }
 
+    public function configurables()
+    {
+        return $this->productTypes()->where('configurable', true);
+    }
+
+    public function configurations()
+    {
+        return $this->morphToMany(Configuration::class, 'configurable');
+    }
 }

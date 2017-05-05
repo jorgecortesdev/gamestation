@@ -9,11 +9,16 @@ class Events extends Repository
 {
     protected $model = Event::class;
 
-    protected $eventTasks = [
-        Tasks\Events\BuildEvent::class,
-        Tasks\Events\BuildCombo::class,
-        Tasks\Events\BuildKid::class,
-        Tasks\Events\BuildClient::class,
+    protected $tasks = [
+        'before' => [
+            Tasks\Events\BuildEvent::class,
+            Tasks\Events\BuildCombo::class,
+            Tasks\Events\BuildKid::class,
+            Tasks\Events\BuildClient::class,
+        ],
+        'after' => [
+            Tasks\Events\BuildConfigurations::class
+        ]
     ];
 
     public function save(Request $request, Event $event = null)
@@ -22,12 +27,11 @@ class Events extends Repository
             $this->model = $event;
         }
 
-        // TODO: Sync with google calendar
-        foreach ($this->eventTasks as $task) {
-            (new $task($this->model))->handle($request);
-        }
+        $this->beforeSavingTasks($request);
 
-        return $this->model->save();
+        $this->model->save();
+
+        $this->afterSavingTasks($request);
     }
 
     /**

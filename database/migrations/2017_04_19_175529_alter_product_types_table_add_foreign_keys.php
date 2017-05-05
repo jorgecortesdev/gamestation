@@ -17,10 +17,6 @@ class AlterProductTypesTableAddForeignKeys extends Migration
             $table->foreign('product_id')
                   ->references('id')
                   ->on('products');
-
-            $table->foreign('render_type_id')
-                  ->references('id')
-                  ->on('render_types');
         });
     }
 
@@ -33,7 +29,6 @@ class AlterProductTypesTableAddForeignKeys extends Migration
     {
         Schema::table('product_types', function (Blueprint $table) {
             $table->dropForeign(['product_id']);
-            $table->dropForeign(['render_type_id']);
         });
     }
 }

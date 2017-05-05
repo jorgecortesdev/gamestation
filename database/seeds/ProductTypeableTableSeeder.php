@@ -26,7 +26,7 @@ class ProductTypeableTableSeeder extends Seeder
         $this->syncEntities($combos, $basicProducts);
 
         $primeProducts = [
-            3  => ['quantity' => 20],
+            3  => ['quantity' => 2],
             6  => ['quantity' => 2],
             7  => ['quantity' => 2],
             8  => ['quantity' => 35],
@@ -42,7 +42,7 @@ class ProductTypeableTableSeeder extends Seeder
 
         $this->syncEntities($combos, $primeProducts);
 
-        $extra = Extra::find(3);
+        $extra = Extra::find(5);
 
         $cornpopsProducts = [
             12 => ['quantity' => 1],
@@ -52,6 +52,22 @@ class ProductTypeableTableSeeder extends Seeder
         ];
 
         $this->syncEntity($extra, $cornpopsProducts);
+
+        $extra = Extra::find(3);
+
+        $fruitFlavoredWaterProduct = [
+            3 => ['quantity' => 1]
+        ];
+
+        $this->syncEntity($extra, $fruitFlavoredWaterProduct);
+
+        $extra = Extra::find(4);
+
+        $pizzaProduct = [
+            7 => ['quantity' => 1]
+        ];
+
+        $this->syncEntity($extra, $pizzaProduct);
     }
 
     protected function syncEntities($entities, $productTypes)

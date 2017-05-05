@@ -31,6 +31,11 @@ class Event extends Model
         return $this->belongsTo(Combo::class);
     }
 
+    public function extras()
+    {
+        return $this->belongsToMany(Extra::class)->withPivot('quantity');
+    }
+
     /**
      * Get the indexable data array for the model.
      *

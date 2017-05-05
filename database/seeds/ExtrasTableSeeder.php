@@ -15,8 +15,9 @@ class ExtrasTableSeeder extends Seeder
         $extras = [
             ['name' => 'Niño extra', 'price' => 80],
             ['name' => 'Adulto extra', 'price' => 50],
-            ['name' => 'Servicio de palomitas', 'price' => 200],
             ['name' => 'Aguas Frescas (10 lts.)', 'price' => 230],
+            ['name' => 'Pizza Titán', 'price' => 380],
+            ['name' => 'Palomitas ilimitadas', 'price' => 200],
             ['name' => 'Cargo por fin de semana', 'price' => 300],
             ['name' => 'Cargo por liberar horario', 'price' => 200],
         ];

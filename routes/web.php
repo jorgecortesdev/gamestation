@@ -57,3 +57,6 @@ Route::get('kid/find/{kid_id}', 'KidsController@find');
 Route::resource('events', 'EventsController');
 
 Route::resource('properties', 'PropertiesController');
+
+Route::get('/configurations/{configuration}', 'ConfigurationsController@index')->name('configurations.index');
+Route::match(['put', 'patch'], '/configurations/{configuration}', 'ConfigurationsController@update')->name('configurations.update');

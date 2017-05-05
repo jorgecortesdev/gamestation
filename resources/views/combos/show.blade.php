@@ -71,21 +71,24 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center">Nombre</th>
+                                            <th class="text-center">Tipo</th>
                                             <th class="text-center">Cantidad</th>
                                             <th class="text-center">Unidad</th>
                                             <th class="text-center">Costo</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($combo->productTypes as $product)
+                                        @foreach ($combo->productTypes as $type)
                                         <tr>
-                                            <td>{{ $product->name }}</td>
-                                            <td class="text-center">{{ $product->pivot->quantity }}</td>
-                                            <td class="text-center">{{ $product->product->unity->name }}</td>
-                                            <td class="text-right">{{ $combo->present()->productTotal($product->id) }}</td>
+                                            <td>{{ $type->product->name }}</td>
+                                            <td class="text-center">{{ $type->name }}</td>
+                                            <td class="text-center">{{ $type->quantity * $type->pivot->quantity }}</td>
+                                            <td class="text-center">{{ $type->product->unity->name }}</td>
+                                            <td class="text-right">{{ $type->present()->cost }}</td>
                                         </tr>
                                         @endforeach
                                         <tr>
+                                            <td>&nbsp;</td>
                                             <td>&nbsp;</td>
                                             <td>&nbsp;</td>
                                             <td>&nbsp;</td>

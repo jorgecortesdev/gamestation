@@ -9,7 +9,7 @@ class ProductType extends Model
 {
     use Presentable;
 
-    protected $fillable = ['name', 'product_id', 'render_type_id', 'configurable', 'customizable'];
+    protected $fillable = ['name', 'product_id', 'configurable', 'customizable'];
 
     protected $presenter = 'App\Presenters\ProductTypePresenter';
 

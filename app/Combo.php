@@ -53,6 +53,16 @@ class Combo extends Model
             ->withPivot('quantity');
     }
 
+    public function configurations()
+    {
+        return $this->morphToMany(Configuration::class, 'configurable');
+    }
+
+    public function configurables()
+    {
+        return $this->productTypes()->where('configurable', true);
+    }
+
     public function properties()
     {
         return $this->belongsToMany(Property::class);

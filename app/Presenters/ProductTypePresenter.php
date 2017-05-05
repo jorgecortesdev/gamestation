@@ -6,6 +6,13 @@ use Laracodes\Presenter\Presenter;
 class ProductTypePresenter extends Presenter
 {
 
+    public function cost()
+    {
+        setlocale(LC_MONETARY, 'en_US.UTF-8');
+        $amount = $this->quantity * $this->pivot->quantity * $this->product->unit_cost;
+        return money_format('%.2n', $amount);
+    }
+
     public function activeProduct()
     {
         return $this->model->product_id
@@ -31,13 +38,6 @@ class ProductTypePresenter extends Presenter
     {
         return $this->model->customizable
             ? $this->renderOk()
-            : $this->renderBan();
-    }
-
-    public function renderType()
-    {
-        return $this->model->render_type_id
-            ? $this->model->renderType->name
             : $this->renderBan();
     }
 

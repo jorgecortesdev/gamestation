@@ -17,7 +17,7 @@ class CreateProductTypesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('product_id')->nullable()->unsigned();
-            $table->integer('render_type_id')->nullable()->unsigned();
+            $table->integer('quantity')->default(1)->unsigned();
             $table->boolean('configurable');
             $table->boolean('customizable');
             $table->timestamps();

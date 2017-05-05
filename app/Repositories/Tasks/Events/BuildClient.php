@@ -17,12 +17,6 @@ class BuildClient extends Task
      */
     public function handle(Request $request)
     {
-        $client = $this->findOrNew($request->input('clientIdOrName'));
-
-        $client->address   = $request->input('clientAddress');
-        $client->telephone = $request->input('clientTelephone');
-        $client->email     = $request->input('clientEmail');
-
         // Execute BuildKid before this
         // in order to have the kid id.
         if (is_null($this->model->kid_id)) {
@@ -30,6 +24,12 @@ class BuildClient extends Task
                 'You must set the property kid_id before execute ' . get_class($this)
             );
         }
+
+        $client = $this->findOrNew($request->input('clientIdOrName'));
+
+        $client->address   = $request->input('clientAddress');
+        $client->telephone = $request->input('clientTelephone');
+        $client->email     = $request->input('clientEmail');
 
         $client->kids()->sync([$this->model->kid_id]);
 

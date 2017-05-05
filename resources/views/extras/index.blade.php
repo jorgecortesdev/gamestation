@@ -34,8 +34,8 @@
                                 <tr>
                                     <th class="text-center">Id</th>
                                     <th class="text-center">Nombre</th>
+                                    <th class="text-center">Costo Variable</th>
                                     <th class="text-center">Costo</th>
-                                    <th class="text-center">Costo Unitario</th>
                                     <th class="text-center">Márgen de contribución</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>

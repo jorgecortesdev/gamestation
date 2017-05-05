@@ -43,10 +43,6 @@ class ProductTypesController extends Controller
         $request->merge(['product_id' => null]);
       }
 
-      if (empty($request->get('render_type_id'))) {
-        $request->merge(['render_type_id' => null]);
-      }
-
       $product_type = new ProductType($request->all());
 
       $product_type->save();

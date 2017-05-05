@@ -2,10 +2,15 @@
 
 namespace App\Repositories;
 
+use Illuminate\Http\Request;
+
 abstract class Repository
 {
     /** @var \Illuminate\Database\Eloquent\Model */
     protected $model = null;
+
+    /** @var array */
+    protected $tasks = ['before' => [], 'after' => []];
 
     /**
      * Constructor
@@ -45,5 +50,35 @@ abstract class Repository
     {
         $entity = $this->model->findOrFail($id);
         return $entity->delete();
+    }
+
+    /**
+     * Tasks to execute before save the model.
+     *
+     * @param $request Illuminate\Http\Request
+     * @return null
+     */
+    protected function beforeSavingTasks(Request $request)
+    {
+        if (isset($this->tasks['before'])) {
+            foreach ($this->tasks['before'] as $task) {
+                (new $task($this->model))->handle($request);
+            }
+        }
+    }
+
+    /**
+     * Tasks to execute after the model was save.
+     *
+     * @param $request Illuminate\Http\Request
+     * @return null
+     */
+    protected function afterSavingTasks(Request $request)
+    {
+        if (isset($this->tasks['after'])) {
+            foreach ($this->tasks['after'] as $task) {
+                (new $task($this->model))->handle($request);
+            }
+        }
     }
 }

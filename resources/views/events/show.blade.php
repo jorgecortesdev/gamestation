@@ -1,5 +1,9 @@
 @extends('layouts.blank')
 
+@push('stylesheets')
+<link rel="stylesheet" href="{{ asset("css/icheck/skins/flat/green.css") }}">
+@endpush
+
 @section('main_container')
 
     <!-- page content -->
@@ -36,87 +40,12 @@
 
             <div class="clearfix"></div>
 
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="x_panel">
-
-                    @include('includes.panel-header', ['title' => 'Configuración'])
-
-                    <div class="x_content">
-                        <div class="row">
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div>
-                                    @foreach ($products as $product)
-                                    <strong>{{ $product['label'] }}</strong>
-                                    <ul class="list-unstyled list-inline">
-                                        @foreach ($product['products'] as $p)
-                                            <li><i class="fa fa{{ $p['checked'] ? '-check' : '' }}-square-o"></i> {{ $p['name'] }}</li>
-                                        @endforeach
-                                    </ul>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="x_panel">
-
-                    @include('includes.panel-header', ['title' => 'Propiedades'])
-
-                    <div class="x_content">
-                        <div class="row">
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div>
-                                    <dl>
-                                        @foreach ($properties as $property)
-                                        <dt>{{ $property['label'] }}</dt>
-                                        <dd>{{ $property['value'] }}</dd>
-                                        @endforeach
-                                    </dl>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @include('events.configurations')
+            @include('events.statement')
 
             <div class="clearfix"></div>
 
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-
-                    @include('includes.panel-header', ['title' => 'Estado de cuenta'])
-
-                    <div class="x_content">
-                        <div class="row">
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="col-md-4">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th class="text-center">Concepto</th>
-                                                <th class="text-center">Cantidad</th>
-                                                <th class="text-center">Precio</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($statements as $concept)
-                                            <tr>
-                                                <td>{{ $concept['concept'] }}</td>
-                                                <td class="text-center">{{ $concept['quantity'] }}</td>
-                                                <td class="text-right">{{ $concept['price'] }}</td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @include('events.properties')
 
             <div class="clearfix"></div>
 
@@ -126,7 +55,20 @@
     </div>
     <!-- /page content -->
 
+    <!-- Modal -->
+    @include('modals.configuration')
+
+    <!-- handlebars template -->
+    @include('handlebars.events.configurable')
+    <!-- /handlebars template -->
+
     <!-- footer content -->
     @include('includes.footer')
     <!-- /footer content -->
 @endsection
+
+@push('scripts')
+<script src="{{ asset("js/handlebars.min.js") }}"></script>
+<script src="{{ asset("js/handlebars-intl.min.js") }}"></script>
+<script src="{{ asset("js/icheck.min.js") }}"></script>
+@endpush

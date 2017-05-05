@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\Configuration;
 use App\Repositories\Events;
 use Illuminate\Http\Request;
 use App\Http\Requests\SaveEvent;
@@ -41,70 +42,37 @@ class EventsController extends Controller
     {
         go()->after();
 
-        // obtener productos configurables del paquete
-        // |
-        // +- sacar el paquete del evento X
-        // +- sacar los tipos de productos configurables del paquete X
-        $comboProductTypes = $event->combo->configurableProductTypes()->get();
+        // Invoice section
+        $invoice = new \App\Library\Invoice\Invoice;
 
-        // +- sacar todos los productos de ese tipo que pertenecen al proveedor activo
-        // +- remover el producto activo
-        $products = $comboProductTypes->map(function ($productType) {
-            $productType->load('product');
-            $activeProductId = $productType->product->id;
-            $productType->product->load('supplier.products');
-            return $productType->product->supplier->products->filter(function ($product) use ($activeProductId) {
-                return $product->id != $activeProductId;
-            });
-        });
-        // dd($products);
+        $combo = $event->combo;
+        $invoice->push($combo);
 
-        // obtener los productos extras del evento
-        // configurar los productos extras del evento
+        $extras = $event->extras;
+        $invoice->push($extras);
 
-        $statements = [
-            ['concept' => 'Paquete Plus', 'price' => '$4,500', 'quantity' => 1],
-            ['concept' => 'Cargo por liberar horario', 'price' => '$200', 'quantity' => 1],
-            ['concept' => 'Cargo por fin de semana', 'price' => '$300', 'quantity' => 1],
-            ['concept' => 'Aguas Frescas (10 lts.)', 'price' => '$230', 'quantity' => 1],
-            ['concept' => 'Servicio de palomitas', 'price' => '$200', 'quantity' => 1],
-            ['concept' => 'Adulto Extra', 'price' => '$50', 'quantity' => 5],
-            ['concept' => 'Niño Extra', 'price' => '$80', 'quantity' => 10]
+        // Configuration section
+        $configurations = Configuration::with('productType', 'product')->where('event_id', $event->id)->get();
 
-        ];
+        // $configurables = collect();
 
-        $products = [
-            [
-                'label' => 'Aguas Frescas',
-                'products' => [
-                    ['name' => 'Horchata', 'checked' => true],
-                    ['name' => 'Piña', 'checked' => false],
-                    ['name' => 'Limonada', 'checked' => false],
-                    ['name' => 'Jamaica', 'checked' => true],
-                ]
-            ],
-            [
-                'label' => 'Pizza 1',
-                'products' => [
-                    ['name' => 'Jamón', 'checked' => true],
-                    ['name' => 'Peperoni', 'checked' => false],
-                ]
-            ],
-            [
-                'label' => 'Pizza 2',
-                'products' => [
-                    ['name' => 'Jamón', 'checked' => false],
-                    ['name' => 'Peperoni', 'checked' => true],
-                ]
-            ],
-        ];
+        // foreach($configurations as $configuration) {
+        //     $configurables->push([
+        //         'label' => $configuration->productType->name,
+        //         'name'  => $configuration->product ? $configuration->product->name : 'No configurado',
+        //         'type'  => $configuration->type(),
+        //     ]);
+        // }
 
+        // $configurables = $configurables->sortBy('label');
+
+        // Properties section
         $properties = [
             ['label' => 'Hora de la Pizza', 'value' => '2:30 pm'],
             ['label' => 'Personaje', 'value' => 'Mario Bros']
         ];
 
-        return view('events.show', compact('event', 'products', 'statements', 'properties'));
+        return view('events.show', compact('event', 'configurations', 'invoice', 'properties'));
     }
 
     public function create()
