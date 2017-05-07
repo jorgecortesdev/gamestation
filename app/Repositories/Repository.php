@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
 
 abstract class Repository
 {
@@ -23,7 +24,18 @@ abstract class Repository
             );
         }
 
-        $this->model = app()->make($this->model);
+        $this->setModel(app()->make($this->model));
+    }
+
+    /**
+     * Set an already fetched model.
+     *
+     * @param  Model Illuminate\Database\Eloquent\Model
+     * @return null
+     */
+    public function setModel(Model $model)
+    {
+        $this->model = $model;
     }
 
     /**

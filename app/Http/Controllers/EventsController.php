@@ -42,29 +42,13 @@ class EventsController extends Controller
     {
         go()->after();
 
-        // Invoice section
-        $invoice = new \App\Library\Invoice\Invoice;
+        $this->events->setModel($event);
 
-        $combo = $event->combo;
-        $invoice->push($combo);
-
-        $extras = $event->extras;
-        $invoice->push($extras);
+        // Get event invoice
+        $invoice = $this->events->invoice();
 
         // Configuration section
-        $configurations = Configuration::with('productType', 'product')->where('event_id', $event->id)->get();
-
-        // $configurables = collect();
-
-        // foreach($configurations as $configuration) {
-        //     $configurables->push([
-        //         'label' => $configuration->productType->name,
-        //         'name'  => $configuration->product ? $configuration->product->name : 'No configurado',
-        //         'type'  => $configuration->type(),
-        //     ]);
-        // }
-
-        // $configurables = $configurables->sortBy('label');
+        $configurations = $this->events->configurations();
 
         // Properties section
         $properties = [
@@ -98,6 +82,8 @@ class EventsController extends Controller
 
     public function update(SaveEvent $request, Event $event)
     {
+        $this->events->setModel($event);
+
         $this->events->save($request, $event);
 
         flash('Evento actualizado con éxito', 'success');

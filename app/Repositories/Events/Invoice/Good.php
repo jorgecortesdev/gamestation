@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Library\Invoice;
+namespace App\Repositories\Events\Invoice;
 
 use Illuminate\Database\Eloquent\Model;
 

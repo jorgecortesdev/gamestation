@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Library\Invoice;
+namespace App\Repositories\Events\Invoice;
 
-class Extra extends Good
+class Combo extends Good
 {
     public function concept()
     {
-        return $this->entity->name;
+        return 'Paquete ' . $this->entity->name;
     }
 
     public function quantity()
     {
-        return $this->entity->pivot->quantity;
+        return 1;
     }
 
     public function price()
@@ -23,7 +23,6 @@ class Extra extends Good
     public function total()
     {
         setlocale(LC_MONETARY, 'en_US.UTF-8');
-        $amount = $this->entity->price * $this->pivot->quantity;
-        return money_format('%.2n', $amount);
+        return money_format('%.2n', $this->entity->price);
     }
 }

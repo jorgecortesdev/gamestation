@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Event;
 use Illuminate\Http\Request;
+use App\Repositories\Events\Invoice\Event as Invoice;
 
 class Events extends Repository
 {
@@ -21,6 +22,13 @@ class Events extends Repository
         ]
     ];
 
+    /**
+     * Create or Update the model.
+     *
+     * @param  Illuminate\Http\Request $request
+     * @param  \App\Event|null $event
+     * @return null
+     */
     public function save(Request $request, Event $event = null)
     {
         if ( ! is_null($event)) {
@@ -46,23 +54,30 @@ class Events extends Repository
         return $this->model->search($query)->paginate($limit);
     }
 
-    public function getConfigurableProductsList()
+    /**
+     * Prepare the invoice of the event
+     * and return it.
+     *
+     * @return \App\Repositories\Events\Invoice\Event
+     */
+    public function invoice()
     {
-        return \App\ProductType::with('products.supplier.products')
-            ->where('configurable', true)
-            ->whereNotNull('product_id')
-            ->get()
-            ->map(function ($productType) {
-                $activeProduct = $productType->product;
-                $availableProducts = $activeProduct->supplier->products->filter(function ($product) use ($activeProduct) {
-                    return $product->id !== $activeProduct->id;
-                })->pluck('name', 'id')->toArray();
-                return [
-                    'product_type' => $productType->name,
-                    'products' => $availableProducts,
-                    'customizable' => $productType->customizable,
-                    'render' => strtolower($productType->renderType->name),
-                ];
-            });
+        $invoice = (new Invoice)
+            ->push($this->model->combo)
+            ->push($this->model->extras);
+
+        return $invoice;
+    }
+
+    /**
+     * Return the configurations for the current event.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function configurations()
+    {
+        return \App\Configuration::with('productType', 'product')
+            ->where('event_id', $this->model->id)
+            ->get();
     }
 }

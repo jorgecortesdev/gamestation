@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Library\Invoice;
+namespace App\Repositories\Events\Invoice;
 
 use ArrayIterator;
 use IteratorAggregate;
 
-class Invoice implements IteratorAggregate
+class Event implements IteratorAggregate
 {
     protected $goods = [];
 
@@ -27,6 +27,8 @@ class Invoice implements IteratorAggregate
 
             throw new \Exception('Class ' . $class . ' does not exists');
         }
+
+        return $this;
     }
 
     public function getIterator()

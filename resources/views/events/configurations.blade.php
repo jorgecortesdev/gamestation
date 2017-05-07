@@ -6,6 +6,7 @@
         <div class="x_content">
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
+                    @if ($configurations->count() > 0)
                     <table class="table table-hover table-no-top-border">
                         <tbody>
                             @foreach ($configurations as $configuration)
@@ -24,6 +25,11 @@
                             @endforeach
                         </tbody>
                     </table>
+                    @else
+                        <tr>
+                            <td><div class="alert text-center">Sin productos</div></td>
+                        </tr>
+                    @endif
                 </div>
             </div>
         </div>
