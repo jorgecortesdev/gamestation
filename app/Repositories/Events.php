@@ -76,8 +76,6 @@ class Events extends Repository
      */
     public function configurations()
     {
-        return \App\Configuration::with('productType', 'product')
-            ->where('event_id', $this->model->id)
-            ->get();
+            return $this->model->configurations;
     }
 }

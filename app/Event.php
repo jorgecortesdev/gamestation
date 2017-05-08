@@ -36,6 +36,11 @@ class Event extends Model
         return $this->belongsToMany(Extra::class)->withPivot('quantity');
     }
 
+    protected function configurations()
+    {
+        return $this->hasMany(Configuration::class);
+    }
+
     /**
      * Get the indexable data array for the model.
      *

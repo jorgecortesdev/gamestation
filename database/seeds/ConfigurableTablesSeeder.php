@@ -17,10 +17,24 @@ class ConfigurablesTableSeeder extends Seeder
         // Find the event
         $event = Event::find(3);
 
+        $this->addComboConfigurations($event);
+        $this->addExtrasConfigurations($event);
+        $this->initializeOneConfiguration($event);
+
+        // Find another event
+        $event = Event::find(5);
+        $this->addExtrasConfigurations($event);
+        $this->initializeOneConfiguration($event);
+    }
+
+    protected function addComboConfigurations($event)
+    {
         $combo = $event->combo;
         $this->createConfigurations($event, $combo);
+    }
 
-        // Add extra products configurations
+    protected function addExtrasConfigurations($event)
+    {
         $extras = $event->extras;
         foreach ($extras as $extra) {
             $quantity = $extra->pivot->quantity;
@@ -28,18 +42,6 @@ class ConfigurablesTableSeeder extends Seeder
                 $this->createConfigurations($event, $extra);
             }
         }
-
-        // Set some configurations
-        $configurations = $event->combo->configurations;
-        $configuration = $configurations->first();
-        $product = $configuration->options()->first();
-        $configuration->product_id = $product->id;
-        $configuration->save();
-
-        $configuration = $configurations->last();
-        $product = $configuration->options()->first();
-        $configuration->product_id = $product->id;
-        $configuration->save();
     }
 
     protected function createConfigurations($event, $entity)
@@ -57,5 +59,18 @@ class ConfigurablesTableSeeder extends Seeder
                 ]);
             }
         }
+    }
+
+    protected function initializeOneConfiguration($event)
+    {
+        $configuration = $event->configurations->first();
+        $product = $this->firstAvailableProductOption($configuration);
+        $configuration->product_id = $product->id;
+        $configuration->save();
+    }
+
+    protected function firstAvailableProductOption($configuration)
+    {
+        return $configuration->options()->random();
     }
 }
