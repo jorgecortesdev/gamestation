@@ -8,7 +8,6 @@ class ProductTypePresenter extends Presenter
 
     public function cost()
     {
-        setlocale(LC_MONETARY, 'en_US.UTF-8');
         $amount = $this->quantity * $this->pivot->quantity * $this->product->unit_cost;
         return money_format('%.2n', $amount);
     }

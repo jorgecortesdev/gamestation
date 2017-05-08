@@ -51,12 +51,12 @@ class EventsController extends Controller
         $configurations = $this->events->configurations();
 
         // Properties section
-        $properties = [
-            ['label' => 'Hora de la Pizza', 'value' => '2:30 pm'],
-            ['label' => 'Personaje', 'value' => 'Mario Bros']
-        ];
+        $properties = $this->events->properties();
 
-        return view('events.show', compact('event', 'configurations', 'invoice', 'properties'));
+        return view(
+            'events.show',
+            compact('event', 'configurations', 'invoice', 'properties')
+        );
     }
 
     public function create()

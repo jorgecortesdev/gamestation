@@ -41,6 +41,11 @@ class Event extends Model
         return $this->hasMany(Configuration::class);
     }
 
+    public function properties()
+    {
+        return $this->belongsToMany(Property::class)->withPivot('value');
+    }
+
     /**
      * Get the indexable data array for the model.
      *

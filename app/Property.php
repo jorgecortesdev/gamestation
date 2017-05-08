@@ -32,6 +32,11 @@ class Property extends Model
         return $this->belongsToMany(Combo::class);
     }
 
+    public function events()
+    {
+        return $this->belongsToMany(Event::class)->withPivot('value');
+    }
+
     /***************
      * Form Values *
      ***************/

@@ -13,14 +13,13 @@ class ComboPropertyTableSeeder extends Seeder
      */
     public function run()
     {
-        $property = Property::find(1);
+        // PREMIER
         $combo = Combo::find(4);
+        $properties = Property::all()->pluck('id')->values();
+        $combo->properties()->attach($properties);
 
-        $combo->properties()->attach($property);
-        $combo->save();
-
+        // PLUS
         $combo = Combo::find(3);
-        $combo->properties()->attach($property);
-        $combo->save();
+        $combo->properties()->attach($properties[0]);
     }
 }

@@ -18,7 +18,8 @@ class Events extends Repository
             Tasks\Events\BuildClient::class,
         ],
         'after' => [
-            Tasks\Events\BuildConfigurations::class
+            Tasks\Events\BuildConfigurations::class,
+            Tasks\Events\BuildProperties::class,
         ]
     ];
 
@@ -77,5 +78,15 @@ class Events extends Repository
     public function configurations()
     {
             return $this->model->configurations;
+    }
+
+    /**
+     * Return the properties for the current event.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function properties()
+    {
+        return $this->model->properties;
     }
 }

@@ -5,7 +5,6 @@ use Laracodes\Presenter\Presenter;
 
 class PropertiesPresenter extends Presenter
 {
-
     public function options()
     {
         $options = '-';
@@ -15,5 +14,17 @@ class PropertiesPresenter extends Presenter
         }
 
         return $options;
+    }
+
+    protected function value()
+    {
+        return $this->pivot->value
+            ? $this->pivot->value
+            : $this->renderBan;
+    }
+
+    protected function renderBan()
+    {
+        return '<i class="fa fa-ban text-danger"></i>';
     }
 }

@@ -19,13 +19,19 @@
                             <tbody>
                                 @foreach ($invoice as $good)
                                 <tr>
-                                    <td>{{ $good->concept }}</td>
+                                    <td>{!! $good->concept !!}</td>
                                     <td class="text-center">{{ $good->quantity }}</td>
-                                    <td class="text-right">{{ $good->price }}</td>
-                                    <td class="text-right">{{ $good->total }}</td>
+                                    <td class="text-right">{{  money_format('%.2n', $good->price) }}</td>
+                                    <td class="text-right">{{ money_format('%.2n', $good->total) }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3">&nbsp;</td>
+                                    <td class="text-right">{{ money_format('%.2n', $invoice->total()) }}</td>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>

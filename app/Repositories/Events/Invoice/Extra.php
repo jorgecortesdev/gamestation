@@ -6,7 +6,7 @@ class Extra extends Good
 {
     public function concept()
     {
-        return $this->entity->name;
+        return $this->entity->name . ' <sup><small>(extra)</small></sup>';
     }
 
     public function quantity()
@@ -16,14 +16,11 @@ class Extra extends Good
 
     public function price()
     {
-        setlocale(LC_MONETARY, 'en_US.UTF-8');
-        return money_format('%.2n', $this->entity->price);
+        return $this->entity->price;
     }
 
     public function total()
     {
-        setlocale(LC_MONETARY, 'en_US.UTF-8');
-        $amount = $this->entity->price * $this->pivot->quantity;
-        return money_format('%.2n', $amount);
+        return $this->entity->price * $this->pivot->quantity;
     }
 }

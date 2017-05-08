@@ -28,5 +28,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductTypeableTableSeeder::class);
         $this->call(EventExtraTableSeeder::class);
         $this->call(ConfigurablesTableSeeder::class);
+        $this->call(EventPropertyTableSeeder::class);
     }
 }

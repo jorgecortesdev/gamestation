@@ -37,7 +37,6 @@ class ComboPresenter extends Presenter
 
     protected function currencyFormater($amount)
     {
-        setlocale(LC_MONETARY, 'en_US.UTF-8');
         return money_format('%.2n', $amount);
     }
 

@@ -12,7 +12,7 @@
                             <tbody>
                                 @foreach ($configurations as $configuration)
                                 <tr>
-                                    <td><strong>{{ $configuration->productType->name }}</strong> <small>({{ $configuration->type() }})</small></td>
+                                    <td><strong>{{ $configuration->productType->name }}</strong> <sup><small>({{ $configuration->type() }})</small></sup></td>
                                     <td class="text-center text-success">{!! $configuration->present()->selected !!}</td>
                                     <td class="text-right">
                                         <a class="btn btn-primary btn-xs"
