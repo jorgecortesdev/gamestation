@@ -37,20 +37,29 @@
                     </div>
                 </div>
             </div>
-
-            <div class="clearfix"></div>
-
-            @include('events.configurations')
-            @include('events.statement')
-
-            <div class="clearfix"></div>
-
-            @include('events.properties')
-
-            <div class="clearfix"></div>
-
         </div>
 
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                {{-- LEFT --}}
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @include('events.configurations')
+                        <div class="clearfix"></div>
+                        @include('events.properties')
+                    </div>
+
+                    {{-- RIGHT --}}
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @include('events.statement')
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
 
     </div>
     <!-- /page content -->
