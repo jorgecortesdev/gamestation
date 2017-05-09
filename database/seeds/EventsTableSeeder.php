@@ -24,5 +24,54 @@ class EventsTableSeeder extends Seeder
             $event = new Event($event);
             $event->save();
         }
+
+        $this->addExtrasToSomeEvents();
+        $this->addPropertiesToEvents();
+    }
+
+    protected function addExtrasToSomeEvents()
+    {
+        $event = Event::find(5);
+
+        $extra[1] = ['quantity' => 10];
+        $extra[2] = ['quantity' => 5];
+        $extra[3] = ['quantity' => 1];
+        $extra[4] = ['quantity' => 1];
+        $extra[5] = ['quantity' => 1];
+
+        $event->extras()->sync($extra);
+
+        $event = Event::find(3);
+
+        $extra = [];
+        $extra[4] = ['quantity' => 1];
+        $extra[3] = ['quantity' => 1];
+
+        $event->extras()->sync($extra);
+    }
+
+    protected function addPropertiesToEvents()
+    {
+        $values = [
+            1 => '5:30 pm',
+            2 => 'Mario Bros',
+            3 => 'Vainilla',
+            4 => 'Vaso con bombones',
+            5 => 'Regalo',
+            6 => 'Lunes 5'
+        ];
+
+        $events = Event::all();
+
+        foreach ($events as $event) {
+            $properties = $event->combo->properties;
+            if ( ! is_null($properties)) {
+                $eventProperties = [];
+                foreach ($properties as $property) {
+                    $eventProperties[$property->id] = ['value' => $values[$property->id]];
+                }
+                $event->properties()->sync($eventProperties);
+            }
+        }
     }
 }

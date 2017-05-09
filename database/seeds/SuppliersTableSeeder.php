@@ -12,29 +12,23 @@ class SuppliersTableSeeder extends Seeder
     public function run()
     {
         $names = [
-            'Zazueta', // 1
-            'Costco', // 2
-            '7 Eleven', // 3
-            'Pixel', // 4
-            'Proexss', // 5
-            'La Macedonia', // 6
-            'Rafaelos', // 7
-            'Tuttifruti', // 8
-            'Walmart', // 9
-            'Liverpool',
-            'Oxxo',
-            'Santa fe',
-            'Super del Norte',
-            'Vimark',
-            'Soriana',
-            'Sams',
-            'Megaeders',
+            ['id' => 1, 'name' => 'Zazueta'],
+            ['id' => 2, 'name' => 'Costco'] ,
+            ['id' => 3, 'name' => '7 Eleven'] ,
+            ['id' => 4, 'name' => 'Pixel'] ,
+            ['id' => 5, 'name' => 'Proexss'] ,
+            ['id' => 6, 'name' => 'La Macedonia'] ,
+            ['id' => 7, 'name' => 'Rafaelos'] ,
+            ['id' => 8, 'name' => 'Tuttifruti'] ,
+            ['id' => 9, 'name' => 'Walmart'] ,
+            ['id' => 10, 'name' => 'Liverpool'] ,
+            ['id' => 11, 'name' => 'Sams'] ,
+            ['id' => 12, 'name' => 'Megaeders'],
         ];
-
         $suppliers = factory(App\Supplier::class, count($names))->make();
-
         foreach($suppliers as $key => $supplier) {
-            $supplier->name = $names[$key];
+            $supplier->id = $names[$key]['id'];
+            $supplier->name = $names[$key]['name'];
             $supplier->save();
         }
     }
