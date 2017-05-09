@@ -3,7 +3,6 @@
 use App\Event;
 use App\Extra;
 use Illuminate\Database\Seeder;
-// use Illuminate\Support\Facades\DB;
 
 class ConfigurablesTableSeeder extends Seeder
 {
@@ -14,17 +13,12 @@ class ConfigurablesTableSeeder extends Seeder
      */
     public function run()
     {
-        // Find the event
-        $event = Event::find(3);
-
-        $this->addComboConfigurations($event);
-        $this->addExtrasConfigurations($event);
-        $this->initializeOneConfiguration($event);
-
-        // Find another event
-        $event = Event::find(5);
-        $this->addExtrasConfigurations($event);
-        $this->initializeOneConfiguration($event);
+        $events = Event::all();
+        foreach ($events as $event) {
+            $this->addComboConfigurations($event);
+            $this->addExtrasConfigurations($event);
+            $this->initializeOneConfiguration($event);
+        }
     }
 
     protected function addComboConfigurations($event)
@@ -46,17 +40,17 @@ class ConfigurablesTableSeeder extends Seeder
 
     protected function createConfigurations($event, $entity)
     {
-        $configurables = $entity->configurables()->get();
-
+        $configurables = $entity->configurables;
         foreach ($configurables as $configurable) {
             $quantity = $configurable->pivot->quantity;
             for ($i = 1; $i <= $quantity; $i++) {
-                $entity->configurations()->create([
+                $config = [
                     'event_id' => $event->id,
                     'product_type_id' => $configurable->pivot->product_type_id,
                     'product_id' => null,
                     'custom' => null
-                ]);
+                ];
+                $entity->configurations()->create($config);
             }
         }
     }
@@ -64,13 +58,19 @@ class ConfigurablesTableSeeder extends Seeder
     protected function initializeOneConfiguration($event)
     {
         $configuration = $event->configurations->first();
-        $product = $this->firstAvailableProductOption($configuration);
-        $configuration->product_id = $product->id;
-        $configuration->save();
+        $product = $this->randomProductOption($configuration);
+        if ( ! is_null($product)) {
+            $configuration->product_id = $product->id;
+            $configuration->save();
+        }
     }
 
-    protected function firstAvailableProductOption($configuration)
+    protected function randomProductOption($configuration)
     {
-        return $configuration->options()->random();
+        if ( ! is_null($configuration)) {
+            return $configuration->options()->random();
+        }
+
+        return null;
     }
 }

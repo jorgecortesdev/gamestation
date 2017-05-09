@@ -66,9 +66,11 @@
 
     <!-- Modal -->
     @include('modals.configuration')
+    @include('modals.property')
 
     <!-- handlebars template -->
     @include('handlebars.events.configurable')
+    @include('handlebars.events.property')
     <!-- /handlebars template -->
 
     <!-- footer content -->
@@ -80,4 +82,14 @@
 <script src="{{ asset("js/handlebars.min.js") }}"></script>
 <script src="{{ asset("js/handlebars-intl.min.js") }}"></script>
 <script src="{{ asset("js/icheck.min.js") }}"></script>
+<script>
+Handlebars.registerHelper({
+    eq: function (v1, v2) {
+        return v1 === v2;
+    },
+    ne: function (v1, v2) {
+        return v1 !== v2;
+    }
+});
+</script>
 @endpush

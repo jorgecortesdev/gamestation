@@ -60,3 +60,6 @@ Route::resource('properties', 'PropertiesController');
 
 Route::get('/configurations/{configuration}', 'ConfigurationsController@index')->name('configurations.index');
 Route::match(['put', 'patch'], '/configurations/{configuration}', 'ConfigurationsController@update')->name('configurations.update');
+
+Route::get('/event/property/{property}', 'EventPropertiesController@show')->name('event_property.show');
+Route::match(['put', 'patch'], '/event/{event}/property/{property}', 'EventPropertiesController@update')->name('event_property.update');

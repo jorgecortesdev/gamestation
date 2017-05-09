@@ -11,11 +11,16 @@
                         <table class="table table-hover table-no-top-border">
                             <tbody>
                             @foreach ($properties as $property)
-                                <tr>
+                                <tr{{ empty($property->pivot->value) ? " class=danger" : '' }}>
                                     <td><strong>{{ $property->label }}</strong></td>
                                     <td class="text-center text-success">{!! $property->present()->value !!}</td>
                                     <td class="text-right">
-                                        <a href="" class="btn btn-primary btn-xs"><i class="fa fa-cogs"></i> Configurar</a>
+                                        <a class="btn btn-primary btn-xs"
+                                           href="#"
+                                           data-toggle="modal"
+                                           data-target="#propertyModal"
+                                           data-id="{{ $property->id }}"
+                                           data-action="{{ route('event_property.update', [$event->id, $property->id]) }}" ><i class="fa fa-cogs"></i> Configurar</a>
                                     </td>
                                 </tr>
                             @endforeach

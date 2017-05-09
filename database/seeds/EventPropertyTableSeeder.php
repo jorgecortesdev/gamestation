@@ -12,16 +12,26 @@ class EventPropertyTableSeeder extends Seeder
      */
     public function run()
     {
-        $event = Event::find(3);
+        $values = [
+            1 => '5:30 pm',
+            2 => 'Mario Bros',
+            3 => 'Vainilla',
+            4 => 'Vaso con bombones',
+            5 => 'Regalo',
+            6 => 'Lunes 5'
+        ];
 
-        $property = $event->combo->properties->first();
+        $events = Event::all();
 
-        $event->properties()->sync([$property->id => ['value' => '5:30 pm']]);
-
-        $event = Event::find(6);
-
-        $property = $event->combo->properties->first();
-
-        $event->properties()->sync([$property->id => ['value' => '5:30 pm']]);
+        foreach ($events as $event) {
+            $properties = $event->combo->properties;
+            if ( ! is_null($properties)) {
+                $eventProperties = [];
+                foreach ($properties as $property) {
+                    $eventProperties[$property->id] = ['value' => $values[$property->id]];
+                }
+                $event->properties()->sync($eventProperties);
+            }
+        }
     }
 }

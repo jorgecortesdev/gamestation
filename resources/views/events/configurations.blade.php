@@ -11,7 +11,7 @@
                         <table class="table table-hover table-no-top-border">
                             <tbody>
                                 @foreach ($configurations as $configuration)
-                                <tr>
+                                <tr{{ is_null($configuration->product_id) ? " class=danger" : '' }}>
                                     <td><strong>{{ $configuration->productType->name }}</strong> <sup><small>({{ $configuration->type() }})</small></sup></td>
                                     <td class="text-center text-success">{!! $configuration->present()->selected !!}</td>
                                     <td class="text-right">
