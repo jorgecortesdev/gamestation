@@ -33,7 +33,7 @@
 </div>
 
 <!-- handlebars template -->
-@include('handlebars.productmanager.product')
+@include('includes.handlebars.productmanager.product')
 <!-- /handlebars template -->
 
 @push('scripts')

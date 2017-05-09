@@ -9,6 +9,6 @@
     </div>
 
 <!-- handlebars template -->
-@include('handlebars.events.property')
+@include('includes.handlebars.events.property')
 <!-- /handlebars template -->
 </fieldset>

@@ -1,12 +1,6 @@
-@extends('layouts.blank')
+@extends('includes.page.content')
 
-@section('main_container')
+@section('page_content')
 
-    <!-- page content -->
-    <div class="right_col" role="main">
 
-    </div>
-    <!-- /page content -->
-
-    @include('includes.footer')
 @endsection

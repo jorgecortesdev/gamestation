@@ -40,7 +40,7 @@
                     <td class="text-right">{{ $product->present()->total }}</td>
                     <td class="text-right">{{ $product->present()->unitCost }}</td>
                     <td class="text-center">
-                        @include('includes.table-actions', [
+                        @include('includes.components.table.actions', [
                             'entity'        => $product,
                             'route_edit'    => 'products.edit',
                             'route_destroy' => 'products.destroy',

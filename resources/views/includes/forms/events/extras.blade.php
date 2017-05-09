@@ -14,5 +14,5 @@
 </fieldset>
 
 <!-- handlebars template -->
-@include('handlebars.events.extra')
+@include('includes.handlebars.events.extra')
 <!-- /handlebars template -->

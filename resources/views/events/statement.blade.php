@@ -2,7 +2,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
 
-            @include('includes.panel-header', ['title' => 'Estado de cuenta'])
+            @include('includes.components.panel.header', ['title' => 'Estado de cuenta'])
 
             <div class="x_content">
                 <div class="row">

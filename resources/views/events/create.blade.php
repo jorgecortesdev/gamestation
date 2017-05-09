@@ -1,4 +1,4 @@
- @extends('layouts.blank')
+@extends('includes.page.content')
 
 @push('stylesheets')
 <link rel="stylesheet" href="{{ asset("css/daterangepicker.css") }}">
@@ -7,62 +7,54 @@
 <link rel="stylesheet" href="{{ asset("css/select2.css") }}">
 @endpush
 
-@section('main_container')
+@section('page_content')
 
-    <!-- page content -->
-    <div class="right_col" role="main">
-
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="page-title">
-                    <div class="title_left">
-                        <h3><i class="fa fa-calendar-o"></i> Eventos</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2>Crear un evento GameStation <sup>MX</sup></h2>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                        <br>
-                        {!! Form::open(['route' => 'events.store', 'id' => 'frm', 'class' => 'form-horizontal form-label-left']) !!}
-
-                            @include('forms.events.event')
-
-                            @include('forms.events.client')
-
-                            @include('forms.events.kid')
-
-{{--                             @include('forms.events.extras')
-
-
-                            @include('forms.events.properties')
- --}}
-                            <div class="ln_solid"></div>
-
-                            <div class="item form-group">
-                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-2">
-                                    <a href="{{ url()->previous() }}" class="btn btn-primary">Cancelar</a>
-                                    {!! Form::button(isset($sendButtonText) ? $sendButtonText : 'Guardar', ['class' => 'btn btn-success', 'type' => 'submit']) !!}
-                                </div>
-                            </div>
-                        {!! Form::close() !!}
-                    </div>
-                </div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="page-title">
+            <div class="title_left">
+                <h3><i class="fa fa-calendar-o"></i> Eventos</h3>
             </div>
         </div>
     </div>
-    <!-- /page content -->
+</div>
 
-    <!-- footer content -->
-    @include('includes.footer')
-    <!-- /footer content -->
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Crear un evento GameStation <sup>MX</sup></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br>
+                {!! Form::open(['route' => 'events.store', 'id' => 'frm', 'class' => 'form-horizontal form-label-left']) !!}
+
+                    @include('includes.forms.events.event')
+
+                    @include('includes.forms.events.client')
+
+                    @include('includes.forms.events.kid')
+
+{{--                             @include('includes.forms.events.extras')
+
+
+                    @include('includes.forms.events.properties')
+--}}
+                    <div class="ln_solid"></div>
+
+                    <div class="item form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-2">
+                            <a href="{{ url()->previous() }}" class="btn btn-primary">Cancelar</a>
+                            {!! Form::button(isset($sendButtonText) ? $sendButtonText : 'Guardar', ['class' => 'btn btn-success', 'type' => 'submit']) !!}
+                        </div>
+                    </div>
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @push('scripts')

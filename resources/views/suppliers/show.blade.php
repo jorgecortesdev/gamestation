@@ -1,48 +1,39 @@
-@extends('layouts.blank')
+@extends('includes.page.content')
 
-@section('main_container')
+@section('page_content')
 
-    <!-- page content -->
-    <div class="right_col" role="main">
+@include('includes.page.header', [
+    'title_decoration' => '<i class="fa fa-truck"></i> ',
+    'title'            => 'Información de Proveedor',
+])
 
-        @include('includes.page-header', [
-            'title_decoration' => '<i class="fa fa-truck"></i> ',
-            'title'            => 'Información de Proveedor',
-        ])
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
 
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
+            @include('includes.components.panel.header', [
+                'title' => '',
+                'entity' => $supplier,
+                'buttons' => [
+                    'edit' => 'supplier.edit',
+                    'back' => 'supplier.index',
+                ]
+            ])
 
-                    @include('includes.panel-header', [
-                        'title' => '',
-                        'entity' => $supplier,
-                        'buttons' => [
-                            'edit' => 'supplier.edit',
-                            'back' => 'supplier.index',
-                        ]
-                    ])
+            <div class="x_content">
 
-                    <div class="x_content">
+                @include('suppliers.card')
 
-                        @include('suppliers.card')
+                <br>
 
-                        <br>
+                @include('suppliers.products-collection')
 
-                        @include('suppliers.products-collection')
-
-                    </div>
-                </div>
             </div>
         </div>
-
     </div>
-    <!-- /page content -->
+</div>
 
-    <!-- Modal -->
-    @include('modals.delete', ['entityText' => 'producto'])
+<!-- Modal -->
+@include('includes.modals.delete', ['entityText' => 'producto'])
 
-    <!-- footer content -->
-    @include('includes.footer')
-    <!-- /footer content -->
 @endsection

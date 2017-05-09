@@ -30,9 +30,9 @@
         <div class="container body">
             <div class="main_container">
 
-                @include('includes/sidebar')
+                @include('includes.layouts.sidebar')
 
-                @include('includes/topbar')
+                @include('includes.layouts.topbar')
 
                 @yield('main_container')
             </div>

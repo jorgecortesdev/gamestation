@@ -1,81 +1,72 @@
-@extends('layouts.blank')
+@extends('includes.page.content')
 
 @push('stylesheets')
 <link rel="stylesheet" href="{{ asset("css/icheck/skins/flat/green.css") }}">
 @endpush
 
-@section('main_container')
+@section('page_content')
 
-    <!-- page content -->
-    <div class="right_col" role="main">
+@include('includes.page.header', [
+     'title'            => 'Evento #' . $event->id,
+     'search_route'     => 'events.index'
+])
 
-        @include('includes/page-header', [
-             'title'            => 'Evento #' . $event->id,
-             'search_route'     => 'events.index'
-        ])
-
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                    @include('includes.panel-header', [
-                        'entity' => $event,
-                        'title' => '',
-                        'buttons' => ['edit' => 'events.edit', 'back' => 'events.index']
-                    ])
-                    <div class="x_content">
-                        <div class="row">
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                @include('events.cards.info')
-                            </div>
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                @include('events.cards.date')
-                            </div>
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-                                @include('events.cards.time')
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="clearfix"></div>
-
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                {{-- LEFT --}}
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            @include('includes.components.panel.header', [
+                'entity' => $event,
+                'title' => '',
+                'buttons' => ['edit' => 'events.edit', 'back' => 'events.index']
+            ])
+            <div class="x_content">
                 <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        @include('events.configurations')
-                        <div class="clearfix"></div>
-                        @include('events.properties')
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        @include('events.cards.info')
                     </div>
-
-                    {{-- RIGHT --}}
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        @include('events.statement')
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        @include('events.cards.date')
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        @include('events.cards.time')
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="clearfix"></div>
-
     </div>
-    <!-- /page content -->
+</div>
 
-    <!-- Modal -->
-    @include('modals.configuration')
-    @include('modals.property')
+<div class="clearfix"></div>
 
-    <!-- handlebars template -->
-    @include('handlebars.events.configurable')
-    @include('handlebars.events.property')
-    <!-- /handlebars template -->
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        {{-- LEFT --}}
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                @include('events.configurations')
+                <div class="clearfix"></div>
+                @include('events.properties')
+            </div>
 
-    <!-- footer content -->
-    @include('includes.footer')
-    <!-- /footer content -->
+            {{-- RIGHT --}}
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                @include('events.statement')
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+
+<!-- Modal -->
+@include('includes.modals.configuration')
+@include('includes.modals.property')
+
+<!-- handlebars template -->
+@include('includes.handlebars.events.configurable')
+@include('includes.handlebars.events.property')
+<!-- /handlebars template -->
+
 @endsection
 
 @push('scripts')

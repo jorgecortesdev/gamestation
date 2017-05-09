@@ -17,7 +17,7 @@ class ProductTypeComposer
      */
     public function compose(View $view)
     {
-        $product_type = Route::current()->getParameter('product_type');
+        $product_type = Route::current()->parameter('product_type');
 
         $products = [];
 

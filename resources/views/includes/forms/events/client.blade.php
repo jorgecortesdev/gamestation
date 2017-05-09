@@ -61,7 +61,7 @@
     </div>
 
     <!-- handlebars template -->
-    @include('handlebars.events.kid')
+    @include('includes.handlebars.events.kid')
     <!-- /handlebars template -->
 </fieldset>
 
