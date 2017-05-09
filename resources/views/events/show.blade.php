@@ -43,14 +43,14 @@
         {{-- LEFT --}}
         <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-12">
-                @include('events.configurations')
+                @include('events.sections.configurations')
                 <div class="clearfix"></div>
-                @include('events.properties')
+                @include('events.sections.properties')
             </div>
 
             {{-- RIGHT --}}
             <div class="col-md-6 col-sm-6 col-xs-12">
-                @include('events.statement')
+                @include('events.sections.statement')
             </div>
         </div>
     </div>

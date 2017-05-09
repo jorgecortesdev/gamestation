@@ -36,10 +36,8 @@
 
                     @include('includes.forms.events.kid')
 
-{{--                             @include('includes.forms.events.extras')
+                    {{-- @include('includes.forms.events.extras') --}}
 
-                    @include('includes.forms.events.properties')
---}}
                     <div class="ln_solid"></div>
 
                     <div class="item form-group">
