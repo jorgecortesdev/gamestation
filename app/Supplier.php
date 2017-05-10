@@ -46,12 +46,12 @@ class Supplier extends Model
 
     public function activeProductTypes()
     {
-        $id = $this->id;
-        $types = \App\ProductType::whereHas('product', function($query) use ($id) {
-            $query->where('supplier_id', $id);
-        })->get();
-
-        return $types;
+        return $this->products()
+            ->join('active_products', 'products.id', '=', 'active_products.product_id')
+            ->get()
+            ->map(function ($product) {
+                return $product->productType;
+            });
     }
 
     public function productsSortByActive($order = null)
@@ -63,7 +63,7 @@ class Supplier extends Model
         }
 
         return $this->products->{$method}(function ($product) {
-            return $product->is_active;
+            return $product->isActive();
         });
     }
 
@@ -74,11 +74,6 @@ class Supplier extends Model
     public function products()
     {
         return $this->hasMany(Product::class)->with(['productType', 'unity']);
-    }
-
-    public function productTypes()
-    {
-        return $this->hasMany(ProductType::class);
     }
 
     public function type()

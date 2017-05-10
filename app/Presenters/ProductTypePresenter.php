@@ -8,21 +8,21 @@ class ProductTypePresenter extends Presenter
 
     public function cost()
     {
-        $amount = $this->quantity * $this->pivot->quantity * $this->product->unit_cost;
+        $amount = $this->quantity * $this->pivot->quantity * $this->model->activeProduct()->unit_cost;
         return money_format('%.2n', $amount);
     }
 
     public function activeProduct()
     {
-        return $this->model->product_id
-            ? $this->model->product->name
+        return $this->model->activeProduct()
+            ? $this->model->activeProduct()->name
             : $this->renderBan();
     }
 
     public function activeProductSupplier()
     {
-        return $this->model->product_id
-            ? $this->model->product->supplier->name
+        return $this->model->activeProduct()
+            ? $this->model->activeProduct()->supplier->name
             : $this->renderBan();
     }
 

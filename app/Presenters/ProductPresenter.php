@@ -37,7 +37,7 @@ class ProductPresenter extends Presenter
 
     public function isActive()
     {
-        return $this->model->is_active ? '<i class="fa fa-check text-success"></i>' : '<i class="fa fa-ban text-danger"></i>';
+        return $this->model->isActive() ? '<i class="fa fa-check text-success"></i>' : '<i class="fa fa-ban text-danger"></i>';
     }
 
     public function createdAt()

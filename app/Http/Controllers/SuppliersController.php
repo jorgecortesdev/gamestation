@@ -36,9 +36,9 @@ class SuppliersController extends Controller
     {
         go()->after();
 
-        $products = $supplier->productsSortByActive('desc');
-
         $activeProductTypes = $supplier->activeProductTypes();
+
+        $products = $supplier->productsSortByActive('desc');
 
         return view('suppliers.show', compact(['supplier', 'products', 'activeProductTypes']));
     }

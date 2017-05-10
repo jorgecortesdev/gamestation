@@ -13,7 +13,7 @@ class Product extends Model
 
     protected $presenter = 'App\Presenters\ProductPresenter';
 
-    protected $appends = ['is_active', 'unit_cost', 'total'];
+    protected $appends = ['unit_cost', 'total'];
 
     /******************
      * Custom methods *
@@ -59,9 +59,16 @@ class Product extends Model
         return $this->total / $this->quantity;
     }
 
-    public function getIsActiveAttribute()
+    public function activate()
     {
-        return $this->belongsTo(ProductType::class, 'id', 'product_id')->count() > 0;
+        return $this->actives()->syncWithoutDetaching([$this->productType->id]);
+    }
+
+    public function isActive()
+    {
+        return $this->actives()
+            ->where('active_products.product_id', $this->id)
+            ->exists();
     }
 
     /*****************
@@ -81,5 +88,10 @@ class Product extends Model
     public function unity()
     {
         return $this->belongsTo(Unity::class);
+    }
+
+    public function actives()
+    {
+        return $this->belongsToMany(ProductType::class, 'active_products');
     }
 }

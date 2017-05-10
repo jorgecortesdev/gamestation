@@ -27,7 +27,7 @@ class Combo extends Model
     public function getTotalAttribute()
     {
         return $this->productTypes->sum(function ($productType) {
-            $unitCost = $productType->product->unit_cost;
+            $unitCost = $productType->activeProduct()->unit_cost;
             $quantity = $productType->pivot->quantity;
             return  $unitCost * $quantity;
         });

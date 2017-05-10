@@ -39,12 +39,7 @@ class ProductTypesController extends Controller
         );
       }
 
-      if (empty($request->get('product_id'))) {
-        $request->merge(['product_id' => null]);
-      }
-
       $product_type = new ProductType($request->all());
-
       $product_type->save();
 
       flash('Tipo de producto agregado con exito', 'success');
@@ -75,12 +70,13 @@ class ProductTypesController extends Controller
         $request->merge(['customizable' => false]);
       }
 
-      if (empty($request->get('product_id'))) {
-        $request->merge(['product_id' => null]);
-      }
-
       if (empty($request->get('render_type_id'))) {
         $request->merge(['render_type_id' => null]);
+      }
+
+      if ( ! empty($request->get('product_id'))) {
+        $product = \App\Product::findOrFail($request->get('product_id'));
+        $product->activate();
       }
 
       $product_type->update($request->all());
