@@ -13,15 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \DB::listen(function ($query) {
-            // $query->sql
-            // $query->bindings
-            // $query->time
-            // var_dump([
-            //     $query->sql,
-            //     $query->bindings
-            // ]);
-        });
+        //
     }
 
     /**
@@ -42,5 +34,9 @@ class AppServiceProvider extends ServiceProvider
         // Lo utiliza la función money_format() de PHP
         // para regresar el formato de moneda correcto
         setlocale(LC_MONETARY, config('app.locale'));
+
+        if ($this->app->isLocal()) {
+            $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
+        }
     }
 }
