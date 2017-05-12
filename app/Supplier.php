@@ -2,47 +2,20 @@
 
 namespace App;
 
+use App\Traits\Imageable;
 use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Laracodes\Presenter\Traits\Presentable;
 
 class Supplier extends Model
 {
-    use Presentable, Searchable;
+    use Presentable, Searchable, Imageable;
 
     protected $fillable = ['name', 'address', 'telephone', 'email', 'supplier_type_id'];
 
     protected $presenter = 'App\Presenters\SupplierPresenter';
 
-    /******************
-     * Custom methods *
-     ******************/
-
-    public function imagePath()
-    {
-        $image = $this->id . '.png';
-
-        if (\Storage::disk('public')->exists('supplier/' . $image)) {
-            return $image = asset('storage/supplier/' . $image);
-        }
-
-        return asset('img/default_supplier.png');
-    }
-
-    public function saveImage($image)
-    {
-        if ($image) {
-            $imageName = $this->id . '.png';
-
-            $originalImage = \Image::make($image->getRealPath());
-            $originalImage->encode('png');
-            $originalImage->orientate()->resize(200, 200, function ($constraint) {
-                $constraint->aspectRatio();
-            })->stream();
-
-            \Storage::disk('public')->put('supplier/' . $imageName, $originalImage);
-        }
-    }
+    protected $defaultImage = 'img/default_supplier.png';
 
     public function activeProductTypes()
     {

@@ -2,12 +2,13 @@
 
 namespace App;
 
+use App\Traits\Imageable;
 use Illuminate\Database\Eloquent\Model;
 use Laracodes\Presenter\Traits\Presentable;
 
 class Product extends Model
 {
-    use Presentable;
+    use Presentable, Imageable;
 
     protected $fillable = ['name', 'supplier_id', 'quantity', 'unity_id', 'price', 'iva', 'product_type_id'];
 
@@ -15,35 +16,7 @@ class Product extends Model
 
     protected $appends = ['unit_cost', 'total'];
 
-    /******************
-     * Custom methods *
-     ******************/
-
-    public function imagePath()
-    {
-        $image = $this->id . '.png';
-
-        if (\Storage::disk('public')->exists('products/' . $image)) {
-            return $image = asset('storage/products/' . $image);
-        }
-
-        return asset('img/default_product.png');
-    }
-
-    public function saveImage($image)
-    {
-        if ($image) {
-            $imageName = $this->id . '.png';
-
-            $originalImage = \Image::make($image->getRealPath());
-            $originalImage->encode('png');
-            $originalImage->orientate()->resize(200, 200, function ($constraint) {
-                $constraint->aspectRatio();
-            })->stream();
-
-            \Storage::disk('public')->put('products/' . $imageName, $originalImage);
-        }
-    }
+    protected $defaultImage = 'img/default_product.png';
 
     /***********************
      * Appended attributes *
@@ -59,9 +32,14 @@ class Product extends Model
         return $this->total / $this->quantity;
     }
 
+    /******************
+     * Custom Methods *
+     ******************/
+
     public function activate()
     {
-        return $this->actives()->syncWithoutDetaching([$this->productType->id]);
+        return $this->actives()
+            ->syncWithoutDetaching([$this->productType->id]);
     }
 
     public function isActive()
