@@ -20,7 +20,7 @@ class PropertiesController extends Controller
 
     public function index()
     {
-        $properties = Property::paginate(20);
+        $properties = Property::with('renderType')->paginate(20);
         return view('properties.index', compact('properties'));
     }
 

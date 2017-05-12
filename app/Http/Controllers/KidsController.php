@@ -26,6 +26,7 @@ class KidsController extends Controller
     public function index()
     {
         $kids = $this->kids->latest();
+        $kids->load('clients');
         return view('kids.index', compact('kids'));
     }
 

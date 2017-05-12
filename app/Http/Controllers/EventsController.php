@@ -35,6 +35,8 @@ class EventsController extends Controller
             $events = $this->events->latest();
         }
 
+        $events->load(['client', 'kid', 'combo']);
+
         return view('events.index', compact('events'));
     }
 

@@ -21,7 +21,7 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer(
-            'combos.*',
+            ['combos.create', 'combos.edit'],
             ComboComposer::class
        );
 
