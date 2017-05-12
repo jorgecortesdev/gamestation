@@ -22,8 +22,17 @@ class ProductsController extends Controller
 
     public function index()
     {
+        go()->after();
+
         $products = Product::with(['supplier', 'unity', 'productType'])->latest('id')->paginate(20);
         return view('products.index', compact('products'));
+    }
+
+    public function show(Product $product)
+    {
+        go()->after();
+
+        return view('products.show', compact('product'));
     }
 
     public function create()
@@ -50,7 +59,7 @@ class ProductsController extends Controller
 
         flash('Producto agregado con éxito', 'success');
 
-        return redirect(route('products.index'));
+        return redirect($product->path());
     }
 
     public function edit(Product $product)
@@ -80,7 +89,7 @@ class ProductsController extends Controller
             return redirect($request->session()->pull('redirect_url'));
         }
 
-        return back();
+        return go()->now();
     }
 
     public function destroy($id)

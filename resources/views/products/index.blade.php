@@ -2,28 +2,23 @@
 
 @section('page_content')
 
-<div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="page-title">
-            <div class="title_left">
-                <h3><i class="fa fa-truck"></i> Productos</h3>
-            </div>
-            <div class="title_right">
-                <a href="{{ route('products.create') }}" class="btn btn-default pull-right">
-                    <i class="fa fa-plus-square"></i> Agregar
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
+@include('includes.page.header', [
+     'title_decoration' => '<i class="fa fa-truck"></i> ',
+     'title'            => 'Productos',
+     'search_route'     => 'products.index'
+])
 
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
-            <div class="x_title">
-                <h2>Listado de productos</h2>
-                <div class="clearfix"></div>
-            </div>
+            @include('includes.components.panel.header', [
+                'title' => 'Listado de productos',
+                'buttons' => [
+                    'add'  => 'products.create',
+                    'back' => Request::input('query') ? 'products.index' : false,
+                ]
+            ])
+
             <div class="x_content">
                 <p>Listado de productos registrados en el sistema.</p>
                 <table class="table table-hover table-bordered table-striped">
@@ -48,9 +43,11 @@
                             <tr>
                                 <td class="text-right">{{ $product->id }}</td>
                                 <td>
-                                    {{ $product->name }}
-                                    <br>
-                                    <small>Creado {{ $product->present()->createdAt }}</small>
+                                    <a href="{{ $product->path() }}">
+                                        {{ $product->name }}
+                                        <br>
+                                        <small>Creado {{ $product->present()->createdAt }}</small>
+                                    </a>
                                 </td>
                                 <td class="text-center">
                                     <img class="img-responsive center-block gs-image gs-image-thumbnail" src="{{ $product->imagePath() }}">
@@ -66,8 +63,12 @@
                                 <td class="text-right">{{ $product->present()->total }}</td>
                                 <td class="text-right">{{ $product->present()->unitCost }}</td>
                                 <td class="text-center">
-                                    <a class="btn btn-info btn-xs" href="{{ route('products.edit', [$product->id]) }}"><i class="fa fa-edit"></i> Editar</a>
-                                    <a class="btn btn-danger btn-xs" href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('products.destroy', [$product->id]) }}"> <i class="fa fa-trash"></i> Borrar</a>
+                                    @include('includes.components.table.actions', [
+                                        'entity' => $product,
+                                        'route_show'    => 'products.show',
+                                        'route_edit'    => 'products.edit',
+                                        'route_destroy' => 'products.destroy',
+                                    ])
                                 </td>
                             </tr>
                         @endforeach

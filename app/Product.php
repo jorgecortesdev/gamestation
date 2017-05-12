@@ -49,6 +49,11 @@ class Product extends Model
             ->exists();
     }
 
+    public function path()
+    {
+        return route('products.show', [$this->id]);
+    }
+
     /*****************
      * Relationships *
      *****************/
