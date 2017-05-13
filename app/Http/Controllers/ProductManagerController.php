@@ -26,7 +26,7 @@ class ProductManagerController extends Controller
                 'product.supplier',
                 'product.unity'
             )
-            ->whereNotNull('product_id')
+            ->has('product')
             ->whereNotIn('id', $ids)
             ->get();
         return $types;
