@@ -56,9 +56,7 @@
     @endif
 </div>
 
-
 @push('scripts')
-<script src="{{ asset("js/moment.js") }}"></script>
 <script src="{{ asset("js/daterangepicker.js") }}"></script>
 <script src="{{ asset("js/select2.min.js") }}"></script>
 <script src="{{ asset("js/gskids.js") }}"></script>
@@ -72,5 +70,3 @@
         {!! Form::button(isset($sendButtonText) ? $sendButtonText : 'Guardar', ['class' => 'btn btn-success', 'type' => 'submit']) !!}
     </div>
 </div>
-
-

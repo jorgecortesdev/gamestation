@@ -47,6 +47,8 @@
         <script src="{{ asset("js/jquery.min.js") }}"></script>
         <!-- Bootstrap -->
         <script src="{{ asset("js/bootstrap.min.js") }}"></script>
+        <!-- Moment -->
+        <script src="{{ asset("js/moment.js") }}"></script>
         <!-- PNotify -->
         <script src="{{ asset("js/pnotify.js") }}"></script>
         <!-- Gentelella -->

@@ -33,6 +33,27 @@
 @endsection
 
 @push('scripts')
-<script src="{{ asset("js/moment.js") }}"></script>
 <script src="{{ asset("js/fullcalendar.min.js") }}"></script>
+<script>
+/**
+ * Full Calendar
+ */
+$(document).ready(function() {
+    if( typeof ($.fn.fullCalendar) === 'undefined') { return; }
+
+    $('#calendar').fullCalendar({
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay,listMonth'
+        },
+        events: '/calendar',
+        defaultView: 'agendaWeek',
+        contentHeight: 665,
+        weekNumberCalculation: 'ISO',
+        minTime: '09:00:00',
+        maxTime: '21:00:00'
+    });
+});
+</script>
 @endpush

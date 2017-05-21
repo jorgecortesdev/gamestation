@@ -9,27 +9,6 @@ import QuantifiableManager from './components/QuantifiableManager.vue';
 Vue.component('quantifiable-manager', QuantifiableManager);
 
 /**
- * Full Calendar
- */
-$(document).ready(function() {
-    if( typeof ($.fn.fullCalendar) === 'undefined') { return; }
-
-    $('#calendar').fullCalendar({
-        header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay,listMonth'
-        },
-        events: '/calendar',
-        defaultView: 'agendaWeek',
-        contentHeight: 665,
-        weekNumberCalculation: 'ISO',
-        minTime: '09:00:00',
-        maxTime: '21:00:00'
-    });
-});
-
-/**
  * Combo pages
  */
 function clearCheckboxes() {

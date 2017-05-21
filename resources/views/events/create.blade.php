@@ -55,7 +55,6 @@
 <script src="{{ asset("js/icheck.min.js") }}"></script>
 <script src="{{ asset("js/select2.full.min.js") }}"></script>
 <script src="{{ asset("js/jquery.inputmask.bundle.js") }}"></script>
-<script src="{{ asset("js/moment.js") }}"></script>
 <script src="{{ asset("js/daterangepicker.js") }}"></script>
 <script src="{{ asset("js/handlebars.min.js") }}"></script>
 <script src="{{ asset("js/handlebars-intl.min.js") }}"></script>
