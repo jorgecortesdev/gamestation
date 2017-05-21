@@ -32,6 +32,11 @@ class Product extends Model
         return $this->total / $this->quantity;
     }
 
+    public function getIsActiveAttribute()
+    {
+        return $this->isActive();
+    }
+
     /******************
      * Custom Methods *
      ******************/

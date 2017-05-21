@@ -59,8 +59,10 @@ class Configuration extends Model
 
     public function options()
     {
-        return $this->productType->products->filter(function ($product) {
-            return $product->is_active != true;
+        $products = $this->productType->products;
+        $activeProduct = $products->where('is_active', true)->first();
+        return $products->filter(function ($product) use ($activeProduct) {
+            return $product->id != $activeProduct->id && $product->supplier_id == $activeProduct->supplier_id;
         });
     }
 }
