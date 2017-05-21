@@ -1,6 +1,12 @@
 require('./bootstrap');
 
-// window.Vue = require('vue');
+window.Vue = require('vue');
+
+import { Vue2Dragula } from 'vue2-dragula';
+Vue.use(Vue2Dragula);
+
+import QuantifiableManager from './components/QuantifiableManager.vue';
+Vue.component('quantifiable-manager', QuantifiableManager);
 
 /**
  * Full Calendar

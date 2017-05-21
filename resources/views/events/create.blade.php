@@ -3,7 +3,6 @@
 @push('stylesheets')
 <link rel="stylesheet" href="{{ asset("css/daterangepicker.css") }}">
 <link rel="stylesheet" href="{{ asset("css/icheck/skins/flat/green.css") }}">
-<link rel="stylesheet" href="{{ asset("css/dragula.css") }}">
 <link rel="stylesheet" href="{{ asset("css/select2.css") }}">
 @endpush
 
@@ -36,8 +35,6 @@
 
                     @include('includes.forms.events.kid')
 
-                     {{-- @include('includes.forms.events.extras') --}}
-
                     <div class="ln_solid"></div>
 
                     <div class="item form-group">
@@ -60,7 +57,6 @@
 <script src="{{ asset("js/jquery.inputmask.bundle.js") }}"></script>
 <script src="{{ asset("js/moment.js") }}"></script>
 <script src="{{ asset("js/daterangepicker.js") }}"></script>
-<script src="{{ asset("js/dragula.js") }}"></script>
 <script src="{{ asset("js/handlebars.min.js") }}"></script>
 <script src="{{ asset("js/handlebars-intl.min.js") }}"></script>
 <script src="{{ asset("js/gsevents.js") }}"></script>

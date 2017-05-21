@@ -36,7 +36,7 @@ class Event extends Model
         return $this->belongsToMany(Extra::class)->withPivot('quantity');
     }
 
-    protected function configurations()
+    public function configurations()
     {
         return $this->hasMany(Configuration::class);
     }
@@ -44,6 +44,39 @@ class Event extends Model
     public function properties()
     {
         return $this->belongsToMany(Property::class)->withPivot('value');
+    }
+
+    public function addExtrasConfigurations()
+    {
+        foreach ($this->extras as $extra) {
+            $quantity = $extra->pivot->quantity;
+            for ($i = 1; $i <= $quantity; $i++) {
+                $this->createConfigurations($extra);
+            }
+        }
+    }
+
+    public function addComboConfigurations()
+    {
+        $this->createConfigurations($this->combo);
+    }
+
+    private function createConfigurations($entity)
+    {
+        foreach ($entity->configurables as $configurable) {
+            $quantity = $configurable->pivot->quantity;
+            for ($i = 1; $i <= $quantity; $i++) {
+                $config = [
+                    'event_id' => $this->id,
+                    'configurable_id' => $entity->id,
+                    'configurable_type' => get_class($entity),
+                    'product_type_id' => $configurable->pivot->product_type_id,
+                    'product_id' => null,
+                    'custom' => null,
+                ];
+                $entity->configurations()->create($config);
+            }
+        }
     }
 
     /**

@@ -29,8 +29,16 @@
     </div>
 </div>
 
-<!-- product manager content -->
-@include('includes.productmanager', ['entity_name' => 'combo', 'entity' => $combo])
-<!-- /product manager content -->
+<div id="gs-qm">
+    <quantifiable-manager entity-id="{{ $combo->id }}" entity-type="{{ get_class($combo) }}"></quantifiable-manager>
+</div>
 
 @endsection
+
+@push('scripts')
+<script>
+var app = new Vue({
+    el: '#gs-qm'
+});
+</script>
+@endpush

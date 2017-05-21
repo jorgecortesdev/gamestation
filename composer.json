@@ -14,7 +14,7 @@
         "guilhermegonzaga/presenter": "^1.0",
         "google/apiclient": "^2.1",
         "intervention/image": "^2.3",
-        "laravel/scout": "2.0.2",
+        "laravel/scout": "2.0.*",
         "algolia/algoliasearch-client-php": "^1.10",
         "xorth/gotourl": "^0.1.0"
     },

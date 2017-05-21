@@ -57,4 +57,9 @@ class Extra extends Model
     {
         return $this->morphToMany(Configuration::class, 'configurable');
     }
+
+    public function events()
+    {
+        return $this->belongsToMany(Event::class)->withPivot('quantity');
+    }
 }

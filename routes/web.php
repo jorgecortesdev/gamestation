@@ -42,11 +42,6 @@ Route::get('/calendar/freebusy', 'CalendarController@freebusy');
 
 Route::get('/schedule', 'ScheduleController@index')->name('schedule.index');
 
-Route::get('productmanager/extras/list', 'ProductManagerController@extrasList');
-Route::get('productmanager/{entity_name}/{entity_id}/product_types', 'ProductManagerController@productTypes');
-Route::get('productmanager/{entity_name}/{entity_id}', 'ProductManagerController@productsByEntity');
-Route::post('productmanager/{entity_name}/{entity_id}/products', 'ProductManagerController@update')->name('productmanager.update');
-
 Route::get('client/search/select', 'ClientsController@searchForSelect');
 Route::get('client/search/autocomplete', 'ClientsController@searchForAutocomplete');
 Route::resource('client', 'ClientsController');
@@ -63,3 +58,6 @@ Route::match(['put', 'patch'], '/configurations/{configuration}', 'Configuration
 
 Route::get('/event/property/{property}', 'EventPropertiesController@show')->name('event_property.show');
 Route::match(['put', 'patch'], '/event/{event}/property/{property}', 'EventPropertiesController@update')->name('event_property.update');
+
+Route::get('/quantities/{entity_id}/{entity_type}', 'QuantifiableController@index');
+Route::match(['put', 'patch'], '/quantities/{entity_id}/{entity_type}', 'QuantifiableController@update');

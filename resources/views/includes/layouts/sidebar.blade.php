@@ -42,7 +42,7 @@
                     </li>
                     <li>
                         <a href="{{ route('combo.index') }}">
-                            <i class="fa fa-gift"></i> Paquetes
+                            <i class="fa fa-gift"></i> Combos
                         </a>
                     </li>
                     <li>

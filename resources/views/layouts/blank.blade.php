@@ -9,6 +9,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
         <title>Game Station Mx</title>
 
         <!-- Bootstrap -->
@@ -35,6 +38,7 @@
                 @include('includes.layouts.topbar')
 
                 @yield('main_container')
+
             </div>
         </div>
 
@@ -45,10 +49,11 @@
         <script src="{{ asset("js/bootstrap.min.js") }}"></script>
         <!-- PNotify -->
         <script src="{{ asset("js/pnotify.js") }}"></script>
+        <!-- Gentelella -->
+        <script src="{{ asset("js/gentelella.js") }}"></script>
+
         <!-- Custom Theme Scripts -->
         <script src="{{ mix('js/app.js') }}"></script>
-
-        <script src="{{ asset("js/gentelella.js") }}"></script>
 
         @stack('scripts')
 

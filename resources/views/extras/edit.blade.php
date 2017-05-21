@@ -29,8 +29,16 @@
     </div>
 </div>
 
-<!-- product manager content -->
-@include('includes.productmanager', ['entity_name' => 'extra', 'entity' => $extra])
-<!-- /product manager content -->
+<div id="gs-qm">
+    <quantifiable-manager entity-id="{{ $extra->id }}" entity-type="{{ get_class($extra) }}"></quantifiable-manager>
+</div>
 
 @endsection
+
+@push('scripts')
+<script>
+var app = new Vue({
+    el: '#gs-qm'
+});
+</script>
+@endpush

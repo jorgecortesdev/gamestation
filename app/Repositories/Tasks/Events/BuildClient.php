@@ -30,10 +30,10 @@ class BuildClient extends Task
         $client->address   = $request->input('clientAddress');
         $client->telephone = $request->input('clientTelephone');
         $client->email     = $request->input('clientEmail');
+        $client->save();
 
         $client->kids()->sync([$this->model->kid_id]);
 
-        $client->save();
 
         $this->model->client()->associate($client);
     }

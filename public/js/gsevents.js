@@ -176,101 +176,6 @@ function init_Select2() {
     });
 }
 
-// function init_Dragula() {
-//     if (typeof (dragula) === 'undefined') { return; }
-
-//     var drake = dragula(
-//         [document.getElementById('left-container'), document.getElementById('right-container')]
-//     );
-
-//     init_AvailableExtras();
-// }
-
-// function init_AvailableExtras() {
-//     HandlebarsIntl.registerWith(Handlebars);
-
-//     var source = $('#entry-template').html();
-//     var template = Handlebars.compile(source);
-
-//     $.ajax({
-//         url: '/productmanager/extras/list',
-//         type: 'GET',
-//         success: function(data) {
-//             var container = $('#left-container');
-//             container.empty();
-//             $.each(data, function(index, item) {
-//                 container.append(template(item));
-//             });
-//         }
-//     });
-// }
-
-
-// function init_CombosOnChange() {
-//     $('#combos input[type=radio]').on('change', function () {
-//         getConfigurableProducts(this.value);
-//         getProperties(this.value);
-//     });
-// }
-
-// function getConfigurableProducts(combo_id) {
-//     HandlebarsIntl.registerWith(Handlebars);
-
-//     var source   = $('#configurable-template').html();
-//     var template = Handlebars.compile(source);
-
-//     var container    = $('#container-configurable > .configurable-products');
-//     var emptyMessage = $('#container-configurable > .configurable-message');
-
-//     container.empty();
-
-//     $.ajax({
-//         url: '/combo/configurable/' + combo_id,
-//         type: 'GET',
-//         success: function(data) {
-//             if (data.configurables[0] != null) {
-//                 container.append(template(data));
-//                 emptyMessage.hide();
-//                 $('input.flat').iCheck({
-//                     checkboxClass: 'icheckbox_flat-green',
-//                     radioClass: 'iradio_flat-green'
-//                 });
-//             } else {
-//                 emptyMessage.show();
-//             }
-//         }
-//     });
-// }
-
-// function getProperties(combo_id) {
-//     HandlebarsIntl.registerWith(Handlebars);
-
-//     var source   = $('#property-template').html();
-//     var template = Handlebars.compile(source);
-
-//     var container    = $('#container-properties > .properties-items');
-//     var emptyMessage = $('#container-properties > .properties-message');
-
-//     container.empty();
-
-//     $.ajax({
-//         url: '/combo/properties/' + combo_id,
-//         type: 'GET',
-//         success: function(data) {
-//             if (data.properties[0] != null) {
-//                 container.append(template(data));
-//                 emptyMessage.hide();
-//                 $('input.flat').iCheck({
-//                     checkboxClass: 'icheckbox_flat-green',
-//                     radioClass: 'iradio_flat-green'
-//                 });
-//             } else {
-//                 emptyMessage.show();
-//             }
-//         }
-//     });
-// }
-
 $(document).ready(function() {
     Handlebars.registerHelper({
         eq: function (v1, v2) {
@@ -284,6 +189,9 @@ $(document).ready(function() {
     init_EventDatePicker();
     init_BirthdayDatePicker();
     init_Select2();
-    // init_Dragula();
-    // init_CombosOnChange();
 });
+
+var app = new Vue({
+    el: '#gs-qm'
+});
+

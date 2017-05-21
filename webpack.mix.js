@@ -18,7 +18,6 @@ let jsFiles = {
     [paths.gentelella + '/jquery.inputmask/dist/jquery.inputmask.bundle.js'] : 'public/js/jquery.inputmask.bundle.js',
     [paths.gentelella + '/select2/dist/js/select2.full.min.js'] : 'public/js/select2.full.min.js',
     [paths.gentelella + '/iCheck/icheck.min.js'] : 'public/js/icheck.min.js',
-    [paths.bower + '/dragula.js/dist/dragula.js'] : 'public/js/dragula.js',
     [paths.bower + '/handlebars/handlebars.min.js'] : 'public/js/handlebars.min.js'
 }
 
@@ -40,7 +39,6 @@ let cssFiles = {
         [paths.gentelella + '/select2/dist/css/select2.css'] : 'public/css/select2.css',
         [paths.gentelella + '/iCheck/skins/flat'] : 'public/css/icheck/skins/flat',
         [paths.bower + '/gentelella/build/css/custom.min.css'] : 'public/css/gentelella.min.css',
-        [paths.bower + '/dragula.js/dist/dragula.css'] : 'public/css/dragula.css',
 }
 
 for (file in cssFiles) {

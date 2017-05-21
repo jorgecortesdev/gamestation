@@ -9,7 +9,6 @@ use App\Http\ViewComposers\ComboComposer;
 use App\Http\ViewComposers\EventsComposer;
 use App\Http\ViewComposers\PropertiesComposer;
 use App\Http\ViewComposers\ProductTypeComposer;
-use App\Http\ViewComposers\ProductManagerComposer;
 
 class ComposerServiceProvider extends ServiceProvider
 {

@@ -17,9 +17,13 @@ class CreateConfigurationsTable extends Migration
             $table->increments('id');
 
             $table->integer('event_id')->unsigned()->index();
+            $table->integer('configurable_id')->unsigned();
+            $table->string('configurable_type');
+
             $table->integer('product_type_id')->unsigned()->index();
             $table->integer('product_id')->nullable()->unsigned();
             $table->string('custom')->nullable();
+
             $table->timestamps();
 
             $table->foreign('event_id')

@@ -9,7 +9,7 @@ class Configuration extends Model
 {
     use Presentable;
 
-    protected $fillable = ['event_id', 'product_type_id', 'product_id', 'custom'];
+    protected $fillable = ['event_id', 'configurable_id', 'configurable_type', 'product_type_id', 'product_id', 'custom'];
 
     protected $presenter = 'App\Presenters\ConfigurationPresenter';
 
@@ -41,13 +41,18 @@ class Configuration extends Model
         return $this->morphedByMany(Extra::class, 'configurable');
     }
 
+    public function events()
+    {
+        return $this->belongsTo(Event::class);
+    }
+
     /**
      * Custom methods
      */
     public function type()
     {
         $reflection = new \ReflectionClass(
-            $this->configurable->configurable_type
+            $this->configurable_type
         );
         return strtolower($reflection->getShortName());
     }

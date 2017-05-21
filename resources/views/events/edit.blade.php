@@ -3,7 +3,6 @@
 @push('stylesheets')
 <link rel="stylesheet" href="{{ asset("css/daterangepicker.css") }}">
 <link rel="stylesheet" href="{{ asset("css/icheck/skins/flat/green.css") }}">
-<link rel="stylesheet" href="{{ asset("css/dragula.css") }}">
 <link rel="stylesheet" href="{{ asset("css/select2.css") }}">
 @endpush
 
@@ -52,6 +51,10 @@
     </div>
 </div>
 
+<div id="gs-qm">
+    <quantifiable-manager entity-id="{{ $event->id }}" entity-type="{{ get_class($event) }}"></quantifiable-manager>
+</div>
+
 @endsection
 
 @push('scripts')
@@ -60,7 +63,6 @@
 <script src="{{ asset("js/jquery.inputmask.bundle.js") }}"></script>
 <script src="{{ asset("js/moment.js") }}"></script>
 <script src="{{ asset("js/daterangepicker.js") }}"></script>
-<script src="{{ asset("js/dragula.js") }}"></script>
 <script src="{{ asset("js/handlebars.min.js") }}"></script>
 <script src="{{ asset("js/handlebars-intl.min.js") }}"></script>
 <script src="{{ asset("js/gsevents.js") }}"></script>
