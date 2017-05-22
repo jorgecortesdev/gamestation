@@ -1,6 +1,7 @@
 <?php
 namespace App\Presenters;
 
+use App\Library\Helper;
 use Laracodes\Presenter\Presenter;
 
 class ProductPresenter extends Presenter
@@ -12,32 +13,22 @@ class ProductPresenter extends Presenter
 
     public function iva()
     {
-        return $this->currencyFormater($this->model->iva);
+        return Helper::currencyFormater($this->model->iva);
     }
 
     public function price()
     {
-        return $this->currencyFormater($this->model->price);
+        return Helper::currencyFormater($this->model->price);
     }
 
     public function total()
     {
-        return $this->currencyFormater($this->model->total);
-    }
-
-    public function unitCost()
-    {
-        return $this->currencyFormater($this->model->unit_cost);
-    }
-
-    protected function currencyFormater($amount)
-    {
-        return money_format('%.2n', $amount);
+        return Helper::currencyFormater($this->model->total);
     }
 
     public function isActive()
     {
-        return $this->model->isActive() ? '<i class="fa fa-check text-success"></i>' : '<i class="fa fa-ban text-danger"></i>';
+        return $this->model->is_active ? '<i class="fa fa-check text-success"></i>' : '<i class="fa fa-ban text-danger"></i>';
     }
 
     public function createdAt()

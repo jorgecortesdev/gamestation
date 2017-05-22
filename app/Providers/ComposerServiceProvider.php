@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Http\ViewComposers\KidsComposer;
 use App\Http\ViewComposers\ComboComposer;
 use App\Http\ViewComposers\EventsComposer;
+use App\Http\ViewComposers\ProductsComposer;
 use App\Http\ViewComposers\PropertiesComposer;
 use App\Http\ViewComposers\ProductTypeComposer;
 
@@ -29,10 +30,10 @@ class ComposerServiceProvider extends ServiceProvider
             EventsComposer::class
         );
 
-        // View::composer(
-        //     ['events.create', 'events.edit'],
-        //     KidsComposer::class
-        // );
+        View::composer(
+            ['products.create', 'products.edit'],
+            ProductsComposer::class
+        );
 
         View::composer(
             ['kids.edit', 'kids.create'],

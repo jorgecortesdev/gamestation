@@ -31,10 +31,9 @@
                             <th class="text-center">Proveedor</th>
                             <th class="text-center">Cantidad</th>
                             <th class="text-center">Unidad</th>
-                            <th class="text-center">Costo</th>
+                            <th class="text-center">Costo Unitario</th>
                             <th class="text-center">IVA</th>
                             <th class="text-center">Costo Total</th>
-                            <th class="text-center">Costo Unitario</th>
                             <th class="text-center">Acciones</th>
                         </tr>
                     </thead>
@@ -54,14 +53,13 @@
                                 </td>
                                 <td class="text-center">{{ $product->productType->name }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('supplier.show', [$product->supplier->id]) }}">{{ $product->supplier->name }}</a>
+                                    <a href="{{ $product->supplier->path() }}">{{ $product->supplier->name }}</a>
                                 </td>
                                 <td class="text-right">{{ $product->present()->quantity }}</td>
                                 <td class="text-center">{{ $product->unity->name }}</td>
                                 <td class="text-right">{{ $product->present()->price }}</td>
                                 <td class="text-right">{{ $product->present()->iva }}</td>
                                 <td class="text-right">{{ $product->present()->total }}</td>
-                                <td class="text-right">{{ $product->present()->unitCost }}</td>
                                 <td class="text-center">
                                     @include('includes.components.table.actions', [
                                         'entity' => $product,

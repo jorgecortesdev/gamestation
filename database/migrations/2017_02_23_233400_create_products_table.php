@@ -16,12 +16,12 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('quantity')->default(0)->unsigned();
-            $table->float('price', 9, 2)->default(0.00);
-            $table->float('iva', 9, 2)->default(0.00);
-            $table->integer('supplier_id')->unsigned()->index();
-            $table->integer('product_type_id')->unsigned()->index();
-            $table->integer('unity_id')->unsigned()->index();
+            $table->unsignedInteger('quantity');
+            $table->float('price', 8, 2);
+            $table->boolean('iva')->default(false);
+            $table->unsignedInteger('supplier_id')->index();
+            $table->unsignedInteger('product_type_id')->index();
+            $table->unsignedInteger('unity_id')->index();
             $table->timestamps();
 
             $table->foreign('supplier_id')

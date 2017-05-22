@@ -11,4 +11,9 @@ class Helper
 
         // return $from->diff($to)->y;
     }
+
+    public static function currencyFormater($amount)
+    {
+        return money_format('%.2n', $amount);
+    }
 }

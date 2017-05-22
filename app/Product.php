@@ -14,27 +14,35 @@ class Product extends Model
 
     protected $presenter = 'App\Presenters\ProductPresenter';
 
-    protected $appends = ['unit_cost', 'total'];
-
     protected $defaultImage = 'img/default_product.png';
+
+    protected $appends = ['is_active'];
+
+    protected $with = ['actives'];
+
+    protected $hidden = ['actives'];
 
     /***********************
      * Appended attributes *
      ***********************/
+    public function getIvaAttribute($iva)
+    {
+        return $iva ? ($this->total - ($this->total / 1.16)) : 0;
+    }
 
     public function getTotalAttribute()
     {
-        return $this->price + $this->iva;
+        return $this->price * $this->quantity;
     }
 
-    public function getUnitCostAttribute()
+    public function getPriceAttribute($price)
     {
-        return $this->total / $this->quantity;
+        return $price / 100;
     }
 
     public function getIsActiveAttribute()
     {
-        return $this->isActive();
+         return $this->actives->isNotEmpty();
     }
 
     /******************
@@ -45,13 +53,6 @@ class Product extends Model
     {
         return $this->actives()
             ->syncWithoutDetaching([$this->productType->id]);
-    }
-
-    public function isActive()
-    {
-        return $this->actives()
-            ->where('active_products.product_id', $this->id)
-            ->exists();
     }
 
     public function path()

@@ -62,4 +62,20 @@ class Extra extends Model
     {
         return $this->belongsToMany(Event::class)->withPivot('quantity');
     }
+
+    /******************
+     * Custom Methods *
+     ******************/
+
+    public function products()
+    {
+        return \App\Product::selectRaw('products.*')
+            ->join('active_products', 'products.id', 'active_products.product_id')
+            ->join('product_typeables', 'products.product_type_id', 'product_typeables.product_type_id')
+            ->where([
+                ['product_typeable_id', '=', $this->id],
+                ['product_typeable_type', '=', get_class($this)]
+            ]);
+    }
 }
+

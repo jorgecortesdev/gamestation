@@ -16,10 +16,9 @@
                     <th class="text-center">Activo</th>
                     <th class="text-center">Cantidad</th>
                     <th class="text-center">Unidad</th>
-                    <th class="text-center">Costo</th>
+                    <th class="text-center">Costo Unitario</th>
                     <th class="text-center">IVA</th>
                     <th class="text-center">Costo Total</th>
-                    <th class="text-center">Costo Unitario</th>
                     <th class="text-center">Acciones</th>
                 </tr>
             </thead>
@@ -38,7 +37,6 @@
                     <td class="text-right">{{ $product->present()->price }}</td>
                     <td class="text-right">{{ $product->present()->iva }}</td>
                     <td class="text-right">{{ $product->present()->total }}</td>
-                    <td class="text-right">{{ $product->present()->unitCost }}</td>
                     <td class="text-center">
                         @include('includes.components.table.actions', [
                             'entity'        => $product,

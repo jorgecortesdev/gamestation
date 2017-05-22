@@ -14,10 +14,10 @@ class CreateActiveProductsTable extends Migration
     public function up()
     {
         Schema::create('active_products', function (Blueprint $table) {
-            $table->increments('id');
             $table->integer('product_id')->unsigned()->index();
             $table->integer('product_type_id')->unsigned()->index();
-            $table->timestamps();
+
+            $table->primary(['product_id', 'product_type_id']);
 
             $table->foreign('product_id')
                   ->references('id')
@@ -28,8 +28,6 @@ class CreateActiveProductsTable extends Migration
                   ->references('id')
                   ->on('product_types')
                   ->onDelete('cascade');
-
-            $table->unique(['product_id', 'product_type_id']);
         });
     }
 

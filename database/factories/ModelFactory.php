@@ -20,13 +20,21 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\SupplierType::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+    ];
+});
+
 $factory->define(App\Supplier::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'address' => $faker->address,
         'telephone' => $faker->numberBetween(6620000000, 6629999999),
         'email' => $faker->email,
-        'supplier_type_id' => $faker->numberBetween(1, 2),
+        'supplier_type_id' => function () {
+            return factory(App\SupplierType::class)->create()->id;
+        }
     ];
 });
 
@@ -39,18 +47,27 @@ $factory->define(App\Unity::class, function (Faker\Generator $faker) {
 $factory->define(App\ProductType::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->word,
+        'quantity' => 1,
+        'configurable' => false,
+        'customizable' => false,
     ];
 });
 
 $factory->define(App\Product::class, function (Faker\Generator $faker) {
     return [
-        'supplier_id' => 1,
         'name' => $faker->name,
-        'quantity' => 0,
-        'unity_id' => 1,
-        'price' => $faker->randomFloat(2, 10, 1000),
-        'iva' => 0.00,
-        'product_type_id' => 1,
+        'quantity' => 1,
+        'price' => $faker->randomNumber(5),
+        'iva' => false,
+        'supplier_id' => function () {
+            return factory(App\Supplier::class)->create()->id;
+        },
+        'product_type_id' => function () {
+            factory(App\ProductType::class)->create()->id;
+        },
+        'unity_id' => function () {
+            factory(App\Unity::class)->create()->id;
+        },
     ];
 });
 

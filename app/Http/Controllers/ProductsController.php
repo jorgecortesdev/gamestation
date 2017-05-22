@@ -2,29 +2,33 @@
 namespace App\Http\Controllers;
 
 use App\Product;
-use App\ProductType;
-use App\Supplier;
-use App\Unity;
-use Illuminate\Http\Request;
-use Validator;
+use App\Repositories\Products;
+use App\Http\Requests\SaveProduct;
 
 class ProductsController extends Controller
 {
+    /** @var App\Repositories\Products */
+    protected $products;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Products $products)
     {
         $this->middleware('auth');
+
+        $this->products = $products;
     }
 
     public function index()
     {
         go()->after();
 
-        $products = Product::with(['supplier', 'unity', 'productType'])->latest('id')->paginate(20);
+        $products = $this->products->latest();
+
+        $products->load(['supplier', 'unity', 'productType']);
+
         return view('products.index', compact('products'));
     }
 
@@ -37,25 +41,12 @@ class ProductsController extends Controller
 
     public function create()
     {
-        $suppliers = Supplier::pluck('name', 'id');
-        $unities   = Unity::pluck('name', 'id');
-        $types     = ProductType::pluck('name', 'id');
-        return view('products.create', compact(['suppliers', 'unities', 'types']));
+        return view('products.create');
     }
 
-    public function store(Request $request)
+    public function store(SaveProduct $request)
     {
-        $validator = $this->validator($request->all());
-
-        if ($validator->fails()) {
-            $this->throwValidationException(
-                $request, $validator
-            );
-        }
-
-        $product = new Product($request->all());
-        $product->save();
-        $product->saveImage($request->image);
+        $product = $this->products->save($request);
 
         flash('Producto agregado con éxito', 'success');
 
@@ -64,66 +55,26 @@ class ProductsController extends Controller
 
     public function edit(Product $product)
     {
-        $suppliers = Supplier::pluck('name', 'id');
-        $unities   = Unity::pluck('name', 'id');
-        $types     = ProductType::pluck('name', 'id');
-        return view('products.edit', compact(['product', 'suppliers', 'unities', 'types']));
+        return view('products.edit', compact('product'));
     }
 
-    public function update(Request $request, Product $product)
+    public function update(SaveProduct $request, Product $product)
     {
-        $validator = $this->validator($request->all());
+        $this->products->setModel($product);
 
-        if ($validator->fails()) {
-            $this->throwValidationException(
-                $request, $validator
-            );
-        }
-
-        $product->update($request->all());
-        $product->saveImage($request->image);
+        $this->products->save($request, $product);
 
         flash('Producto actualizado con éxito', 'success');
-
-        if ($request->session()->has('redirect_url')) {
-            return redirect($request->session()->pull('redirect_url'));
-        }
 
         return go()->now();
     }
 
     public function destroy($id)
     {
-        $product = Product::find($id);
-        $product->delete();
+        $this->products->delete($id);
 
         flash('Producto borrado con éxito', 'success');
 
         return back();
-    }
-
-    protected function validator(array $data)
-    {
-        $rules = [
-            'name' => 'required',
-            'supplier_id' => 'required|numeric',
-            'quantity' => 'required|numeric',
-            'unity_id' => 'required|numeric',
-            'price' => 'required|numeric',
-            'iva' => 'numeric',
-            'product_type_id' => 'required|numeric',
-            'image' => 'image|mimes:jpeg,png,jpg,gif'
-        ];
-
-        $messages = [
-            'name.required' => 'El campo es requerido.',
-            'supplier_id.required' => 'El campo es requerido.',
-            'quantity.required' => 'El campo es requerido.',
-            'unity_id.required' => 'El campo es requerido.',
-            'price.required' => 'El campo es requerido.',
-            'product_type_id.required' => 'El campo es requerido.'
-        ];
-
-        return Validator::make($data, $rules, $messages);
     }
 }

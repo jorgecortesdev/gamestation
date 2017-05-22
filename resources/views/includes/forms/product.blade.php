@@ -1,3 +1,7 @@
+@push('stylesheets')
+<link rel="stylesheet" href="{{ asset("css/icheck/skins/flat/green.css") }}">
+@endpush
+
 <div class="item form-group{{ $errors->has('name') ? ' bad' : '' }}">
     {!! Form::label('name', 'Nombre', ['class' => 'control-label col-md-2 col-sm-2 col-xs-12']) !!}
     <div class="col-md-4 col-sm-4 col-xs-12">
@@ -59,9 +63,11 @@
 </div>
 
 <div class="item form-group{{ $errors->has('iva') ? ' bad' : '' }}">
-    {!! Form::label('iva', 'IVA', ['class' => 'control-label col-md-2 col-sm-2 col-xs-12']) !!}
+    {!! Form::label('iva', 'Tiene IVA', ['class' => 'control-label col-md-2 col-sm-2 col-xs-12']) !!}
     <div class="col-md-1 col-sm-1 col-xs-12">
-        {!! Form::text('iva', isset($product) ? null : '0.00', ['class' => 'form-control']) !!}
+        <div class="checkbox">
+            {!! Form::checkbox('iva', true, null, ['class' => 'flat']) !!}
+        </div>
     </div>
     @if ($errors->has('iva'))
         <div class="alert gs-alert">{{ $errors->first('iva') }}</div>
@@ -101,3 +107,7 @@
         {!! Form::button(isset($sendButtonText) ? $sendButtonText : 'Guardar', ['class' => 'btn btn-success', 'type' => 'submit']) !!}
     </div>
 </div>
+
+@push('scripts')
+<script src="{{ asset("js/icheck.min.js") }}"></script>
+@endpush

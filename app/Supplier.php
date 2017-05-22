@@ -17,6 +17,10 @@ class Supplier extends Model
 
     protected $defaultImage = 'img/default_supplier.png';
 
+    /******************
+     * Custom Methods *
+     ******************/
+
     public function activeProductTypes()
     {
         return $this->products()
@@ -36,8 +40,13 @@ class Supplier extends Model
         }
 
         return $this->products->{$method}(function ($product) {
-            return $product->isActive();
+            return $product->is_active;
         });
+    }
+
+    public function path()
+    {
+        return route('supplier.show', [$this->id]);
     }
 
     /*****************

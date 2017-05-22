@@ -20,8 +20,6 @@
             <dd>{{ $product->present()->iva }}</dd>
             <dt>Costo Total</dt>
             <dd>{{ $product->present()->total }}</dd>
-            <dt>Costo Unitario</dt>
-            <dd>{{ $product->present()->unit_cost }}</dd>
             <dt>Creado</dt>
             <dd>{{ $product->present()->created_at }}</dd>
             <dt>Actualizado</dt>
