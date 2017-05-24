@@ -18,7 +18,7 @@ class ProductTypeable extends Quantifiable
     {
         if (empty($this->selectedItems)) {
             $type = $this->type;
-            $entity = $type::with('productTypes.product.unity')
+            $entity = $type::with('productTypes.activeProduct.unity')
                 ->find($this->id);
             $this->selectedItems = $entity->productTypes;
         }
@@ -37,9 +37,9 @@ class ProductTypeable extends Quantifiable
             $selectedItems = $this->selectedItems();
             $selectedIds = $selectedItems->pluck('pivot.product_type_id');
             $this->availableItems = ProductType::with(
-                    'product.unity'
+                    'activeProduct.unity'
                 )
-                ->has('product')
+                ->has('activeProduct')
                 ->whereNotIn('id', $selectedIds)
                 ->get();
         }

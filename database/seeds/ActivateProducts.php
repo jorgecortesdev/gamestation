@@ -4,7 +4,7 @@ use App\Product;
 use App\ProductType;
 use Illuminate\Database\Seeder;
 
-class ActiveProductsTableSeeder extends Seeder
+class ActivateProducts extends Seeder
 {
     /**
      * Run the database seeds.

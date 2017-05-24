@@ -27,7 +27,7 @@ class Combo extends Model
     public function getTotalAttribute()
     {
         return $this->productTypes->sum(function ($productType) {
-            $price = $productType->product->first()->price;
+            $price = $productType->activeProduct->price;
             $quantity = $productType->pivot->quantity;
             return  $price * $quantity;
         });
@@ -51,7 +51,7 @@ class Combo extends Model
     {
         return $this->morphToMany(ProductType::class, 'product_typeable')
             ->withPivot('quantity')
-            ->with('product');
+            ->with('activeProduct');
     }
 
     public function configurations()

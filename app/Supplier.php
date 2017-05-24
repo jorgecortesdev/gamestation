@@ -24,8 +24,8 @@ class Supplier extends Model
     public function activeProductTypes()
     {
         return $this->products()
-            ->join('active_products', 'products.id', '=', 'active_products.product_id')
             ->get()
+            ->where('is_active', true)
             ->map(function ($product) {
                 return $product->productType;
             });

@@ -18,7 +18,7 @@ class EventExtras extends Quantifiable
     {
         if (empty($this->selectedItems)) {
             $type = $this->type;
-            $entity = $type::with('extras.productTypes.product.unity')
+            $entity = $type::with('extras.productTypes.activeProduct.unity')
                 ->find($this->id);
             $this->selectedItems = $entity->extras;
         }

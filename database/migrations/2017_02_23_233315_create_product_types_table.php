@@ -17,6 +17,7 @@ class CreateProductTypesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->unsignedInteger('quantity');
+            $table->unsignedInteger('product_id')->index();
             $table->boolean('configurable')->default(false);
             $table->boolean('customizable')->default(false);
             $table->timestamps();

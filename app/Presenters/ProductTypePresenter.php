@@ -7,21 +7,21 @@ class ProductTypePresenter extends Presenter
 {
     public function price()
     {
-        $amount = $this->quantity * $this->pivot->quantity * $this->model->product->first()->price;
+        $amount = $this->quantity * $this->pivot->quantity * $this->model->activeProduct->price;
         return money_format('%.2n', $amount);
     }
 
     public function product()
     {
-        return $this->model->product->isNotEmpty()
-            ? $this->model->product->first()->name
+        return $this->model->activeProduct
+            ? $this->model->activeProduct->name
             : $this->renderBan();
     }
 
     public function supplier()
     {
-        return $this->model->product->isNotEmpty()
-            ? $this->model->product->first()->supplier->name
+        return $this->model->activeProduct
+            ? $this->model->activeProduct->supplier->name
             : $this->renderBan();
     }
 

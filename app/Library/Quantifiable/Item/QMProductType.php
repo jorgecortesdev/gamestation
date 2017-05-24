@@ -33,7 +33,7 @@ class QMProductType extends QMItem
      */
     public function getUnity()
     {
-        return $this->entity->product->first()->unity->name;
+        return $this->entity->activeProduct->unity->name;
     }
 
     /**

@@ -18,9 +18,7 @@ class Product extends Model
 
     protected $appends = ['is_active'];
 
-    protected $with = ['actives'];
-
-    protected $hidden = ['actives'];
+    protected $with = ['productType'];
 
     /***********************
      * Appended attributes *
@@ -42,7 +40,7 @@ class Product extends Model
 
     public function getIsActiveAttribute()
     {
-         return $this->actives->isNotEmpty();
+         return $this->productType->product_id == $this->id;
     }
 
     /******************
@@ -51,8 +49,7 @@ class Product extends Model
 
     public function activate()
     {
-        return $this->actives()
-            ->syncWithoutDetaching([$this->productType->id]);
+        return $this->productType->update(['product_id' => $this->id]);
     }
 
     public function path()
@@ -77,10 +74,5 @@ class Product extends Model
     public function unity()
     {
         return $this->belongsTo(Unity::class);
-    }
-
-    public function actives()
-    {
-        return $this->belongsToMany(ProductType::class, 'active_products');
     }
 }
