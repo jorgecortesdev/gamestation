@@ -50,8 +50,8 @@
                                     <br>
                                     <small>Creado {{ $product_type->present()->created_at }}</small>
                                 </td>
-                                <td class="text-center">{!! $product_type->present()->active_product !!}</td>
-                                <td class="text-center">{!! $product_type->present()->active_product_supplier !!}</td>
+                                <td class="text-center">{!! $product_type->present()->product !!}</td>
+                                <td class="text-center">{!! $product_type->present()->supplier !!}</td>
                                 <td class="text-center">{!! $product_type->quantity !!}</td>
                                 <td class="text-center">{!! $product_type->present()->configurable !!}</td>
                                 <td class="text-center">{!! $product_type->present()->customizable !!}</td>

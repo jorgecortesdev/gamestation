@@ -37,6 +37,6 @@ class DatabaseSeeder extends Seeder
 
         /** Events */
         $this->call(EventsTableSeeder::class);
-        $this->call(ConfigurablesTableSeeder::class);
+        $this->call(ConfigurationsTableSeeder::class);
     }
 }

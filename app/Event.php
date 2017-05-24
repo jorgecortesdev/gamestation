@@ -66,15 +66,12 @@ class Event extends Model
         foreach ($entity->configurables as $configurable) {
             $quantity = $configurable->pivot->quantity;
             for ($i = 1; $i <= $quantity; $i++) {
-                $config = [
-                    'event_id' => $this->id,
-                    'configurable_id' => $entity->id,
-                    'configurable_type' => get_class($entity),
-                    'product_type_id' => $configurable->pivot->product_type_id,
-                    'product_id' => null,
-                    'custom' => null,
+                $configuration = [
+                    $this->id => [
+                        'product_type_id' => $configurable->pivot->product_type_id
+                    ]
                 ];
-                $entity->configurations()->create($config);
+                $entity->configurations()->attach($configuration);
             }
         }
     }

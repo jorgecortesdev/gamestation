@@ -5,24 +5,23 @@ use Laracodes\Presenter\Presenter;
 
 class ProductTypePresenter extends Presenter
 {
-
-    public function cost()
+    public function price()
     {
-        $amount = $this->quantity * $this->pivot->quantity * $this->model->activeProduct()->unit_cost;
+        $amount = $this->quantity * $this->pivot->quantity * $this->model->product->first()->price;
         return money_format('%.2n', $amount);
     }
 
-    public function activeProduct()
+    public function product()
     {
-        return $this->model->activeProduct()
-            ? $this->model->activeProduct()->name
+        return $this->model->product->isNotEmpty()
+            ? $this->model->product->first()->name
             : $this->renderBan();
     }
 
-    public function activeProductSupplier()
+    public function supplier()
     {
-        return $this->model->activeProduct()
-            ? $this->model->activeProduct()->supplier->name
+        return $this->model->product->isNotEmpty()
+            ? $this->model->product->first()->supplier->name
             : $this->renderBan();
     }
 

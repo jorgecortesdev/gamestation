@@ -13,6 +13,8 @@ class Configuration extends Model
 
     protected $presenter = 'App\Presenters\ConfigurationPresenter';
 
+    public $timestamps = false;
+
     /**
      * Relationships
      */

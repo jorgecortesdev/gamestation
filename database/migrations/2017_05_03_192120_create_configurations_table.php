@@ -24,8 +24,6 @@ class CreateConfigurationsTable extends Migration
             $table->integer('product_id')->nullable()->unsigned();
             $table->string('custom')->nullable();
 
-            $table->timestamps();
-
             $table->foreign('event_id')
                   ->references('id')
                   ->on('events');

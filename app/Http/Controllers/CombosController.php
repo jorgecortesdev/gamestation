@@ -35,6 +35,7 @@ class CombosController extends Controller
         $combo->load(['productTypes' => function($query) {
             $query->withPivot('quantity');
         }]);
+        $combo->load(['productTypes.product.unity']);
         return view('combos.show', compact('combo'));
     }
 

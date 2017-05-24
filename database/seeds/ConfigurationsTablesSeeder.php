@@ -4,7 +4,7 @@ use App\Event;
 use App\Extra;
 use Illuminate\Database\Seeder;
 
-class ConfigurablesTableSeeder extends Seeder
+class ConfigurationsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

@@ -22,9 +22,9 @@ class Extra extends Model
     public function getTotalAttribute()
     {
         return $this->productTypes->sum(function ($productType) {
-            $unitCost = $productType->activeProduct()->unit_cost;
+            $price = $productType->product->first()->price;
             $quantity = $productType->quantity * $productType->pivot->quantity;
-            return  $unitCost * $quantity;
+            return  $price * $quantity;
         });
     }
 
@@ -45,17 +45,20 @@ class Extra extends Model
     public function productTypes()
     {
         return $this->morphToMany(ProductType::class, 'product_typeable')
-            ->withPivot('quantity');
+            ->withPivot('quantity')
+            ->with('product');
+    }
+
+    public function configurations()
+    {
+        return $this->morphToMany(
+            Configuration::class, 'configurable', 'configurations', 'configurable_id', 'event_id'
+        );
     }
 
     public function configurables()
     {
         return $this->productTypes()->where('configurable', true);
-    }
-
-    public function configurations()
-    {
-        return $this->morphToMany(Configuration::class, 'configurable');
     }
 
     public function events()

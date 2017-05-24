@@ -26,7 +26,6 @@ class ProductsController extends Controller
         go()->after();
 
         $products = $this->products->latest();
-
         $products->load(['supplier', 'unity', 'productType']);
 
         return view('products.index', compact('products'));

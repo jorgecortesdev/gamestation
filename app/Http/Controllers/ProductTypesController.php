@@ -20,7 +20,7 @@ class ProductTypesController extends Controller
 
     public function index()
     {
-        $product_types = ProductType::latest('id')->paginate(20);
+        $product_types = ProductType::with('product.supplier')->latest('id')->paginate(20);
         return view('product_types.index', compact('product_types'));
     }
 

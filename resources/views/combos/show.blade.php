@@ -77,11 +77,11 @@
                             <tbody>
                                 @foreach ($combo->productTypes as $type)
                                 <tr>
-                                    <td>{{ $type->activeProduct()->name }}</td>
+                                    <td>{{ $type->product->first()->name }}</td>
                                     <td class="text-center">{{ $type->name }}</td>
                                     <td class="text-center">{{ $type->quantity * $type->pivot->quantity }}</td>
-                                    <td class="text-center">{{ $type->activeProduct()->unity->name }}</td>
-                                    <td class="text-right">{{ $type->present()->cost }}</td>
+                                    <td class="text-center">{{ $type->product->first()->unity->name }}</td>
+                                    <td class="text-right">{{ $type->present()->price }}</td>
                                 </tr>
                                 @endforeach
                                 <tr>

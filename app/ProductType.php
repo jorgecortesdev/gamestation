@@ -9,14 +9,9 @@ class ProductType extends Model
 {
     use Presentable;
 
-    protected $fillable = ['name', 'configurable', 'customizable'];
+    protected $fillable = ['name', 'quantity', 'configurable', 'customizable'];
 
     protected $presenter = 'App\Presenters\ProductTypePresenter';
-
-    public function activeProduct()
-    {
-        return $this->belongsToMany(Product::class, 'active_products')->first();
-    }
 
     /*****************
      * Relationships *
@@ -29,7 +24,7 @@ class ProductType extends Model
 
     public function product()
     {
-        return $this->hasOne(Product::class)->with('supplier');
+        return $this->belongsToMany(Product::class, 'active_products');
     }
 
     public function renderType()
