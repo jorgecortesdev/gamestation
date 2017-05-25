@@ -37,7 +37,7 @@ class EventExtras extends Quantifiable
             $selectedItems = $this->selectedItems();
             $selectedIds = $selectedItems->pluck('id');
             $this->availableItems = Extra::with(
-                    'productTypes.product.unity'
+                    'productTypes.activeProduct.unity'
                 )
                 ->whereNotIn('id', $selectedIds)
                 ->get();
