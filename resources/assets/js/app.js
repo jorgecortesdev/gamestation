@@ -6,7 +6,10 @@ import { Vue2Dragula } from 'vue2-dragula';
 Vue.use(Vue2Dragula);
 
 import QuantifiableManager from './components/QuantifiableManager.vue';
+import Statement from './components/Statement.vue';
+
 Vue.component('quantifiable-manager', QuantifiableManager);
+Vue.component('gs-statement', Statement);
 
 /**
  * Combo pages

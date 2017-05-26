@@ -50,7 +50,10 @@
 
             {{-- RIGHT --}}
             <div class="col-md-8 col-sm-8 col-xs-12">
-                @include('events.sections.statement')
+                {{-- @include('events.sections.statement') --}}
+                <div id="gs-statements">
+                    <gs-statement event-id="{{ $event->id }}"></gs-statement>
+                </div>
             </div>
         </div>
     </div>
@@ -81,6 +84,10 @@ Handlebars.registerHelper({
     ne: function (v1, v2) {
         return v1 !== v2;
     }
+});
+
+var app = new Vue({
+    el: '#gs-statements'
 });
 </script>
 @endpush

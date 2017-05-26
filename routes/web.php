@@ -47,3 +47,6 @@ Route::match(['put', 'patch'], '/event/{event}/property/{property}', 'EventPrope
 
 Route::get('/quantities/{entity_id}/{entity_type}', 'QuantifiableController@index');
 Route::match(['put', 'patch'], '/quantities/{entity_id}/{entity_type}', 'QuantifiableController@update');
+
+Route::get('statements/{event}', 'StatementsController@index');
+Route::post('statements', 'StatementsController@store');

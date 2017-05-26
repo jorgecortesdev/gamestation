@@ -104,3 +104,13 @@ $factory->define(App\Kid::class, function (Faker\Generator $faker) {
         'birthday_at' => $faker->date()
     ];
 });
+
+$factory->define(App\Statement::class, function (Faker\Generator $faker) {
+    return [
+        'description' => $faker->sentence(4),
+        'quantity' => 1,
+        'amount' => $faker->randomNumber(4) * 100,
+        'event_id' => 1,
+        'charge' => false,
+    ];
+});
