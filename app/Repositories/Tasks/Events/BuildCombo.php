@@ -20,5 +20,7 @@ class BuildCombo extends Task
         $combo = Combo::findOrFail($request->input('combo_id'));
 
         $this->model->combo()->associate($combo);
+
+        $this->model->chargeCombo();
     }
 }

@@ -78,7 +78,11 @@ class BuildConfigurations extends Task
      */
     protected function currentConfigurations()
     {
-        $currentConfigurations = Configuration::where('event_id', $this->model->id)->get();
+        $currentConfigurations = Configuration::where([
+            ['event_id', '=', $this->model->id],
+            ['configurable_id', '=', $this->model->combo->id],
+            ['configurable_type', '=', get_class($this->model->combo)]
+        ])->get();
         return $currentConfigurations->map(function ($item) {
             return [
                 'product_type_id' => $item->product_type_id

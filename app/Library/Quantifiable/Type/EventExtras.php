@@ -62,6 +62,9 @@ class EventExtras extends Quantifiable
         });
         $entity->extras()->sync($items);
         $entity->addExtrasConfigurations();
+
+        $entity->chargeExtras();
+
         return [
             'message' => 'done!',
             'deleted' => $deleted

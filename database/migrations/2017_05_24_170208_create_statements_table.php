@@ -19,6 +19,10 @@ class CreateStatementsTable extends Migration
             $table->unsignedInteger('quantity')->default(1);
             $table->unsignedInteger('amount')->default(0);
             $table->unsignedInteger('event_id')->index();
+
+            $table->unsignedInteger('billable_id');
+            $table->string('billable_type');
+
             $table->boolean('charge')->default(false);
             $table->timestamps();
 

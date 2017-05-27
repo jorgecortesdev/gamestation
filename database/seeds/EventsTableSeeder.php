@@ -23,7 +23,9 @@ class EventsTableSeeder extends Seeder
         foreach ($events as $event) {
             $event = new Event($event);
             $event->save();
+            $event->chargeCombo();
         }
+
 
         $this->addExtrasToSomeEvents();
         $this->addPropertiesToEvents();
@@ -40,6 +42,7 @@ class EventsTableSeeder extends Seeder
         $extra[5] = ['quantity' => 1];
 
         $event->extras()->sync($extra);
+        $event->chargeExtras();
 
         $event = Event::find(3);
 
@@ -48,6 +51,7 @@ class EventsTableSeeder extends Seeder
         $extra[3] = ['quantity' => 1];
 
         $event->extras()->sync($extra);
+        $event->chargeExtras();
     }
 
     protected function addPropertiesToEvents()

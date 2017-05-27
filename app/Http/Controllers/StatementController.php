@@ -16,7 +16,8 @@ class StatementsController extends Controller
      */
     public function index(Event $event)
     {
-        return Statement::where('event_id', $event->id)->get();
+        $event->load('statements');
+        return $event->statements;
     }
 
     /**

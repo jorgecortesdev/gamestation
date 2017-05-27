@@ -46,6 +46,11 @@ class Event extends Model
         return $this->belongsToMany(Property::class)->withPivot('value');
     }
 
+    public function statements()
+    {
+        return $this->hasMany(Statement::class);
+    }
+
     public function addExtrasConfigurations()
     {
         foreach ($this->extras as $extra) {
@@ -76,6 +81,35 @@ class Event extends Model
         }
     }
 
+    public function chargeCombo()
+    {
+        $statement = $this->statements()->firstOrCreate([
+            'billable_id' => $this->combo->id,
+            'billable_type' => get_class($this->combo)
+        ]);
+        $statement->amount = $this->combo->price;
+        $statement->description = 'Paquete ' . $this->combo->name;
+        $statement->charge = true;
+        $statement->quantity = 1;
+        $statement->save();
+    }
+
+    public function chargeExtras()
+    {
+        $this->statements()->where('billable_type', 'App\Extra')->delete();
+        $statements = collect();
+        $this->extras->each(function ($extra) use ($statements) {
+            $statements->push(new \App\Statement([
+                'amount' => $extra->price,
+                'description' => $extra->name,
+                'charge' => true,
+                'quantity' => $extra->pivot->quantity,
+                'billable_id' => $extra->id,
+                'billable_type' => get_class($extra)
+            ]));
+        });
+        $this->statements()->saveMany($statements);
+    }
     /**
      * Get the indexable data array for the model.
      *
