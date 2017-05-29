@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ config('app.locale') }}">
 
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
         <!-- Meta, title, CSS, favicons, etc. -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,7 +28,7 @@
     </head>
 
     <body class="nav-sm">
-        <div class="container body">
+        <div id="main" class="container body">
             <div class="main_container">
 
                 @include('includes.layouts.sidebar')
@@ -38,37 +36,23 @@
                 @include('includes.layouts.topbar')
 
                 @yield('main_container')
-
             </div>
+
+            <flash message="{{ session('flash_notification.message') }}"></flash>
         </div>
-
-
         <!-- jQuery -->
         <script src="{{ asset("js/jquery.min.js") }}"></script>
         <!-- Bootstrap -->
         <script src="{{ asset("js/bootstrap.min.js") }}"></script>
         <!-- Moment -->
         <script src="{{ asset("js/moment.js") }}"></script>
-        <!-- PNotify -->
-        <script src="{{ asset("js/pnotify.js") }}"></script>
+        <!-- Custom Theme Scripts -->
+        <script src="{{ mix('js/app.js') }}"></script>
         <!-- Gentelella -->
         <script src="{{ asset("js/gentelella.js") }}"></script>
 
-        <!-- Custom Theme Scripts -->
-        <script src="{{ mix('js/app.js') }}"></script>
-
         @stack('scripts')
 
-        @if (session()->has('flash_notification.message'))
-        <script type="text/javascript">
-            $(function() {
-                new PNotify({
-                    text: '{{ session('flash_notification.message') }}',
-                    type: '{{ session('flash_notification.level') }}',
-                    styling: 'bootstrap3'
-                });
-            });
-        </script>
-        @endif
+        @stack('handlebars')
     </body>
 </html>

@@ -35,8 +35,6 @@
 
                     @include('includes.forms.events.kid')
 
-                    {{-- @include('includes.forms.events.extras') --}}
-
                     <div class="ln_solid"></div>
 
                     <div class="item form-group">
@@ -51,9 +49,7 @@
     </div>
 </div>
 
-<div id="gs-qm">
-    <quantifiable-manager entity-id="{{ $event->id }}" entity-type="{{ get_class($event) }}"></quantifiable-manager>
-</div>
+<quantifiable-manager entity-id="{{ $event->id }}" entity-type="{{ get_class($event) }}"></quantifiable-manager>
 
 @endsection
 

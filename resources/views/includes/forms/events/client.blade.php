@@ -59,22 +59,22 @@
         {!! Form::label('kids', 'Niños', ['class' => 'control-label col-md-2 col-sm-2 col-xs-12']) !!}
         <div class="col-md3 col-sm-3 col-xs-12"></div>
     </div>
-
-    <!-- handlebars template -->
-    @include('includes.handlebars.events.kid')
-    <!-- /handlebars template -->
 </fieldset>
 
 @push('scripts')
 <script>
-    $(document).ready(function() {
-        $('#frm').on('submit', function() {
-            $('[data-inputmask]').inputmask('remove');
-        });
-
-        if ($('#clientIdOrName').val().length) {
-            $('#clientIdOrName').trigger('select2:select');
-        }
+$(document).ready(function() {
+    $('#frm').on('submit', function() {
+        $('[data-inputmask]').inputmask('remove');
     });
+
+    if ($('#clientIdOrName').val().length) {
+        $('#clientIdOrName').trigger('select2:select');
+    }
+});
 </script>
+@endpush
+
+@push('handlebars')
+@include('includes.handlebars.events.kid')
 @endpush

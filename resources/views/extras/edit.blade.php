@@ -29,16 +29,6 @@
     </div>
 </div>
 
-<div id="gs-qm">
-    <quantifiable-manager entity-id="{{ $extra->id }}" entity-type="{{ get_class($extra) }}"></quantifiable-manager>
-</div>
+<quantifiable-manager entity-id="{{ $extra->id }}" entity-type="{{ get_class($extra) }}"></quantifiable-manager>
 
 @endsection
-
-@push('scripts')
-<script>
-var app = new Vue({
-    el: '#gs-qm'
-});
-</script>
-@endpush

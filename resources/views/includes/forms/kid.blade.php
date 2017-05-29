@@ -56,12 +56,6 @@
     @endif
 </div>
 
-@push('scripts')
-<script src="{{ asset("js/daterangepicker.js") }}"></script>
-<script src="{{ asset("js/select2.min.js") }}"></script>
-<script src="{{ asset("js/gskids.js") }}"></script>
-@endpush
-
 <div class="ln_solid"></div>
 
 <div class="item form-group">
@@ -70,3 +64,9 @@
         {!! Form::button(isset($sendButtonText) ? $sendButtonText : 'Guardar', ['class' => 'btn btn-success', 'type' => 'submit']) !!}
     </div>
 </div>
+
+@push('scripts')
+<script src="{{ asset("js/daterangepicker.js") }}"></script>
+<script src="{{ asset("js/select2.full.min.js") }}"></script>
+<script src="{{ asset("js/gskids.js") }}"></script>
+@endpush

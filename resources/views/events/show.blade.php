@@ -50,10 +50,7 @@
 
             {{-- RIGHT --}}
             <div class="col-md-8 col-sm-8 col-xs-12">
-                {{-- @include('events.sections.statement') --}}
-                <div id="gs-statements">
-                    <gs-statement event-id="{{ $event->id }}"></gs-statement>
-                </div>
+                <gs-statement event-id="{{ $event->id }}"></gs-statement>
             </div>
         </div>
     </div>
@@ -64,11 +61,6 @@
 <!-- Modal -->
 @include('includes.modals.configuration')
 @include('includes.modals.property')
-
-<!-- handlebars template -->
-@include('includes.handlebars.events.configurable')
-@include('includes.handlebars.events.property')
-<!-- /handlebars template -->
 
 @endsection
 
@@ -85,9 +77,10 @@ Handlebars.registerHelper({
         return v1 !== v2;
     }
 });
-
-var app = new Vue({
-    el: '#gs-statements'
-});
 </script>
+@endpush
+
+@push('handlebars')
+@include('includes.handlebars.events.configurable')
+@include('includes.handlebars.events.property')
 @endpush

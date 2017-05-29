@@ -15,7 +15,7 @@ function init_DateRangePicker(selector) {
 function init_Select2(selector) {
     $(selector).select2({
         ajax: {
-            url: "/client/search",
+            url: "/client/search/select",
             dataType: 'json',
             delay: 250,
             data: function (params) {

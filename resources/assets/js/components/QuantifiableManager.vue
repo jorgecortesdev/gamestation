@@ -69,6 +69,7 @@
                     })
                     .then((response) => {
                         this.isLoading = false;
+                        flash('La lista se guardó con éxito')
                     })
                     .catch((error) => {
                         alert('ERROR: ' + Object.getOwnPropertyDescriptor(error, 'message').value);

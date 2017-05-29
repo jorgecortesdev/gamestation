@@ -190,8 +190,3 @@ $(document).ready(function() {
     init_BirthdayDatePicker();
     init_Select2();
 });
-
-var app = new Vue({
-    el: '#gs-qm'
-});
-

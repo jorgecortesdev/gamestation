@@ -102,17 +102,23 @@ export default {
     methods: {
         addToPaymentTable(payment) {
             this.statements.push(payment);
+            this.doCalculation();
+            flash('El pago se registro con éxito')
         },
 
         doCalculation() {
+            let chargeTotal = 0;
+            let paymentTotal = 0;
             for (let i = 0; i < this.statements.length; i++) {
                 if (this.statements[i].charge) {
-                    this.chargeTotal += this.statements[i].amount;
+                    chargeTotal += this.statements[i].amount;
                 } else {
-                    this.paymentTotal += this.statements[i].amount;
+                    paymentTotal += this.statements[i].amount;
                 }
-                this.debt = this.chargeTotal - this.paymentTotal;
             }
+            this.chargeTotal = chargeTotal;
+            this.paymentTotal = paymentTotal;
+            this.debt = chargeTotal - paymentTotal;
         }
     }
 }
