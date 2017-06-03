@@ -1,0 +1,94 @@
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+
+// Variables
+@import "gamestation/variables";
+@import 'gamestation/mixins';
+
+// Bootstrap
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+@import 'gamestation/combos';
+@import 'gamestation/tables';
+@import 'gamestation/cards';
+@import 'gamestation/navbar';
+@import 'gamestation/stats';
+
+html {
+    min-height: 100%;
+    position: relative;
+}
+
+body {
+    margin-bottom: 35px;
+}
+
+.level {
+    display: flex;
+    align-items: center;
+}
+
+.flex {
+    flex: 1;
+}
+
+.page .heading,
+.heading {
+  margin-bottom: 10px;
+}
+
+.heading {
+  margin-top: 10px;
+}
+
+.page .title .btn {
+  margin-bottom: -12px;
+}
+
+.page .body {
+  margin-bottom: 10px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 35px;
+}
+
+.media {
+  display: flex;
+  width: 100%
+}
+
+.media-left {
+  margin-right: 1em;
+}
+
+.media-content {
+  flex: 1;
+  background-color: #efefef
+}
+
+.gs-inline-block {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+.vertical-hr {
+    background-color: #ababab;
+    height: 24px;
+    margin: 0 5px;
+    width: 1px;
+    vertical-align: top;
+}
+.vertical-hr-inline {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+.bg-default{
+    background-color: #f7f7f7;
+}

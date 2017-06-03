@@ -1,0 +1,39 @@
+.card {
+    border-radius: 4px;
+    display: inline-block;
+    padding: 5px 10px;
+    position: relative;
+    width: 100%;
+    min-height: 170px;
+}
+.card-header,
+.card-footer {
+    font-size: 18px;
+    font-weight: 200;
+    margin: 0px;
+    padding: 0px;
+}
+.card-body {
+    min-height: 63px;
+}
+.card h2 {
+    font-size: 35px;
+    font-weight: 400;
+    margin: 10px 0;
+    padding: 0px;
+}
+.card .fa {
+    display: block;
+    font-size: 1em;
+}
+.card dl {
+    margin-bottom: 0px;
+    font-size: 16px;
+}
+.card dt {
+    font-weight: 400;
+}
+.card dd {
+    margin-bottom: 3px;
+    font-weight: 200;
+}

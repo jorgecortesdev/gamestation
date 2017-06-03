@@ -1,0 +1,95 @@
+
+// Body
+$body-bg: #f5f8fa;
+
+// Borders
+$gamestation-border-color: darken($body-bg, 10%);
+$list-group-border: $gamestation-border-color;
+$navbar-default-border: $gamestation-border-color;
+$panel-default-border: $gamestation-border-color;
+$panel-inner-border: $gamestation-border-color;
+
+// Brands
+$brand-primary: #3097D1;
+$brand-info: #8eb4cb;
+$brand-success: #2ab27b;
+$brand-warning: #cbb956;
+$brand-danger: #bf5329;
+
+// Typography
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+$font-family-sans-serif: 'Roboto', sans-serif;
+$font-size-base: 15px;
+$line-height-base: 1.6;
+$text-color: #636b6f;
+$headings-font-weight:    400 !default;
+
+// Navbar
+$navbar-default-bg: #fff;
+
+// Buttons
+$btn-default-color: $text-color;
+
+// Inputs
+$input-border: lighten($text-color, 40%);
+$input-border-focus: lighten($brand-primary, 25%);
+$input-color-placeholder: lighten($text-color, 30%);
+
+// Panels
+$panel-default-heading-bg: #fff;
+
+// Combos
+$color-combo-1:         #a4bdfc;
+$color-combo-1-lighter: lighten($color-combo-1, 30%);
+$color-combo-1-text:    #d5e1fe;
+$color-combo-1-border:  #7c9ff7;
+
+$color-combo-2:         #7ae7be;
+$color-combo-2-lighter: lighten($color-combo-2, 30%);
+$color-combo-2-text:    #e0fdf2;
+$color-combo-2-border:  #53d5a4;
+
+$color-combo-3:         #dbadff;
+$color-combo-3-lighter: lighten($color-combo-3, 30%);
+$color-combo-3-text:    #f5e7ff;
+$color-combo-3-border:  #c880ff;
+
+$color-combo-4:         #ff887c;
+$color-combo-4-lighter: lighten($color-combo-4, 30%);
+$color-combo-4-text:    #dd5c4f;
+$color-combo-4-border:  #ffaba2;
+
+$color-combo-5:         #fbd75b;
+$color-combo-5-lighter: lighten($color-combo-5, 30%);
+$color-combo-5-text:    #bb9617;
+$color-combo-5-border:  #e3bc35;
+
+$color-combo-6:         #ffb878;
+$color-combo-6-lighter: lighten($color-combo-6, 30%);
+$color-combo-6-text:    #ffe1c6;
+$color-combo-6-border:  #de914c;
+
+$color-combo-7:         #46d6db;
+$color-combo-7-lighter: lighten($color-combo-7, 30%);
+$color-combo-7-text:    #a2eff3;
+$color-combo-7-border:  #24c5cc;
+
+$color-combo-8:         #e1e1e1;
+$color-combo-8-lighter: lighten($color-combo-8, 30%);
+$color-combo-8-text:    #ffffff;
+$color-combo-8-border:  #b4b4b4;
+
+$color-combo-9:         #5484ed;
+$color-combo-9-lighter: lighten($color-combo-9, 30%);
+$color-combo-9-text:    #a8c2f8;
+$color-combo-9-border:  #316ae4;
+
+$color-combo-10:         #4eb749;
+$color-combo-10-lighter: lighten($color-combo-10, 30%);
+$color-combo-10-text:    #a6e5a3;
+$color-combo-10-border:  #31a02b;
+
+$color-combo-11:         #dc2126;
+$color-combo-11-lighter: lighten($color-combo-11, 30%);
+$color-combo-11-text:    #fd797c;
+$color-combo-11-border:  #af0f13;

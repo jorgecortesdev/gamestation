@@ -1,0 +1,36 @@
+.navbar-static-top {
+    border: 0px;
+}
+
+.navbar-brand i {
+    border-radius: 50%;
+    border: 1px solid;
+    padding: 5px 6px;
+    font-size: 15px;
+}
+
+.navbar .gamestation-header-line {
+    display: flex;
+}
+
+.navbar .gamestation-header-line > * {
+    height: 3px;
+    flex: 1;
+}
+
+.navbar .gamestation-header-line.green {
+    background-color: $color-combo-10;
+    flex: 1;
+}
+
+.navbar .gamestation-header-line.blue {
+    background-color: $color-combo-9;
+}
+
+.navbar .gamestation-header-line.red {
+    background-color: $color-combo-11;
+}
+
+.navbar .gamestation-header-line.yellow {
+    background-color: $color-combo-5;
+}

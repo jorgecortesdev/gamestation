@@ -1,0 +1,97 @@
+//
+// Combos
+// --------------------------------------------------
+
+// Combo Decorator
+// --------------------------------------------------
+
+.combo-decorator {
+    display: flex;
+    align-items: center;
+}
+
+.combo-decorator-center {
+    justify-content: center;
+}
+
+.combo-decorator > span {
+    margin-left: .3em;
+}
+
+.combo-color-border {
+    border: 1px solid black;
+}
+
+.combo-color.combo-color-form {
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+}
+.combo-color.combo-color-form i {
+    padding: 5px;
+    color: #000000;
+}
+
+// Combo Decorator Sizes
+// --------------------------------------------------
+
+.combo-color-xs {
+  @include combo-decorator-size(15px);
+}
+.combo-color-sm {
+  @include combo-decorator-size(25px);
+}
+.combo-color-lg {
+  @include combo-decorator-size(60px);
+}
+
+// Alternate Combo bg
+// --------------------------------------------------
+
+.combo-color-bg-1 {
+    @include combo-color($color-combo-1, $color-combo-1-lighter, $color-combo-1-text, $color-combo-1-border);
+}
+
+.combo-color-bg-2 {
+    @include combo-color($color-combo-2, $color-combo-2-lighter, $color-combo-2-text, $color-combo-2-border);
+}
+
+.combo-color-bg-3 {
+    @include combo-color($color-combo-3, $color-combo-3-lighter, $color-combo-3-text, $color-combo-3-border);
+}
+
+.combo-color-bg-4 {
+    @include combo-color($color-combo-4, $color-combo-4-lighter, $color-combo-4-text, $color-combo-4-border);
+}
+
+.combo-color-bg-5 {
+    @include combo-color($color-combo-5, $color-combo-5-lighter, $color-combo-5-text, $color-combo-5-border);
+}
+
+.combo-color-bg-6 {
+    @include combo-color($color-combo-6, $color-combo-6-lighter, $color-combo-6-text, $color-combo-6-border);
+}
+
+.combo-color-bg-7 {
+    @include combo-color($color-combo-7, $color-combo-7-lighter, $color-combo-7-text, $color-combo-7-border);
+}
+
+.combo-color-bg-8 {
+    @include combo-color($color-combo-8, $color-combo-8-lighter, $color-combo-8-text, $color-combo-8-border);
+}
+
+.combo-color-bg-8 {
+    @include combo-color($color-combo-8, $color-combo-8-lighter, $color-combo-8-text, $color-combo-8-border);
+}
+
+.combo-color-bg-9 {
+    @include combo-color($color-combo-9, $color-combo-9-lighter, $color-combo-9-text, $color-combo-9-border);
+}
+
+.combo-color-bg-10 {
+    @include combo-color($color-combo-10, $color-combo-10-lighter, $color-combo-10-text, $color-combo-10-border);
+}
+
+.combo-color-bg-11 {
+    @include combo-color($color-combo-11, $color-combo-11-lighter, $color-combo-11-text, $color-combo-11-border);
+}

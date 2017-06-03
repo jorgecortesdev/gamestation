@@ -1,0 +1,33 @@
+.table {
+    margin-bottom: 0px;
+}
+
+.table > thead > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > th,
+.table > tbody > tr > td,
+.table > tfoot > tr > th,
+.table > tfoot > tr > td {
+    vertical-align: middle;
+}
+
+.table > tbody > tr > td.no-wrap > div {
+  display: flex;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.table > tbody > tr > td.actions a {
+  margin: 0 .1em;
+}
+
+.table > tbody > tr > td.gs-image img {
+  border: 1px solid #e6e6e6;
+  height: 64px;
+  width: 64px;
+  padding: 2px;
+}
+
+.table.table-no-top-border tr:first-child td {
+    border-top: none;
+}
