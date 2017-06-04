@@ -38,7 +38,7 @@ class CalendarController extends Controller
             strtoupper($combo->name) . ": " . $request->name,
             $start->toRfc3339String(),
             $end->toRfc3339String(),
-            $combo->google_color_id
+            $combo->color_id
         );
 
         return redirect(route('schedule.index'));

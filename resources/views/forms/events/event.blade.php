@@ -30,7 +30,7 @@
         {!! Form::label('combo_id', 'Paquete', ['class' => 'control-label']) !!}
         <div class="btn-group btn-block" data-toggle="buttons">
             @foreach ($combos as $combo)
-            <label class="btn combo-color-bg-{{ $combo->google_color_id }} text-color btn-color{{ old('combo_id') == $combo->id || isset($event) && $event->combo_id == $combo->id ? ' active' : '' }}">
+            <label class="btn combo-color-bg-{{ $combo->color_id }} text-color btn-color{{ old('combo_id') == $combo->id || isset($event) && $event->combo_id == $combo->id ? ' active' : '' }}">
                 {!! Form::radio('combo_id', $combo->id, null) !!} &nbsp; {{ $combo->name }} &nbsp;
             </label>
             @endforeach

@@ -67,9 +67,12 @@ class ProductsController extends Controller
 
     public function destroy($id)
     {
-        $this->products->delete($id);
-
-        flash('Producto borrado con éxito', 'success');
+        try {
+            $this->products->delete($id);
+            flash('Producto borrado con éxito', 'success');
+        } catch(\Illuminate\Database\QueryException $e) {
+            flash($e->errorInfo[2], 'error');
+        }
 
         return back();
     }

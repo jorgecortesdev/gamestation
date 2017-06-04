@@ -13,12 +13,14 @@ class CreateStatementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('statements', function (Blueprint $table) {
+        Schema::create('statements', function (Blueprint $table)
+        {
             $table->increments('id');
+
             $table->string('description')->default('');
             $table->unsignedInteger('quantity')->default(1);
             $table->unsignedInteger('amount')->default(0);
-            $table->unsignedInteger('event_id')->index();
+            $table->unsignedInteger('event_id');
 
             $table->unsignedInteger('billable_id')->nullable()->default(null);
             $table->string('billable_type')->default('');
@@ -29,7 +31,7 @@ class CreateStatementsTable extends Migration
             $table->foreign('event_id')
                 ->references('id')
                 ->on('events')
-                ->onDelete('cascade');
+                ->onDelete('restrict');
         });
     }
 

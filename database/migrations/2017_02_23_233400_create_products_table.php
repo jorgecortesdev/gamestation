@@ -31,11 +31,13 @@ class CreateProductsTable extends Migration
 
             $table->foreign('product_type_id')
                   ->references('id')
-                  ->on('product_types');
+                  ->on('product_types')
+                  ->onDelete('restrict');
 
             $table->foreign('unity_id')
                   ->references('id')
-                  ->on('unities');
+                  ->on('unities')
+                  ->onDelete('restrict');
 
         });
     }

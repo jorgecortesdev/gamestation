@@ -14,22 +14,22 @@ class CombosTableSeeder extends Seeder
     public function run()
     {
         $data = [
-            ['id' => 1, 'name' => 'Mini', 'hours' => 3, 'kids' => 13, 'adults' => 5, 'price' => 2400, 'google_color_id' => 10],
-            ['id' => 2, 'name' => 'Básico', 'hours' => 3, 'kids' => 25, 'adults' => 5, 'price' => 3200, 'google_color_id' => 9],
-            ['id' => 3, 'name' => 'Plus', 'hours' => 3, 'kids' => 30, 'adults' => 5, 'price' => 4500, 'google_color_id' => 5],
-            ['id' => 4, 'name' => 'Premier', 'hours' => 3, 'kids' => 30, 'adults' => 5, 'price' => 6900, 'google_color_id' => 11]
+            ['id' => 1, 'name' => 'Mini', 'hours' => 3, 'kids' => 13, 'adults' => 5, 'price' => 2400, 'color_id' => 10],
+            ['id' => 2, 'name' => 'Básico', 'hours' => 3, 'kids' => 25, 'adults' => 5, 'price' => 3200, 'color_id' => 9],
+            ['id' => 3, 'name' => 'Plus', 'hours' => 3, 'kids' => 30, 'adults' => 5, 'price' => 4500, 'color_id' => 5],
+            ['id' => 4, 'name' => 'Premier', 'hours' => 3, 'kids' => 30, 'adults' => 5, 'price' => 6900, 'color_id' => 11]
         ];
 
         $combos = factory(Combo::class, 4)->make();
 
         foreach ($combos as $key => $combo) {
-            $combo->id              = $data[$key]['id'];
-            $combo->name            = $data[$key]['name'];
-            $combo->hours           = $data[$key]['hours'];
-            $combo->kids            = $data[$key]['kids'];
-            $combo->adults          = $data[$key]['adults'];
-            $combo->price           = $data[$key]['price'];
-            $combo->google_color_id = $data[$key]['google_color_id'];
+            $combo->id       = $data[$key]['id'];
+            $combo->name     = $data[$key]['name'];
+            $combo->hours    = $data[$key]['hours'];
+            $combo->kids     = $data[$key]['kids'];
+            $combo->adults   = $data[$key]['adults'];
+            $combo->price    = $data[$key]['price'];
+            $combo->color_id = $data[$key]['color_id'];
             $combo->save();
         }
 

@@ -21,8 +21,15 @@ class Extra extends Model
 
     public function getTotalAttribute()
     {
-        return $this->productTypes->sum(function ($productType) {
-            $price = $productType->activeProduct->price;
+        $productTypes = \Cache::remember('extra-product-types', 60 * 5, function () {
+            return $this->productTypes;
+        });
+
+        return $productTypes->sum(function ($productType) {
+            $price = $productType->activeProduct
+                ? $productType->activeProduct->price
+                : 0;
+
             $quantity = $productType->quantity * $productType->pivot->quantity;
             return  $price * $quantity;
         });

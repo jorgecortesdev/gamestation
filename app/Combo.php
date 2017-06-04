@@ -9,7 +9,7 @@ class Combo extends Model
 {
     use Presentable;
 
-    protected $fillable = ['name', 'hours', 'kids', 'adults', 'price', 'google_color_id'];
+    protected $fillable = ['name', 'hours', 'kids', 'adults', 'price', 'color_id'];
 
     protected $presenter = 'App\Presenters\ComboPresenter';
 
@@ -26,9 +26,16 @@ class Combo extends Model
 
     public function getTotalAttribute()
     {
-        return $this->productTypes->sum(function ($productType) {
-            $price = $productType->activeProduct->price;
+        $productTypes = \Cache::remember('combo-product-types', 60 * 60, function () {
+            return $this->productTypes;
+        });
+
+        return $productTypes->sum(function ($productType) {
+            $price = $productType->activeProduct
+                ? $productType->activeProduct->price
+                : 0;
             $quantity = $productType->pivot->quantity;
+
             return  $price * $quantity;
         });
     }

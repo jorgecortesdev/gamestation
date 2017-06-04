@@ -19,12 +19,13 @@ class CreateSuppliersTable extends Migration
             $table->string('address');
             $table->string('telephone');
             $table->string('email');
-            $table->integer('supplier_type_id')->unsigned()->index();
+            $table->unsignedInteger('supplier_type_id');
             $table->timestamps();
 
             $table->foreign('supplier_type_id')
                   ->references('id')
-                  ->on('supplier_types');
+                  ->on('supplier_types')
+                  ->onDelete('restrict');
         });
     }
 
@@ -38,12 +39,3 @@ class CreateSuppliersTable extends Migration
         Schema::dropIfExists('suppliers');
     }
 }
-
-
-/**
- * Nombre
-Dirección
-Teléfono. Puede tener uno o más y debe tener tipo, ej.: celular, fax, oficina, casa, etc.
-Tipo de proveedor. De servicio o de productos.
-
- */

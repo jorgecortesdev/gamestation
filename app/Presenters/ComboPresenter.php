@@ -69,7 +69,7 @@ class ComboPresenter extends Presenter
         return sprintf(
             "<div class='combo-color %s combo-color-border combo-color-bg-%d'></div>",
             $aditional,
-            $this->model->google_color_id
+            $this->model->color_id
         );
     }
 }

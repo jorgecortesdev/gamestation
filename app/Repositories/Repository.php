@@ -61,6 +61,7 @@ abstract class Repository
     public function delete($id)
     {
         $entity = $this->model->findOrFail($id);
+
         return $entity->delete();
     }
 

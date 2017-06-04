@@ -7,8 +7,8 @@
     @endif
 </div>
 
-<div class="form-group{{ $errors->has('google_color_id') ? ' has-error' : '' }}">
-    {!! Form::label('google_color_id', 'Color', ['class' => 'control-label']) !!}
+<div class="form-group{{ $errors->has('color_id') ? ' has-error' : '' }}">
+    {!! Form::label('color_id', 'Color', ['class' => 'control-label']) !!}
     <div id="combo-form-checkboxes">
         <div class="gs-inline-block combo-color combo-color-form combo-color-bg-8">
             <i class="fa fa-check"></i>
@@ -19,11 +19,11 @@
             <i class="fa fa-check"></i>
         </div>
         @endforeach
-        {{ Form::hidden('google_color_id', null) }}
+        {{ Form::hidden('color_id', null) }}
     </div>
 
-    @if ($errors->has('google_color_id'))
-    <span class="help-block text-danger">* {{ $errors->first('google_color_id') }}</span>
+    @if ($errors->has('color_id'))
+    <span class="help-block text-danger">* {{ $errors->first('color_id') }}</span>
     @endif
 </div>
 
@@ -93,7 +93,7 @@ function clearCheckboxes() {
 }
 
 function init_ColorCheckbox() {
-    var input = $('#google_color_id');
+    var input = $('#color_id');
 
     if (input.length <= 0) { return; }
 

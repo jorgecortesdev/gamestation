@@ -16,11 +16,17 @@ class CreateClientKidTable extends Migration
         Schema::create('client_kid', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('kid_id')->default(0)->unsigned()->index();
-            $table->foreign('kid_id')->references('id')->on('kids')->onDelete('cascade');
+            $table->unsignedInteger('kid_id');
+            $table->foreign('kid_id')
+                  ->references('id')
+                  ->on('kids')
+                  ->onDelete('cascade');
 
-            $table->integer('client_id')->default(0)->unsigned()->index();
-            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
+            $table->unsignedInteger('client_id');
+            $table->foreign('client_id')
+                  ->references('id')
+                  ->on('clients')
+                  ->onDelete('cascade');
         });
     }
 

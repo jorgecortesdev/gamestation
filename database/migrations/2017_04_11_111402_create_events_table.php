@@ -16,20 +16,25 @@ class CreateEventsTable extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamp('occurs_on');
-            $table->integer('combo_id')->default(0)->unsigned()->index();
-            $table->integer('client_id')->default(0)->unsigned()->index();
-            $table->integer('kid_id')->default(0)->unsigned()->index();
+            $table->unsignedInteger('combo_id')->nullable()->default(null);
+            $table->unsignedInteger('client_id')->nullable()->default(null);
+            $table->unsignedInteger('kid_id')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('combo_id')
                   ->references('id')
-                  ->on('combos');
+                  ->on('combos')
+                  ->onDelete('restrict');
+
             $table->foreign('client_id')
                   ->references('id')
-                  ->on('clients');
+                  ->on('clients')
+                  ->onDelete('restrict');
+
             $table->foreign('kid_id')
                   ->references('id')
-                  ->on('kids');
+                  ->on('kids')
+                  ->onDelete('restrict');
         });
     }
 

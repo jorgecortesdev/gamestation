@@ -55,9 +55,12 @@ class KidsController extends Controller
 
     public function destroy($id)
     {
-        $this->kids->delete($id);
-
-        flash('Niño borrado con éxito', 'success');
+        try {
+            $this->kids->delete($id);
+            flash('Niño borrado con éxito', 'success');
+        } catch(\Illuminate\Database\QueryException $e) {
+            flash($e->errorInfo[2], 'error');
+        }
 
         return back();
     }

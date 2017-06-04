@@ -15,9 +15,11 @@ class SupplierTypesController extends Controller
 
     public function index()
     {
-        $supplierTypes = SupplierType::paginate(
-            config('gamestation.content.results_per_page')
-        );
+        $supplierTypes = SupplierType::latest()
+            ->paginate(
+                config('gamestation.content.results_per_page')
+            );
+
         return view('pages.suppliers.types.index', compact('supplierTypes'));
     }
 
@@ -60,19 +62,23 @@ class SupplierTypesController extends Controller
             );
         }
 
-        $supplier_type->update($request->all());
+        $supplierType->update($request->all());
 
         flash('Tipo de proveedor actualizado con éxito', 'success');
 
-        return redirect(route('supplier_type.index'));
+        return redirect(route('supplier-types.index'));
     }
 
     public function destroy($id)
     {
-        $supplier_type = SupplierType::find($id);
-        $supplier_type->delete();
+        $supplierType = SupplierType::findOrFail($id);
 
-        flash('Tipo de proveedor borrado con éxito', 'success');
+        try {
+            $supplierType->delete();
+            flash('Tipo de proveedor borrado con éxito', 'success');
+        } catch(\Illuminate\Database\QueryException $e) {
+            flash($e->errorInfo[2], 'error');
+        }
 
         return back();
     }

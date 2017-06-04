@@ -17,10 +17,16 @@ class CreateComboPropertyTable extends Migration
             $table->increments('id');
 
             $table->integer('combo_id')->default(0)->unsigned()->index();
-            $table->foreign('combo_id')->references('id')->on('combos')->onDelete('cascade');
+            $table->foreign('combo_id')
+                  ->references('id')
+                  ->on('combos')
+                  ->onDelete('cascade');
 
             $table->integer('property_id')->default(0)->unsigned()->index();
-            $table->foreign('property_id')->references('id')->on('properties')->onDelete('cascade');
+            $table->foreign('property_id')
+                  ->references('id')
+                  ->on('properties')
+                  ->onDelete('cascade');
         });
     }
 

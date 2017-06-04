@@ -16,13 +16,19 @@ class CreateEventExtraTable extends Migration
         Schema::create('event_extra', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('event_id')->default(0)->unsigned()->index();
-            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
+            $table->unsignedInteger('event_id')->nullable()->default(null);
+            $table->foreign('event_id')
+                  ->references('id')
+                  ->on('events')
+                  ->onDelete('cascade');
 
-            $table->integer('extra_id')->default(0)->unsigned()->index();
-            $table->foreign('extra_id')->references('id')->on('extras')->onDelete('cascade');
+            $table->unsignedInteger('extra_id')->nullable()->default(null);
+            $table->foreign('extra_id')
+                  ->references('id')
+                  ->on('extras')
+                  ->onDelete('cascade');
 
-            $table->integer('quantity')->default(1)->unsigned()->index();
+            $table->unsignedInteger('quantity')->default(1);
         });
     }
 

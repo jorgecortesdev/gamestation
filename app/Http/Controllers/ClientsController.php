@@ -55,9 +55,12 @@ class ClientsController extends Controller
 
     public function destroy($id)
     {
-        $this->clients->delete($id);
-
-        flash('Cliente borrado con éxito', 'success');
+        try {
+            $this->clients->delete($id);
+            flash('Cliente borrado con éxito', 'success');
+        } catch(\Illuminate\Database\QueryException $e) {
+            flash($e->errorInfo[2], 'error');
+        }
 
         return back();
     }

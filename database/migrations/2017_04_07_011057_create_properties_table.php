@@ -16,13 +16,14 @@ class CreatePropertiesTable extends Migration
         Schema::create('properties', function (Blueprint $table) {
             $table->increments('id');
             $table->string('label');
-            $table->integer('render_type_id')->default(1)->unsigned()->index();
+            $table->unsignedInteger('render_type_id')->default(1);
             $table->string('options')->nullable();
             $table->timestamps();
 
             $table->foreign('render_type_id')
                   ->references('id')
-                  ->on('render_types');
+                  ->on('render_types')
+                  ->onDelete('restrict');
         });
     }
 

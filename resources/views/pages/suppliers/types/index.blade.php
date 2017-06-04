@@ -52,3 +52,8 @@
     @endcomponent
 
 @endsection
+
+@push('modals')
+@include('modals.delete', ['entityText' => 'unidad'])
+@endpush
+

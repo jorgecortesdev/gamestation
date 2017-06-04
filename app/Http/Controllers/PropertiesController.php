@@ -15,7 +15,10 @@ class PropertiesController extends Controller
 
     public function index()
     {
-        $properties = Property::with('renderType')->paginate(20);
+        $properties = Property::with('renderType')
+            ->latest()
+            ->paginate(config('gamestation.results_per_page'));
+
         return view('pages.properties.index', compact('properties'));
     }
 

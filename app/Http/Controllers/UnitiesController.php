@@ -16,7 +16,9 @@ class UnitiesController extends Controller
 
     public function index()
     {
-        $unities = Unity::paginate(config('gamestation.results_per_page'));
+        $unities = Unity::latest()
+            ->paginate(config('gamestation.results_per_page'));
+
         return view('pages.unities.index', compact('unities'));
     }
 
@@ -69,9 +71,13 @@ class UnitiesController extends Controller
     public function destroy($id)
     {
         $unity = Unity::find($id);
-        $unity->delete();
 
-        flash('Unidad borrada con éxito', 'success');
+        try {
+            $unity->delete();
+            flash('Unidad borrada con éxito', 'success');
+        } catch(\Illuminate\Database\QueryException $e) {
+            flash($e->errorInfo[2], 'error');
+        }
 
         return back();
     }

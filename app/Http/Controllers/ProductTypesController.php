@@ -85,9 +85,13 @@ class ProductTypesController extends Controller
     public function destroy($id)
     {
       $productType = ProductType::find($id);
-      $productType->delete();
 
-      flash('Tipo de producto borrado con éxito', 'success');
+        try {
+            $productType->delete();
+            flash('Tipo de producto borrado con éxito', 'success');
+        } catch(\Illuminate\Database\QueryException $e) {
+            flash($e->errorInfo[2], 'error');
+        }
 
       return back();
     }

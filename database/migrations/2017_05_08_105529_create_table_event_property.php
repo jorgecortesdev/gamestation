@@ -13,14 +13,23 @@ class CreateTableEventProperty extends Migration
      */
     public function up()
     {
-        Schema::create('event_property', function (Blueprint $table) {
-            $table->integer('event_id')->default(0)->unsigned()->index();
-            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
+        Schema::create('event_property', function (Blueprint $table)
+        {
+            $table->primary(['event_id', 'property_id']);
 
-            $table->integer('property_id')->default(0)->unsigned()->index();
-            $table->foreign('property_id')->references('id')->on('properties')->onDelete('cascade');
-
+            $table->unsignedInteger('event_id');
+            $table->unsignedInteger('property_id');
             $table->string('value')->default('');
+
+            $table->foreign('event_id')
+                  ->references('id')
+                  ->on('events')
+                  ->onDelete('cascade');
+
+            $table->foreign('property_id')
+                  ->references('id')
+                  ->on('properties')
+                  ->onDelete('cascade');
         });
     }
 

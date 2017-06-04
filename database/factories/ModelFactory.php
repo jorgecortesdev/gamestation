@@ -105,3 +105,10 @@ $factory->define(App\Statement::class, function (Faker\Generator $faker) {
         'charge' => false,
     ];
 });
+
+$factory->define(App\Property::class, function (Faker\Generator $faker) {
+    return [
+        'label' => $faker->word,
+        'render_type_id' => 1,
+    ];
+});

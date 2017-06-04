@@ -16,14 +16,30 @@ class CreateConfigurationsTable extends Migration
         Schema::create('configurations', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('event_id')->unsigned()->index();
-            $table->integer('configurable_id')->unsigned();
+            $table->unsignedInteger('event_id')->index();
+
+            $table->unsignedInteger('configurable_id');
             $table->string('configurable_type');
 
-            $table->integer('product_type_id')->nullable()->unsigned();
-            $table->integer('product_id')->nullable()->unsigned();
-            $table->string('custom')->nullable();
+            $table->unsignedInteger('product_type_id')->nullable();
+            $table->unsignedInteger('product_id')->nullable();
 
+            $table->string('custom')->default('');
+
+            $table->foreign('event_id')
+                  ->references('id')
+                  ->on('events')
+                  ->onDelete('cascade');
+
+            $table->foreign('product_type_id')
+                  ->references('id')
+                  ->on('product_types')
+                  ->onDelete('set null');
+
+            $table->foreign('product_id')
+                  ->references('id')
+                  ->on('products')
+                  ->onDelete('set null');
         });
     }
 

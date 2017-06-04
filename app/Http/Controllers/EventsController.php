@@ -86,9 +86,12 @@ class EventsController extends Controller
 
     public function destroy($id)
     {
-        $this->events->delete($id);
-
-        flash('Evento borrado con éxito', 'success');
+        try {
+            $this->events->delete($id);
+            flash('Evento borrado con éxito', 'success');
+        } catch(\Illuminate\Database\QueryException $e) {
+            flash($e->errorInfo[2], 'error');
+        }
 
         return back();
     }

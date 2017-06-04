@@ -22,6 +22,7 @@ class CombosController extends Controller
     public function index()
     {
         $combos = $this->combos->latest();
+
         return view('pages.combos.index', compact('combos'));
     }
 
@@ -55,8 +56,8 @@ class CombosController extends Controller
         $combo->kids = $request->kids;
         $combo->adults = $request->adults;
         $combo->price = $request->price;
-        if (!empty($request->google_color_id)) {
-            $combo->google_color_id = $request->google_color_id;
+        if (!empty($request->color_id)) {
+            $combo->color_id = $request->color_id;
         }
 
         $combo->save();
@@ -104,9 +105,12 @@ class CombosController extends Controller
 
     public function destroy($id)
     {
-        $this->combos->delete($id);
-
-        flash('Paquete borrado con éxito', 'success');
+        try {
+            $this->combos->delete($id);
+            flash('Paquete borrado con éxito', 'success');
+        } catch(\Illuminate\Database\QueryException $e) {
+            flash($e->errorInfo[2], 'error');
+        }
 
         return back();
     }
@@ -119,7 +123,7 @@ class CombosController extends Controller
             'kids' => 'required|numeric',
             'adults' => 'required|numeric',
             'price' => 'required|numeric',
-            'google_color_id' => 'required|digits_between:1,11'
+            'color_id' => 'required|digits_between:1,11'
         ];
 
         if (isset($data['id'])) {
