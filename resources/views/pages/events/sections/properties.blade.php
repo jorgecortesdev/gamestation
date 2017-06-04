@@ -14,8 +14,9 @@
                                href="#"
                                data-toggle="modal"
                                data-target="#propertyModal"
-                               data-id="{{ $property->id }}"
-                               data-action="{{ route('event-property.update', [$event->id, $property->id]) }}" ><i class="fa fa-cogs"></i> Configurar</a>
+                               data-event-id="{{ $event->id }}"
+                               data-property-id="{{ $property->id }}"
+                               data-action="{{ route('event.property.update', [$event->id, $property->id]) }}" ><i class="fa fa-cogs"></i> Configurar</a>
                         </td>
                     </tr>
                     @endforeach

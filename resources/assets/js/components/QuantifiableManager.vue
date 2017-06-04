@@ -62,7 +62,7 @@
         methods: {
             onSubmit() {
                 this.isLoading = true;
-                axios.patch('/quantities/' + this.entityId + '/' + encodeURI(this.entityType), {
+                axios.patch('/api/v1/quantities/' + this.entityId + '/' + encodeURI(this.entityType), {
                         items: this.selected
                     })
                     .then((response) => {
@@ -89,7 +89,7 @@
         },
 
         mounted() {
-            axios.get('/quantities/' + this.entityId + '/' + encodeURI(this.entityType))
+            axios.get('/api/v1/quantities/' + this.entityId + '/' + encodeURI(this.entityType))
                 .then((response) => {
                     this.addAvailableItems(response.data.available);
                     this.addSelectedItems(response.data.selected);

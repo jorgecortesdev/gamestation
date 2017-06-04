@@ -34,7 +34,7 @@
 
         methods: {
             onSubmit() {
-                this.form.post('/statements')
+                this.form.post('/api/v1/statements')
                     .then(data => {
                         this.$emit('completed', data);
                         this.form.event_id = this.eventId;

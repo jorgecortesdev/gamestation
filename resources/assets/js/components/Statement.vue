@@ -81,7 +81,7 @@ export default {
     },
 
     mounted() {
-        axios.get('/statements/' + this.eventId)
+        axios.get('/api/v1/statements/' + this.eventId)
             .then(response => {
                 this.statements = response.data;
                 this.doCalculation();

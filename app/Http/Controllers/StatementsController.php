@@ -8,15 +8,9 @@ use Illuminate\Http\Request;
 
 class StatementsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Event $event)
+    public function __construct()
     {
-        $event->load('statements');
-        return $event->statements;
+        $this->middleware('auth');
     }
 
     /**
@@ -49,42 +43,10 @@ class StatementsController extends Controller
      * @param  \App\Statement  $statement
      * @return \Illuminate\Http\Response
      */
-    public function show(Statement $statement)
+    public function show($statement)
     {
-        //
+        $event = Event::with('statements')->findOrFail($statement);
+        return $event->statements;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Statement  $statement
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Statement $statement)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Statement  $statement
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Statement $statement)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Statement  $statement
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Statement $statement)
-    {
-        //
-    }
 }

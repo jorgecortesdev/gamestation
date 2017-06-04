@@ -32,7 +32,7 @@
         container.empty();
 
         $.ajax({
-            url: '/configurations/' + configuration_id,
+            url: '/api/v1/configurations/' + configuration_id,
             type: 'GET',
             success: function(data) {
                 container.append(template(data));

@@ -30,4 +30,4 @@ mix.copy('node_modules/select2/dist/js/select2.full.min.js', 'public/js')
 
 mix.copy('node_modules/handlebars/dist/handlebars.min.js', 'public/js');
 
-mix.browserSync('gamestation.dev');
+mix.browserSync('dev.gamestation.mx');

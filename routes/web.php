@@ -66,18 +66,19 @@ Route::resource('unities', 'UnitiesController');
 // Users Routes
 Route::resource('users', 'UsersController');
 
-// Quantifiable Vue Component Routes
-Route::get('/quantities/{entity_id}/{entity_type}', 'QuantifiableController@index');
-Route::match(['put', 'patch'], '/quantities/{entity_id}/{entity_type}', 'QuantifiableController@update');
+// API v1 Routes
+Route::group(['prefix' => 'api/v1'], function() {
 
-// Configurations Routes
-Route::get('/configurations/{configuration}', 'ConfigurationsController@index')->name('configurations.index');
-Route::match(['put', 'patch'], '/configurations/{configuration}', 'ConfigurationsController@update')->name('configurations.update');
+    // Configurations Routes
+    Route::resource('configurations', 'ConfigurationsController', ['only' => ['show', 'update']]);
 
-// Statements Routes
-Route::get('statements/{event}', 'StatementsController@index');
-Route::post('statements', 'StatementsController@store');
+    // Event Properties
+    Route::resource('event.property', 'EventPropertiesController', ['only' => ['show', 'update']]);
 
-// Event Properties
-Route::get('/event/property/{property}', 'EventPropertiesController@show')->name('event-property.show');
-Route::match(['put', 'patch'], '/event/{event}/property/{property}', 'EventPropertiesController@update')->name('event-property.update');
+    // Statements Vue Component Routes
+    Route::resource('statements', 'StatementsController', ['only' => ['show', 'store']]);
+
+    // Quantifiable Vue Component Routes
+    Route::get('/quantities/{entity_id}/{entity_type}', 'QuantifiableController@index');
+    Route::match(['put', 'patch'], '/quantities/{entity_id}/{entity_type}', 'QuantifiableController@update');
+});

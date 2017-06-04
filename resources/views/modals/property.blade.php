@@ -23,7 +23,7 @@
 @push('scripts')
 <script type="text/javascript">
 
-    function getProperty(property_id) {
+    function renderEventProperty(event_id, property_id) {
 
         var source   = $('#property-template').html();
         var template = Handlebars.compile(source);
@@ -32,7 +32,7 @@
         container.empty();
 
         $.ajax({
-            url: '/event/property/' + property_id,
+            url: '/api/v1/event/' + event_id + '/property/' + property_id,
             type: 'GET',
             success: function(data) {
                 container.append(template(data));
@@ -49,8 +49,10 @@
             var button = $(event.relatedTarget); // Button that triggered the modal
             var action = button.data('action'); // Extract info from data-* attributes
 
-            var id = button.data('id');
-            getProperty(id);
+            var property_id = button.data('property-id');
+            var event_id = button.data('event-id');
+
+            renderEventProperty(event_id, property_id);
 
             var modal = $(this)
             modal.find('form').attr('action', action);

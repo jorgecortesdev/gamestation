@@ -8,19 +8,30 @@ use Illuminate\Http\Request;
 
 class EventPropertiesController extends Controller
 {
-    public function show(Property $property)
+    public function __construct()
     {
-        $property->load('renderType');
-        $property = [
+        $this->middleware('auth');
+    }
+
+    public function show($event, $property)
+    {
+        $event = Event::findOrFail($event);
+
+        $property = $event->properties()->with('renderType')->find($property);
+
+        return response()->json([
             'label' => $property->label,
             'render' => strtolower($property->renderType->name),
             'options' => $property->options,
-        ];
-        return $property;
+        ], 200);
     }
 
-    public function update(Request $request, Event $event, Property $property)
+    public function update(Request $request, $event, $property)
     {
+        $event = Event::findOrFail($event);
+
+        $property = $event->properties()->with('renderType')->find($property);
+
         $value = '';
         // HARDCODE!!!!
         if ($property->renderType->id == 1) {
