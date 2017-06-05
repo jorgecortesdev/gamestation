@@ -13,10 +13,10 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 // Route::post('register', 'Auth\RegisterController@register');
 
 // Password Reset Routes...
-Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+// Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+// Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+// Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+// Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 // Home Routes
 Route::get('/home', 'HomeController@index')->name('home');
@@ -81,4 +81,5 @@ Route::group(['prefix' => 'api/v1'], function() {
     // Quantifiable Vue Component Routes
     Route::get('/quantities/{entity_id}/{entity_type}', 'QuantifiableController@index');
     Route::match(['put', 'patch'], '/quantities/{entity_id}/{entity_type}', 'QuantifiableController@update');
+
 });
