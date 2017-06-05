@@ -8,7 +8,7 @@
         @endslot
 
         @slot('buttons')
-            <a href="{{ route('combos.create') }}" class="btn btn-default pull-right">
+            <a href="{{ route('combos.create') }}" class="btn btn-primary">
                 <i class="fa fa-plus-square"></i> Agregar
             </a>
         @endslot

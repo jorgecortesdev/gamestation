@@ -8,7 +8,7 @@
         @endslot
 
         @slot('buttons')
-            <a href="{{ route('clients.create') }}" class="btn btn-default">
+            <a href="{{ route('clients.create') }}" class="btn btn-primary">
                 <i class="fa fa-fw fa-plus-square"></i> Agregar
             </a>
         @endslot

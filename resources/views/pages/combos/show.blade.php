@@ -7,6 +7,15 @@
             Información de Paquete
         @endslot
 
+        @slot('buttons')
+            <a href="{{ route('combos.edit', [$combo->id]) }}" class="btn btn-primary">
+                <i class="fa fa-fw fa-edit"></i> Editar
+            </a>
+            <a href="{{ route('combos.index') }}" class="btn btn-primary">
+                <i class="fa fa-fw fa-arrow-left"></i> Volver
+            </a>
+        @endslot
+
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">
