@@ -17,8 +17,9 @@
                 @include('forms.combos', ['sendButtonText' => 'Actualizar'])
                 {!! Form::close() !!}
             </div>
-
         </div>
+
+        <quantifiable-manager entity-id="{{ $combo->id }}" entity-type="{{ get_class($combo) }}"></quantifiable-manager>
 
     @endcomponent
 
