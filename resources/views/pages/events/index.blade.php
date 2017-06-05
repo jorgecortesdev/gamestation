@@ -30,7 +30,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($events as $event)
+                    @if ($events->count() > 0)
+                        @foreach ($events as $event)
                         <tr>
                             <td class="text-right">{{ $event->id }}</td>
                             <td>
@@ -59,7 +60,12 @@
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
+                        @endforeach
+                    @else
+                    <tr>
+                        <td colspan="7"><div class="alert text-center">Sin eventos</div></td>
+                    </tr>
+                    @endif
                 </tbody>
             </table>
 

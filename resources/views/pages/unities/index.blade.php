@@ -26,7 +26,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($unities as $unity)
+                    @if ($unities->count() > 0)
+                        @foreach ($unities as $unity)
                         <tr>
                             <td class="text-right">{{ $unity->id }}</td>
                             <td>
@@ -41,7 +42,12 @@
                                 </a>
                             </td>
                         </tr>
-                    @endforeach
+                        @endforeach
+                    @else
+                    <tr>
+                        <td colspan="3"><div class="alert text-center">Sin unidades</div></td>
+                    </tr>
+                    @endif
                 </tbody>
             </table>
 

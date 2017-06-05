@@ -29,7 +29,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($extras as $extra)
+                    @if ($extras->count() > 0)
+                        @foreach ($extras as $extra)
                         <tr>
                             <td class="text-right">{{ $extra->id }}</td>
                             <td>
@@ -45,7 +46,12 @@
                                 <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('extras.destroy', [$extra->id]) }}"> <i class="fa fa-trash"></i> Borrar</a>
                             </td>
                         </tr>
-                    @endforeach
+                        @endforeach
+                    @else
+                    <tr>
+                        <td colspan="6"><div class="alert text-center">Sin extras</div></td>
+                    </tr>
+                    @endif
                 </tbody>
             </table>
 

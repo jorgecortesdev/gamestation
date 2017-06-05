@@ -33,7 +33,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($combos as $combo)
+                    @if ($combos->count() > 0)
+                        @foreach ($combos as $combo)
                         <tr>
                             <td class="text-right">{{ $combo->id }}</td>
                             <td>
@@ -58,7 +59,12 @@
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
+                        @endforeach
+                    @else
+                    <tr>
+                        <td colspan="10"><div class="alert text-center">Sin paquetes</div></td>
+                    </tr>
+                    @endif
                 </tbody>
             </table>
 

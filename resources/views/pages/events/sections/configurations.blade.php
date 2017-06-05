@@ -20,9 +20,9 @@
                     </tr>
                     @endforeach
                 @else
-                    <tr>
-                        <td><div class="alert text-center">Sin productos</div></td>
-                    </tr>
+                <tr>
+                    <td><div class="alert text-center">Sin productos</div></td>
+                </tr>
                 @endif
             </tbody>
         </table>

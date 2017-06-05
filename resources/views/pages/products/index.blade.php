@@ -32,7 +32,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($products as $product)
+                    @if ($products->count() > 0)
+                        @foreach ($products as $product)
                         <tr>
                             <td class="text-right">{{ $product->id }}</td>
                             <td>
@@ -64,7 +65,12 @@
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
+                        @endforeach
+                    @else
+                    <tr>
+                        <td colspan="9"><div class="alert text-center">Sin productos</div></td>
+                    </tr>
+                    @endif
                 </tbody>
             </table>
 

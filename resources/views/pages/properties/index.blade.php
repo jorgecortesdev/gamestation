@@ -28,7 +28,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($properties as $property)
+                    @if ($properties->count() > 0)
+                        @foreach ($properties as $property)
                         <tr>
                             <td class="text-right">{{ $property->id }}</td>
                             <td>
@@ -45,7 +46,12 @@
                                 </a>
                             </td>
                         </tr>
-                    @endforeach
+                        @endforeach
+                    @else
+                    <tr>
+                        <td colspan="5"><div class="alert text-center">Sin propiedades</div></td>
+                    </tr>
+                    @endif
                 </tbody>
             </table>
         </div>

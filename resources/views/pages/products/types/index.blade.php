@@ -30,30 +30,36 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($productTypes as $productType)
+                    @if ($productTypes->count() > 0)
+                        @foreach ($productTypes as $productType)
+                        <tr>
+                            <td class="text-right">{{ $productType->id }}</td>
+                            <td>
+                                {{ $productType->name }}
+                                <br>
+                                <small>Creado {{ $productType->present()->created_at }}</small>
+                            </td>
+                            <td class="text-center">
+                                {!! $productType->present()->product !!}
+                            </td>
+                            <td class="text-center">{!! $productType->quantity !!}</td>
+                            <td class="text-center">{!! $productType->present()->configurable !!}</td>
+                            <td class="text-center">{!! $productType->present()->customizable !!}</td>
+                            <td class="text-center">
+                                <a class="btn btn-info" href="{{ route('product-types.edit', [$productType->id]) }}">
+                                    <i class="fa fa-fw fa-edit"></i> Editar
+                                </a>
+                                <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('product-types.destroy', [$productType->id]) }}">
+                                    <i class="fa fa-fw fa-trash"></i> Borrar
+                                </a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    @else
                     <tr>
-                        <td class="text-right">{{ $productType->id }}</td>
-                        <td>
-                            {{ $productType->name }}
-                            <br>
-                            <small>Creado {{ $productType->present()->created_at }}</small>
-                        </td>
-                        <td class="text-center">
-                            {!! $productType->present()->product !!}
-                        </td>
-                        <td class="text-center">{!! $productType->quantity !!}</td>
-                        <td class="text-center">{!! $productType->present()->configurable !!}</td>
-                        <td class="text-center">{!! $productType->present()->customizable !!}</td>
-                        <td class="text-center">
-                            <a class="btn btn-info" href="{{ route('product-types.edit', [$productType->id]) }}">
-                                <i class="fa fa-fw fa-edit"></i> Editar
-                            </a>
-                            <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('product-types.destroy', [$productType->id]) }}">
-                                <i class="fa fa-fw fa-trash"></i> Borrar
-                            </a>
-                        </td>
+                        <td colspan="7"><div class="alert text-center">Sin tipos de productos</div></td>
                     </tr>
-                    @endforeach
+                    @endif
                 </tbody>
             </table>
         </div>

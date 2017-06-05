@@ -29,7 +29,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($kids as $kid)
+                    @if ($kids->count() > 0)
+                        @foreach ($kids as $kid)
                         <tr>
                             <td class="text-right">{{ $kid->id }}</td>
                             <td>
@@ -47,7 +48,12 @@
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
+                        @endforeach
+                    @else
+                    <tr>
+                        <td colspan="6"><div class="alert text-center">Sin niños</div></td>
+                    </tr>
+                    @endif
                 </tbody>
             </table>
         </div>

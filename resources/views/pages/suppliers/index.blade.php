@@ -30,7 +30,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($suppliers as $supplier)
+                    @if ($suppliers->count() > 0)
+                        @foreach ($suppliers as $supplier)
                         <tr>
                             <td class="text-right">{{ $supplier->id }}</td>
                             <td>
@@ -64,7 +65,12 @@
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
+                        @endforeach
+                    @else
+                    <tr>
+                        <td colspan="7"><div class="alert text-center">Sin proveedores</div></td>
+                    </tr>
+                    @endif
                 </tbody>
             </table>
         </div>
