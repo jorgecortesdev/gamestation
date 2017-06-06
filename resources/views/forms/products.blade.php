@@ -67,7 +67,7 @@
 </div>
 
 <div class="form-group{{ $errors->has('product_type_id') ? ' has-error' : '' }}">
-    {!! Form::label('product_type_id', 'Tipo', ['class' => 'control-label']) !!}
+    {!! Form::label('product_type_id', 'Tipo de producto', ['class' => 'control-label']) !!}
     {!! Form::select(
         'product_type_id',
         $types,
