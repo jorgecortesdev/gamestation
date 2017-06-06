@@ -31,7 +31,7 @@ class BuildConfigurations extends Task
                     'configurable_type' => get_class($combo),
                     'product_type_id' => $productTypeId,
                     'product_id'      => null,
-                    'custom'          => null
+                    'custom'          => ''
                 ]);
             }
         }
