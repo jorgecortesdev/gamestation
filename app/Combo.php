@@ -26,7 +26,7 @@ class Combo extends Model
 
     public function getTotalAttribute()
     {
-        $productTypes = \Cache::remember('combo-product-types', 60 * 60, function () {
+        $productTypes = \Cache::remember('combo-product-types', 60 * 1, function () {
             return $this->productTypes;
         });
 

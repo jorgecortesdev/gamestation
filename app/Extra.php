@@ -21,7 +21,7 @@ class Extra extends Model
 
     public function getTotalAttribute()
     {
-        $productTypes = \Cache::remember('extra-product-types', 60 * 5, function () {
+        $productTypes = \Cache::remember('extra-product-types', 60 * 1, function () {
             return $this->productTypes;
         });
 
