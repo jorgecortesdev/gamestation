@@ -16,6 +16,11 @@ class Event extends Model
 
     protected $dates = ['created_at', 'updated_at', 'occurs_on'];
 
+    public function path()
+    {
+        return route('events.show', [$this->id]);
+    }
+
     public function client()
     {
         return $this->belongsTo(Client::class);

@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-{{-- @push('stylesheets')
-
-@endpush --}}
-
 @section('content')
 
     @component('components.page')
@@ -11,11 +7,16 @@
             Evento # {{ $event->id }}
         @endslot
 
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Titulo</h3>
-            </div>
+        @slot('buttons')
+            <a href="{{ route('events.edit', [$event->id]) }}" class="btn btn-primary">
+                <i class="fa fa-fw fa-edit"></i> Editar
+            </a>
+            <a href="{{ route('events.index') }}" class="btn btn-primary">
+                <i class="fa fa-fw fa-arrow-left"></i> Volver
+            </a>
+        @endslot
 
+        <div class="panel panel-default">
             <div class="panel-body">
 
                 <div class="row">
@@ -36,6 +37,7 @@
 
                     <div class="col-md-4">
                         @include('pages.events.sections.configurations')
+                        <br>
                         @include('pages.events.sections.properties')
                     </div>
 

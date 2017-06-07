@@ -4,7 +4,7 @@
 
     @component('components.page')
         @slot('heading')
-            Agregar Evento
+            Editar Evento # {{ $event->id }}
         @endslot
 
         <div class="panel panel-default">
@@ -13,7 +13,7 @@
             </div>
 
             <div class="panel-body">
-                 {!! Form::open(['route' => 'events.store']) !!}
+                {!! Form::model($event, ['route' => ['events.update', $event->id], 'method' => 'PATCH']) !!}
 
                     @include('forms.events.event')
 
@@ -23,13 +23,12 @@
 
                     <div class="form-group pull-right">
                         <a href="{{ url()->previous() }}" class="btn btn-primary">Cancelar</a>
-                        {!! Form::button(isset($sendButtonText) ? $sendButtonText : 'Guardar', ['class' => 'btn btn-success', 'type' => 'submit']) !!}
+                        {!! Form::button(isset($sendButtonText) ? $sendButtonText : 'Actualizar', ['class' => 'btn btn-success', 'type' => 'submit']) !!}
                     </div>
-
                 {!! Form::close() !!}
             </div>
-
         </div>
+
     @endcomponent
 
 @endsection

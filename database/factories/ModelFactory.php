@@ -57,10 +57,10 @@ $factory->define(App\Product::class, function (Faker\Generator $faker) {
             return factory(App\Supplier::class)->create()->id;
         },
         'product_type_id' => function () {
-            factory(App\ProductType::class)->create()->id;
+            return factory(App\ProductType::class)->create()->id;
         },
         'unity_id' => function () {
-            factory(App\Unity::class)->create()->id;
+            return factory(App\Unity::class)->create()->id;
         },
     ];
 });
@@ -74,8 +74,11 @@ $factory->define(App\Extra::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Combo::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
+        'name' => $faker->word,
         'price' => $faker->randomFloat(2, 10, 1000),
+        'hours' => 3,
+        'kids' => 25,
+        'adults' => 5
     ];
 });
 
@@ -112,3 +115,19 @@ $factory->define(App\Property::class, function (Faker\Generator $faker) {
         'render_type_id' => 1,
     ];
 });
+
+$factory->define(App\Event::class, function (Faker\Generator $faker) {
+    $client = factory(App\Client::class)->create();
+    $kid = factory(App\Kid::class)->create();
+    $client->kids()->attach($kid);
+
+    return [
+        'occurs_on' => $faker->dateTime(),
+        'combo_id' => function () {
+            return factory(App\Combo::class)->create()->id;
+        },
+        'client_id' => $client->id,
+        'kid_id' => $kid->id,
+    ];
+});
+
