@@ -50,7 +50,7 @@
                 <div class="row">
 
                     <div class="col-md-12">
-                        <gs-statement event-id="{{ $event->id }}"></gs-statement>
+                        <event-statement event-id="{{ $event->id }}"></event-statement>
                     </div>
 
                 </div>

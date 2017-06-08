@@ -1300,8 +1300,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue2_dragula___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue2_dragula__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_QuantifiableManager_vue__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_QuantifiableManager_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_QuantifiableManager_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_events_Statement_vue__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_events_Statement_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_events_Statement_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_events_EventStatement_vue__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_events_EventStatement_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_events_EventStatement_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_events_ModalConfigurable_vue__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_events_ModalConfigurable_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_events_ModalConfigurable_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_events_EventConfigurables_vue__ = __webpack_require__(90);
@@ -1341,10 +1341,10 @@ window.flash = function (message) {
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_2_vue2_dragula__["Vue2Dragula"]);
 Vue.component('quantifiable-manager', __WEBPACK_IMPORTED_MODULE_3__components_QuantifiableManager_vue___default.a);
-Vue.component('gs-statement', __WEBPACK_IMPORTED_MODULE_4__components_events_Statement_vue___default.a);
 Vue.component('flash', __webpack_require__(55));
-Vue.component('modal-configurable', __WEBPACK_IMPORTED_MODULE_5__components_events_ModalConfigurable_vue___default.a);
+Vue.component('event-statement', __WEBPACK_IMPORTED_MODULE_4__components_events_EventStatement_vue___default.a);
 Vue.component('event-configurables', __WEBPACK_IMPORTED_MODULE_6__components_events_EventConfigurables_vue___default.a);
+Vue.component('modal-configurable', __WEBPACK_IMPORTED_MODULE_5__components_events_ModalConfigurable_vue___default.a);
 
 var app = new Vue({
   el: '#app'
@@ -2580,133 +2580,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 41 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__forms_AddPaymentForm__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__forms_AddPaymentForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__forms_AddPaymentForm__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    components: { AddPaymentForm: __WEBPACK_IMPORTED_MODULE_0__forms_AddPaymentForm___default.a },
-
-    props: {
-        eventId: { requiered: true }
-    },
-
-    data: function data() {
-        return {
-            isLoaded: false,
-            statements: [],
-            chargeTotal: 0,
-            paymentTotal: 0,
-            debt: 0
-        };
-    },
-
-
-    filters: {
-        currency: function currency(amount) {
-            return "$ " + amount.toFixed(2).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,");
-        }
-    },
-
-    mounted: function mounted() {
-        var _this = this;
-
-        axios.get('/api/v1/statements/' + this.eventId).then(function (response) {
-            _this.statements = response.data;
-            _this.doCalculation();
-            _this.isLoaded = true;
-        }).catch(function (error) {
-            alert('ERROR AL CARGAR ESTADO DE CUENTA: ' + Object.getOwnPropertyDescriptor(error, 'message').value);
-        });
-    },
-
-
-    methods: {
-        addToPaymentTable: function addToPaymentTable(payment) {
-            this.statements.push(payment);
-            this.doCalculation();
-            flash('El pago se registro con éxito');
-        },
-        doCalculation: function doCalculation() {
-            var chargeTotal = 0;
-            var paymentTotal = 0;
-            for (var i = 0; i < this.statements.length; i++) {
-                if (this.statements[i].charge) {
-                    chargeTotal += this.statements[i].amount;
-                } else {
-                    paymentTotal += this.statements[i].amount;
-                }
-            }
-            this.chargeTotal = chargeTotal;
-            this.paymentTotal = paymentTotal;
-            this.debt = chargeTotal - paymentTotal;
-        }
-    }
-});
-
-/***/ }),
+/* 41 */,
 /* 42 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -5410,13 +5284,7 @@ exports = module.exports = __webpack_require__(2)();
 exports.push([module.i, "\n.alert-flash {\n    position: fixed;\n    right: 25px;\n    bottom: 25px;\n    z-index: 1;\n}\n", ""]);
 
 /***/ }),
-/* 49 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)();
-exports.push([module.i, "\n.gs-statements tfoot input { margin: 0px\n}\n.gs-statements .debt { font-size: 20px; font-weight: 200\n}\n.gs-statements .debt span { font-weight: 500\n}\n.gs-statements table.controls { margin-bottom: 0px;\n}\n.gs-statements table.controls tr td { border-top: 0px\n}\n.gs-statements table.controls tr td:first-child { padding-left: 0px;\n}\n.gs-statements table.controls tr td:last-child { padding-right: 0px;\n}\n", ""]);
-
-/***/ }),
+/* 49 */,
 /* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16122,44 +15990,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 61 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-/* styles */
-__webpack_require__(72)
-
-var Component = __webpack_require__(1)(
-  /* script */
-  __webpack_require__(41),
-  /* template */
-  __webpack_require__(66),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "/Users/jcortes/Code/gamestation.mx/resources/assets/js/components/events/Statement.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Statement.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4daa1ba4", Component.options)
-  } else {
-    hotAPI.reload("data-v-4daa1ba4", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
+/* 61 */,
 /* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16277,86 +16108,7 @@ if (false) {
 
 /***/ }),
 /* 65 */,
-/* 66 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.isLoaded),
-      expression: "isLoaded"
-    }],
-    staticClass: "gs-statements row"
-  }, [_c('div', {
-    staticClass: "col-md-12"
-  }, [_c('h4', [_vm._v("Estado de Cuenta")]), _vm._v(" "), _c('div', {
-    staticClass: "table-responsive"
-  }, [_c('table', {
-    staticClass: "table table-hover table-bordered"
-  }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.statements), function(statement) {
-    return _c('tr', [_c('td', {
-      staticClass: "text-center"
-    }, [_vm._v(_vm._s(statement.created_at))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(statement.description))]), _vm._v(" "), _c('td', {
-      staticClass: "text-center"
-    }, [_vm._v(_vm._s(statement.quantity))]), _vm._v(" "), _c('td', {
-      staticClass: "text-right"
-    }, [_vm._v(_vm._s(_vm._f("currency")(statement.amount)))]), _vm._v(" "), (statement.charge) ? _c('td', {
-      staticClass: "text-right"
-    }, [_vm._v(_vm._s(_vm._f("currency")(statement.amount)))]) : _c('td', {
-      staticClass: "text-right"
-    }, [_vm._v(" - ")]), _vm._v(" "), (!statement.charge) ? _c('td', {
-      staticClass: "text-right"
-    }, [_vm._v(_vm._s(_vm._f("currency")(statement.amount)))]) : _c('td', {
-      staticClass: "text-right"
-    }, [_vm._v(" - ")])])
-  })), _vm._v(" "), _c('tfoot', [_c('tr', [_c('td', {
-    attrs: {
-      "colspan": "4"
-    }
-  }, [_vm._v(" ")]), _vm._v(" "), _c('td', {
-    staticClass: "text-right"
-  }, [_vm._v(_vm._s(_vm._f("currency")(_vm.chargeTotal)))]), _vm._v(" "), _c('td', {
-    staticClass: "text-right"
-  }, [_vm._v(_vm._s(_vm._f("currency")(_vm.paymentTotal)))])])])], 1)]), _vm._v(" "), _c('div', {
-    staticClass: "table-responsive"
-  }, [_c('table', {
-    staticClass: "table controls"
-  }, [_c('tbody', [_c('tr', [_c('td', [_c('add-payment-form', {
-    attrs: {
-      "event-id": _vm.eventId
-    },
-    on: {
-      "completed": _vm.addToPaymentTable
-    }
-  })], 1), _vm._v(" "), _c('td', {
-    staticClass: "text-right debt"
-  }, [_vm._v("DEUDA "), _c('span', [_vm._v(_vm._s(_vm._f("currency")(_vm.debt)))])])])])])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('thead', [_c('tr', [_c('th', {
-    staticClass: "text-center"
-  }, [_vm._v("Fecha")]), _vm._v(" "), _c('th', {
-    staticClass: "text-center"
-  }, [_vm._v("Concepto")]), _vm._v(" "), _c('th', {
-    staticClass: "text-center"
-  }, [_vm._v("Cantidad")]), _vm._v(" "), _c('th', {
-    staticClass: "text-center"
-  }, [_vm._v("Costo")]), _vm._v(" "), _c('th', {
-    staticClass: "text-center"
-  }, [_vm._v("Cargo")]), _vm._v(" "), _c('th', {
-    staticClass: "text-center"
-  }, [_vm._v("Abono")])])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-4daa1ba4", module.exports)
-  }
-}
-
-/***/ }),
+/* 66 */,
 /* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16740,32 +16492,7 @@ if(false) {
 }
 
 /***/ }),
-/* 72 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(49);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(3)("4c24bb04", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-4daa1ba4\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Statement.vue", function() {
-     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-4daa1ba4\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Statement.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
+/* 72 */,
 /* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29643,6 +29370,284 @@ if (false) {
   if (module.hot.data) {
      require("vue-hot-reload-api").rerender("data-v-4a73080a", module.exports)
   }
+}
+
+/***/ }),
+/* 92 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__forms_AddPaymentForm__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__forms_AddPaymentForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__forms_AddPaymentForm__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    components: { AddPaymentForm: __WEBPACK_IMPORTED_MODULE_0__forms_AddPaymentForm___default.a },
+
+    props: {
+        eventId: { requiered: true }
+    },
+
+    data: function data() {
+        return {
+            isLoaded: false,
+            statements: [],
+            chargeTotal: 0,
+            paymentTotal: 0,
+            debt: 0
+        };
+    },
+
+
+    filters: {
+        currency: function currency(amount) {
+            return "$ " + amount.toFixed(2).replace(/(\d)(?=(\d{3})+(?:\.\d+)?$)/g, "$1,");
+        }
+    },
+
+    mounted: function mounted() {
+        var _this = this;
+
+        axios.get('/api/v1/statements/' + this.eventId).then(function (response) {
+            _this.statements = response.data;
+            _this.doCalculation();
+            _this.isLoaded = true;
+        }).catch(function (error) {
+            alert('ERROR AL CARGAR ESTADO DE CUENTA: ' + Object.getOwnPropertyDescriptor(error, 'message').value);
+        });
+    },
+
+
+    methods: {
+        addToPaymentTable: function addToPaymentTable(payment) {
+            this.statements.push(payment);
+            this.doCalculation();
+            flash('El pago se registro con éxito');
+        },
+        doCalculation: function doCalculation() {
+            var chargeTotal = 0;
+            var paymentTotal = 0;
+            for (var i = 0; i < this.statements.length; i++) {
+                if (this.statements[i].charge) {
+                    chargeTotal += this.statements[i].amount;
+                } else {
+                    paymentTotal += this.statements[i].amount;
+                }
+            }
+            this.chargeTotal = chargeTotal;
+            this.paymentTotal = paymentTotal;
+            this.debt = chargeTotal - paymentTotal;
+        }
+    }
+});
+
+/***/ }),
+/* 93 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)();
+exports.push([module.i, "\n.gs-statements tfoot input { margin: 0px\n}\n.gs-statements .debt { font-size: 20px; font-weight: 200\n}\n.gs-statements .debt span { font-weight: 500\n}\n.gs-statements table.controls { margin-bottom: 0px;\n}\n.gs-statements table.controls tr td { border-top: 0px\n}\n.gs-statements table.controls tr td:first-child { padding-left: 0px;\n}\n.gs-statements table.controls tr td:last-child { padding-right: 0px;\n}\n", ""]);
+
+/***/ }),
+/* 94 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(96)
+
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(92),
+  /* template */
+  __webpack_require__(95),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jcortes/Code/gamestation.mx/resources/assets/js/components/events/EventStatement.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] EventStatement.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-057c2f10", Component.options)
+  } else {
+    hotAPI.reload("data-v-057c2f10", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 95 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.isLoaded),
+      expression: "isLoaded"
+    }],
+    staticClass: "gs-statements row"
+  }, [_c('div', {
+    staticClass: "col-md-12"
+  }, [_c('h4', [_vm._v("Estado de Cuenta")]), _vm._v(" "), _c('div', {
+    staticClass: "table-responsive"
+  }, [_c('table', {
+    staticClass: "table table-hover table-bordered"
+  }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.statements), function(statement) {
+    return _c('tr', [_c('td', {
+      staticClass: "text-center"
+    }, [_vm._v(_vm._s(statement.created_at))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(statement.description))]), _vm._v(" "), _c('td', {
+      staticClass: "text-center"
+    }, [_vm._v(_vm._s(statement.quantity))]), _vm._v(" "), _c('td', {
+      staticClass: "text-right"
+    }, [_vm._v(_vm._s(_vm._f("currency")(statement.amount)))]), _vm._v(" "), (statement.charge) ? _c('td', {
+      staticClass: "text-right"
+    }, [_vm._v(_vm._s(_vm._f("currency")(statement.amount)))]) : _c('td', {
+      staticClass: "text-right"
+    }, [_vm._v(" - ")]), _vm._v(" "), (!statement.charge) ? _c('td', {
+      staticClass: "text-right"
+    }, [_vm._v(_vm._s(_vm._f("currency")(statement.amount)))]) : _c('td', {
+      staticClass: "text-right"
+    }, [_vm._v(" - ")])])
+  })), _vm._v(" "), _c('tfoot', [_c('tr', [_c('td', {
+    attrs: {
+      "colspan": "4"
+    }
+  }, [_vm._v(" ")]), _vm._v(" "), _c('td', {
+    staticClass: "text-right"
+  }, [_vm._v(_vm._s(_vm._f("currency")(_vm.chargeTotal)))]), _vm._v(" "), _c('td', {
+    staticClass: "text-right"
+  }, [_vm._v(_vm._s(_vm._f("currency")(_vm.paymentTotal)))])])])], 1)]), _vm._v(" "), _c('div', {
+    staticClass: "table-responsive"
+  }, [_c('table', {
+    staticClass: "table controls"
+  }, [_c('tbody', [_c('tr', [_c('td', [_c('add-payment-form', {
+    attrs: {
+      "event-id": _vm.eventId
+    },
+    on: {
+      "completed": _vm.addToPaymentTable
+    }
+  })], 1), _vm._v(" "), _c('td', {
+    staticClass: "text-right debt"
+  }, [_vm._v("DEUDA "), _c('span', [_vm._v(_vm._s(_vm._f("currency")(_vm.debt)))])])])])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('thead', [_c('tr', [_c('th', {
+    staticClass: "text-center"
+  }, [_vm._v("Fecha")]), _vm._v(" "), _c('th', {
+    staticClass: "text-center"
+  }, [_vm._v("Concepto")]), _vm._v(" "), _c('th', {
+    staticClass: "text-center"
+  }, [_vm._v("Cantidad")]), _vm._v(" "), _c('th', {
+    staticClass: "text-center"
+  }, [_vm._v("Costo")]), _vm._v(" "), _c('th', {
+    staticClass: "text-center"
+  }, [_vm._v("Cargo")]), _vm._v(" "), _c('th', {
+    staticClass: "text-center"
+  }, [_vm._v("Abono")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-057c2f10", module.exports)
+  }
+}
+
+/***/ }),
+/* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(93);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("45355248", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-057c2f10\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./EventStatement.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-057c2f10\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./EventStatement.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
 }
 
 /***/ })
