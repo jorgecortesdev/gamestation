@@ -25,9 +25,12 @@
                         <a href="{{ url()->previous() }}" class="btn btn-primary">Cancelar</a>
                         {!! Form::button(isset($sendButtonText) ? $sendButtonText : 'Actualizar', ['class' => 'btn btn-success', 'type' => 'submit']) !!}
                     </div>
+
                 {!! Form::close() !!}
             </div>
         </div>
+
+        <quantifiable-manager entity-id="{{ $event->id }}" entity-type="{{ get_class($event) }}"></quantifiable-manager>
 
     @endcomponent
 
