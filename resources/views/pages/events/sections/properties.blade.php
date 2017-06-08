@@ -10,7 +10,7 @@
                         <td><strong>{{ $property->label }}</strong></td>
                         <td class="text-center text-success">{!! $property->present()->value !!}</td>
                         <td class="text-right">
-                            <a class="btn btn-primary btn-xs"
+                            <a class="btn btn-primary"
                                href="#"
                                data-toggle="modal"
                                data-target="#propertyModal"

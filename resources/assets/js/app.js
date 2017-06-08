@@ -9,19 +9,34 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-window.events = new Vue();
+/**
+ * Form & errors
+ */
+import Form from './core/Form';
+window.Form = Form;
+
+/**
+ * Events
+ */
+import EventDispatcher from './core/EventDispatcher';
+window.EventDispatcher = new EventDispatcher();
+
 window.flash = function (message) {
-    window.events.$emit('flash', message);
+    window.EventDispatcher.fire('flash', message);
 };
 
 import { Vue2Dragula } from 'vue2-dragula';
 import QuantifiableManager from './components/QuantifiableManager.vue';
-import Statement from './components/Statement.vue';
+import Statement from './components/events/Statement.vue';
+import ModalConfigurable from './components/events/ModalConfigurable.vue';
+import EventConfigurables from './components/events/EventConfigurables.vue';
 
 Vue.use(Vue2Dragula);
 Vue.component('quantifiable-manager', QuantifiableManager);
 Vue.component('gs-statement', Statement);
 Vue.component('flash', require('./components/Flash'));
+Vue.component('modal-configurable', ModalConfigurable);
+Vue.component('event-configurables', EventConfigurables);
 
 const app = new Vue({
     el: '#app'

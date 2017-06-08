@@ -20,7 +20,7 @@
                 this.flash(this.message);
             }
 
-            window.events.$on('flash', message => {
+            window.EventDispatcher.listen('flash', message => {
                 this.flash(message);
             });
         },

@@ -3,12 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Laracodes\Presenter\Traits\Presentable;
 
 class Configuration extends Model
 {
-    use Presentable;
-
     protected $fillable = ['event_id', 'configurable_id', 'configurable_type', 'product_type_id', 'product_id', 'custom'];
 
     protected $presenter = 'App\Presenters\ConfigurationPresenter';

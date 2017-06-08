@@ -35,13 +35,21 @@
 
                 <div class="row">
 
-                    <div class="col-md-4">
-                        @include('pages.events.sections.configurations')
-                        <br>
+                    <div class="col-md-6">
+                        <event-configurables event-id="{{ $event->id }}"></event-configurables>
+                    </div>
+
+                    <div class="col-md-6">
                         @include('pages.events.sections.properties')
                     </div>
 
-                    <div class="col-md-8">
+                </div>
+
+                <br>
+
+                <div class="row">
+
+                    <div class="col-md-12">
                         <gs-statement event-id="{{ $event->id }}"></gs-statement>
                     </div>
 
@@ -70,11 +78,9 @@ Handlebars.registerHelper({
 @endpush
 
 @push('modals')
-@include('modals.configuration')
 @include('modals.property')
 @endpush
 
 @push('handlebars')
-@include('handlebars.events.configurable')
 @include('handlebars.events.property')
 @endpush

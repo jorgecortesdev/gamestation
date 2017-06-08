@@ -40,15 +40,12 @@ class EventsController extends Controller
 
         $this->events->setModel($event);
 
-        // Configuration section
-        $configurations = $this->events->configurations();
-
         // Properties section
         $properties = $this->events->properties();
 
         return view(
             'pages.events.show',
-            compact('event', 'configurations', 'invoice', 'properties')
+            compact('event', 'properties')
         );
     }
 

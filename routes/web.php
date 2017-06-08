@@ -70,16 +70,35 @@ Route::resource('users', 'UsersController');
 Route::group(['prefix' => 'api/v1'], function() {
 
     // Configurations Routes
-    Route::resource('configurations', 'ConfigurationsController', ['only' => ['show', 'update']]);
+    Route::resource(
+        'event.configuration',
+        'EventConfigurationsController',
+        ['only' => ['index', 'show', 'update']]
+    );
 
     // Event Properties
-    Route::resource('event.property', 'EventPropertiesController', ['only' => ['show', 'update']]);
+    Route::resource(
+        'event.property',
+        'EventPropertiesController',
+        ['only' => ['show', 'update']]
+    );
 
     // Statements Vue Component Routes
-    Route::resource('statements', 'StatementsController', ['only' => ['show', 'store']]);
+    Route::resource(
+        'statements',
+        'StatementsController',
+        ['only' => ['show', 'store']]
+    );
 
     // Quantifiable Vue Component Routes
-    Route::get('/quantities/{entity_id}/{entity_type}', 'QuantifiableController@index');
-    Route::match(['put', 'patch'], '/quantities/{entity_id}/{entity_type}', 'QuantifiableController@update');
+    Route::get(
+        '/quantities/{entity_id}/{entity_type}',
+        'QuantifiableController@index'
+    );
+    Route::match(
+        ['put', 'patch'],
+        '/quantities/{entity_id}/{entity_type}',
+        'QuantifiableController@update'
+    );
 
 });

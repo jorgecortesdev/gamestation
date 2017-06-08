@@ -9,13 +9,8 @@
                     <tr{{ is_null($configuration->product_id) ? " class=danger" : '' }}>
                         <td><strong>{{ $configuration->productType->name }}</strong> <sup><small>({{ $configuration->type() }})</small></sup></td>
                         <td class="text-center text-success">{!! $configuration->present()->selected !!}</td>
-                        <td class="text-right">
-                            <a class="btn btn-primary btn-xs"
-                                href="#"
-                                data-toggle="modal"
-                                data-target="#configureModal"
-                                data-id="{{ $configuration->id }}"
-                                data-action="{{ route('configurations.update', [$configuration->id]) }}"><i class="fa fa-cogs"></i> Configurar</a>
+                        <td>
+
                         </td>
                     </tr>
                     @endforeach
@@ -26,5 +21,7 @@
                 @endif
             </tbody>
         </table>
+
+        <modal-configurable></modal-configurable>
     </div>
 </div>

@@ -13,7 +13,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                {!! Form::button('<i class="fa fa-floppy-o"></i> Guardar', ['class' => 'btn btn-sm btn-primary', 'type' => 'submit']) !!}
+                {!! Form::button('Guardar', ['class' => 'btn btn-default', 'type' => 'submit']) !!}
             </div>
         </div>
         {!! Form::close() !!}
@@ -36,10 +36,6 @@
             type: 'GET',
             success: function(data) {
                 container.append(template(data));
-                container.find('input.flat').iCheck({
-                    checkboxClass: 'icheckbox_flat-green',
-                    radioClass: 'iradio_flat-green'
-                });
             }
         });
     }

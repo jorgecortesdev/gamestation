@@ -55,7 +55,7 @@
 
 <script>
 
-import AddPaymentForm from '../forms/AddPaymentForm';
+import AddPaymentForm from '../../forms/AddPaymentForm';
 
 export default {
     components: { AddPaymentForm },
