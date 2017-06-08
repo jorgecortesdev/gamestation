@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 use App\Event;
 use Illuminate\Http\Request;
-use App\Repositories\Events\Invoice\Event as Invoice;
 
 class Events extends Repository
 {
@@ -54,21 +53,6 @@ class Events extends Repository
     public function search($query, $limit = 20)
     {
         return $this->model->search($query)->paginate($limit);
-    }
-
-    /**
-     * Prepare the invoice of the event
-     * and return it.
-     *
-     * @return \App\Repositories\Events\Invoice\Event
-     */
-    public function invoice()
-    {
-        $invoice = (new Invoice)
-            ->push($this->model->combo)
-            ->push($this->model->extras);
-
-        return $invoice;
     }
 
     /**
