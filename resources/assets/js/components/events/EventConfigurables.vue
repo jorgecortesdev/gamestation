@@ -24,6 +24,9 @@
                             ></button-configurable>
                         </td>
                     </tr>
+                    <tr v-show="Object.keys(this.configurations).length < 1">
+                        <td><div class="alert text-center">Sin propiedades</div></td>
+                    </tr>
                 </tbody>
             </table>
 
