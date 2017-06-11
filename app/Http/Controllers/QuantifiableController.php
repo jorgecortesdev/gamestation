@@ -20,9 +20,9 @@ class QuantifiableController extends Controller
      * @param  string $entity_type
      * @return json
      */
-    public function index($entity_id, $entity_type)
+    public function show($entity, $type)
     {
-        $quantifiable = QuantifiableType::build($entity_id, $entity_type);
+        $quantifiable = QuantifiableType::build($entity, $type);
         return $quantifiable->items();
     }
 
@@ -35,9 +35,9 @@ class QuantifiableController extends Controller
      * @param  string  $entity_type
      * @return json
      */
-    public function update(Request $request, $entity_id, $entity_type)
+    public function update(Request $request, $entity, $type)
     {
-        $quantifiable = QuantifiableType::build($entity_id, $entity_type);
+        $quantifiable = QuantifiableType::build($entity, $type);
         return $quantifiable->save($request->get('items'));
     }
 }

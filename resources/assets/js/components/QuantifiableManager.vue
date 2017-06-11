@@ -11,24 +11,31 @@
                     botón de guardar ubicado en la parte inferior de los contenedores.</p>
 
                     <div class="d-wrapper">
-                        <div id="left-container" class="d-container d-container-left" v-dragula="available" drake="first-bag">
-                            <div v-for="item in available" :key="item.id">
-                                {{item.name}} - {{item.quantity}} {{item.unity}}
-                                <div class="pull-right">Cantidad: <input size="4" type="text" :value="item.selected = 1" disabled></div>
-                            </div>
-                        </div>
-                        <div id="right-container" class="d-container d-container-right" v-dragula="selected" drake="first-bag">
-                            <div v-for="item in selected">
-                                {{item.name}} - {{item.quantity}} {{item.unity}}
-                                <div class="pull-right">
-                                    Cantidad: <input size="4"
-                                                     type="text"
-                                                     v-bind:value="item.selected"
-                                                     v-model.number="item.selected"
-                                                     @click="$event.target.select()">
+                        <draggable v-model="available" :options="dragOptions">
+                            <transition-group tag="div" class="d-container d-container-left">
+                                <div v-for="item in available" :key="item.id">
+                                    {{item.name}} - {{item.quantity}} {{item.unity}}
+                                    <div class="pull-right">
+                                        Cantidad: <input size="4" type="text" :value="item.selected = 1" disabled>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                            </transition-group>
+                        </draggable>
+
+                        <draggable v-model="selected" :options="dragOptions">
+                            <transition-group tag="div" class="d-container d-container-right">
+                                <div v-for="item in selected" :key="item.id">
+                                    {{item.name}} - {{item.quantity}} {{item.unity}}
+                                    <div class="pull-right">
+                                        Cantidad: <input size="4"
+                                                         type="text"
+                                                         v-bind:value="item.selected"
+                                                         v-model.number="item.selected"
+                                                         @click="$event.target.select()">
+                                    </div>
+                                </div>
+                            </transition-group>
+                        </draggable>
                     </div>
 
                     <form @submit.prevent="onSubmit" class="pull-right">
@@ -45,85 +52,82 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            entityId: { required: true },
-            entityType: { required: true }
-        },
+import draggable from 'vuedraggable'
 
-        data() {
-            return {
-                available: [],
-                selected: [],
-                isLoading: false
-            }
-        },
+export default {
+    name: 'QuantifiableManager',
 
-        methods: {
-            onSubmit() {
-                this.isLoading = true;
-                axios.patch('/api/v1/quantities/' + this.entityId + '/' + encodeURI(this.entityType), {
-                        items: this.selected
-                    })
-                    .then((response) => {
-                        this.isLoading = false;
-                        flash('La lista se guardó con éxito')
-                    })
-                    .catch((error) => {
-                        alert('ERROR: ' + Object.getOwnPropertyDescriptor(error, 'message').value);
-                        this.isLoading = false;
-                    });
-            },
+    components: { draggable },
 
-            addAvailableItems(items) {
-                $.each(items, function(i, val) {
-                    this.available.push(val);
-                }.bind(this));
-            },
+    props: {
+        entityId: { required: true },
+        entityType: { required: true }
+    },
 
-            addSelectedItems(items) {
-                $.each(items, function(i, val) {
-                    this.selected.push(val);
-                }.bind(this));
-            }
-        },
-
-        mounted() {
-            axios.get('/api/v1/quantities/' + this.entityId + '/' + encodeURI(this.entityType))
-                .then((response) => {
-                    this.addAvailableItems(response.data.available);
-                    this.addSelectedItems(response.data.selected);
-                })
-                .catch((error) => {
-                    alert('ERROR AL CARGAR LA LISTA: ' + Object.getOwnPropertyDescriptor(error, 'message').value);
-                });
+    data () {
+        return {
+            available: [],
+            selected: [],
+            isLoading: false
         }
+    },
+
+    methods: {
+
+        onSubmit() {
+            this.isLoading = true;
+            axios.patch(this.endPoint, {
+                    items: this.selected
+                })
+                .then(response => {
+                    this.isLoading = false;
+                    flash('La lista se guardó con éxito')
+                })
+                .catch(error => {
+                    flash('ERROR: ' + Object.getOwnPropertyDescriptor(error, 'message').value);
+                    this.isLoading = false;
+                });
+        },
+
+        updateLists() {
+
+            axios.get(this.endPoint)
+                .then(response => {
+                    this.available = response.data.available;
+                    this.selected = response.data.selected;
+                })
+                .catch(error => {
+                    flash('ERROR AL CARGAR LA LISTA: ' + Object.getOwnPropertyDescriptor(error, 'message').value);
+                });
+
+        }
+
+    },
+
+    computed: {
+        dragOptions () {
+            return  {
+                animation: 0,
+                group: 'description',
+                ghostClass: 'ghost'
+            };
+        },
+
+        endPoint() {
+            return '/api/v1/quantities/entity/'
+                + this.entityId
+                + '/type/'
+                + encodeURI(this.entityType);
+        }
+    },
+
+    mounted() {
+        this.updateLists();
     }
+}
 </script>
 
 <style>
-.gu-mirror {
-  position: fixed !important;
-  margin: 0 !important;
-  z-index: 9999 !important;
-  opacity: 0.8;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
-  filter: alpha(opacity=80);
-}
-.gu-hide {
-  display: none !important;
-}
-.gu-unselectable {
-  -webkit-user-select: none !important;
-  -moz-user-select: none !important;
-  -ms-user-select: none !important;
-  user-select: none !important;
-}
-.gu-transit {
-  opacity: 0.2;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
-  filter: alpha(opacity=20);
-}
 .d-wrapper {
     margin: 20px 0;
     width: 100%;
@@ -144,11 +148,9 @@
 .d-wrapper .d-container.d-container-right {
     float: right;
 }
-.d-wrapper .d-container > div,
-.gu-mirror {
+.d-wrapper .d-container > div {
     margin: 10px;
     padding: 10px 15px;
-    cursor: move;
     cursor: grab;
     cursor: -moz-grab;
     cursor: -webkit-grab;
@@ -157,16 +159,10 @@
     border-radius: 4px;
     color: #000000;
 }
-.d-wrapper .d-container > div input,
-.gu-mirror input {
+.d-wrapper .d-container > div input {
     height: 24px;
     padding: 6px 12px;
     font-size: 14px;
     text-align: right;
-}
-.gu-mirror {
-    cursor: grabbing;
-    cursor: -moz-grabbing;
-    cursor: -webkit-grabbing;
 }
 </style>

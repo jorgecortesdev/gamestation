@@ -91,14 +91,10 @@ Route::group(['prefix' => 'api/v1'], function() {
     );
 
     // Quantifiable Vue Component Routes
-    Route::get(
-        '/quantities/{entity_id}/{entity_type}',
-        'QuantifiableController@index'
-    );
-    Route::match(
-        ['put', 'patch'],
-        '/quantities/{entity_id}/{entity_type}',
-        'QuantifiableController@update'
+    Route::resource(
+        'quantities/entity.type',
+        'QuantifiableController',
+        ['only' => ['show', 'update']]
     );
 
 });

@@ -25,18 +25,16 @@ window.flash = function (message) {
     window.EventDispatcher.fire('flash', message);
 };
 
-import { Vue2Dragula } from 'vue2-dragula';
-import QuantifiableManager from './components/QuantifiableManager.vue';
 import EventStatement from './components/events/EventStatement.vue';
 import ModalConfigurable from './components/events/ModalConfigurable.vue';
 import EventConfigurables from './components/events/EventConfigurables.vue';
+import QuantifiableManager from './components/QuantifiableManager.vue';
 
-Vue.use(Vue2Dragula);
-Vue.component('quantifiable-manager', QuantifiableManager);
 Vue.component('flash', require('./components/Flash'));
 Vue.component('event-statement', EventStatement);
 Vue.component('event-configurables', EventConfigurables);
 Vue.component('modal-configurable', ModalConfigurable);
+Vue.component('quantifiable-manager', QuantifiableManager);
 
 const app = new Vue({
     el: '#app'
