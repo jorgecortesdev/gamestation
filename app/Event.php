@@ -8,7 +8,7 @@ use Laracodes\Presenter\Traits\Presentable;
 
 class Event extends Model
 {
-    use Presentable, Searchable;
+    use Presentable;
 
     protected $presenter = 'App\Presenters\EventPresenter';
 
