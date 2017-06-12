@@ -11,8 +11,4 @@ export default class EventDispatcher {
     listen(event, callback) {
         this.vue.$on(event, callback);
     }
-
-    dump() {
-        console.log('asdfasdfa');
-    }
 }

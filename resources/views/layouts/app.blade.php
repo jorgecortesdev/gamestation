@@ -25,7 +25,10 @@
             @yield('content')
         </div>
 
-        <flash message="{{ session('flash_notification.0.message') }}"></flash>
+        <flash
+            message="{{ session('flash_notification.0.message') }}"
+            level="{{ session('flash_notification.0.level') }}"
+        ></flash>
 
     </div>
 

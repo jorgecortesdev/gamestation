@@ -84,7 +84,10 @@ export default {
                     flash('La lista se guardó con éxito')
                 })
                 .catch(error => {
-                    flash('ERROR: ' + Object.getOwnPropertyDescriptor(error, 'message').value);
+                    flash(
+                        'ERROR: ' + Object.getOwnPropertyDescriptor(error, 'message').value,
+                        'danger'
+                    );
                     this.isLoading = false;
                 });
         },
@@ -97,7 +100,10 @@ export default {
                     this.selected = response.data.selected;
                 })
                 .catch(error => {
-                    flash('ERROR AL CARGAR LA LISTA: ' + Object.getOwnPropertyDescriptor(error, 'message').value);
+                    flash(
+                        'ERROR AL CARGAR LA LISTA: ' + Object.getOwnPropertyDescriptor(error, 'message').value,
+                        'danger'
+                    );
                 });
 
         }

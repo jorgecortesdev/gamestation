@@ -21,8 +21,9 @@ window.Form = Form;
 import EventDispatcher from './core/EventDispatcher';
 window.EventDispatcher = new EventDispatcher();
 
-window.flash = function (message) {
-    window.EventDispatcher.fire('flash', message);
+window.flash = function (message, level) {
+    let data = { message: message, level: level };
+    window.EventDispatcher.fire('flash', data);
 };
 
 import EventStatement from './components/events/EventStatement.vue';

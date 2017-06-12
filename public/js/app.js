@@ -1110,8 +1110,9 @@ window.Form = __WEBPACK_IMPORTED_MODULE_0__core_Form__["a" /* default */];
 
 window.EventDispatcher = new __WEBPACK_IMPORTED_MODULE_1__core_EventDispatcher__["a" /* default */]();
 
-window.flash = function (message) {
-  window.EventDispatcher.fire('flash', message);
+window.flash = function (message, level) {
+  var data = { message: message, level: level };
+  window.EventDispatcher.fire('flash', data);
 };
 
 
@@ -1998,11 +1999,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['message'],
+    props: {
+        message: String,
+        level: {
+            type: String,
+            default: 'success'
+        }
+    },
+
+    computed: {
+        alertClasses: function alertClasses() {
+            return ['alert', this.type == 'success' ? 'alert-success' : 'alert-danger', 'alert-flash'];
+        },
+        iconClasses: function iconClasses() {
+            return ['fa', 'fa-lg', this.type == 'success' ? 'fa-check-circle' : 'fa-times-circle'];
+        }
+    },
 
     data: function data() {
         return {
             body: this.message,
+            type: this.level,
             show: false
         };
     },
@@ -2010,18 +2027,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this = this;
 
         if (this.message) {
-            this.flash(this.message);
+            this.flash(this.message, this.level);
         }
 
-        window.EventDispatcher.listen('flash', function (message) {
-            _this.flash(message);
+        window.EventDispatcher.listen('flash', function (data) {
+            _this.flash(data.message, data.level);
         });
     },
 
 
     methods: {
         flash: function flash(message) {
+            var level = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'success';
+
             this.body = message;
+            this.type = level;
             this.show = true;
             this.hide();
         },
@@ -2194,7 +2214,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.isLoading = false;
                 flash('La lista se guardó con éxito');
             }).catch(function (error) {
-                flash('ERROR: ' + Object.getOwnPropertyDescriptor(error, 'message').value);
+                flash('ERROR: ' + Object.getOwnPropertyDescriptor(error, 'message').value, 'danger');
                 _this.isLoading = false;
             });
         },
@@ -2205,7 +2225,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this2.available = response.data.available;
                 _this2.selected = response.data.selected;
             }).catch(function (error) {
-                flash('ERROR AL CARGAR LA LISTA: ' + Object.getOwnPropertyDescriptor(error, 'message').value);
+                flash('ERROR AL CARGAR LA LISTA: ' + Object.getOwnPropertyDescriptor(error, 'message').value, 'danger');
             });
         }
     },
@@ -2772,21 +2792,16 @@ var EventDispatcher = function () {
     }
 
     _createClass(EventDispatcher, [{
-        key: 'fire',
+        key: "fire",
         value: function fire(event) {
             var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 
             this.vue.$emit(event, data);
         }
     }, {
-        key: 'listen',
+        key: "listen",
         value: function listen(event, callback) {
             this.vue.$on(event, callback);
-        }
-    }, {
-        key: 'dump',
-        value: function dump() {
-            console.log('asdfasdfa');
         }
     }]);
 
@@ -17694,12 +17709,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.show),
       expression: "show"
     }],
-    staticClass: "alert alert-success alert-flash",
+    class: _vm.alertClasses,
     attrs: {
       "role": "alert"
     }
   }, [_c('i', {
-    staticClass: "fa fa-lg fa-check-circle"
+    class: _vm.iconClasses
   }), _vm._v("   " + _vm._s(_vm.body) + "\n")])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
