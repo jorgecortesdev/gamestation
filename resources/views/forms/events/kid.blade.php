@@ -1,7 +1,7 @@
 <fieldset>
     <legend>Datos del Niño</legend>
 
-    {!! Form::hidden('kidId', null) !!}
+    {!! Form::hidden('kid_id', null) !!}
 
     <div class="form-group{{ $errors->has('kidName') ? ' has-error' : '' }}">
         {!! Form::label('kidName', 'Nombre del Festejado', ['class' => 'control-label']) !!}

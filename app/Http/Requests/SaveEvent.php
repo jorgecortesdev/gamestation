@@ -24,15 +24,10 @@ class SaveEvent extends FormRequest
     public function rules()
     {
         return [
-            'eventDate'       => 'required|date',
-            'combo_id'        => 'required|numeric|min:1',
-            'clientIdOrName'  => 'required',
-            'clientAddress'   => 'required',
-            'clientTelephone' => 'required|numeric|min:10',
-            'clientEmail'     => 'email',
-            'kidName'         => 'required',
-            'kidBirthday'     => 'required|date',
-            'kidGender'       => 'required|numeric',
+            'occurs_on' => 'required|date',
+            'combo_id'  => 'required|numeric|min:1',
+            'kid_id'    => 'required|numeric|min:1',
+            'client_id' => 'required|numeric|min:1'
         ];
     }
 
@@ -44,10 +39,11 @@ class SaveEvent extends FormRequest
     public function messages()
     {
         return [
-            'name.required'      => 'El campo es requerido.',
-            'address.required'   => 'El campo es requerido',
-            'telephone.required' => 'El campo es requerido.',
-            'email.email'        => 'No es un correo válido.',
+            'occurs_on.required' => 'El campo es requerido.',
+            'combo_id.required'  => 'El campo es requerido.',
+            'address.required'   => 'El campo es requerido.',
+            'kid_id.required'    => 'El campo es requerido.',
+            'client_id.required' => 'No es un correo válido.',
         ];
     }
 }

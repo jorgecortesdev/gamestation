@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use Carbon\Carbon;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -53,5 +54,18 @@ class EventsTest extends TestCase
 
         $this->get($this->event->path() . '/edit')
             ->assertSee('Editar Evento # ' . $this->event->id);
+    }
+
+    /** @test */
+    public function an_authenticated_user_can_create_an_event_without_configurables()
+    {
+        $this->signIn();
+
+        $event = make('App\Event');
+
+        $response = $this->post(route('events.store'), $event->toArray());
+
+        $this->get($response->headers->get('Location'))
+            ->assertSee($event->client->name);
     }
 }

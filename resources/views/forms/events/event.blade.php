@@ -6,17 +6,17 @@
 
     <legend>Datos del Evento</legend>
 
-    <div class="form-group{{ $errors->has('eventDate') ? ' has-error' : '' }}">
-        {!! Form::label('eventDate', 'Fecha del evento', ['class' => 'control-label']) !!}
+    <div class="form-group{{ $errors->has('occurs_on') ? ' has-error' : '' }}">
+        {!! Form::label('occurs_on', 'Fecha del evento', ['class' => 'control-label']) !!}
         <div class="gs-inline-block">
             <div class="input-prepend input-group gs-input-group">
                 <span class="add-on input-group-addon gs-input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
-                {!! Form::text('eventDate', null, ['class' => 'form-control', 'id' => 'eventDate']) !!}
+                {!! Form::text('occurs_on', null, ['class' => 'form-control', 'id' => 'occurs_on']) !!}
             </div>
         </div>
 
-        @if ($errors->has('eventDate'))
-        <span class="help-block text-danger">* {{ $errors->first('eventDate') }}</span>
+        @if ($errors->has('occurs_on'))
+        <span class="help-block text-danger">* {{ $errors->first('occurs_on') }}</span>
         @endif
 
         <div class="gs-inline-block">

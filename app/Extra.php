@@ -58,9 +58,7 @@ class Extra extends Model
 
     public function configurations()
     {
-        return $this->morphToMany(
-            Configuration::class, 'configurable', 'configurations', 'configurable_id', 'event_id'
-        );
+        return $this->morphMany(Configuration::class, 'configurable');
     }
 
     public function configurables()

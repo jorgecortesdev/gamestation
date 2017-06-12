@@ -26,12 +26,8 @@ class BuildConfigurations extends Task
 
             for ($i = 0; $i < $quantity; $i++) {
                 $this->model->combo->configurations()->create([
-                    'event_id'        => $this->model->id,
-                    'configurable_id' => $combo->id,
-                    'configurable_type' => get_class($combo),
+                    'event_id' => $this->model->id,
                     'product_type_id' => $productTypeId,
-                    'product_id'      => null,
-                    'custom'          => ''
                 ]);
             }
         }

@@ -12,9 +12,6 @@ class Events extends Repository
     protected $tasks = [
         'before' => [
             Tasks\Events\BuildEvent::class,
-            Tasks\Events\BuildCombo::class,
-            Tasks\Events\BuildKid::class,
-            Tasks\Events\BuildClient::class,
         ],
         'after' => [
             Tasks\Events\BuildConfigurations::class,

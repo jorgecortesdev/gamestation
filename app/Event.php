@@ -76,12 +76,10 @@ class Event extends Model
         foreach ($entity->configurables as $configurable) {
             $quantity = $configurable->pivot->quantity;
             for ($i = 1; $i <= $quantity; $i++) {
-                $configuration = [
-                    $this->id => [
-                        'product_type_id' => $configurable->pivot->product_type_id
-                    ]
-                ];
-                $entity->configurations()->attach($configuration);
+                $entity->configurations()->create([
+                    'event_id' => $this->id,
+                    'product_type_id' => $configurable->pivot->product_type_id
+                ]);
             }
         }
     }
@@ -115,6 +113,7 @@ class Event extends Model
         });
         $this->statements()->saveMany($statements);
     }
+
     /**
      * Get the indexable data array for the model.
      *
@@ -138,7 +137,7 @@ class Event extends Model
         }
 
         switch ($name) {
-            case 'eventDate':
+            case 'occurs_on':
                 return $this->occurs_on->format('F j, Y H:i A');
                 break;
             case 'clientIdOrName':

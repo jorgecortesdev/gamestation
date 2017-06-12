@@ -1,7 +1,7 @@
 function init_EventDatePicker() {
     if (typeof(daterangepicker) === 'undefined') { return; }
 
-    $('#eventDate').daterangepicker({
+    $('#occurs_on').daterangepicker({
         singleDatePicker: true,
         showDropdowns: true,
         timePicker: true,
@@ -13,8 +13,8 @@ function init_EventDatePicker() {
         }
     });
 
-    $('#eventDate').on('apply.daterangepicker', function(ev, picker) {
-        var date = $('#eventDate').val();
+    $('#occurs_on').on('apply.daterangepicker', function(ev, picker) {
+        var date = $('#occurs_on').val();
         var span = $('#verifyEventDateMessage');
         var label = span.parent();
 
@@ -65,7 +65,7 @@ function init_BirthdayDatePicker() {
 function init_Select2() {
     if (!jQuery.fn.select2) { return; }
 
-    $('#clientIdOrName').select2({
+    $('#client_id').select2({
         tags: true,
         language: {
             inputTooShort: function (args) {
@@ -106,7 +106,7 @@ function init_Select2() {
         }
     });
 
-    $('#clientIdOrName').on('select2:select', function (event) {
+    $('#client_id').on('select2:select', function (event) {
         // HandlebarsIntl.registerWith(Handlebars);
 
         var source = $('#kid-template').html();
@@ -140,7 +140,7 @@ function init_Select2() {
                         });
                         div.find('button').on('click', function (event) {
                             var id = $(this).data('kid-id');
-                            $('input[name=kidId]').val(id);
+                            $('input[name=kid_id]').val(id);
                             $.ajax({
                                 url: '/kid/find/' + id,
                                 type: 'GET',

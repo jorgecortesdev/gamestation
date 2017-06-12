@@ -6,17 +6,17 @@
 
     <legend>Datos del Cliente</legend>
 
-    <div class="form-group{{ $errors->has('clientIdOrName') ? ' has-error' : '' }}">
-        {!! Form::label('clientIdOrName', 'Cliente', ['class' => 'control-label']) !!}
+    <div class="form-group{{ $errors->has('client_id') ? ' has-error' : '' }}">
+        {!! Form::label('client_id', 'Cliente', ['class' => 'control-label']) !!}
         {!! Form::select(
-            'clientIdOrName',
+            'client_id',
             $clientsSelect,
             null,
-            ['class' => 'form-control', 'placeholder' => '-- Selecciona el cliente --', 'id' => 'clientIdOrName'])
+            ['class' => 'form-control', 'placeholder' => '-- Selecciona el cliente --', 'id' => 'client_id'])
         !!}
 
-        @if ($errors->has('clientIdOrName'))
-        <span class="help-block text-danger">* {{ $errors->first('clientIdOrName') }}</span>
+        @if ($errors->has('client_id'))
+        <span class="help-block text-danger">* {{ $errors->first('client_id') }}</span>
         @endif
     </div>
 
@@ -64,8 +64,8 @@
             'removeMaskOnSubmit': true
         });
 
-        if ($('#clientIdOrName').val()) {
-            $('#clientIdOrName').trigger('select2:select');
+        if ($('#client_id').val()) {
+            $('#client_id').trigger('select2:select');
         }
     });
 </script>
