@@ -32,9 +32,12 @@ class ClientsController extends Controller
 
     public function store(SaveClient $request)
     {
-        $this->clients->save($request->all());
-
-        flash('Cliente agregado con éxito', 'success');
+        try {
+            $this->clients->save($request->all());
+            flash('Cliente agregado con éxito', 'success');
+        } catch (\Illuminate\Database\QueryException $e) {
+            flash('ERROR: ' . $e->getMessage(), 'danger');
+        }
 
         return redirect(route('clients.index'));
     }
@@ -46,9 +49,12 @@ class ClientsController extends Controller
 
     public function update(SaveClient $request, Client $client)
     {
-        $this->clients->save($request->all(), $client);
-
-        flash('Cliente actualizado con éxito', 'success');
+        try {
+            $this->clients->save($request->all(), $client);
+            flash('Cliente actualizado con éxito', 'success');
+        } catch (\Illuminate\Database\QueryException $e) {
+            flash('ERROR: ' . $e->getMessage(), 'danger');
+        }
 
         return redirect(route('clients.index'));
     }

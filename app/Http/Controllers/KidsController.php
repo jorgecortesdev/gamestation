@@ -32,9 +32,12 @@ class KidsController extends Controller
 
     public function store(SaveKid $request)
     {
-        $this->kids->save($request->all());
-
-        flash('Niño agregado con éxito', 'success');
+        try {
+            $this->kids->save($request->all());
+            flash('Niño agregado con éxito', 'success');
+        } catch (\Illuminate\Database\QueryException $e) {
+            flash('ERROR: ' . $e->getMessage(), 'danger');
+        }
 
         return redirect(route('kids.index'));
     }

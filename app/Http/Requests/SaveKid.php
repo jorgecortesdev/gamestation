@@ -23,12 +23,19 @@ class SaveKid extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'client_id' => 'required',
-            'name' => 'required',
+            'name' => 'required|unique:kids',
             'sex' => 'required|digits_between:1,2',
             'birthday_at' => 'required|date|before:1 year ago',
         ];
+
+        if ($this->route('kid')) {
+            $rules['name'] = 'required|unique:kids,name,'
+                . $this->route('kid')->id;
+        }
+
+        return $rules;
     }
 
     /**

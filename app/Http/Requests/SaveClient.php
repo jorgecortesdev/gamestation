@@ -23,12 +23,19 @@ class SaveClient extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name'      => 'required',
+        $rules = [
+            'name'      => 'required|unique:clients',
             'address'   => 'required',
             'telephone' => 'required|numeric|min:10',
             'email'     => 'email',
         ];
+
+        if ($this->route('client')) {
+            $rules['name'] = 'required|unique:clients,name,'
+                . $this->route('client')->id;
+        }
+
+        return $rules;
     }
 
     /**
