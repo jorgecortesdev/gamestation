@@ -43,20 +43,6 @@
     @endif
 </div>
 
-<div class="form-group{{ $errors->has('supplier_type_id') ? ' has-error' : '' }}">
-    {!! Form::label('supplier_type_id', 'Tipo', ['class' => 'control-label']) !!}
-    <div class="btn-group btn-block" data-toggle="buttons">
-        <label class="btn btn-default{{ (!isset($supplier) || $supplier->supplier_type_id == 1) ? ' active' : '' }}">
-        {!! Form::radio('supplier_type_id', '1', true) !!} &nbsp; Producto &nbsp;</label>
-        <label class="btn btn-default{{ (isset($supplier) && $supplier->supplier_type_id == 2) ? ' active' : '' }}">
-        {!! Form::radio('supplier_type_id', '2') !!} &nbsp; Servicio &nbsp;</label>
-    </div>
-
-    @if ($errors->has('supplier_type_id'))
-    <span class="help-block text-danger">*  {{ $errors->first('supplier_type_id') }}</span>
-    @endif
-</div>
-
 <div class="form-group pull-right">
     <a href="{{ url()->previous() }}" class="btn btn-primary">Cancelar</a>
     {!! Form::button(isset($sendButtonText) ? $sendButtonText : 'Guardar', ['class' => 'btn btn-success', 'type' => 'submit']) !!}

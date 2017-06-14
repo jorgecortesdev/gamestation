@@ -5,7 +5,6 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use App\Configuration;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ExtraTest extends TestCase
 {
@@ -16,6 +15,7 @@ class ExtraTest extends TestCase
     {
         $event = create('App\Event');
         $extra = create('App\Extra');
+        $productType = create('App\ProductType', ['configurable' => true]);
 
         $event->extras()->sync([
             $extra->id => [
@@ -27,7 +27,7 @@ class ExtraTest extends TestCase
 
         $extra->configurations()->create([
             'event_id' => $event->id,
-            'product_type_id' => 3,
+            'product_type_id' => $productType->id,
         ]);
 
         $this->assertEquals(1, Configuration::count());

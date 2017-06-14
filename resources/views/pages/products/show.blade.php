@@ -8,10 +8,10 @@
         @endslot
 
         @slot('buttons')
-            <a href="{{ route('products.edit', [$product->id]) }}" class="btn btn-primary">
+            <a href="{{ route('suppliers.products.edit', [$supplier->id, $product->id]) }}" class="btn btn-primary">
                 <i class="fa fa-fw fa-edit"></i> Editar
             </a>
-            <a href="{{ route('products.index') }}" class="btn btn-primary">
+            <a href="{{ route('suppliers.show', $supplier->id) }}" class="btn btn-primary">
                 <i class="fa fa-fw fa-arrow-left"></i> Volver
             </a>
         @endslot
@@ -25,7 +25,7 @@
 
                 @component('components.media')
                     @slot('left')
-                        <img class="img-circle" src="{{ $product->imagePath() }}">
+                        <img class="img-circle" src="{{ $product->image }}">
                     @endslot
 
                     <dl class="dl-horizontal">
@@ -37,8 +37,8 @@
                         <dd>{{ $product->unity->name }}</dd>
                         <dt>IVA</dt>
                         <dd>{{ $product->present()->iva }}</dd>
-                        <dt>Costo Total</dt>
-                        <dd>{{ $product->present()->total }}</dd>
+                        <dt>Precio</dt>
+                        <dd>{{ $product->present()->price }}</dd>
                         <dt>Creado</dt>
                         <dd>{{ $product->present()->created_at }}</dd>
                         <dt>Actualizado</dt>

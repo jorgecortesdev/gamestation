@@ -7,20 +7,6 @@
     @endif
 </div>
 
-<div class="form-group{{ $errors->has('supplier_id') ? ' has-error' : '' }}">
-    {!! Form::label('supplier_id', 'Proveedor', ['class' => 'control-label']) !!}
-    {!! Form::select(
-        'supplier_id',
-        $suppliers,
-        null,
-        ['class' => 'form-control', 'placeholder' => '-- Seleccionar --'])
-    !!}
-
-    @if ($errors->has('supplier_id'))
-    <span class="help-block text-danger">* {{ $errors->first('supplier_id') }}</span>
-    @endif
-</div>
-
 <div class="form-group{{ $errors->has('quantity') ? ' has-error' : '' }}">
     {!! Form::label('quantity', 'Cantidad', ['class' => 'control-label']) !!}
     {!! Form::text('quantity', null, ['class' => 'form-control']) !!}
@@ -90,6 +76,6 @@
 </div>
 
 <div class="form-group pull-right">
-    <a href="{{ url()->previous() }}" class="btn btn-primary">Cancelar</a>
+    <a href="{{ route('suppliers.show', $supplier->id) }}" class="btn btn-primary">Cancelar</a>
     {!! Form::button(isset($sendButtonText) ? $sendButtonText : 'Guardar', ['class' => 'btn btn-success', 'type' => 'submit']) !!}
 </div>

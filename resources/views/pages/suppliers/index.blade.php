@@ -35,15 +35,15 @@
                         <tr>
                             <td class="text-right">{{ $supplier->id }}</td>
                             <td>
-                                <a href="{{ route('suppliers.show', [$supplier->id]) }}">
+                                <a href="{{ $supplier->path() }}">
                                     {{ $supplier->name }}
                                     <br>
                                     <small>Creado {{ $supplier->present()->createdAt }}</small>
                                 </a>
                             </td>
                             <td class="text-center gs-image">
-                                <a href="{{ route('suppliers.show', [$supplier->id]) }}">
-                                    <img src="{{ $supplier->imagePath() }}">
+                                <a href="{{ $supplier->path() }}">
+                                    <img src="{{ $supplier->image }}">
                                 </a>
                             </td>
                             <td>{{ $supplier->address }}</td>
@@ -55,7 +55,7 @@
                             <td class="text-center">{{ $supplier->present()->email }}</td>
                             <td class="text-center  no-wrap actions">
                                 <div>
-                                    <a class="btn btn-primary" href="{{ route('suppliers.show', [$supplier->id]) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>
+                                    <a class="btn btn-primary" href="{{ $supplier->path() }}"><i class="fa fa-fw fa-eye"></i> Ver</a>
                                     <a class="btn btn-info" href="{{ route('suppliers.edit', [$supplier->id]) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
                                     <a class="btn btn-danger"
                                         href="#"

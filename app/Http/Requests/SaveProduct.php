@@ -25,7 +25,6 @@ class SaveProduct extends FormRequest
     {
         return [
             'name' => 'required',
-            'supplier_id' => 'required|numeric',
             'quantity' => 'required|numeric',
             'unity_id' => 'required|numeric',
             'price' => 'required|numeric',
@@ -44,7 +43,6 @@ class SaveProduct extends FormRequest
     {
         return [
             'name.required' => 'El campo es requerido.',
-            'supplier_id.required' => 'El campo es requerido.',
             'quantity.required' => 'El campo es requerido.',
             'unity_id.required' => 'El campo es requerido.',
             'price.required' => 'El campo es requerido.',

@@ -13,7 +13,7 @@
             </div>
 
             <div class="panel-body">
-                {!! Form::model($product, ['route' => ['products.update', $product->id], 'method' => 'PATCH', 'enctype' => 'multipart/form-data']) !!}
+                {!! Form::model($product, ['route' => ['suppliers.products.update', $supplier->id, $product->id], 'method' => 'PATCH', 'enctype' => 'multipart/form-data']) !!}
                 @include('forms.products', ['sendButtonText' => 'Actualizar'])
                 {!! Form::close() !!}
             </div>

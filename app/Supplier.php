@@ -2,16 +2,16 @@
 
 namespace App;
 
-use App\Traits\Imageable;
-use Laravel\Scout\Searchable;
+use GameStation\Traits\Imageable;
 use Illuminate\Database\Eloquent\Model;
 use Laracodes\Presenter\Traits\Presentable;
+use Laravel\Scout\Searchable;
 
 class Supplier extends Model
 {
-    use Presentable, Searchable, Imageable;
+    use Presentable, Imageable;
 
-    protected $fillable = ['name', 'address', 'telephone', 'email', 'supplier_type_id'];
+    protected $fillable = ['name', 'address', 'telephone', 'email', 'image'];
 
     protected $presenter = 'App\Presenters\SupplierPresenter';
 
@@ -49,6 +49,11 @@ class Supplier extends Model
         return route('suppliers.show', [$this->id]);
     }
 
+    public function addProduct($product)
+    {
+        $this->products()->create($product);
+    }
+
     /*****************
      * Relationships *
      *****************/
@@ -56,10 +61,5 @@ class Supplier extends Model
     public function products()
     {
         return $this->hasMany(Product::class)->with(['productType', 'unity']);
-    }
-
-    public function type()
-    {
-        return $this->belongsTo(SupplierType::class, 'supplier_type_id');
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Traits\Imageable;
+use GameStation\Traits\Imageable;
 use Illuminate\Database\Eloquent\Model;
 use Laracodes\Presenter\Traits\Presentable;
 
@@ -10,7 +10,7 @@ class Product extends Model
 {
     use Presentable, Imageable;
 
-    protected $fillable = ['name', 'supplier_id', 'quantity', 'unity_id', 'price', 'iva', 'product_type_id'];
+    protected $fillable = ['name', 'quantity', 'unity_id', 'price', 'iva', 'product_type_id', 'image'];
 
     protected $presenter = 'App\Presenters\ProductPresenter';
 
@@ -20,17 +20,17 @@ class Product extends Model
 
     protected $with = ['productType'];
 
-    /***********************
-     * Appended attributes *
-     ***********************/
+    /*************
+     * Accessors *
+     *************/
     public function getIvaAttribute($iva)
     {
-        return $iva ? ($this->total - ($this->total / 1.16)) : 0;
+        return $iva ? ($this->price - ($this->price / 1.16)) : 0;
     }
 
-    public function getTotalAttribute()
+    public function getUnitPriceAttribute()
     {
-        return $this->price * $this->quantity;
+        return $this->price / $this->quantity;
     }
 
     public function getPriceAttribute($price)
@@ -41,6 +41,20 @@ class Product extends Model
     public function getIsActiveAttribute()
     {
          return $this->productType->product_id == $this->id;
+    }
+
+    /************
+     * Mutators *
+     ************/
+
+    public function setPriceAttribute($value)
+    {
+        $this->attributes['price'] = $value * 100;
+    }
+
+    public function setIvaAttribute($value)
+    {
+        $this->attributes['iva'] = (bool) $value;
     }
 
     /******************
@@ -54,7 +68,7 @@ class Product extends Model
 
     public function path()
     {
-        return route('products.show', [$this->id]);
+        return route('suppliers.products.show', [$this->supplier->id, $this->id]);
     }
 
     /*****************

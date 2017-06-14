@@ -17,7 +17,7 @@ class Events extends Repository
             Tasks\Events\BuildConfigurations::class,
             Tasks\Events\BuildProperties::class,
             Tasks\Events\BuildCharges::class,
-            Tasks\Events\SaveGoogleCalendar::class,
+            // Tasks\Events\SaveGoogleCalendar::class,
         ]
     ];
 

@@ -7,14 +7,10 @@
         <li><a href="{{ route('users.index') }}"><i class="fa fa-fw fa-users"></i> Usuarios</a></li>
         <li><a href="{{ route('combos.index') }}"><i class="fa fa-fw fa-gift"></i> Combos</a></li>
         <li><a href="{{ route('extras.index') }}"><i class="fa fa-fw fa-cube"></i> Extras</a></li>
-        <li role="separator" class="divider"></li>
-        <li class="dropdown-header"><i class="fa fa-fw fa-truck"></i> Proveedores</li>
-        <li><a href="{{ route('suppliers.index') }}">Listado</a></li>
-        <li><a href="{{ route('products.index') }}">Productos</a></li>
+        <li><a href="{{ route('suppliers.index') }}"><i class="fa fa-fw fa-truck"></i> Proveedores</a></li>
         <li role="separator" class="divider"></li>
         <li class="dropdown-header"><i class="fa fa-fw fa-list-ul"></i> Catálogos</li>
         <li><a href="{{ route('product-types.index') }}">Tipos de Productos</a></li>
-        <li><a href="{{ route('supplier-types.index') }}">Tipo de Proveedores</a></li>
         <li><a href="{{ route('properties.index') }}">Propiedades</a></li>
         <li><a href="{{ route('unities.index') }}">Unidades</a></li>
         <li role="separator" class="divider"></li>

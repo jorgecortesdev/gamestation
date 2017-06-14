@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
         /** Catalogues */
         $this->call(RenderTypesTableSeeder::class);
         $this->call(UnitiesTableSeeder::class);
-        $this->call(SupplierTypesTableSeeder::class);
         $this->call(ProductTypesTableSeeder::class);
         $this->call(PropertiesTableSeeder::class);
 

@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use DB;
 use App\Exceptions\Handler;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
@@ -13,7 +14,10 @@ abstract class TestCase extends BaseTestCase
     protected function setUp()
     {
         parent::setUp();
+
         $this->disableExceptionHandling();
+
+        $this->withForeignKeys();
     }
 
     protected function signIn($user = null)
@@ -43,5 +47,12 @@ abstract class TestCase extends BaseTestCase
         $this->app->instance(ExceptionHandler::class, $this->oldExceptionHandler);
 
         return $this;
+    }
+
+    protected function withForeignKeys()
+    {
+        if (DB::connection() instanceof \Illuminate\Database\SQLiteConnection) {
+            DB::statement(DB::raw('PRAGMA foreign_keys=1'));
+        }
     }
 }

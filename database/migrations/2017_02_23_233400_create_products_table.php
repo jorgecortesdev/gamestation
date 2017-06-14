@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->unsignedInteger('supplier_id')->index();
             $table->unsignedInteger('product_type_id')->index();
             $table->unsignedInteger('unity_id')->index();
+            $table->string('image')->default('');
             $table->timestamps();
 
             $table->foreign('supplier_id')

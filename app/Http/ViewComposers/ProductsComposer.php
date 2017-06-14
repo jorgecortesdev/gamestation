@@ -17,10 +17,9 @@ class ProductsComposer
      */
     public function compose(View $view)
     {
-        $suppliers = Supplier::pluck('name', 'id');
         $unities   = Unity::pluck('name', 'id');
         $types     = ProductType::pluck('name', 'id');
 
-        $view->with(compact('suppliers', 'unities', 'types'));
+        $view->with(compact('unities', 'types'));
     }
 }

@@ -13,7 +13,7 @@
             </div>
 
             <div class="panel-body">
-                {!! Form::open(['route' => 'products.store', 'enctype' => 'multipart/form-data']) !!}
+                {!! Form::open(['route' => ['suppliers.products.store', $supplier->id], 'enctype' => 'multipart/form-data']) !!}
                 @include('forms.products')
                 {!! Form::close() !!}
             </div>

@@ -5,7 +5,6 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use App\Configuration;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ComboTest extends TestCase
 {
@@ -15,10 +14,11 @@ class ComboTest extends TestCase
     function a_combo_can_have_configurations_for_an_event()
     {
         $event = create('App\Event');
+        $productType = create('App\ProductType', ['configurable' => true]);
 
         $event->combo->configurations()->create([
             'event_id' => $event->id,
-            'product_type_id' => 3,
+            'product_type_id' => $productType->id,
         ]);
 
         $this->assertEquals(1, Configuration::count());

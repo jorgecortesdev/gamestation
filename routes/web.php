@@ -49,13 +49,14 @@ Route::get('kid/find/{kid_id}', 'KidsController@find');
 Route::resource('suppliers', 'SuppliersController');
 
 // Products Routes
-Route::resource('products', 'ProductsController');
+Route::resource(
+    'suppliers.products',
+    'ProductsController',
+    ['except' => ['index']]
+);
 
 // Product Types Routes
 Route::resource('product-types', 'ProductTypesController');
-
-// Supplier Types Routes
-Route::resource('supplier-types', 'SupplierTypesController');
 
 // Properties Routes
 Route::resource('properties', 'PropertiesController');

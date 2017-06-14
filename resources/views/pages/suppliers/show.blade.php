@@ -25,7 +25,7 @@
 
                 @component('components.media')
                     @slot('left')
-                        <img src="{{ $supplier->imagePath() }}">
+                        <img src="{{ $supplier->image }}">
                     @endslot
 
                     <ul class="list-unstyled">
@@ -46,7 +46,12 @@
 
         </div>
 
-            <h4>Lista de productos</h4>
+            <div class="level">
+                <h3 class="flex">Lista de productos</h3>
+                <a class="btn btn-default" href="{{ route('suppliers.products.create', $supplier->id) }}">
+                    <i class="fa fa-fw fa-plus" aria-hidden="true"></i> Agregar Producto
+                </a>
+            </div>
 
             <div class="table-responsive">
                 <table class="table table-hover table-bordered table-striped">
@@ -60,7 +65,7 @@
                             <th class="text-center">Cantidad</th>
                             <th class="text-center">Unidad</th>
                             <th class="text-center">IVA</th>
-                            <th class="text-center">Costo Total</th>
+                            <th class="text-center">Precio</th>
                             <th class="text-center">Acciones</th>
                         </tr>
                     </thead>
@@ -68,25 +73,35 @@
                         @forelse ($products as $product)
                         <tr>
                             <td class="text-right">{{ $product->id }}</td>
-                            <td>{{ $product->name }}<br><small>Creado {{ $product->present()->createdAt }}</small></td>
+                            <td>
+                                <a href="{{ $product->path() }}">
+                                    {{ $product->name }}<br><small>Creado {{ $product->present()->createdAt }}</small>
+                                </a>
+                            </td>
                             <td class="text-center gs-image">
-                                <img class="img-responsive center-block gs-image gs-image-thumbnail" src="{{ $product->imagePath() }}">
+                                <a href="{{ $product->path() }}">
+                                    <img class="img-responsive center-block gs-image gs-image-thumbnail" src="{{ $product->image }}">
+                                </a>
                             </td>
                             <td class="text-center">{{ $product->productType->name }}</td>
                             <td class="text-center">{!! $product->present()->isActive() !!}</td>
                             <td class="text-center">{{ $product->present()->quantity }}</td>
                             <td class="text-center">{{ $product->unity->name }}</td>
                             <td class="text-right">{{ $product->present()->iva }}</td>
-                            <td class="text-right">{{ $product->present()->total }}</td>
+                            <td class="text-right">{{ $product->present()->price }}</td>
                             <td class="text-center no-wrap actions">
                                 <div>
-                                    <a class="btn btn-primary" href="{{ route('products.show', [$product->id]) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>
-                                    <a class="btn btn-info" href="{{ route('products.edit', [$product->id]) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
+                                    <a class="btn btn-primary" href="{{ $product->path() }}">
+                                        <i class="fa fa-fw fa-eye"></i> Ver
+                                    </a>
+                                    <a class="btn btn-info" href="{{ route('suppliers.products.edit', [$supplier->id, $product->id]) }}">
+                                        <i class="fa fa-fw fa-edit"></i> Editar
+                                    </a>
                                     <a class="btn btn-danger"
                                         href="#"
                                         data-toggle="modal"
                                         data-target="#deleteModal"
-                                        data-action="{{ route('products.destroy', [$product->id]) }}"><i class="fa fa-fw fa-trash"></i> Borrar </a>
+                                        data-action="{{ route('suppliers.products.destroy', [$supplier->id, $product->id]) }}"><i class="fa fa-fw fa-trash"></i> Borrar </a>
                                 </div>
                             </td>
                         </tr>
@@ -105,3 +120,7 @@
     @endcomponent
 
 @endsection
+
+@push('modals')
+@include('modals.delete', ['entityText' => 'producto'])
+@endpush

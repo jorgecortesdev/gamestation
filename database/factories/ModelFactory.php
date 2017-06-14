@@ -11,21 +11,12 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\SupplierType::class, function (Faker\Generator $faker) {
-    return [
-        'name' => $faker->word,
-    ];
-});
-
 $factory->define(App\Supplier::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'address' => $faker->address,
         'telephone' => $faker->numberBetween(6620000000, 6629999999),
         'email' => $faker->email,
-        'supplier_type_id' => function () {
-            return factory(App\SupplierType::class)->create()->id;
-        }
     ];
 });
 
@@ -36,14 +27,11 @@ $factory->define(App\Unity::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\ProductType::class, function (Faker\Generator $faker) {
-    $date = \Carbon\Carbon::now()->format('Y-m-d H:i:s');
     return [
         'name' => $faker->word,
         'quantity' => 1,
         'configurable' => false,
-        'customizable' => false,
-        'created_at' => $date,
-        'updated_at' => $date
+        'customizable' => false
     ];
 });
 

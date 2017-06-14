@@ -3,72 +3,56 @@
 namespace App\Http\Controllers;
 
 use App\Product;
-use App\Repositories\Products;
+use App\Supplier;
 use App\Http\Requests\SaveProduct;
 
 class ProductsController extends Controller
 {
-    /** @var App\Repositories\Products */
-    protected $products;
-
-    public function __construct(Products $products)
+    public function __construct()
     {
         $this->middleware('auth');
-
-        $this->products = $products;
     }
 
-    public function index()
+    public function show(Supplier  $supplier, Product $product)
     {
         go()->after();
 
-        $products = $this->products->latest();
-        $products->load(['supplier', 'unity', 'productType']);
-
-        return view('pages.products.index', compact('products'));
+        return view('pages.products.show', compact(['supplier', 'product']));
     }
 
-    public function show(Product $product)
+    public function create(Supplier $supplier)
     {
-        go()->after();
-
-        return view('pages.products.show', compact('product'));
+        return view('pages.products.create', compact('supplier'));
     }
 
-    public function create()
+    public function store(SaveProduct $request, Supplier $supplier)
     {
-        return view('pages.products.create');
-    }
-
-    public function store(SaveProduct $request)
-    {
-        $product = $this->products->save($request);
+        $supplier->addProduct($request->all());
 
         flash('Producto agregado con éxito', 'success');
 
-        return redirect($product->path());
+        return redirect($supplier->path());
     }
 
-    public function edit(Product $product)
+    public function edit(Supplier $supplier, Product $product)
     {
-        return view('pages.products.edit', compact('product'));
+        return view('pages.products.edit', compact('supplier', 'product'));
     }
 
-    public function update(SaveProduct $request, Product $product)
+    public function update(SaveProduct $request, Supplier $supplier, Product $product)
     {
-        $this->products->setModel($product);
-
-        $this->products->save($request, $product);
+        $product->iva = $request->get('iva', false);
+        $product->update($request->all());
 
         flash('Producto actualizado con éxito', 'success');
 
         return go()->now();
     }
 
-    public function destroy($id)
+    public function destroy(Supplier $supplier, Product $product)
     {
         try {
-            $this->products->delete($id);
+            $product->delete();
             flash('Producto borrado con éxito', 'success');
         } catch(\Illuminate\Database\QueryException $e) {
             flash($e->errorInfo[2], 'error');

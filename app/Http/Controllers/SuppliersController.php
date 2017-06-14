@@ -36,7 +36,7 @@ class SuppliersController extends Controller
 
         $products = $supplier->productsSortByActive('desc');
 
-        return view('pages.suppliers.show', compact(['supplier', 'products', 'activeProductTypes']));
+        return view('pages.suppliers.show', compact('supplier', 'products', 'activeProductTypes'));
     }
 
     public function create()
@@ -56,11 +56,10 @@ class SuppliersController extends Controller
 
         $supplier = new Supplier($request->all());
         $supplier->save();
-        $supplier->saveImage($request->image);
 
         flash('Proveedor agregado con éxito', 'success');
 
-        return redirect(route('suppliers.index'));
+        return redirect(route('suppliers.show', $supplier->id));
     }
 
     public function edit(Supplier $supplier)
@@ -79,16 +78,14 @@ class SuppliersController extends Controller
         }
 
         $supplier->update($request->all());
-        $supplier->saveImage($request->image);
 
         flash('Proveedor actualizado con éxito', 'success');
 
         return go()->now();
     }
 
-    public function destroy($id)
+    public function destroy(Supplier $supplier)
     {
-        $supplier = Supplier::find($id);
         $supplier->delete();
 
         flash('Proveedor borrado con éxito', 'success');
