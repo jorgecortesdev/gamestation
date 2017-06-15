@@ -1087,6 +1087,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_events_EventConfigurables_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_events_EventConfigurables_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_QuantifiableManager_vue__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_QuantifiableManager_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_QuantifiableManager_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_ProductActivateButton_vue__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_ProductActivateButton_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_ProductActivateButton_vue__);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -1120,11 +1122,13 @@ window.flash = function (message, level) {
 
 
 
+
 Vue.component('flash', __webpack_require__(53));
 Vue.component('event-statement', __WEBPACK_IMPORTED_MODULE_2__components_events_EventStatement_vue___default.a);
 Vue.component('event-configurables', __WEBPACK_IMPORTED_MODULE_4__components_events_EventConfigurables_vue___default.a);
 Vue.component('modal-configurable', __WEBPACK_IMPORTED_MODULE_3__components_events_ModalConfigurable_vue___default.a);
 Vue.component('quantifiable-manager', __WEBPACK_IMPORTED_MODULE_5__components_QuantifiableManager_vue___default.a);
+Vue.component('product-activate-button', __WEBPACK_IMPORTED_MODULE_6__components_ProductActivateButton_vue___default.a);
 
 var app = new Vue({
   el: '#app'
@@ -2599,7 +2603,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this3.$emit('completed', data.data);
                 window.EventDispatcher.fire('modal.hide', 'modalConfigurable');
                 _this3.reset();
-            }).catch(function (errors) {
+            }).catch(function (error) {
                 flash('Error: ' + Object.getOwnPropertyDescriptor(error, 'message').value);
             });
         },
@@ -28369,6 +28373,125 @@ __webpack_require__(10);
 __webpack_require__(13);
 module.exports = __webpack_require__(14);
 
+
+/***/ }),
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        productTypeId: { required: true },
+        productId: { required: true },
+        active: { required: true, type: Boolean }
+    },
+
+    data: function data() {
+        return {
+            isActive: this.active
+        };
+    },
+
+
+    computed: {
+        classes: function classes() {
+            return ['btn', this.isActive ? 'btn-primary' : 'btn-default'];
+        },
+        endPoint: function endPoint() {
+            return '/api/v1/product-types/' + this.productTypeId + '/activate/' + this.productId;
+        },
+        buttonText: function buttonText() {
+            return this.isActive ? 'Desactivar' : 'Activar';
+        }
+    },
+
+    methods: {
+        toggleActive: function toggleActive() {
+            var _this = this;
+
+            axios.patch(this.endPoint).then(function (data) {
+                _this.isActive = !_this.isActive;
+            }).catch(function (errors) {
+                flash('Error: ' + Object.getOwnPropertyDescriptor(errors, 'message').value);
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 89 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(88),
+  /* template */
+  __webpack_require__(90),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/jcortes/Code/gamestation.mx/resources/assets/js/components/ProductActivateButton.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ProductActivateButton.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2528910e", Component.options)
+  } else {
+    hotAPI.reload("data-v-2528910e", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('button', {
+    class: _vm.classes,
+    domProps: {
+      "textContent": _vm._s(_vm.buttonText)
+    },
+    on: {
+      "click": function($event) {
+        _vm.toggleActive()
+      }
+    }
+  })
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-2528910e", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

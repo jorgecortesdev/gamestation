@@ -98,4 +98,10 @@ Route::group(['prefix' => 'api/v1'], function() {
         ['only' => ['show', 'update']]
     );
 
+    // Activate or Deactivate a product
+    Route::resource(
+        'product-types.activate',
+        'ProductTypesProductsController',
+        ['only' => ['update']]
+    );
 });

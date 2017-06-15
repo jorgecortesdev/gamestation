@@ -13,11 +13,12 @@ class ProductTypePresenter extends Presenter
 
     public function product()
     {
-        return $this->model->activeProduct
-            ? $this->model->activeProduct->name
+        return $this->model->hasActiveProduct()
+            ? '<a href="' . $this->model->activeProduct->path() . '">'
+                . $this->model->activeProduct->name
                 . '<br> <small>( '
                 . $this->model->activeProduct->supplier->name
-                . ' )</small>'
+                . ' )</small></a>'
             : $this->renderBan();
     }
 

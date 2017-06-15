@@ -97,7 +97,7 @@
                         window.EventDispatcher.fire('modal.hide', 'modalConfigurable');
                         this.reset();
                     })
-                    .catch(errors => {
+                    .catch(error => {
                         flash('Error: ' + Object.getOwnPropertyDescriptor(error, 'message').value);
                     });
             },

@@ -62,18 +62,9 @@ class ProductTypesController extends Controller
         );
       }
 
-      if ($request->get('configurable') === null) {
-        $request->merge(['configurable' => false]);
-      }
+      $productType->configurable = $request->get('configurable', false);
 
-      if ($request->get('customizable') === null) {
-        $request->merge(['customizable' => false]);
-      }
-
-      if ( ! empty($request->get('product_id'))) {
-        $product = \App\Product::findOrFail($request->get('product_id'));
-        $product->activate();
-      }
+      $productType->customizable = $request->get('customizable', false);
 
       $productType->update($request->all());
 

@@ -16,26 +16,26 @@ class DatabaseSeeder extends Seeder
 
         /** Catalogues */
         $this->call(RenderTypesTableSeeder::class);
-        $this->call(UnitiesTableSeeder::class);
-        $this->call(ProductTypesTableSeeder::class);
-        $this->call(PropertiesTableSeeder::class);
+        // $this->call(UnitiesTableSeeder::class);
+        // $this->call(ProductTypesTableSeeder::class);
+        // $this->call(PropertiesTableSeeder::class);
 
         /** Products */
-        $this->call(SuppliersTableSeeder::class);
-        $this->call(ProductsTableSeeder::class);
-        $this->call(ActivateProducts::class);
+        // $this->call(SuppliersTableSeeder::class);
+        // $this->call(ProductsTableSeeder::class);
+        // $this->call(ActivateProducts::class);
 
         /** Clients & Kids */
-        $this->call(ClientsTableSeeder::class);
+        // $this->call(ClientsTableSeeder::class);
 
         /** Combos */
-        $this->call(CombosTableSeeder::class);
+        // $this->call(CombosTableSeeder::class);
 
         /** Extras */
-        $this->call(ExtrasTableSeeder::class);
+        // $this->call(ExtrasTableSeeder::class);
 
         /** Events */
-        $this->call(EventsTableSeeder::class);
-        $this->call(ConfigurationsTableSeeder::class);
+        // $this->call(EventsTableSeeder::class);
+        // $this->call(ConfigurationsTableSeeder::class);
     }
 }

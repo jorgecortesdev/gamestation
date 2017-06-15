@@ -30,12 +30,14 @@ import EventStatement from './components/events/EventStatement.vue';
 import ModalConfigurable from './components/events/ModalConfigurable.vue';
 import EventConfigurables from './components/events/EventConfigurables.vue';
 import QuantifiableManager from './components/QuantifiableManager.vue';
+import ProductActivateButton from './components/ProductActivateButton.vue';
 
 Vue.component('flash', require('./components/Flash'));
 Vue.component('event-statement', EventStatement);
 Vue.component('event-configurables', EventConfigurables);
 Vue.component('modal-configurable', ModalConfigurable);
 Vue.component('quantifiable-manager', QuantifiableManager);
+Vue.component('product-activate-button', ProductActivateButton);
 
 const app = new Vue({
     el: '#app'

@@ -90,4 +90,28 @@ class ProductTest extends TestCase
         $this->assertInstanceOf('App\ProductType', $product->productType);
     }
 
+    /** @test */
+    public function it_can_active_and_deactivate_it_self()
+    {
+        $product = create('App\Product');
+
+        $product->activate();
+
+        $this->assertTrue($product->isActive);
+
+        $product->deactivate();
+
+        $this->assertFalse($product->isActive);
+    }
+
+    /** @test */
+    public function it_has_a_default_image()
+    {
+        $product = create('App\Product');
+
+        $this->assertContains(
+            $product->getDefaultImage(),
+            $product->image
+        );
+    }
 }

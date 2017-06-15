@@ -39,7 +39,7 @@ $factory->define(App\Product::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'quantity' => 1,
-        'price' => $faker->randomNumber(5),
+        'price' => $faker->randomNumber(3),
         'iva' => false,
         'supplier_id' => function () {
             return factory(App\Supplier::class)->create()->id;
@@ -97,10 +97,18 @@ $factory->define(App\Statement::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\RenderType::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word
+    ];
+});
+
 $factory->define(App\Property::class, function (Faker\Generator $faker) {
     return [
         'label' => $faker->word,
-        'render_type_id' => 1,
+        'render_type_id' => function() {
+            return factory('App\RenderType')->create()->id;
+        },
     ];
 });
 

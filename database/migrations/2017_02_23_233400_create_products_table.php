@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->boolean('iva')->default(false);
             $table->unsignedInteger('supplier_id')->index();
             $table->unsignedInteger('product_type_id')->index();
-            $table->unsignedInteger('unity_id')->index();
+            $table->unsignedInteger('unity_id');
             $table->string('image')->default('');
             $table->timestamps();
 
@@ -39,7 +39,6 @@ class CreateProductsTable extends Migration
                   ->references('id')
                   ->on('unities')
                   ->onDelete('restrict');
-
         });
     }
 

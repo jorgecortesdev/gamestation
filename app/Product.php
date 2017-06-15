@@ -2,13 +2,13 @@
 
 namespace App;
 
-use GameStation\Traits\Imageable;
+use GameStation\Traits\HasImage;
 use Illuminate\Database\Eloquent\Model;
 use Laracodes\Presenter\Traits\Presentable;
 
 class Product extends Model
 {
-    use Presentable, Imageable;
+    use Presentable, HasImage;
 
     protected $fillable = ['name', 'quantity', 'unity_id', 'price', 'iva', 'product_type_id', 'image'];
 
@@ -19,6 +19,19 @@ class Product extends Model
     protected $appends = ['is_active'];
 
     protected $with = ['productType'];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::updating(function ($product) {
+
+            if (array_key_exists('product_type_id', $product->getDirty())) {
+                $product->deactivate();
+            }
+
+        });
+    }
 
     /*************
      * Accessors *
@@ -63,7 +76,16 @@ class Product extends Model
 
     public function activate()
     {
-        return $this->productType->update(['product_id' => $this->id]);
+        $this->productType->update(['product_id' => $this->id]);
+
+        return $this;
+    }
+
+    public function deactivate()
+    {
+        $this->productType->update(['product_id' => null]);
+
+        return $this;
     }
 
     public function path()

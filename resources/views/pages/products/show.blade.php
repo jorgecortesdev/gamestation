@@ -23,30 +23,41 @@
 
             <div class="panel-body">
 
-                @component('components.media')
-                    @slot('left')
-                        <img class="img-circle" src="{{ $product->image }}">
-                    @endslot
+                <div class="media">
 
-                    <dl class="dl-horizontal">
-                        <dt>Tipo de producto</dt>
-                        <dd>{{ $product->productType->name }}</dd>
-                        <dt>Cantidad</dt>
-                        <dd>{{ $product->present()->quantity }}</dd>
-                        <dt>Unidad</dt>
-                        <dd>{{ $product->unity->name }}</dd>
-                        <dt>IVA</dt>
-                        <dd>{{ $product->present()->iva }}</dd>
-                        <dt>Precio</dt>
-                        <dd>{{ $product->present()->price }}</dd>
-                        <dt>Creado</dt>
-                        <dd>{{ $product->present()->created_at }}</dd>
-                        <dt>Actualizado</dt>
-                        <dd>{{ $product->present()->updated_at }}</dd>
-                    </dl>
+                    <div class="media-left">
+                        <img class="media-object" src="{{ $product->image }}">
+                    </div>
 
-                @endcomponent
+                    <div class="media-body">
+                        <dl class="dl-horizontal">
+                            <dt>Tipo de producto</dt>
+                            <dd>{{ $product->productType->name }}</dd>
+                            <dt>Cantidad</dt>
+                            <dd>{{ $product->present()->quantity }}</dd>
+                            <dt>Unidad</dt>
+                            <dd>{{ $product->unity->name }}</dd>
+                            <dt>IVA</dt>
+                            <dd>{{ $product->present()->iva }}</dd>
+                            <dt>Precio</dt>
+                            <dd>{{ $product->present()->price }}</dd>
+                            <dt>Creado</dt>
+                            <dd>{{ $product->present()->created_at }}</dd>
+                            <dt>Actualizado</dt>
+                            <dd>{{ $product->present()->updated_at }}</dd>
+                        </dl>
+                    </div>
+                </div>
 
+                <div class="text-center">
+
+                    <product-activate-button
+                        product-type-id="{{ $product->productType->id }}"
+                        product-id="{{ $product->id }}"
+                        :active="{{ json_encode($product->isActive) }}"
+                    ></product-activate-button>
+
+                </div>
             </div>
 
         </div>

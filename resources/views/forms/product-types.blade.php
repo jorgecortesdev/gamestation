@@ -6,19 +6,6 @@
     @endif
 </div>
 
-<div class="form-group{{ $errors->has('product_id') ? ' has-error' : '' }}">
-    {!! Form::label('product_id', 'Producto activo', ['class' => 'control-label']) !!}
-    {!! Form::select(
-        'product_id',
-        $products,
-        null,
-        ['class' => 'form-control', 'placeholder' => '-- Seleccionar --', 'id' => 'products'])
-    !!}
-    @if ($errors->has('product_id'))
-        <span class="help-block text-danger">* {{ $errors->first('product_id') }}</span>
-    @endif
-</div>
-
 <div class="form-group{{ $errors->has('configurable') ? ' has-error' : '' }}">
     <div class="checkbox">
         <label>

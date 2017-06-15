@@ -5,11 +5,12 @@ namespace GameStation\Traits;
 use Image;
 use Storage;
 
-trait Imageable
+trait HasImage
 {
     public function setImageAttribute($image)
     {
         if ( ! request()->hasFile('image')) {
+            $this->attributes['image'] = $image;
             return;
         }
 
@@ -26,6 +27,11 @@ trait Imageable
             return asset('storage/' . $this->imagePath($image));
         }
 
+        return $this->getDefaultImage();
+    }
+
+    public function getDefaultImage()
+    {
         if (property_exists($this, 'defaultImage')) {
             return asset($this->defaultImage);
         }
@@ -54,14 +60,18 @@ trait Imageable
             return;
         }
 
-        if ($this->imageExists()) {
-            Storage::disk('public')->delete($this->imagePath());
+        $image = $this->attributes['image'];
+
+        if ($this->imageExists($image)) {
+            Storage::disk('public')->delete($this->imagePath($image));
         }
     }
 
     protected function imageExists($image = null)
     {
-        return Storage::disk('public')->exists($this->imagePath($image));
+        return $image
+            ? Storage::disk('public')->exists($this->imagePath($image))
+            : false;
     }
 
     protected function imagePath($image = null)

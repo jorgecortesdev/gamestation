@@ -104,4 +104,40 @@ class ProductsTest extends TestCase
 
         $this->assertDatabaseMissing('products', ['id' => $this->product->id]);
     }
+
+    /** @test */
+    public function an_active_product_must_be_deactivated_when_change_product_type()
+    {
+        $this->product->activate();
+
+        $productType = $this->product->productType;
+
+        $this->product->product_type_id = create('App\ProductType')->id;
+
+        $this->patch($this->product->path(), $this->product->toArray());
+
+        $this->assertNull($productType->fresh()->product_id);
+    }
+
+    /** @test */
+    public function an_active_product_remains_active_on_update_if_product_type_does_not_change()
+    {
+        $this->product->activate();
+
+        $this->product->name = 'foo';
+
+        $this->patch($this->product->path(), $this->product->toArray());
+
+        $this->assertTrue($this->product->isActive);
+    }
+
+    /** @test */
+    public function an_authenticated_user_can_activate_a_product()
+    {
+        $productTypeId = $this->product->productType->id;
+
+        $this->patch('/api/v1/product-types/' . $productTypeId . '/activate/' . $this->product->id);
+
+        $this->assertTrue($this->product->fresh()->isActive);
+    }
 }

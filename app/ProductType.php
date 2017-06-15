@@ -9,7 +9,7 @@ class ProductType extends Model
 {
     use Presentable;
 
-    protected $fillable = ['name', 'quantity', 'product_id', 'configurable', 'customizable'];
+    protected $fillable = ['name', 'quantity', 'configurable', 'customizable', 'product_id'];
 
     protected $presenter = 'App\Presenters\ProductTypePresenter';
 
@@ -24,12 +24,7 @@ class ProductType extends Model
 
     public function activeProduct()
     {
-        return $this->hasOne(Product::class);
-    }
-
-    public function renderType()
-    {
-        return $this->belongsTo(RenderType::class);
+        return $this->belongsTo(Product::class, 'product_id');
     }
 
     public function combos()
@@ -40,5 +35,10 @@ class ProductType extends Model
     public function extras()
     {
         return $this->morphedByMany(Extra::class, 'product_typeable');
+    }
+
+    public function hasActiveProduct()
+    {
+        return $this->product_id !== null;
     }
 }

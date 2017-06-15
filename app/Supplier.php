@@ -2,14 +2,14 @@
 
 namespace App;
 
-use GameStation\Traits\Imageable;
+use GameStation\Traits\HasImage;
 use Illuminate\Database\Eloquent\Model;
 use Laracodes\Presenter\Traits\Presentable;
 use Laravel\Scout\Searchable;
 
 class Supplier extends Model
 {
-    use Presentable, Imageable;
+    use Presentable, HasImage;
 
     protected $fillable = ['name', 'address', 'telephone', 'email', 'image'];
 
