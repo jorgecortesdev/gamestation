@@ -5,6 +5,8 @@ use Laracodes\Presenter\Presenter;
 
 class ProductTypePresenter extends Presenter
 {
+    use Traits\HasTimestampsPresenter;
+
     public function price()
     {
         $amount = $this->quantity * $this->pivot->quantity * $this->model->activeProduct->price;
@@ -34,11 +36,6 @@ class ProductTypePresenter extends Presenter
         return $this->model->customizable
             ? $this->renderOk()
             : $this->renderBan();
-    }
-
-    public function createdAt()
-    {
-        return $this->model->created_at->format('d.m.Y');
     }
 
     protected function renderBan()

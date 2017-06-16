@@ -2,59 +2,21 @@
 
 namespace App;
 
+use GameStation\Traits\HasProductTypes;
 use Illuminate\Database\Eloquent\Model;
 use Laracodes\Presenter\Traits\Presentable;
 
 class Extra extends Model
 {
-    use Presentable;
+    use Presentable, HasProductTypes;
 
     protected $fillable = ['name', 'price'];
 
     protected $presenter = 'App\Presenters\ExtraPresenter';
 
-    protected $appends = ['total', 'contribution_margin', 'utility'];
-
-    /***********************
-     * Appended attributes *
-     ***********************/
-
-    public function getTotalAttribute()
-    {
-        $productTypes = \Cache::remember('extra-product-types', 60 * 1, function () {
-            return $this->productTypes;
-        });
-
-        return $productTypes->sum(function ($productType) {
-            $price = $productType->activeProduct
-                ? $productType->activeProduct->price
-                : 0;
-
-            $quantity = $productType->quantity * $productType->pivot->quantity;
-            return  $price * $quantity;
-        });
-    }
-
-    public function getContributionMarginAttribute()
-    {
-        return $this->price - $this->total;
-    }
-
-    public function getUtilityAttribute()
-    {
-        return $this->price / $this->contribution_margin;
-    }
-
     /*****************
      * Relationships *
      *****************/
-
-    public function productTypes()
-    {
-        return $this->morphToMany(ProductType::class, 'product_typeable')
-            ->withPivot('quantity')
-            ->with('activeProduct');
-    }
 
     public function configurations()
     {
@@ -71,4 +33,3 @@ class Extra extends Model
         return $this->belongsToMany(Event::class)->withPivot('quantity');
     }
 }
-

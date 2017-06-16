@@ -2,64 +2,26 @@
 
 namespace App;
 
+use GameStation\Traits\HasProductTypes;
 use Illuminate\Database\Eloquent\Model;
 use Laracodes\Presenter\Traits\Presentable;
 
 class Combo extends Model
 {
-    use Presentable;
+    use Presentable, HasProductTypes;
 
     protected $fillable = ['name', 'hours', 'kids', 'adults', 'price', 'color_id'];
 
     protected $presenter = 'App\Presenters\ComboPresenter';
-
-    protected $appends = ['total', 'contribution_margin', 'utility'];
 
     public function configurableProductTypes()
     {
         return $this->productTypes()->where('configurable', true);
     }
 
-    /***********************
-     * Appended attributes *
-     ***********************/
-
-    public function getTotalAttribute()
-    {
-        $productTypes = \Cache::remember('combo-product-types', 60 * 1, function () {
-            return $this->productTypes;
-        });
-
-        return $productTypes->sum(function ($productType) {
-            $price = $productType->activeProduct
-                ? $productType->activeProduct->price
-                : 0;
-            $quantity = $productType->pivot->quantity;
-
-            return  $price * $quantity;
-        });
-    }
-
-    public function getContributionMarginAttribute()
-    {
-        return $this->price - $this->total;
-    }
-
-    public function getUtilityAttribute()
-    {
-        return $this->price / $this->contribution_margin;
-    }
-
     /*****************
      * Relationships *
      *****************/
-
-    public function productTypes()
-    {
-        return $this->morphToMany(ProductType::class, 'product_typeable')
-            ->withPivot('quantity')
-            ->with('activeProduct');
-    }
 
     public function configurations()
     {

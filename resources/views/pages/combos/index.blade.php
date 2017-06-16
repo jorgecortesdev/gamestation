@@ -26,8 +26,8 @@
                         <th class="text-center">Horas</th>
                         <th class="text-center">Niños</th>
                         <th class="text-center">Adultos</th>
-                        <th class="text-center">Costo</th>
-                        <th class="text-center">Costo Unitario</th>
+                        <th class="text-center">Costo Variable</th>
+                        <th class="text-center">Precio</th>
                         <th class="text-center">Márgen de contribución</th>
                         <th class="text-center">Acciones</th>
                     </tr>
@@ -48,9 +48,9 @@
                             <td class="text-center">{{ $combo->hours }}</td>
                             <td class="text-center">{{ $combo->kids }}</td>
                             <td class="text-center">{{ $combo->adults }}</td>
-                            <td class="text-right">{{ $combo->present()->total }}</td>
+                            <td class="text-right">{{ $combo->present()->variableCost }}</td>
                             <td class="text-right">{{ $combo->present()->price }}</td>
-                            <td class="text-right">{!! $combo->present()->contribution_margin !!}</td>
+                            <td class="text-right">{!! $combo->present()->contributionMargin !!}</td>
                             <td class="text-center no-wrap actions">
                                 <div>
                                     <a class="btn btn-primary" href="{{ route('combos.show', [$combo->id]) }}"><i class="fa fa-folder"></i> Ver</a>

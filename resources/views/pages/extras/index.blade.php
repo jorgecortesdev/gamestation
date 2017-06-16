@@ -23,7 +23,7 @@
                         <th class="text-center">Id</th>
                         <th class="text-center">Nombre</th>
                         <th class="text-center">Costo Variable</th>
-                        <th class="text-center">Costo</th>
+                        <th class="text-center">Precio</th>
                         <th class="text-center">Márgen de contribución</th>
                         <th class="text-center">Acciones</th>
                     </tr>
@@ -38,9 +38,9 @@
                                 <br>
                                 <small>Creado {{ $extra->present()->createdAt }}</small>
                             </td>
-                            <td class="text-right">{{ $extra->present()->total }}</td>
+                            <td class="text-right">{{ $extra->present()->variableCost }}</td>
                             <td class="text-right">{{ $extra->present()->price }}</td>
-                            <td class="text-right">{!! $extra->present()->contribution_margin !!}</td>
+                            <td class="text-right">{!! $extra->present()->contributionMargin !!}</td>
                             <td class="text-center">
                                 <a class="btn btn-info" href="{{ route('extras.edit', [$extra->id]) }}"><i class="fa fa-edit"></i> Editar</a>
                                 <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#deleteModal" data-action="{{ route('extras.destroy', [$extra->id]) }}"> <i class="fa fa-trash"></i> Borrar</a>

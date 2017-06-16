@@ -35,7 +35,7 @@
                             <td>
                                 {{ $property->label }}
                                 <br>
-                                <small>Creado {{ $property->created_at->format('d.m.Y') }}</small>
+                                <small>Creado {{ $property->present()->createdAt }}</small>
                             </td>
                             <td class="text-center">{{ $property->renderType->name }}</td>
                             <td class="text-center">{{ $property->present()->options }}</td>

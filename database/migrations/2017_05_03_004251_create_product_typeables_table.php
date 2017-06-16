@@ -14,16 +14,19 @@ class CreateProductTypeablesTable extends Migration
     public function up()
     {
         Schema::create('product_typeables', function (Blueprint $table) {
-            $table->unsignedInteger('product_type_id');
+            $table->increments('id');
+
+            $table->unsignedInteger('product_type_id')->index();
+
+            $table->unsignedInteger('entity_id')->index();
+            $table->string('entity_type', 50);
+
+            $table->unsignedInteger('quantity')->default(1);
+
             $table->foreign('product_type_id')
                   ->references('id')
                   ->on('product_types')
                   ->onDelete('cascade');
-
-            $table->unsignedInteger('product_typeable_id');
-            $table->string('product_typeable_type');
-
-            $table->unsignedInteger('quantity')->default(1);
         });
     }
 

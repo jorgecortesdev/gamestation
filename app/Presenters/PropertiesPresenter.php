@@ -5,6 +5,8 @@ use Laracodes\Presenter\Presenter;
 
 class PropertiesPresenter extends Presenter
 {
+    use Traits\HasTimestampsPresenter;
+
     public function options()
     {
         $options = '-';

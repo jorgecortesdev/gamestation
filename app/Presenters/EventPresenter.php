@@ -5,10 +5,7 @@ use Laracodes\Presenter\Presenter;
 
 class EventPresenter extends Presenter
 {
-    public function createdAt()
-    {
-        return $this->model->created_at->format('d.m.Y');
-    }
+    use Traits\HasTimestampsPresenter;
 
     public function dayNameWhenOccurs()
     {

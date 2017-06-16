@@ -5,6 +5,8 @@ use Laracodes\Presenter\Presenter;
 
 class KidPresenter extends Presenter
 {
+    use Traits\HasTimestampsPresenter;
+
     public function birthdayAt()
     {
         return $this->model->birthday_at->formatLocalized('%d/%B/%Y');
@@ -24,10 +26,5 @@ class KidPresenter extends Presenter
         }
 
         return trim($parents, ' --- ');
-    }
-
-    public function createdAt()
-    {
-        return $this->model->created_at->format('d.m.Y');
     }
 }

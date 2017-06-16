@@ -54,12 +54,12 @@ class ProductTypeable extends Quantifiable
      */
     public function save(array $items)
     {
-        $items = collect($items)->pluck('selected', 'id');
-        $items->transform(function ($item, $key) {
-            return ['quantity' => $item];
-        });
+        $items = collect($items)
+            ->pluck('selected', 'id')
+            ->toArray();
+
         $type = $this->type;
         $entity = $type::find($this->id);
-        return $entity->productTypes()->sync($items);
+        $entity->addProductTypes($items);
     }
 }
