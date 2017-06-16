@@ -34,7 +34,7 @@
                         <tr>
                             <td class="text-right">{{ $extra->id }}</td>
                             <td>
-                                <a href="#">{{ $extra->name }}</a>
+                                <a href="{{ route('extras.edit', [$extra->id]) }}">{{ $extra->name }}</a>
                                 <br>
                                 <small>Creado {{ $extra->present()->createdAt }}</small>
                             </td>
