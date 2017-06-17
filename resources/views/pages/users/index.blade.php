@@ -14,7 +14,8 @@
         @endslot
 
         <h4>Listado de usuarios</h4>
-        <p>Lista de usuarios autorizados en el sistema.</p>
+        <p>Lista de usuarios autorizados en el sistema, esta parte está incompleta,
+        aún no se puede editar ni agregar algun usuario adicional, quedará pendiente por que no urge.</p>
 
         <div class="table-responsive">
             <table class="table table-hover table-bordered table-striped">

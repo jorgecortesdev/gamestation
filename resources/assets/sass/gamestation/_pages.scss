@@ -1,0 +1,33 @@
+h1 {
+    font-size: 28px;
+}
+
+.aligner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.aligner-item {
+    flex-grow: 1;
+}
+
+.aligner-item-top {
+    align-self: flex-start;
+}
+
+.aligner-item-botton {
+    align-self: flex-end;
+}
+
+.page-header {
+    padding-bottom: 15px;
+}
+
+.page-header h1 {
+    margin: 0px;
+}
+
+.page-header, .page-body {
+  margin: 0 0 24px 0;
+}

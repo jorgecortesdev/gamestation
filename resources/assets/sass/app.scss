@@ -9,6 +9,7 @@
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+@import 'gamestation/pages';
 @import 'gamestation/combos';
 @import 'gamestation/tables';
 @import 'gamestation/cards';
@@ -22,32 +23,6 @@ html {
 
 body {
     margin-bottom: 35px;
-}
-
-.level {
-    display: flex;
-    align-items: center;
-}
-
-.flex {
-    flex: 1;
-}
-
-.page .heading,
-.heading {
-  margin-bottom: 10px;
-}
-
-.heading {
-  margin-top: 10px;
-}
-
-.page .title .btn {
-  margin-bottom: -12px;
-}
-
-.page .body {
-  margin-bottom: 10px;
 }
 
 .footer {

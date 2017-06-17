@@ -1,5 +1,5 @@
-<div class="card bg-default">
-    <div class="card-body">
+<div class="aligner card bg-default">
+    <div class="aligner-item card-body">
         <dl>
             <dt>Paquete</dt>
             <dd>{{ strtoupper($event->combo->name) }}</dd>

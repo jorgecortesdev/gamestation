@@ -1,10 +1,5 @@
-<div class="card bg-default">
-    <div class="card-header">&nbsp;</div>
-    <div class="card-body text-center">
-        <h2>
-            <i class="fa fa-clock-o"></i>
-            <small>{{ $event->present()->timeWhenOccurs }}</small>
-        </h2>
+<div class="aligner card bg-default">
+    <div class="aligner-item card-body text-center">
+        <h1><i class="fa fa-clock-o"></i> <small>{{ $event->present()->timeWhenOccurs }}</small></h1>
     </div>
-    <div class="card-footer">&nbsp;</div>
 </div>

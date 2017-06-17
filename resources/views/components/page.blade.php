@@ -1,20 +1,17 @@
-<div class="page">
-    <div class="heading row">
-        <div class="col-md-12">
-            <div class="title level">
-                <h3 class="flex">
-                    {{ $heading ?? 'Default heading' }}
-                </h3>
-                <div class="btn-group">
-                    {{ $buttons ?? '' }}
-                </div>
-            </div>
+<section class="page-header">
+    <div class="aligner">
+        <h1 class="aligner-item">{{ $heading ?? 'Default heading' }}</h1>
+
+        <div class="alignner-item-botton btn-group">
+            {{ $buttons ?? '' }}
         </div>
     </div>
+</section>
 
+<section class="page-body">
     <div class="body row">
         <div class="col-md-12">
             {{ $slot }}
         </div>
     </div>
-</div>
+</section>
