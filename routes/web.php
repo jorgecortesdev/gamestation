@@ -18,8 +18,10 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 // Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 // Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
-// Home Routes
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'auth'], function() {
+    // Home Routes
+    Route::get('/home', 'HomeController@index')->name('home');
+});
 
 // Schedule Routes
 Route::get('/calendar', 'CalendarController@index');
