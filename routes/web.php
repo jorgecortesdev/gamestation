@@ -21,13 +21,14 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Route::group(['middleware' => 'auth'], function() {
     // Home Routes
     Route::get('/home', 'HomeController@index')->name('home');
+
+    // Schedule Routes
+    Route::get('/schedule', 'ScheduleController@index')->name('schedule.index');
 });
 
-// Schedule Routes
 Route::get('/calendar', 'CalendarController@index');
 Route::post('/calendar', 'CalendarController@store')->name('calendar.store');
 Route::get('/calendar/freebusy', 'CalendarController@freebusy');
-Route::get('/schedule', 'ScheduleController@index')->name('schedule.index');
 
 // Events Routes
 Route::resource('events', 'EventsController');
