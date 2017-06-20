@@ -9,6 +9,8 @@ use Illuminate\View\View;
 
 class EventsComposer
 {
+    protected $view;
+
     /**
      * Bind data to the view.
      *
@@ -17,26 +19,62 @@ class EventsComposer
      */
     public function compose(View $view)
     {
+        $this->view = $view;
+
         $combos = Combo::all();
 
-        $event = $view->event;
+        $selectedClient = $this->getSelectedClient();
+        $selectedKid = $this->getSelectedKid();
+        $selectedCombo = $this->getSelectedCombo();
 
-        if ($event) {
-            $clientIdOrName = $event->client->id;
-        } else {
-            $clientIdOrName = old('clientIdOrName');
+        $view->with(compact('combos', 'selectedClient', 'selectedKid', 'selectedCombo'));
+    }
+
+    protected function getSelectedClient()
+    {
+        $selectedClient = collect([
+            ['id' => 0, 'text' => '-- Selecciona el cliente --']
+        ]);
+
+        $client_id = $this->findClientId();
+
+        if (! is_null($client_id)) {
+            $selectedClient = Client::select('id', 'name as text')->where('id', $client_id)->get();
         }
 
-        $clientsSelect  = [];
+        return $selectedClient;
+    }
 
-        if ($clientIdOrName) {
-            if (is_numeric($clientIdOrName)) {
-                $clientsSelect = Client::where('id', $clientIdOrName)->pluck('name', 'id')->toArray();
-            } else {
-                $clientsSelect = [$clientIdOrName => $clientIdOrName];
-            }
+    protected function getSelectedKid()
+    {
+        $kid_id = old('kid_id');
+
+        if (is_null($kid_id) && ! is_null($this->view->event)) {
+            $kid_id = $this->view->event->kid_id;
         }
 
-        $view->with(compact('combos', 'clientsSelect'));
+        return $kid_id ?? 0;
+    }
+
+    protected function findClientId()
+    {
+        $client_id = old('client_id');
+
+        if (is_null($client_id) && ! is_null($this->view->event)) {
+            $client_id = $this->view->event->client_id;
+        }
+
+        return $client_id;
+    }
+
+    protected function getSelectedCombo()
+    {
+        $combo_id = old('combo_id');
+
+        if (is_null($combo_id) && ! is_null($this->view->event)) {
+            $combo_id = $this->view->event->combo_id;
+        }
+
+        return $combo_id ?? 0;
     }
 }

@@ -1,6 +1,7 @@
 <?php
 namespace App\Presenters;
 
+use Carbon\Carbon;
 use Laracodes\Presenter\Presenter;
 
 class EventPresenter extends Presenter
@@ -55,5 +56,16 @@ class EventPresenter extends Presenter
         $date = str_replace($day, ucfirst($day), $date);
 
         return $date;
+    }
+
+    public function occursOn()
+    {
+        if (old('occurs_on')) {
+            return old('occurs_on');
+        }
+
+        return $this->model->occurs_on
+            ? $this->model->occurs_on->format('F j, Y h:i A')
+            : Carbon::now()->format('F j, Y h:i A');
     }
 }

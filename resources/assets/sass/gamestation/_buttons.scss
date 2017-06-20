@@ -1,0 +1,44 @@
+.btn span.glyphicon {
+  opacity: 0;
+}
+
+.btn.active span.glyphicon {
+  opacity: 1;
+}
+
+// Alternate buttons
+// --------------------------------------------------
+
+.btn-combo-1 {
+  @include button-variant($color-combo-1-text, $color-combo-1, $color-combo-1-border);
+}
+.btn-combo-2 {
+  @include button-variant($color-combo-2-text, $color-combo-2, $color-combo-2-border);
+}
+.btn-combo-3 {
+  @include button-variant($color-combo-3-text, $color-combo-3, $color-combo-3-border);
+}
+.btn-combo-4 {
+  @include button-variant($color-combo-4-text, $color-combo-4, $color-combo-4-border);
+}
+.btn-combo-5 {
+  @include button-variant($color-combo-5-text, $color-combo-5, $color-combo-5-border);
+}
+.btn-combo-6 {
+  @include button-variant($color-combo-6-text, $color-combo-6, $color-combo-6-border);
+}
+.btn-combo-7 {
+  @include button-variant($color-combo-7-text, $color-combo-7, $color-combo-7-border);
+}
+.btn-combo-8 {
+  @include button-variant($color-combo-8-text, $color-combo-8, $color-combo-8-border);
+}
+.btn-combo-9 {
+  @include button-variant($color-combo-9-text, $color-combo-9, $color-combo-9-border);
+}
+.btn-combo-10 {
+  @include button-variant($color-combo-10-text, $color-combo-10, $color-combo-10-border);
+}
+.btn-combo-11 {
+  @include button-variant($color-combo-11-text, $color-combo-11, $color-combo-11-border);
+}

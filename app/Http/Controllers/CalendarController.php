@@ -46,7 +46,7 @@ class CalendarController extends Controller
 
     public function freebusy(Request $request)
     {
-        $start = Carbon::createFromFormat('M d, Y h:i A', $request->start, 'America/Hermosillo');
+        $start = Carbon::parse($request->start);
         $end = $start->copy()->addHours(3);
 
         return ['busy' => $this->calendar->freebusy($start->toIso8601String(), $end->toIso8601String())];

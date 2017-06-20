@@ -137,9 +137,6 @@ class Event extends Model
         }
 
         switch ($name) {
-            case 'occurs_on':
-                return $this->occurs_on->format('F j, Y H:i A');
-                break;
             case 'clientIdOrName':
                 return $this->client->id;
                 break;
