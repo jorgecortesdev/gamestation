@@ -9,16 +9,28 @@ class UnitiesTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function setUp()
+    /** @test */
+    function an_unauthenticated_user_can_not_browse_unities()
     {
-        parent::setUp();
+        $this->expectException('Illuminate\Auth\AuthenticationException');
 
-        $this->signIn();
+        $this->get('/unities');
+    }
+
+    /** @test */
+    function an_unauthenticated_user_is_redirected_to_login_page()
+    {
+        $this->withExceptionHandling();
+
+        $this->get('/unities')
+            ->assertRedirect('/login');
     }
 
     /** @test */
     public function an_authenticated_user_can_view_all_unities()
     {
+        $this->signIn();
+
         $unity = create('App\Unity');
 
         $this->get('/unities')
@@ -28,6 +40,8 @@ class UnitiesTest extends TestCase
     /** @test */
     public function an_authenticated_user_can_create_a_new_unity()
     {
+        $this->signIn();
+
         $response = $this->post('/unities', ['name' => 'foo']);
 
         $this->get($response->headers->get('Location'))
@@ -37,6 +51,8 @@ class UnitiesTest extends TestCase
     /** @test */
     public function an_authenticated_user_can_delete_a_unity()
     {
+        $this->signIn();
+
         $unity = create('App\Unity');
 
         $this->delete('/unities/' . $unity->id);

@@ -31,6 +31,9 @@ Route::group(['middleware' => 'auth'], function() {
 
     // Users Routes
     Route::resource('users', 'UsersController');
+
+    // Unities Routes
+    Route::resource('unities', 'UnitiesController');
 });
 
 // Events Routes
@@ -67,8 +70,6 @@ Route::resource('product-types', 'ProductTypesController');
 // Properties Routes
 Route::resource('properties', 'PropertiesController');
 
-// Unities Routes
-Route::resource('unities', 'UnitiesController');
 
 
 // API v1 Routes

@@ -8,12 +8,6 @@ use Illuminate\Http\Request;
 
 class UnitiesController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
         $unities = Unity::latest()
