@@ -7,16 +7,9 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
         $users = User::latest('id')->paginate(config('gamestation.results_per_page'));
         return view('pages.users.index', compact('users'));
     }
-
 }

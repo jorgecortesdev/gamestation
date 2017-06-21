@@ -28,6 +28,9 @@ Route::group(['middleware' => 'auth'], function() {
     // Calendar Routes
     Route::get('/calendar', 'CalendarController@index');
     Route::get('/calendar/freebusy', 'CalendarController@freebusy');
+
+    // Users Routes
+    Route::resource('users', 'UsersController');
 });
 
 // Events Routes
@@ -67,8 +70,6 @@ Route::resource('properties', 'PropertiesController');
 // Unities Routes
 Route::resource('unities', 'UnitiesController');
 
-// Users Routes
-Route::resource('users', 'UsersController');
 
 // API v1 Routes
 Route::group(['prefix' => 'api/v1'], function() {
