@@ -29,10 +29,11 @@ Route::group(['middleware' => 'auth'], function() {
 
     // Properties Routes
     Route::resource('properties', 'PropertiesController');
+
+    // Events Routes
+    Route::resource('events', 'EventsController');
 });
 
-// Events Routes
-Route::resource('events', 'EventsController');
 
 // Combos Routes
 Route::resource('combos','CombosController');
