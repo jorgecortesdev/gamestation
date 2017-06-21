@@ -28337,8 +28337,8 @@ __webpack_require__(170);
 
             this.showStatus = true;
 
-            axios.get('/calendar/freebusy', { 'start': date }).then(function (response) {
-                _this2.isAvailable = !response.data.busy;
+            axios.post('/api/v1/calendar/verify', { 'start': date }).then(function (response) {
+                _this2.isAvailable = !response.data.data.busy;
                 _this2.verifyMessage = _this2.buildVerifyMessage(_this2.isAvailable);
             }).catch(function (errors) {
                 flash('Error: ' + Object.getOwnPropertyDescriptor(errors, 'message').value, 'danger');

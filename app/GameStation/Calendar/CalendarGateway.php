@@ -21,19 +21,19 @@ class CalendarGateway
         return $this->calendar->list($start, $end);
     }
 
+    public function verify($start)
+    {
+        $start = Carbon::parse($start);
+        $end = $start->copy()->addHours(3);
+
+        return $this->calendar->verify(
+            $start->toIso8601String(),
+            $end->toIso8601String()
+        );
+    }
+
     public function create($summary, $start, $end, $colorId)
     {
         return $this->calendar->create($summary, $start, $end, $colorId);
     }
-
-    public function editEvent($start)
-    {
-
-    }
-
-    public function deleteEvent($start)
-    {
-
-    }
-
 }

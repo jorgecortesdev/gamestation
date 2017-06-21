@@ -57,9 +57,9 @@
 
                 this.showStatus = true;
 
-                axios.get('/calendar/freebusy', {'start': date})
+                axios.post('/api/v1/calendar/verify', {'start': date})
                     .then(response => {
-                        this.isAvailable = ! response.data.busy;
+                        this.isAvailable = ! response.data.data.busy;
                         this.verifyMessage = this.buildVerifyMessage(this.isAvailable);
                     })
                     .catch(errors => {

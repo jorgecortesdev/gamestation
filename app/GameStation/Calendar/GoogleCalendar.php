@@ -2,6 +2,8 @@
 
 namespace App\GameStation\Calendar;
 
+use Carbon\Carbon;
+
 class GoogleCalendar
 {
     protected $calendar_id;
@@ -88,7 +90,7 @@ class GoogleCalendar
      *
      * @return boolean
      */
-    public function freebusy($start, $end)
+    public function verify($start, $end)
     {
         $item = new \Google_Service_Calendar_FreeBusyRequestItem();
         $item->setId($this->calendar_id);
@@ -97,28 +99,21 @@ class GoogleCalendar
         $request->setTimeMin($start);
         $request->setTimeMax($end);
         $request->setTimeZone('America/Hermosillo');
-        $request->setItems([
-           $item
-        ]);
+        $request->setItems([$item]);
 
         $response = $this->service->freebusy->query($request);
 
         $calendars = $response->getCalendars();
 
-        $busy = false;
-
-        if (isset($calendars[$this->calendar_id])) {
-            $timePeriods = $calendars[$this->calendar_id]->getBusy();
-            foreach ($timePeriods as $timePeriod) {
-                $busyStart = \Carbon\Carbon::parse($timePeriod->getStart());
-                $busyEnd = \Carbon\Carbon::parse($timePeriod->getEnd());
-
-                if ($busyStart->gte(\Carbon\Carbon::parse($start)) && $busyEnd->lte(\Carbon\Carbon::parse($end))) {
-                    $busy = true;
-                }
-            }
+        if (! isset($calendars[$this->calendar_id])) {
+            throw new Exception('Calendar not found!');
         }
 
-        return $busy;
+        return collect($calendars[$this->calendar_id]->getBusy())
+            ->reduce(function ($carry, $timePeriod) use ($start, $end) {
+                $busyStart = Carbon::parse($timePeriod->getStart());
+                $busyEnd = Carbon::parse($timePeriod->getEnd());
+                return $busyStart->gte(Carbon::parse($start)) && $busyEnd->lte(Carbon::parse($end));
+        }, false);
     }
 }

@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\GameStation\Calendar\CalendarGateway;
 
-class CalendarController extends Controller
+class CalendarController extends ApiController
 {
     /** @var Calendar Google calendar */
     protected $calendar;
@@ -20,6 +20,13 @@ class CalendarController extends Controller
     public function index(Request $request)
     {
         return $this->calendar->list($request->start, $request->end);
+    }
+
+    public function verify(Request $request)
+    {
+        $this->validate($request, ['start' => 'bail|required|date']);
+
+        return $this->respond(['busy' => $this->calendar->verify($request->start)]);
     }
 
     public function store(Request $request)
@@ -37,13 +44,5 @@ class CalendarController extends Controller
         );
 
         return redirect(route('schedule.index'));
-    }
-
-    public function freebusy(Request $request)
-    {
-        $start = Carbon::parse($request->start);
-        $end = $start->copy()->addHours(3);
-
-        return ['busy' => $this->calendar->freebusy($start->toIso8601String(), $end->toIso8601String())];
     }
 }

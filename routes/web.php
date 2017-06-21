@@ -19,7 +19,6 @@ Route::group(['middleware' => 'auth'], function() {
 
     // Calendar Routes
     Route::get('/calendar', 'CalendarController@index');
-    Route::get('/calendar/freebusy', 'CalendarController@freebusy');
 
     // Users Routes
     Route::resource('users', 'UsersController');
@@ -55,7 +54,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     // Kids Routes
     Route::resource('kids', 'KidsController');
-    Route::get('kid/find/{kid_id}', 'KidsController@find');
+    // Route::get('kid/find/{kid_id}', 'KidsController@find');
 
     // API v1 Routes
     Route::group(['prefix' => 'api/v1'], function() {
@@ -94,6 +93,10 @@ Route::group(['middleware' => 'auth'], function() {
             'ProductTypesProductsController',
             ['only' => ['update']]
         );
+
+        // Google Calendar
+        Route::post('calendar/verify', 'CalendarController@verify');
+
     });
 
 });
