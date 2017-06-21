@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\GameStation\Calendar\GoogleCalendar;
+use App\GameStation\Calendar\CalendarGateway;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -40,5 +42,15 @@ class AppServiceProvider extends ServiceProvider
         // if ($this->app->isLocal()) {
         //     $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
         // }
+
+        $this->app->singleton(CalendarGateway::class, function($app) {
+            $calendar_id = config('google.calendar.id');
+            $key_file    = config('google.calendar.key_file');
+            $scopes      = config('google.calendar.scopes');
+            $colors      = config('google.colors');
+            return new CalendarGateway(
+                new GoogleCalendar($calendar_id, $key_file, $scopes, $colors)
+            );
+        });
     }
 }

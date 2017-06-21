@@ -24,11 +24,11 @@ Route::group(['middleware' => 'auth'], function() {
 
     // Schedule Routes
     Route::get('/schedule', 'ScheduleController@index')->name('schedule.index');
-});
 
-Route::get('/calendar', 'CalendarController@index');
-Route::post('/calendar', 'CalendarController@store')->name('calendar.store');
-Route::get('/calendar/freebusy', 'CalendarController@freebusy');
+    // Calendar Routes
+    Route::get('/calendar', 'CalendarController@index');
+    Route::get('/calendar/freebusy', 'CalendarController@freebusy');
+});
 
 // Events Routes
 Route::resource('events', 'EventsController');

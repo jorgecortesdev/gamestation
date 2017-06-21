@@ -189,7 +189,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        App\Providers\GCalendarServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
 
         Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,

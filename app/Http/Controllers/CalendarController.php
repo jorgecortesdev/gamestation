@@ -5,26 +5,21 @@ namespace App\Http\Controllers;
 use Cache;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Library\Google\Calendar;
+use App\GameStation\Calendar\CalendarGateway;
 
 class CalendarController extends Controller
 {
     /** @var Calendar Google calendar */
     protected $calendar;
 
-    public function __construct(Calendar $calendar)
+    public function __construct(CalendarGateway $calendar)
     {
-        $this->middleware('auth');
-
         $this->calendar = $calendar;
     }
 
     public function index(Request $request)
     {
-        $start = Carbon::createFromFormat('Y-m-d', $request->start)->toRfc3339String();
-        $end   = Carbon::createFromFormat('Y-m-d', $request->end)->toRfc3339String();
-
-        return $this->calendar->listEvents($start, $end);
+        return $this->calendar->list($request->start, $request->end);
     }
 
     public function store(Request $request)
