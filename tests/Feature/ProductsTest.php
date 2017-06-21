@@ -21,7 +21,27 @@ class ProductsTest extends TestCase
         $this->signIn();
 
         $this->product = create('App\Product');
+    }
 
+    /** @test */
+    function an_unauthenticated_user_can_not_see_product()
+    {
+        $this->post('/logout');
+
+        $this->expectException('Illuminate\Auth\AuthenticationException');
+
+        $this->get($this->product->path());
+    }
+
+    /** @test */
+    function an_unauthenticated_user_is_redirected_to_login_page()
+    {
+        $this->post('/logout');
+
+        $this->withExceptionHandling();
+
+        $this->get($this->product->path())
+            ->assertRedirect('/login');
     }
 
     /** @test */

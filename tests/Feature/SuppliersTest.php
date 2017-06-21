@@ -21,7 +21,27 @@ class SuppliersTest extends TestCase
         $this->signIn();
 
         $this->supplier = create('App\Supplier');
+    }
 
+    /** @test */
+    function an_unauthenticated_user_can_not_browse_suppliers()
+    {
+        $this->post('/logout');
+
+        $this->expectException('Illuminate\Auth\AuthenticationException');
+
+        $this->get('/suppliers');
+    }
+
+    /** @test */
+    function an_unauthenticated_user_is_redirected_to_login_page()
+    {
+        $this->post('/logout');
+
+        $this->withExceptionHandling();
+
+        $this->get('/suppliers')
+            ->assertRedirect('/login');
     }
 
     /** @test */

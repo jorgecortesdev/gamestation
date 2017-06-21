@@ -32,8 +32,16 @@ Route::group(['middleware' => 'auth'], function() {
 
     // Events Routes
     Route::resource('events', 'EventsController');
-});
 
+    // Products Routes
+    Route::resource('suppliers.products', 'ProductsController', ['except' => ['index']]);
+
+    // Suppliers Routes
+    Route::resource('suppliers', 'SuppliersController');
+
+    // Product Types Routes
+    Route::resource('product-types', 'ProductTypesController');
+});
 
 // Combos Routes
 Route::resource('combos','CombosController');
@@ -49,20 +57,6 @@ Route::resource('clients', 'ClientsController');
 // Kids Routes
 Route::resource('kids', 'KidsController');
 Route::get('kid/find/{kid_id}', 'KidsController@find');
-
-// Suppliers Routes
-Route::resource('suppliers', 'SuppliersController');
-
-// Products Routes
-Route::resource(
-    'suppliers.products',
-    'ProductsController',
-    ['except' => ['index']]
-);
-
-// Product Types Routes
-Route::resource('product-types', 'ProductTypesController');
-
 
 // API v1 Routes
 Route::group(['prefix' => 'api/v1'], function() {

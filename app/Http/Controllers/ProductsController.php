@@ -8,10 +8,6 @@ use App\Http\Requests\SaveProduct;
 
 class ProductsController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     public function show(Supplier  $supplier, Product $product)
     {
