@@ -43,7 +43,7 @@
                         }
                     },
                     ajax: {
-                        url: "/client/search/select",
+                        url: "/api/v1/client/search/select2",
                         dataType: 'json',
                         delay: 250,
                         data: (params) => {
@@ -56,9 +56,9 @@
                             params.page = params.page || 1;
 
                             return {
-                                results: data.items,
+                                results: data.data.items,
                                 pagination: {
-                                    more: (params.page * 30) < data.total_count
+                                    more: (params.page * 30) < data.data.total_count
                                 }
                             };
                         },
@@ -114,9 +114,9 @@
             },
 
             fetchClient(id) {
-                axios.get('/client/search/autocomplete', { params : { q: id }})
+                axios.get('/api/v1/client/' + id)
                     .then(response => {
-                        this.client = response.data.client;
+                        this.client = response.data.data;
                     })
                     .catch(errors => {
                         console.log(errors);

@@ -69,15 +69,4 @@ class ClientsController extends Controller
         return back();
     }
 
-    public function searchForSelect(SearchClient $request)
-    {
-        $clients = new \App\Repositories\Clients();
-        return $clients->searchForSelect($request->q);
-    }
-
-    public function searchForAutocomplete(SearchClient $request)
-    {
-        $clients = new \App\Repositories\Clients();
-        return $clients->searchForAutocomplete($request->q);
-    }
 }

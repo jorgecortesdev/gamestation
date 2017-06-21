@@ -48,13 +48,11 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('extras', 'ExtrasController');
 
     // Clients Routes
-    Route::get('client/search/select', 'ClientsController@searchForSelect');
-    Route::get('client/search/autocomplete', 'ClientsController@searchForAutocomplete');
     Route::resource('clients', 'ClientsController');
 
     // Kids Routes
     Route::resource('kids', 'KidsController');
-    // Route::get('kid/find/{kid_id}', 'KidsController@find');
+
 
     // API v1 Routes
     Route::group(['prefix' => 'api/v1'], function() {
@@ -97,6 +95,9 @@ Route::group(['middleware' => 'auth'], function() {
         // Google Calendar
         Route::post('calendar/verify', 'CalendarController@verify');
 
+        // Client
+        Route::get('client/{client}', 'ApiClientController@show');
+        Route::get('client/search/select2', 'ApiClientController@select2');
     });
 
 });

@@ -47,16 +47,4 @@ class Clients extends Repository
 
         return $data;
     }
-
-    public function searchForAutocomplete($query)
-    {
-        $data['client'] = false;
-
-        if (ctype_digit($query)) {
-            $client = Client::with('kids')->findOrFail($query);
-            $data['client'] = $client;
-        }
-
-        return $data;
-    }
 }

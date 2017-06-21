@@ -28197,7 +28197,7 @@ __webpack_require__(173);
                     }
                 },
                 ajax: {
-                    url: "/client/search/select",
+                    url: "/api/v1/client/search/select2",
                     dataType: 'json',
                     delay: 250,
                     data: function data(params) {
@@ -28210,9 +28210,9 @@ __webpack_require__(173);
                         params.page = params.page || 1;
 
                         return {
-                            results: data.items,
+                            results: data.data.items,
                             pagination: {
-                                more: params.page * 30 < data.total_count
+                                more: params.page * 30 < data.data.total_count
                             }
                         };
                     },
@@ -28261,8 +28261,8 @@ __webpack_require__(173);
         fetchClient: function fetchClient(id) {
             var _this3 = this;
 
-            axios.get('/client/search/autocomplete', { params: { q: id } }).then(function (response) {
-                _this3.client = response.data.client;
+            axios.get('/api/v1/client/' + id).then(function (response) {
+                _this3.client = response.data.data;
             }).catch(function (errors) {
                 console.log(errors);
             });
