@@ -1,6 +1,7 @@
 @push('stylesheets')
 <link rel="stylesheet" href="{{ asset("css/daterangepicker.css") }}">
 <link rel="stylesheet" href="{{ asset("css/select2.min.css") }}">
+<link rel="stylesheet" href="{{ asset("css/select2-bootstrap.min.css") }}">
 @endpush
 
 <div class="form-group{{ $errors->has('client_id') ? ' has-error' : '' }}">
@@ -9,7 +10,7 @@
         'client_id',
         $clientsSelect,
         null,
-        ['class' => 'form-control', 'placeholder' => '-- Selecciona el cliente --', 'id' => 'clientSelect'])
+        ['class' => 'form-control', 'placeholder' => '-- Selecciona el cliente --', 'id' => 'client_id'])
     !!}
 
     @if ($errors->has('client_id'))

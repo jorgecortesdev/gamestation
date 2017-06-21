@@ -5,15 +5,15 @@ namespace App\Http\ViewComposers;
 use App\Combo;
 use App\Property;
 use Illuminate\View\View;
-use App\Library\Google\Calendar;
+use App\GameStation\Calendar\CalendarGateway;
 
 class CombosComposer
 {
-    protected $gcalendar;
+    protected $calendar;
 
-    public function __construct(Calendar $gcalendar)
+    public function __construct(CalendarGateway $calendar)
     {
-        $this->gcalendar = $gcalendar;
+        $this->calendar = $calendar;
     }
 
     /**
@@ -33,7 +33,7 @@ class CombosComposer
                 ];
             })->pluck('name', 'id');
 
-        $colors = $this->gcalendar->eventColors();
+        $colors = $this->calendar->colors();
 
         $view->with(compact(['properties', 'colors']));
     }

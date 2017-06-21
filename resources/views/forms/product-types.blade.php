@@ -6,6 +6,15 @@
     @endif
 </div>
 
+<div class="form-group{{ $errors->has('quantity') ? ' has-error' : '' }}">
+    {!! Form::label('quantity', 'Cantidad', ['class' => 'control-label']) !!}
+    {!! Form::text('quantity', isset($productType) ? null : 1, ['class' => 'form-control']) !!}
+
+    @if ($errors->has('quantity'))
+    <span class="help-block text-danger">* {{ $errors->first('quantity') }}</span>
+    @endif
+</div>
+
 <div class="form-group{{ $errors->has('configurable') ? ' has-error' : '' }}">
     <div class="checkbox">
         <label>

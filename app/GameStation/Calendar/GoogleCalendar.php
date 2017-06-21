@@ -44,7 +44,7 @@ class GoogleCalendar
             $event['start'] = $rawEvent->start->dateTime;
             $event['end'] = $rawEvent->end->dateTime;
 
-            $color = $this->eventColor($rawEvent->colorId);
+            $color = $this->color($rawEvent->colorId);
 
             $event['backgroundColor'] = $color['background'];
             $event['textColor'] = $color['foreground'];
@@ -73,12 +73,12 @@ class GoogleCalendar
         return $this->service->events->insert($this->calendar_id, $event);
     }
 
-    public function eventColor($colorId)
+    public function color($colorId)
     {
         return $this->colors->get($colorId);
     }
 
-    public function eventColors()
+    public function colors()
     {
         return $this->colors;
     }

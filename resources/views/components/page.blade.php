@@ -2,7 +2,7 @@
     <div class="aligner">
         <h1 class="aligner-item">{{ $heading ?? 'Default heading' }}</h1>
 
-        <div class="alignner-item-botton btn-group">
+        <div class="aligner-item-bottom btn-group">
             {{ $buttons ?? '' }}
         </div>
     </div>

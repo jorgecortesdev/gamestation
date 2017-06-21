@@ -87,10 +87,12 @@ class ProductTypesController extends Controller
     {
       $rules = [
         'name' => 'required',
+        'quantity' => 'required'
       ];
 
       $messages = [
         'name.required' => 'El campo es requerido.',
+        'quantity.required' => 'El campo es requerido.',
       ];
 
       return Validator::make($data, $rules, $messages);

@@ -14,8 +14,9 @@ function init_DateRangePicker(selector) {
 
 function init_Select2(selector) {
     $(selector).select2({
+        theme: "bootstrap",
         ajax: {
-            url: "/client/search/select",
+            url: "/api/v1/client/search/select2",
             dataType: 'json',
             delay: 250,
             data: function (params) {
@@ -28,9 +29,9 @@ function init_Select2(selector) {
                 params.page = params.page || 1;
 
                 return {
-                    results: data.items,
+                    results: data.data.items,
                     pagination: {
-                        more: (params.page * 30) < data.total_count
+                        more: (params.page * 30) < data.data.total_count
                     }
                 };
             },
@@ -42,5 +43,5 @@ function init_Select2(selector) {
 
 $(document).ready(function() {
     init_DateRangePicker('#birthday_at');
-    init_Select2('#clientSelect');
+    init_Select2('#client_id');
 });

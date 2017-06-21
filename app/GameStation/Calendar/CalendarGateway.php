@@ -36,4 +36,9 @@ class CalendarGateway
     {
         return $this->calendar->create($summary, $start, $end, $colorId);
     }
+
+    public function colors()
+    {
+        return $this->calendar->colors();
+    }
 }

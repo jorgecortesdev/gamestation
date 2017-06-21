@@ -57,17 +57,13 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="heading">
-                            <div class="title level">
-                                <h3 class="flex">
-                                    Lista de productos
-                                </h3>
-                                <div class="btn-group">
-                                   <a href="{{ route('combos.edit', [$combo->id]) }}" class="btn btn-primary">Administrar productos</a>
-                                </div>
+                        <div class="aligner">
+                            <h3 class="aligner-item">Lista de productos</h3>
+
+                            <div class="btn-group">
+                                <a href="{{ route('combos.edit', [$combo->id]) }}" class="btn btn-primary">Administrar productos</a>
                             </div>
                         </div>
-
                         <table class="table table-hover table-bordered table-striped">
                             <thead>
                                 <tr>
