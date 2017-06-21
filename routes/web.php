@@ -1,4 +1,5 @@
 <?php
+// Index page
 Route::get('/', function () {
     return view('welcome');
 });
@@ -8,15 +9,6 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-// Registration Routes...
-// Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-// Route::post('register', 'Auth\RegisterController@register');
-
-// Password Reset Routes...
-// Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-// Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-// Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-// Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::group(['middleware' => 'auth'], function() {
     // Home Routes
@@ -34,6 +26,9 @@ Route::group(['middleware' => 'auth'], function() {
 
     // Unities Routes
     Route::resource('unities', 'UnitiesController');
+
+    // Properties Routes
+    Route::resource('properties', 'PropertiesController');
 });
 
 // Events Routes
@@ -66,10 +61,6 @@ Route::resource(
 
 // Product Types Routes
 Route::resource('product-types', 'ProductTypesController');
-
-// Properties Routes
-Route::resource('properties', 'PropertiesController');
-
 
 
 // API v1 Routes
