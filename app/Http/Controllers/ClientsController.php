@@ -14,8 +14,6 @@ class ClientsController extends Controller
 
     public function __construct(Clients $clients)
     {
-        $this->middleware('auth');
-
         $this->clients = $clients;
     }
 

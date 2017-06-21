@@ -41,58 +41,59 @@ Route::group(['middleware' => 'auth'], function() {
 
     // Product Types Routes
     Route::resource('product-types', 'ProductTypesController');
-});
 
-// Combos Routes
-Route::resource('combos','CombosController');
+    // Combos Routes
+    Route::resource('combos','CombosController');
 
-// Extras Routes
-Route::resource('extras', 'ExtrasController');
+    // Extras Routes
+    Route::resource('extras', 'ExtrasController');
 
-// Clients Routes
-Route::get('client/search/select', 'ClientsController@searchForSelect');
-Route::get('client/search/autocomplete', 'ClientsController@searchForAutocomplete');
-Route::resource('clients', 'ClientsController');
+    // Clients Routes
+    Route::get('client/search/select', 'ClientsController@searchForSelect');
+    Route::get('client/search/autocomplete', 'ClientsController@searchForAutocomplete');
+    Route::resource('clients', 'ClientsController');
 
-// Kids Routes
-Route::resource('kids', 'KidsController');
-Route::get('kid/find/{kid_id}', 'KidsController@find');
+    // Kids Routes
+    Route::resource('kids', 'KidsController');
+    Route::get('kid/find/{kid_id}', 'KidsController@find');
 
-// API v1 Routes
-Route::group(['prefix' => 'api/v1'], function() {
+    // API v1 Routes
+    Route::group(['prefix' => 'api/v1'], function() {
 
-    // Configurations Routes
-    Route::resource(
-        'event.configuration',
-        'EventConfigurationsController',
-        ['only' => ['index', 'show', 'update']]
-    );
+        // Configurations Routes
+        Route::resource(
+            'event.configuration',
+            'EventConfigurationsController',
+            ['only' => ['index', 'show', 'update']]
+        );
 
-    // Event Properties
-    Route::resource(
-        'event.property',
-        'EventPropertiesController',
-        ['only' => ['show', 'update']]
-    );
+        // Event Properties
+        Route::resource(
+            'event.property',
+            'EventPropertiesController',
+            ['only' => ['show', 'update']]
+        );
 
-    // Statements Vue Component Routes
-    Route::resource(
-        'statements',
-        'StatementsController',
-        ['only' => ['show', 'store']]
-    );
+        // Statements Vue Component Routes
+        Route::resource(
+            'statements',
+            'StatementsController',
+            ['only' => ['show', 'store']]
+        );
 
-    // Quantifiable Vue Component Routes
-    Route::resource(
-        'quantities/entity.type',
-        'QuantifiableController',
-        ['only' => ['show', 'update']]
-    );
+        // Quantifiable Vue Component Routes
+        Route::resource(
+            'quantities/entity.type',
+            'QuantifiableController',
+            ['only' => ['show', 'update']]
+        );
 
-    // Activate or Deactivate a product
-    Route::resource(
-        'product-types.activate',
-        'ProductTypesProductsController',
-        ['only' => ['update']]
-    );
+        // Activate or Deactivate a product
+        Route::resource(
+            'product-types.activate',
+            'ProductTypesProductsController',
+            ['only' => ['update']]
+        );
+    });
+
 });

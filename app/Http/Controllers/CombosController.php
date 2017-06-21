@@ -14,8 +14,6 @@ class CombosController extends Controller
 
     public function __construct(Combos $combos)
     {
-        $this->middleware('auth');
-
         $this->combos = $combos;
     }
 

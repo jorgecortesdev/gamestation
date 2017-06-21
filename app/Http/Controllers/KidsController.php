@@ -13,8 +13,6 @@ class KidsController extends Controller
 
     public function __construct(Kids $kids)
     {
-        $this->middleware('auth');
-
         $this->kids = $kids;
     }
 
