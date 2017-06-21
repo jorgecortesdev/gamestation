@@ -12,15 +12,19 @@ h3 {
     justify-content: center;
 }
 
+.aligner-column {
+    flex-direction: column;
+}
+
 .aligner-item {
     flex-grow: 1;
 }
 
-.aligner-item-top {
+.aligner-item-start {
     align-self: flex-start;
 }
 
-.aligner-item-bottom {
+.aligner-item-end {
     align-self: flex-end;
 }
 
@@ -34,4 +38,12 @@ h3 {
 
 .page-header, .page-body {
   margin: 0 0 24px 0;
+}
+
+.media-right {
+    margin-right: 1em;
+}
+
+.media-body li {
+    margin: .5em 0;
 }

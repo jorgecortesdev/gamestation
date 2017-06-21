@@ -25,7 +25,7 @@
 
                 @component('components.media')
                     @slot('left')
-                        <img src="{{ $supplier->image }}">
+                        <img class="media-object" src="{{ $supplier->image }}">
                     @endslot
 
                     <ul class="list-unstyled">

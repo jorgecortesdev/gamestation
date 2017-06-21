@@ -44,7 +44,7 @@ trait HasImage
         $originalImage = Image::make($image->getRealPath());
 
         $originalImage->orientate()
-            ->resize(200, 200, function ($constraint) {
+            ->resize(300, 300, function ($constraint) {
                 $constraint->aspectRatio();
             })->stream();
 

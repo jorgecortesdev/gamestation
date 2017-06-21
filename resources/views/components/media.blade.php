@@ -3,7 +3,7 @@
         {{ $left ?? '' }}
     </div>
 
-    <div class="media-content">
+    <div class="media-body">
         {{ $slot }}
     </div>
 
