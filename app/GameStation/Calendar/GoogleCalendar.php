@@ -4,7 +4,7 @@ namespace App\GameStation\Calendar;
 
 use Carbon\Carbon;
 
-class GoogleCalendar
+class GoogleCalendar implements Calendar
 {
     protected $calendar_id;
 
@@ -27,8 +27,11 @@ class GoogleCalendar
         $this->colors = collect($colors);
     }
 
-    public function list($start, $end)
+    public function between($start, $end)
     {
+        $start = Carbon::createFromFormat('Y-m-d', $start)->toRfc3339String();
+        $end = Carbon::createFromFormat('Y-m-d', $end)->toRfc3339String();
+
         $optParams = [
             'orderBy' => 'startTime',
             'singleEvents' => TRUE,
@@ -53,7 +56,7 @@ class GoogleCalendar
         })->toArray();
     }
 
-    public function create($summary, $start, $end, $colorId)
+    public function createEvent($summary, $start, $end, $colorId)
     {
         $event = new \Google_Service_Calendar_Event(
             array(
@@ -90,8 +93,14 @@ class GoogleCalendar
      *
      * @return boolean
      */
-    public function verify($start, $end)
+    public function verify($start, $hours = 3)
     {
+        $start = Carbon::parse($start);
+        $end = $start->copy()->addHours($hours);
+
+        $start = $start->toIso8601String();
+        $end = $end->toIso8601String();
+
         $item = new \Google_Service_Calendar_FreeBusyRequestItem();
         $item->setId($this->calendar_id);
 
@@ -115,5 +124,15 @@ class GoogleCalendar
                 $busyEnd = Carbon::parse($timePeriod->getEnd());
                 return $busyStart->gte(Carbon::parse($start)) && $busyEnd->lte(Carbon::parse($end));
         }, false);
+    }
+
+    public function editEvent($eventId)
+    {
+        // @TODO
+    }
+
+    public function deleteEvent($eventId)
+    {
+        // @TODO
     }
 }

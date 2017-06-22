@@ -19,7 +19,7 @@ class CalendarController extends ApiController
 
     public function index(Request $request)
     {
-        return $this->calendar->list($request->start, $request->end);
+        return $this->calendar->between($request->start, $request->end);
     }
 
     public function verify(Request $request)

@@ -8,31 +8,22 @@ class CalendarGateway
 {
     protected $calendar;
 
-    public function __construct($calendar)
+    public function __construct(Calendar $calendar)
     {
         $this->calendar = $calendar;
     }
 
-    public function list($start, $end)
+    public function between($start, $end)
     {
-        $start = Carbon::createFromFormat('Y-m-d', $start)->toRfc3339String();
-        $end = Carbon::createFromFormat('Y-m-d', $end)->toRfc3339String();
-
-        return $this->calendar->list($start, $end);
+        return $this->calendar->between($start, $end);
     }
 
-    public function verify($start)
+    public function verify($start, $hours = 3)
     {
-        $start = Carbon::parse($start);
-        $end = $start->copy()->addHours(3);
-
-        return $this->calendar->verify(
-            $start->toIso8601String(),
-            $end->toIso8601String()
-        );
+        return $this->calendar->verify($start, $hours);
     }
 
-    public function create($summary, $start, $end, $colorId)
+    public function createEvent($summary, $start, $end, $colorId)
     {
         return $this->calendar->create($summary, $start, $end, $colorId);
     }
