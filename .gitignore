@@ -1,5 +1,6 @@
 /node_modules
 /public/hot
+/public/php_errorlog
 /public/storage
 /storage/*.key
 /vendor
@@ -11,3 +12,4 @@ npm-debug.log
 .env
 .DS_Store
 .php_cs.cache
+.ftpquota
